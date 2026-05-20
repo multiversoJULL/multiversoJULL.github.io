@@ -149,8 +149,9 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 </div>
 
 <section class="hero">
-  <div class="hero-glitch"></div>
+  <div style="position:absolute;inset:0;background:url('img/banner-suspenso.png') center/cover no-repeat;opacity:0.2;pointer-events:none;z-index:0"></div>
   <div class="hero-content">
+    <div style="margin-bottom:1.2rem"><img src="img/logo-suspenso.png" alt="Bit de Suspenso" style="width:88px;height:88px;object-fit:contain;border-radius:16px;box-shadow:0 0 30px rgba(0,0,0,0.6)"></div>
     <div class="hero-tag">💾 SUSPENSO TECNOLÓGICO · CYBERPUNK</div>
     <h1 class="hero-title">
       <span class="de">Bienvenido a</span>
@@ -214,6 +215,23 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 </footer>
 
 <script>
+
+function isShort(v){
+  const title = (v.snippet && v.snippet.title ? v.snippet.title : '').toLowerCase();
+  const dur = (v.contentDetails && v.contentDetails.duration ? v.contentDetails.duration : '');
+  const m = dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  const hrs  = parseInt(m && m[1] ? m[1] : 0);
+  const mins = parseInt(m && m[2] ? m[2] : 0);
+  const secs = parseInt(m && m[3] ? m[3] : 0);
+  const totalSecs = hrs*3600 + mins*60 + secs;
+  if(title.includes('#short')) return true;
+  if(title.includes('lobitos atacan')) return true;
+  if(title.includes('lobos atacan')) return true;
+  if(totalSecs > 180) return false;
+  if(totalSecs > 0 && totalSecs <= 61) return true;
+  return false;
+}
+
 const YT_API_KEY = 'AIzaSyCIbE7bI3QWipXX0ueox13wNUZRGWNpMPA';
 const CHANNEL_ID = 'UCUys6bJz3hCWwhCrT7adJjQ';
 let uploadsPlaylistId = null;
@@ -225,26 +243,7 @@ function fmtNum(n){if(!n)return '—';n=parseInt(n);if(n>=1e6)return `${(n/1e6).
 function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M vistas`;if(n>=1000)return `${(n/1000).toFixed(1)}K vistas`;return `${n} vistas`;}
 
 
-function isShort(v){
-  // Check duration <= 60 seconds
-  const dur = v.contentDetails?.duration || '';
-  const m = dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  const hrs  = parseInt(m?.[1] || 0);
-  const mins = parseInt(m?.[2] || 0);
-  const secs = parseInt(m?.[3] || 0);
-  const totalSecs = hrs*3600 + mins*60 + secs;
-  if(totalSecs > 60) return false;
 
-  // Check title for #shorts tag
-  const title = (v.snippet?.title || '').toLowerCase();
-  if(title.includes('#short')) return true;
-
-  // Check if vertical video (height > width = short format)
-  const thumb = v.snippet?.thumbnails;
-  if(thumb?.maxres || thumb?.high){
-    const t = thumb.maxres || thumb.high;
-    if(t.height > t.width) return true;
-  }
 
   // If <= 60s and no other indicator, still treat as short
   return totalSecs <= 60;
