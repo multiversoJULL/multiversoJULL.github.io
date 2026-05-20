@@ -180,11 +180,38 @@ const YT_API_KEY = 'AIzaSyCIbE7bI3QWipXX0ueox13wNUZRGWNpMPA';
 const CHANNEL_ID = 'UCfQ51X8l2ARlJRMk-AhfSRQ';
 let uploadsPlaylistId = null;
 let allItems = [];
+let nextPageToken = null;
 
 function timeAgo(d){const s=(Date.now()-new Date(d))/1000;if(s<3600)return `hace ${Math.floor(s/60)}min`;if(s<86400)return `hace ${Math.floor(s/3600)}h`;if(s<2592000)return `hace ${Math.floor(s/86400)}d`;return `hace ${Math.floor(s/2592000)} mes`;}
 function fmtNum(n){if(!n)return '—';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M`;if(n>=1000)return `${(n/1000).toFixed(0)}K`;return `${n}`;}
 function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M vistas`;if(n>=1000)return `${(n/1000).toFixed(1)}K vistas`;return `${n} vistas`;}
-function isShort(v){const dur=v.contentDetails?.duration||'';const m=dur.match(/PT(?:(\d+)M)?(?:(\d+)S)?/);return parseInt(m?.[1]||0)===0&&parseInt(m?.[2]||0)<=60;}
+
+
+function isShort(v){
+  // Check duration <= 60 seconds
+  const dur = v.contentDetails?.duration || '';
+  const m = dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  const hrs  = parseInt(m?.[1] || 0);
+  const mins = parseInt(m?.[2] || 0);
+  const secs = parseInt(m?.[3] || 0);
+  const totalSecs = hrs*3600 + mins*60 + secs;
+  if(totalSecs > 60) return false;
+
+  // Check title for #shorts tag
+  const title = (v.snippet?.title || '').toLowerCase();
+  if(title.includes('#short')) return true;
+
+  // Check if vertical video (height > width = short format)
+  const thumb = v.snippet?.thumbnails;
+  if(thumb?.maxres || thumb?.high){
+    const t = thumb.maxres || thumb.high;
+    if(t.height > t.width) return true;
+  }
+
+  // If <= 60s and no other indicator, still treat as short
+  return totalSecs <= 60;
+}
+
 
 async function getChannelInfo(){
   try{
@@ -199,7 +226,7 @@ async function getChannelInfo(){
   }catch(e){console.warn(e);}
 }
 
-async function fetchPlaylistVideos(max=15,pageToken=''){
+async function fetchPlaylistVideos(max=20,pageToken=''){
   if(!uploadsPlaylistId)return{items:[],nextPageToken:null};
   let url=`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${max}&key=${YT_API_KEY}`;
   if(pageToken)url+=`&pageToken=${pageToken}`;
@@ -221,9 +248,9 @@ function renderRecent(v){
 
 function renderShortsList(v){
   const el=document.getElementById('shortsList');
-  const s=v.filter(isShort).slice(0,6);
-  if(!s.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Sin Shorts recientes.</div>`;return;}
-  el.innerHTML=s.map(v=>`<a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card"><div class="short-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><span class="short-badge">SHORT</span></div><div class="short-info"><div class="short-title">${v.snippet.title}</div></div></a>`).join('');
+  const shorts=v.filter(x=>isShort(x)).slice(0,6);
+  if(!shorts.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Sin Shorts recientes.</div>`;return;}
+  el.innerHTML=shorts.map(v=>`<a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card"><div class="short-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><span class="short-badge">SHORT</span></div><div class="short-info"><div class="short-title">${v.snippet.title}</div></div></a>`).join('');
 }
 
 function appendAllVids(v){
@@ -234,7 +261,6 @@ function appendAllVids(v){
   if(el.querySelector('.skel'))el.innerHTML=html;else el.innerHTML+=html;
 }
 
-let nextPageToken=null;
 async function loadMore(){
   document.getElementById('loadMoreBtn').textContent='Cargando...';
   const{items,nextPageToken:npt}=await fetchPlaylistVideos(10,nextPageToken||'');
@@ -255,8 +281,9 @@ async function checkLive(){
 async function init(){
   await getChannelInfo();
   checkLive();
-  const{items,nextPageToken:npt}=await fetchPlaylistVideos(15);
+  const{items,nextPageToken:npt}=await fetchPlaylistVideos(20);
   nextPageToken=npt;
+  allItems=items;
   renderRecent(items);
   renderShortsList(items);
   appendAllVids(items);
