@@ -16,13 +16,6 @@ import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, increment, q
 // Obtén estos datos en: https://console.firebase.google.com
 // Crea proyecto → Agrega app web → Copia firebaseConfig
 // ══════════════════════════════════════════
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyD3vVi6ewkr2ZefES2CFarMvnM_dziFo7k",
@@ -33,7 +26,6 @@ const firebaseConfig = {
   appId: "1:317220545830:web:3840df9293a7b5f8dccde7",
   measurementId: "G-XL0Y9TMKD1"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
