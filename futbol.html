@@ -177,47 +177,40 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 </footer>
 
 <script>
-
-function isShort(v){
-  const title = (v.snippet && v.snippet.title ? v.snippet.title : '').toLowerCase();
-  const dur = (v.contentDetails && v.contentDetails.duration ? v.contentDetails.duration : '');
-  const m = dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  const hrs  = parseInt(m && m[1] ? m[1] : 0);
-  const mins = parseInt(m && m[2] ? m[2] : 0);
-  const secs = parseInt(m && m[3] ? m[3] : 0);
-  const totalSecs = hrs*3600 + mins*60 + secs;
-  if(title.includes('#short')) return true;
-  if(title.includes('lobitos atacan')) return true;
-  if(title.includes('lobos atacan')) return true;
-  if(totalSecs > 180) return false;
-  if(totalSecs > 0 && totalSecs <= 61) return true;
-  return false;
-}
-
 const YT_API_KEY = 'AIzaSyCIbE7bI3QWipXX0ueox13wNUZRGWNpMPA';
 const CHANNEL_ID = 'UCfQ51X8l2ARlJRMk-AhfSRQ';
-let uploadsPlaylistId = null;
-let allItems = [];
-let nextPageToken = null;
+var uploadsPlaylistId = null;
+var allItemsStore = [];
+var nextPageToken = null;
 
-function timeAgo(d){const s=(Date.now()-new Date(d))/1000;if(s<3600)return `hace ${Math.floor(s/60)}min`;if(s<86400)return `hace ${Math.floor(s/3600)}h`;if(s<2592000)return `hace ${Math.floor(s/86400)}d`;return `hace ${Math.floor(s/2592000)} mes`;}
-function fmtNum(n){if(!n)return '—';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M`;if(n>=1000)return `${(n/1000).toFixed(0)}K`;return `${n}`;}
-function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M vistas`;if(n>=1000)return `${(n/1000).toFixed(1)}K vistas`;return `${n} vistas`;}
-
-
+function timeAgo(d){var s=(Date.now()-new Date(d))/1000;if(s<3600)return 'hace '+Math.floor(s/60)+'min';if(s<86400)return 'hace '+Math.floor(s/3600)+'h';if(s<2592000)return 'hace '+Math.floor(s/86400)+'d';return 'hace '+Math.floor(s/2592000)+' mes';}
+function fmtNum(n){if(!n)return '—';n=parseInt(n);if(n>=1e6)return (n/1e6).toFixed(1)+'M';if(n>=1000)return (n/1000).toFixed(0)+'K';return ''+n;}
+function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return (n/1e6).toFixed(1)+'M vistas';if(n>=1000)return (n/1000).toFixed(1)+'K vistas';return n+' vistas';}
 
 
-  // If <= 60s and no other indicator, still treat as short
-  return totalSecs <= 60;
+function isShort(v){
+  var title=(v.snippet&&v.snippet.title?v.snippet.title:'').toLowerCase();
+  var dur=(v.contentDetails&&v.contentDetails.duration?v.contentDetails.duration:'');
+  var m=dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  var hrs=parseInt(m&&m[1]?m[1]:0);
+  var mins=parseInt(m&&m[2]?m[2]:0);
+  var secs=parseInt(m&&m[3]?m[3]:0);
+  var totalSecs=hrs*3600+mins*60+secs;
+  if(title.indexOf('#short')>=0)return true;
+  if(title.indexOf('lobitos atacan')>=0)return true;
+  if(title.indexOf('lobos atacan')>=0)return true;
+  if(totalSecs>180)return false;
+  if(totalSecs>0&&totalSecs<=61)return true;
+  return false;
 }
 
 
 async function getChannelInfo(){
   try{
-    const r=await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics,contentDetails&id=${CHANNEL_ID}&key=${YT_API_KEY}`);
-    const d=await r.json();
-    if(!d.items?.length)return;
-    const s=d.items[0].statistics;
+    var r=await fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics,contentDetails&id='+CHANNEL_ID+'&key='+YT_API_KEY);
+    var d=await r.json();
+    if(!d.items||!d.items.length)return;
+    var s=d.items[0].statistics;
     uploadsPlaylistId=d.items[0].contentDetails.relatedPlaylists.uploads;
     document.getElementById('subCount').textContent=fmtNum(s.subscriberCount);
     document.getElementById('vidCount').textContent=fmtNum(s.videoCount);
@@ -225,68 +218,78 @@ async function getChannelInfo(){
   }catch(e){console.warn(e);}
 }
 
-async function fetchPlaylistVideos(max=20,pageToken=''){
+async function fetchPlaylistVideos(max,pageToken){
+  max=max||20; pageToken=pageToken||'';
   if(!uploadsPlaylistId)return{items:[],nextPageToken:null};
-  let url=`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${max}&key=${YT_API_KEY}`;
-  if(pageToken)url+=`&pageToken=${pageToken}`;
-  const r=await fetch(url);
-  const d=await r.json();
-  if(!d.items?.length)return{items:[],nextPageToken:null};
-  const ids=d.items.map(i=>i.snippet.resourceId.videoId).join(',');
-  const r2=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${ids}&key=${YT_API_KEY}`);
-  const d2=await r2.json();
+  var url='https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='+uploadsPlaylistId+'&maxResults='+max+'&key='+YT_API_KEY;
+  if(pageToken)url+='&pageToken='+pageToken;
+  var r=await fetch(url);
+  var d=await r.json();
+  if(!d.items||!d.items.length)return{items:[],nextPageToken:null};
+  var ids=d.items.map(function(i){return i.snippet.resourceId.videoId;}).join(',');
+  var r2=await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id='+ids+'&key='+YT_API_KEY);
+  var d2=await r2.json();
   return{items:d2.items||[],nextPageToken:d.nextPageToken||null};
 }
 
 function renderRecent(v){
-  const el=document.getElementById('recentVids');
-  const vids=v.filter(x=>!isShort(x)).slice(0,3);
-  if(!vids.length){el.innerHTML=`<div style="color:var(--muted);grid-column:1/-1;padding:1rem">Sin videos recientes. <a href="https://youtube.com/@VinotintoGalactico" target="_blank" style="color:var(--gold)">Ver canal ↗</a></div>`;return;}
-  el.innerHTML=vids.map(v=>`<a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-card"><div class="vid-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><div class="vid-overlay"><div class="play-ico">▶</div></div></div><div class="vid-info"><div class="vid-title">${v.snippet.title}</div><div class="vid-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div></div></a>`).join('');
+  var el=document.getElementById('recentVids');
+  var vids=v.filter(function(x){return !isShort(x);}).slice(0,3);
+  if(!vids.length){el.innerHTML='<div style="color:var(--muted);grid-column:1/-1;padding:1rem">Sin videos recientes. <a href="https://youtube.com/@VinotintoGalactico" target="_blank" style="color:var(--gold)">Ver canal</a></div>';return;}
+  el.innerHTML=vids.map(function(v){
+    var thumb=(v.snippet.thumbnails&&v.snippet.thumbnails.medium?v.snippet.thumbnails.medium.url:v.snippet.thumbnails.default.url);
+    return '<a href="https://youtube.com/watch?v='+v.id+'" target="_blank" class="vid-card"><div class="vid-thumb"><img src="'+thumb+'" alt="'+v.snippet.title+'" loading="lazy"><div class="vid-overlay"><div class="play-ico">&#9654;</div></div></div><div class="vid-info"><div class="vid-title">'+v.snippet.title+'</div><div class="vid-meta">'+fmtViews(v.statistics&&v.statistics.viewCount?v.statistics.viewCount:0)+' &middot; '+timeAgo(v.snippet.publishedAt)+'</div></div></a>';
+  }).join('');
 }
 
 function renderShortsList(v){
-  const el=document.getElementById('shortsList');
-  const shorts=v.filter(x=>isShort(x)).slice(0,6);
-  if(!shorts.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Sin Shorts recientes.</div>`;return;}
-  el.innerHTML=shorts.map(v=>`<a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card"><div class="short-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><span class="short-badge">SHORT</span></div><div class="short-info"><div class="short-title">${v.snippet.title}</div></div></a>`).join('');
+  var el=document.getElementById('shortsList');
+  var shorts=v.filter(function(x){return isShort(x);}).slice(0,6);
+  if(!shorts.length){el.innerHTML='<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Sin Shorts recientes.</div>';return;}
+  el.innerHTML=shorts.map(function(v){
+    var thumb=(v.snippet.thumbnails&&v.snippet.thumbnails.medium?v.snippet.thumbnails.medium.url:v.snippet.thumbnails.default.url);
+    return '<a href="https://youtube.com/shorts/'+v.id+'" target="_blank" class="short-card"><div class="short-thumb"><img src="'+thumb+'" alt="'+v.snippet.title+'" loading="lazy"><span class="short-badge">SHORT</span></div><div class="short-info"><div class="short-title">'+v.snippet.title+'</div></div></a>';
+  }).join('');
 }
 
 function appendAllVids(v){
-  const el=document.getElementById('allVids');
-  const vids=v.filter(x=>!isShort(x));
+  var el=document.getElementById('allVids');
+  var vids=v.filter(function(x){return !isShort(x);});
   if(!vids.length)return;
-  const html=vids.map(v=>`<a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-list-item"><div class="vid-list-thumb"><img src="${v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"></div><div class="vid-list-info"><div class="vid-list-title">${v.snippet.title}</div><div class="vid-list-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div></div></a>`).join('');
+  var html=vids.map(function(v){
+    var thumb=(v.snippet.thumbnails&&v.snippet.thumbnails.default?v.snippet.thumbnails.default.url:'');
+    return '<a href="https://youtube.com/watch?v='+v.id+'" target="_blank" class="vid-list-item"><div class="vid-list-thumb"><img src="'+thumb+'" alt="'+v.snippet.title+'" loading="lazy"></div><div class="vid-list-info"><div class="vid-list-title">'+v.snippet.title+'</div><div class="vid-list-meta">'+fmtViews(v.statistics&&v.statistics.viewCount?v.statistics.viewCount:0)+' &middot; '+timeAgo(v.snippet.publishedAt)+'</div></div></a>';
+  }).join('');
   if(el.querySelector('.skel'))el.innerHTML=html;else el.innerHTML+=html;
 }
 
 async function loadMore(){
   document.getElementById('loadMoreBtn').textContent='Cargando...';
-  const{items,nextPageToken:npt}=await fetchPlaylistVideos(10,nextPageToken||'');
-  nextPageToken=npt;
-  appendAllVids(items);
-  document.getElementById('loadMoreBtn').textContent=npt?'Cargar más videos →':'No hay más videos';
-  if(!npt)document.getElementById('loadMoreBtn').disabled=true;
+  var res=await fetchPlaylistVideos(10,nextPageToken||'');
+  nextPageToken=res.nextPageToken;
+  appendAllVids(res.items);
+  document.getElementById('loadMoreBtn').textContent=res.nextPageToken?'Cargar mas videos':'No hay mas videos';
+  if(!res.nextPageToken)document.getElementById('loadMoreBtn').disabled=true;
 }
 
 async function checkLive(){
   try{
-    const r=await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&eventType=live&key=${YT_API_KEY}`);
-    const d=await r.json();
-    if(d.items?.length)document.getElementById('liveBanner').classList.add('show');
+    var r=await fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId='+CHANNEL_ID+'&type=video&eventType=live&key='+YT_API_KEY);
+    var d=await r.json();
+    if(d.items&&d.items.length)document.getElementById('liveBanner').classList.add('show');
   }catch(e){}
 }
 
 async function init(){
   await getChannelInfo();
   checkLive();
-  const{items,nextPageToken:npt}=await fetchPlaylistVideos(20);
-  nextPageToken=npt;
-  allItems=items;
-  renderRecent(items);
-  renderShortsList(items);
-  appendAllVids(items);
-  if(npt)document.getElementById('loadMoreBtn').style.display='block';
+  var res=await fetchPlaylistVideos(20,'');
+  nextPageToken=res.nextPageToken;
+  allItemsStore=res.items;
+  renderRecent(res.items);
+  renderShortsList(res.items);
+  appendAllVids(res.items);
+  if(res.nextPageToken)document.getElementById('loadMoreBtn').style.display='block';
 }
 init();
 </script>

@@ -574,23 +574,6 @@ footer {
 </footer>
 
 <script>
-
-function isShort(v){
-  const title = (v.snippet && v.snippet.title ? v.snippet.title : '').toLowerCase();
-  const dur = (v.contentDetails && v.contentDetails.duration ? v.contentDetails.duration : '');
-  const m = dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  const hrs  = parseInt(m && m[1] ? m[1] : 0);
-  const mins = parseInt(m && m[2] ? m[2] : 0);
-  const secs = parseInt(m && m[3] ? m[3] : 0);
-  const totalSecs = hrs*3600 + mins*60 + secs;
-  if(title.includes('#short')) return true;
-  if(title.includes('lobitos atacan')) return true;
-  if(title.includes('lobos atacan')) return true;
-  if(totalSecs > 180) return false;
-  if(totalSecs > 0 && totalSecs <= 61) return true;
-  return false;
-}
-
 const YT_API_KEY = 'AIzaSyCIbE7bI3QWipXX0ueox13wNUZRGWNpMPA';
 const CHANNELS = {
   jull: { id:'UC5-fVh-nnr5QygebAHsZKjQ', handle:'@Jullverse',         cls:'jull' },
@@ -598,87 +581,84 @@ const CHANNELS = {
   vino: { id:'UCfQ51X8l2ARlJRMk-AhfSRQ', handle:'@VinotintoGalactico', cls:'vino' }
 };
 
-function timeAgo(d){const s=(Date.now()-new Date(d))/1000;if(s<3600)return `hace ${Math.floor(s/60)}min`;if(s<86400)return `hace ${Math.floor(s/3600)}h`;if(s<2592000)return `hace ${Math.floor(s/86400)}d`;return `hace ${Math.floor(s/2592000)} mes`;}
-function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M vistas`;if(n>=1000)return `${(n/1000).toFixed(1)}K vistas`;return `${n} vistas`;}
+function timeAgo(d){var s=(Date.now()-new Date(d))/1000;if(s<3600)return 'hace '+Math.floor(s/60)+'min';if(s<86400)return 'hace '+Math.floor(s/3600)+'h';if(s<2592000)return 'hace '+Math.floor(s/86400)+'d';return 'hace '+Math.floor(s/2592000)+' mes';}
+function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return (n/1e6).toFixed(1)+'M vistas';if(n>=1000)return (n/1000).toFixed(1)+'K vistas';return n+' vistas';}
 
 
-
-
-  // If <= 60s and no other indicator, still treat as short
-  return totalSecs <= 60;
+function isShort(v){
+  var title=(v.snippet&&v.snippet.title?v.snippet.title:'').toLowerCase();
+  var dur=(v.contentDetails&&v.contentDetails.duration?v.contentDetails.duration:'');
+  var m=dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  var hrs=parseInt(m&&m[1]?m[1]:0);
+  var mins=parseInt(m&&m[2]?m[2]:0);
+  var secs=parseInt(m&&m[3]?m[3]:0);
+  var totalSecs=hrs*3600+mins*60+secs;
+  if(title.indexOf('#short')>=0)return true;
+  if(title.indexOf('lobitos atacan')>=0)return true;
+  if(title.indexOf('lobos atacan')>=0)return true;
+  if(totalSecs>180)return false;
+  if(totalSecs>0&&totalSecs<=61)return true;
+  return false;
 }
 
 
 async function getUploadsId(channelId){
-  const r=await fetch(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${YT_API_KEY}`);
-  const d=await r.json();
-  return d.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+  var r=await fetch('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id='+channelId+'&key='+YT_API_KEY);
+  var d=await r.json();
+  return d.items&&d.items[0]?d.items[0].contentDetails.relatedPlaylists.uploads:null;
 }
 
-async function getVideos(channelId,max=20){
-  const upId=await getUploadsId(channelId);
+async function getVideos(channelId,max){
+  max=max||20;
+  var upId=await getUploadsId(channelId);
   if(!upId)return [];
-  const r=await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${upId}&maxResults=${max}&key=${YT_API_KEY}`);
-  const d=await r.json();
-  if(!d.items?.length)return [];
-  const ids=d.items.map(i=>i.snippet.resourceId.videoId).join(',');
-  const r2=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${ids}&key=${YT_API_KEY}`);
-  const d2=await r2.json();
+  var r=await fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='+upId+'&maxResults='+max+'&key='+YT_API_KEY);
+  var d=await r.json();
+  if(!d.items||!d.items.length)return [];
+  var ids=d.items.map(function(i){return i.snippet.resourceId.videoId;}).join(',');
+  var r2=await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id='+ids+'&key='+YT_API_KEY);
+  var d2=await r2.json();
   return d2.items||[];
 }
 
 async function checkLive(channelId,badgeId){
   try{
-    const r=await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&eventType=live&key=${YT_API_KEY}`);
-    const d=await r.json();
-    if(d.items?.length)document.getElementById(badgeId)?.classList.add('show');
+    var r=await fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId='+channelId+'&type=video&eventType=live&key='+YT_API_KEY);
+    var d=await r.json();
+    if(d.items&&d.items.length)document.getElementById(badgeId).classList.add('show');
   }catch(e){}
 }
 
 function renderVids(containerId,videos,cls){
-  const el=document.getElementById(containerId);
-  const filtered=videos.filter(v=>!isShort(v)).slice(0,3);
+  var el=document.getElementById(containerId);
+  var filtered=videos.filter(function(v){return !isShort(v);}).slice(0,3);
   if(!filtered.length){
-    el.innerHTML=`<div class="api-warn">No se encontraron videos.<br><a href="https://youtube.com/${CHANNELS[cls].handle}" target="_blank">Ver canal ↗</a></div>`;
+    el.innerHTML='<div class="api-warn">No se encontraron videos.<br><a href="https://youtube.com/'+CHANNELS[cls].handle+'" target="_blank">Ver canal</a></div>';
     return;
   }
-  el.innerHTML=filtered.map(v=>`
-    <a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-card ${cls}">
-      <div class="vid-thumb">
-        <img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy">
-        <div class="vid-overlay"><div class="play-ico">▶</div></div>
-      </div>
-      <div class="vid-info">
-        <div class="vid-title">${v.snippet.title}</div>
-        <div class="vid-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div>
-      </div>
-    </a>`).join('');
+  el.innerHTML=filtered.map(function(v){
+    var thumb=(v.snippet.thumbnails&&v.snippet.thumbnails.medium?v.snippet.thumbnails.medium.url:v.snippet.thumbnails.default.url);
+    return '<a href="https://youtube.com/watch?v='+v.id+'" target="_blank" class="vid-card '+cls+'"><div class="vid-thumb"><img src="'+thumb+'" alt="'+v.snippet.title+'" loading="lazy"><div class="vid-overlay"><div class="play-ico">&#9654;</div></div></div><div class="vid-info"><div class="vid-title">'+v.snippet.title+'</div><div class="vid-meta">'+fmtViews(v.statistics&&v.statistics.viewCount?v.statistics.viewCount:0)+' &middot; '+timeAgo(v.snippet.publishedAt)+'</div></div></a>';
+  }).join('');
 }
 
 function renderShortsList(containerId,all,cls){
-  const el=document.getElementById(containerId);
-  const shorts=all.filter(v=>isShort(v)).slice(0,6);
-  if(!shorts.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:1rem 0">Sin Shorts recientes.</div>`;return;}
-  el.innerHTML=shorts.map(v=>`
-    <a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card ${cls}">
-      <div class="short-thumb">
-        <img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy">
-        <span class="short-badge ${cls}">SHORT</span>
-      </div>
-      <div class="short-info"><div class="short-title">${v.snippet.title}</div></div>
-    </a>`).join('');
+  var el=document.getElementById(containerId);
+  var shorts=all.filter(function(v){return isShort(v);}).slice(0,6);
+  if(!shorts.length){el.innerHTML='<div style="color:var(--muted);font-size:0.82rem;padding:1rem 0">Sin Shorts recientes.</div>';return;}
+  el.innerHTML=shorts.map(function(v){
+    var thumb=(v.snippet.thumbnails&&v.snippet.thumbnails.medium?v.snippet.thumbnails.medium.url:v.snippet.thumbnails.default.url);
+    return '<a href="https://youtube.com/shorts/'+v.id+'" target="_blank" class="short-card '+cls+'"><div class="short-thumb"><img src="'+thumb+'" alt="'+v.snippet.title+'" loading="lazy"><span class="short-badge '+cls+'">SHORT</span></div><div class="short-info"><div class="short-title">'+v.snippet.title+'</div></div></a>';
+  }).join('');
 }
 
 async function init(){
   checkLive(CHANNELS.jull.id,'live-jull');
   checkLive(CHANNELS.bit.id,'live-bit');
   checkLive(CHANNELS.vino.id,'live-vino');
-
-  const [aJ,aB,aV]=await Promise.all([
-    getVideos(CHANNELS.jull.id,20),
-    getVideos(CHANNELS.bit.id,20),
-    getVideos(CHANNELS.vino.id,20)
-  ]);
+  var aJ=await getVideos(CHANNELS.jull.id,20);
+  var aB=await getVideos(CHANNELS.bit.id,20);
+  var aV=await getVideos(CHANNELS.vino.id,20);
   renderVids('vids-jull',aJ,'jull');
   renderVids('vids-bit',aB,'bit');
   renderVids('vids-vino',aV,'vino');
