@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Multiverso de JULL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* JULLVERSE - Gaming */
+  --jull-purple: #7C3AED;
+  --jull-pink: #EC4899;
+  --jull-neon: #FF10F0;
+  --jull-grad: linear-gradient(135deg, #7C3AED, #EC4899);
+
+  /* BIT DE SUSPENSO - Cyberpunk */
+  --bit-dark: #0D1B2A;
+  --bit-blue: #1E3A5F;
+  --bit-purple: #6B21A8;
+  --bit-cyan: #00F5FF;
+  --bit-grad: linear-gradient(135deg, #1E3A5F, #00F5FF);
+
+  /* VINOTINTO GALÁCTICO - Fútbol */
+  --vino-red: #6B1A2A;
+  --vino-gold: #D4A017;
+  --vino-white: #F5F0E8;
+  --vino-grad: linear-gradient(135deg, #6B1A2A, #D4A017);
+
+  /* HUB */
+  --bg: #06080D;
+  --bg2: #0C0F18;
+  --bg3: #121520;
+  --text: #EEF0F8;
+  --muted: #6B7280;
+  --border: rgba(255,255,255,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* STARS */
+.stars {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 18%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 38%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 91% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 45%, rgba(124,58,237,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 33% 33%, rgba(0,245,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 15%, rgba(212,160,23,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 60%, rgba(236,72,153,0.4) 0%, transparent 100%);
+}
+
+/* NAV */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  height: 60px;
+  background: rgba(6,8,13,0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 1.5rem;
+  gap: 1rem;
+}
+.nav-logo {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900; font-size: 0.95rem;
+  text-decoration: none; letter-spacing: 0.04em;
+  background: linear-gradient(90deg, var(--jull-purple), var(--jull-pink), var(--bit-cyan), var(--vino-gold));
+  background-size: 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: gradShift 5s linear infinite;
+  white-space: nowrap;
+}
+@keyframes gradShift {
+  0%{background-position:0%} 50%{background-position:100%} 100%{background-position:0%}
+}
+.nav-links {
+  display: flex; gap: 0.2rem; list-style: none; margin-left: auto; align-items: center;
+}
+.nav-links a {
+  padding: 0.35rem 0.8rem; border-radius: 6px;
+  text-decoration: none; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.03em; transition: all 0.2s; color: var(--muted);
+}
+.nav-links a:hover { color: var(--text); background: var(--border); }
+.nav-links a.jull  { color: var(--jull-pink); }
+.nav-links a.jull:hover  { background: rgba(124,58,237,0.15); }
+.nav-links a.bit   { color: var(--bit-cyan); }
+.nav-links a.bit:hover   { background: rgba(0,245,255,0.08); }
+.nav-links a.vino  { color: var(--vino-gold); }
+.nav-links a.vino:hover  { background: rgba(212,160,23,0.12); }
+.nav-links a.com   { color: #A78BFA; border: 1px solid rgba(167,139,250,0.3); border-radius: 20px; }
+.nav-links a.com:hover   { background: rgba(167,139,250,0.1); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px; margin-left: auto;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; padding: 5rem 1.5rem 4rem;
+  text-align: center; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 60% at 15% 50%, rgba(124,58,237,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 85% 25%, rgba(0,245,255,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 45% at 55% 90%, rgba(212,160,23,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 50% 50%, rgba(236,72,153,0.06) 0%, transparent 65%);
+}
+.hero-content { position: relative; z-index:1; max-width: 720px; }
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--border);
+  padding: 0.28rem 1rem; border-radius: 20px; margin-bottom: 1.8rem;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  font-weight: 900; line-height: 1.05;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero-title .el { color: var(--muted); font-size: 0.55em; font-weight: 400; display: block; margin-bottom: 0.2em; letter-spacing: 0.15em; text-transform: uppercase; }
+.hero-title .multiverso {
+  background: linear-gradient(135deg, var(--jull-purple) 0%, var(--jull-pink) 40%, var(--bit-cyan) 70%, var(--vino-gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  display: block;
+}
+.hero-title .de-jull { color: var(--text); font-size: 0.55em; letter-spacing: 0.2em; }
+.hero-sub {
+  color: var(--muted); font-size: 1.05rem; line-height: 1.7;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+.hero-btns {
+  display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.hero-btn {
+  display: flex; align-items: center; gap: 0.45rem;
+  padding: 0.65rem 1.3rem; border-radius: 8px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 700;
+  transition: all 0.25s; border: 1px solid; letter-spacing: 0.03em;
+}
+.hero-btn:hover { transform: translateY(-3px); }
+.hero-btn.jull { border-color: var(--jull-purple); color: var(--jull-pink); background: rgba(124,58,237,0.1); }
+.hero-btn.jull:hover { background: rgba(124,58,237,0.2); box-shadow: 0 6px 24px rgba(124,58,237,0.3); }
+.hero-btn.bit  { border-color: var(--bit-cyan); color: var(--bit-cyan); background: rgba(0,245,255,0.06); }
+.hero-btn.bit:hover  { background: rgba(0,245,255,0.14); box-shadow: 0 6px 24px rgba(0,245,255,0.2); }
+.hero-btn.vino { border-color: var(--vino-gold); color: var(--vino-gold); background: rgba(107,26,42,0.2); }
+.hero-btn.vino:hover { background: rgba(212,160,23,0.15); box-shadow: 0 6px 24px rgba(212,160,23,0.25); }
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  color: var(--muted); font-size: 0.7rem; letter-spacing: 0.15em;
+  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+.scroll-hint::after { content: '↓'; font-size: 1rem; }
+
+/* ABOUT */
+.about {
+  padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto;
+  position: relative; z-index:1;
+}
+.sec-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.sec-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; margin-bottom: 2.5rem;
+}
+.about-channels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.about-card {
+  padding: 1.5rem; border-radius: 14px; border: 1px solid;
+  background: var(--bg2); text-decoration: none; color: var(--text);
+  transition: all 0.25s; display: flex; flex-direction: column; gap: 0.6rem;
+}
+.about-card:hover { transform: translateY(-4px); }
+.about-card.jull { border-color: rgba(124,58,237,0.3); }
+.about-card.jull:hover { border-color: var(--jull-purple); background: rgba(124,58,237,0.07); box-shadow: 0 8px 30px rgba(124,58,237,0.15); }
+.about-card.bit  { border-color: rgba(0,245,255,0.2); }
+.about-card.bit:hover  { border-color: var(--bit-cyan); background: rgba(0,245,255,0.05); box-shadow: 0 8px 30px rgba(0,245,255,0.12); }
+.about-card.vino { border-color: rgba(212,160,23,0.25); }
+.about-card.vino:hover { border-color: var(--vino-gold); background: rgba(107,26,42,0.15); box-shadow: 0 8px 30px rgba(212,160,23,0.15); }
+.about-card-icon { font-size: 2rem; }
+.about-card-name { font-family: 'Orbitron', monospace; font-size: 0.85rem; font-weight: 700; }
+.about-card.jull .about-card-name { color: var(--jull-pink); }
+.about-card.bit  .about-card-name { color: var(--bit-cyan); }
+.about-card.vino .about-card-name { color: var(--vino-gold); }
+.about-card-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.about-card-link { font-size: 0.78rem; font-weight: 700; margin-top: auto; }
+.about-card.jull .about-card-link { color: var(--jull-purple); }
+.about-card.bit  .about-card-link { color: var(--bit-cyan); }
+.about-card.vino .about-card-link { color: var(--vino-gold); }
+
+/* DIVIDER */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 1.5rem; position: relative; z-index:1; }
+
+/* SECTIONS */
+.section { padding: 4.5rem 1.5rem; max-width: 1200px; margin: 0 auto; position: relative; z-index:1; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+
+/* CHANNEL BLOCK */
+.ch-block { margin-bottom: 3.5rem; }
+.ch-header {
+  display: flex; align-items: center; gap: 0.7rem;
+  margin-bottom: 1.5rem; padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+.ch-bar { width: 4px; height: 22px; border-radius: 4px; flex-shrink:0; }
+.ch-bar.jull { background: var(--jull-grad); box-shadow: 0 0 10px var(--jull-purple); }
+.ch-bar.bit  { background: var(--bit-grad);  box-shadow: 0 0 10px var(--bit-cyan); }
+.ch-bar.vino { background: var(--vino-grad); box-shadow: 0 0 8px var(--vino-gold); }
+.ch-name { font-family: 'Orbitron', monospace; font-size: 0.88rem; font-weight: 700; }
+.ch-name.jull { color: var(--jull-pink); }
+.ch-name.bit  { color: var(--bit-cyan); }
+.ch-name.vino { color: var(--vino-gold); }
+.live-pill {
+  display: none; align-items: center; gap: 0.35rem;
+  padding: 0.22rem 0.7rem; border-radius: 4px;
+  background: #DC2626; color: white;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  animation: livePulse 1.2s infinite;
+}
+.live-pill.show { display: inline-flex; }
+.live-pill::before { content: '●'; font-size: 0.55rem; }
+@keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.ch-link { margin-left: auto; font-size: 0.76rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.ch-link:hover { color: var(--text); }
+
+/* VIDEO GRID */
+.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.1rem; }
+.vid-card {
+  border-radius: 12px; overflow: hidden; background: var(--bg2);
+  border: 1px solid var(--border); transition: all 0.25s;
+  text-decoration: none; color: var(--text); display: block;
+}
+.vid-card:hover { transform: translateY(-4px); }
+.vid-card.jull:hover  { border-color: rgba(124,58,237,0.4); box-shadow: 0 8px 24px rgba(124,58,237,0.15); }
+.vid-card.bit:hover   { border-color: rgba(0,245,255,0.3);  box-shadow: 0 8px 24px rgba(0,245,255,0.12); }
+.vid-card.vino:hover  { border-color: rgba(212,160,23,0.35); box-shadow: 0 8px 24px rgba(212,160,23,0.12); }
+.vid-thumb { width:100%; aspect-ratio:16/9; background:var(--bg3); position:relative; overflow:hidden; }
+.vid-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
+.vid-card:hover .vid-thumb img { transform: scale(1.05); }
+.vid-overlay {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background: rgba(0,0,0,0); transition: background 0.25s;
+}
+.vid-card:hover .vid-overlay { background: rgba(0,0,0,0.35); }
+.play-ico {
+  width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.92);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:scale(0.7); transition:all 0.25s;
+  color:#000; font-size:0.9rem; padding-left:3px;
+}
+.vid-card:hover .play-ico { opacity:1; transform:scale(1); }
+.vid-info { padding: 0.85rem 1rem; }
+.vid-title {
+  font-size: 0.87rem; font-weight: 600; line-height: 1.4;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  margin-bottom: 0.35rem;
+}
+.vid-meta { font-size: 0.73rem; color: var(--muted); }
+
+/* SHORTS */
+.shorts-row { display:flex; gap:0.9rem; overflow-x:auto; padding-bottom:0.5rem; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+.short-card {
+  flex-shrink:0; width:150px; border-radius:12px; overflow:hidden;
+  background:var(--bg2); border:1px solid var(--border);
+  text-decoration:none; color:var(--text); transition:all 0.25s; display:block;
+}
+.short-card:hover { transform:translateY(-3px); }
+.short-card.jull:hover  { border-color:rgba(124,58,237,0.4); box-shadow:0 6px 18px rgba(124,58,237,0.2); }
+.short-card.bit:hover   { border-color:rgba(0,245,255,0.3);  box-shadow:0 6px 18px rgba(0,245,255,0.15); }
+.short-card.vino:hover  { border-color:rgba(212,160,23,0.4); box-shadow:0 6px 18px rgba(212,160,23,0.15); }
+.short-thumb { width:100%; aspect-ratio:9/16; background:var(--bg3); overflow:hidden; position:relative; }
+.short-thumb img { width:100%; height:100%; object-fit:cover; }
+.short-badge {
+  position:absolute; top:6px; left:6px;
+  font-size:0.6rem; font-weight:700; letter-spacing:0.06em;
+  padding:0.15rem 0.45rem; border-radius:4px; color:#000;
+}
+.short-badge.jull { background: var(--jull-pink); }
+.short-badge.bit  { background: var(--bit-cyan); }
+.short-badge.vino { background: var(--vino-gold); }
+.short-info { padding:0.55rem 0.7rem; }
+.short-title { font-size:0.73rem; line-height:1.35; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+/* SKELETON */
+.skel { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; animation:shimmer 1.5s ease-in-out infinite; }
+.skel-thumb { background:var(--bg3); }
+.skel-body { padding:0.85rem 1rem; }
+.skel-line { height:11px; background:var(--bg3); border-radius:6px; margin-bottom:0.45rem; }
+.skel-line.s { width:55%; }
+@keyframes shimmer { 0%,100%{opacity:1} 50%{opacity:0.55} }
+
+/* API WARNING */
+.api-warn {
+  grid-column:1/-1; padding:1.5rem; border-radius:10px; text-align:center;
+  background:rgba(107,26,42,0.1); border:1px dashed rgba(212,160,23,0.2);
+  color:var(--muted); font-size:0.83rem; line-height:1.7;
+}
+.api-warn a { color: var(--vino-gold); }
+
+/* COMMUNITY */
+.community-box {
+  background:var(--bg2); border:1px solid var(--border);
+  border-radius:16px; padding:1.8rem; margin-top:0.5rem;
+}
+.threads { display:flex; flex-direction:column; gap:0.75rem; }
+.thread {
+  display:flex; align-items:center; gap:0.9rem;
+  padding:0.85rem 1rem; border-radius:10px;
+  background:var(--bg3); border:1px solid var(--border);
+  text-decoration:none; color:var(--text); transition:all 0.2s;
+}
+.thread:hover { border-color:rgba(255,255,255,0.1); background:rgba(255,255,255,0.025); }
+.thread-tag {
+  padding:0.22rem 0.6rem; border-radius:4px;
+  font-size:0.65rem; font-weight:700; letter-spacing:0.05em; flex-shrink:0;
+}
+.thread-tag.jull  { background:rgba(124,58,237,0.2);  color:var(--jull-pink); }
+.thread-tag.bit   { background:rgba(0,245,255,0.1);   color:var(--bit-cyan); }
+.thread-tag.vino  { background:rgba(107,26,42,0.3);   color:var(--vino-gold); }
+.thread-tag.gen   { background:rgba(167,139,250,0.15); color:#A78BFA; }
+.thread-text { flex:1; font-size:0.87rem; font-weight:500; }
+.thread-count { font-size:0.73rem; color:var(--muted); white-space:nowrap; }
+.com-cta {
+  display:block; text-align:center; margin-top:1.4rem;
+  padding:0.75rem; border-radius:8px; border:1px dashed rgba(167,139,250,0.3);
+  color:#A78BFA; text-decoration:none; font-size:0.85rem; font-weight:700; transition:all 0.2s;
+}
+.com-cta:hover { background:rgba(167,139,250,0.08); }
+
+/* FOOTER */
+footer {
+  border-top:1px solid var(--border); padding:3rem 1.5rem;
+  text-align:center; position:relative; z-index:1;
+}
+.footer-logo {
+  font-family:'Orbitron',monospace; font-size:1.1rem; font-weight:900;
+  background: linear-gradient(90deg, var(--jull-purple), var(--jull-pink), var(--bit-cyan), var(--vino-gold));
+  background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  animation: gradShift 6s linear infinite; margin-bottom:1.2rem;
+}
+.footer-nav { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.2rem; }
+.footer-nav a { color:var(--muted); text-decoration:none; font-size:0.82rem; transition:color 0.2s; }
+.footer-nav a:hover { color:var(--text); }
+.footer-copy { color:var(--muted); font-size:0.75rem; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-7px)} }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links { display:none; flex-direction:column; position:absolute; top:60px; left:0; right:0; background:rgba(6,8,13,0.98); padding:1rem; border-bottom:1px solid var(--border); }
+  .nav-links.open { display:flex; }
+  .hamburger { display:flex; }
+  .about-channels { grid-template-columns:1fr; }
+  .vid-grid { grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); }
+  .section { padding:3rem 1rem; }
+  .about { padding:3.5rem 1rem; }
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">⬡ MULTIVERSO DE JULL</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="gaming.html" class="jull">🎮 Jullverse</a></li>
+    <li><a href="suspenso.html" class="bit">💾 Bit de Suspenso</a></li>
+    <li><a href="futbol.html" class="vino">⚽ Vinotinto Galáctico</a></li>
+    <li><a href="comunidad.html" class="com">🌌 Comunidad</a></li>
+  </ul>
+  <div class="hamburger" id="ham" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">✦ Tres universos · Una sola creadora ✦</div>
+    <h1 class="hero-title">
+      <span class="el">El</span>
+      <span class="multiverso">Multiverso</span>
+      <span class="de-jull">DE JULL</span>
+    </h1>
+    <p class="hero-sub">Gaming · Suspenso Tecnológico · Fútbol<br>Contenido desde Venezuela para el universo entero.</p>
+    <div class="hero-btns">
+      <a href="gaming.html" class="hero-btn jull">🎮 Jullverse</a>
+      <a href="suspenso.html" class="hero-btn bit">💾 Bit de Suspenso</a>
+      <a href="futbol.html" class="hero-btn vino">⚽ Vinotinto Galáctico</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Explorar</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <p class="sec-label">// Los universos</p>
+  <h2 class="sec-title">Tres mundos, una creadora</h2>
+  <div class="about-channels">
+    <a href="gaming.html" class="about-card jull">
+      <div class="about-card-icon">🎮</div>
+      <div class="about-card-name">Jullverse</div>
+      <div class="about-card-desc">Gaming, tech, tutoriales y consejos para gamers. Setup, FPS, OBS y todo lo que necesitas para jugar desde Venezuela.</div>
+      <div class="about-card-link">Entrar al canal →</div>
+    </a>
+    <a href="suspenso.html" class="about-card bit">
+      <div class="about-card-icon">💾</div>
+      <div class="about-card-name">Bit de Suspenso</div>
+      <div class="about-card-desc">Historias de suspenso tecnológico cyberpunk. Cuando el código se convierte en tu peor pesadilla. Ficción especulativa oscura.</div>
+      <div class="about-card-link">Entrar al canal →</div>
+    </a>
+    <a href="futbol.html" class="about-card vino">
+      <div class="about-card-icon">⚽</div>
+      <div class="about-card-name">Vinotinto Galáctico</div>
+      <div class="about-card-desc">Real Madrid y La Vinotinto. Reacciones, análisis y pasión futbolera con un toque galáctico desde Venezuela.</div>
+      <div class="about-card-link">Entrar al canal →</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LATEST VIDEOS -->
+<section class="section" id="videos">
+  <div class="section-header">
+    <div>
+      <p class="sec-label">// Últimas subidas</p>
+      <h2 class="sec-title">Videos Recientes</h2>
+    </div>
+  </div>
+
+  <div class="ch-block">
+    <div class="ch-header">
+      <div class="ch-bar jull"></div>
+      <span class="ch-name jull">🎮 Jullverse</span>
+      <span class="live-pill" id="live-jull">EN VIVO</span>
+      <a href="gaming.html" class="ch-link">Ver todo →</a>
+    </div>
+    <div class="vid-grid" id="vids-jull">
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+    </div>
+  </div>
+
+  <div class="ch-block">
+    <div class="ch-header">
+      <div class="ch-bar bit"></div>
+      <span class="ch-name bit">💾 Bit de Suspenso</span>
+      <span class="live-pill" id="live-bit">EN VIVO</span>
+      <a href="suspenso.html" class="ch-link">Ver todo →</a>
+    </div>
+    <div class="vid-grid" id="vids-bit">
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+    </div>
+  </div>
+
+  <div class="ch-block">
+    <div class="ch-header">
+      <div class="ch-bar vino"></div>
+      <span class="ch-name vino">⚽ Vinotinto Galáctico</span>
+      <span class="live-pill" id="live-vino">EN VIVO</span>
+      <a href="futbol.html" class="ch-link">Ver todo →</a>
+    </div>
+    <div class="vid-grid" id="vids-vino">
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SHORTS -->
+<section class="section" id="shorts">
+  <p class="sec-label">// Formato corto</p>
+  <h2 class="sec-title" style="margin-bottom:2.5rem">Últimos Shorts</h2>
+
+  <div class="ch-block">
+    <div class="ch-header">
+      <div class="ch-bar jull"></div>
+      <span class="ch-name jull">🎮 Jullverse</span>
+    </div>
+    <div class="shorts-row" id="shorts-jull">
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+    </div>
+  </div>
+
+  <div class="ch-block" style="margin-top:2rem">
+    <div class="ch-header">
+      <div class="ch-bar bit"></div>
+      <span class="ch-name bit">💾 Bit de Suspenso</span>
+    </div>
+    <div class="shorts-row" id="shorts-bit">
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+    </div>
+  </div>
+
+  <div class="ch-block" style="margin-top:2rem">
+    <div class="ch-header">
+      <div class="ch-bar vino"></div>
+      <span class="ch-name vino">⚽ Vinotinto Galáctico</span>
+    </div>
+    <div class="shorts-row" id="shorts-vino">
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+      <div class="skel" style="flex-shrink:0;width:150px"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMMUNITY -->
+<section class="section">
+  <p class="sec-label">// Comunidad</p>
+  <h2 class="sec-title">Hilos Recientes</h2>
+  <div class="community-box">
+    <div class="threads" id="threads">
+      <div class="thread"><span class="thread-tag jull">Gaming</span><span class="thread-text">¿Cuál es el mejor setup low-end para gaming en Venezuela?</span><span class="thread-count">💬 12</span></div>
+      <div class="thread"><span class="thread-tag bit">Suspenso</span><span class="thread-text">El final del último episodio me dejó sin palabras — theories</span><span class="thread-count">💬 8</span></div>
+      <div class="thread"><span class="thread-tag vino">Fútbol</span><span class="thread-text">¿Puede la Vinotinto clasificar al próximo Mundial?</span><span class="thread-count">💬 24</span></div>
+      <div class="thread"><span class="thread-tag gen">General</span><span class="thread-text">👋 Bienvenidos al Multiverso — preséntate aquí</span><span class="thread-count">💬 45</span></div>
+    </div>
+    <a href="comunidad.html" class="com-cta">🌌 Ver toda la comunidad · Crear un hilo →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⬡ EL MULTIVERSO DE JULL</div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="gaming.html" style="color:var(--jull-pink)">🎮 Jullverse</a>
+    <a href="suspenso.html" style="color:var(--bit-cyan)">💾 Bit de Suspenso</a>
+    <a href="futbol.html" style="color:var(--vino-gold)">⚽ Vinotinto Galáctico</a>
+    <a href="comunidad.html" style="color:#A78BFA">🌌 Comunidad</a>
+  </div>
+  <p class="footer-copy">© 2025 El Multiverso de JULL · Hecho con 💜 desde Venezuela</p>
+</footer>
+
+<script>
+// ══════════════════════════════════════════
+//  ⚙️  CONFIGURACIÓN — SOLO EDITA ESTO
+// ══════════════════════════════════════════
+const YT_API_KEY = 'TU_API_KEY_AQUI';
+// Obtén tu API Key GRATIS en:
+// https://console.cloud.google.com → YouTube Data API v3
+
+const CHANNELS = {
+  jull: { id:'UC5-fVh-nnr5QygebAHsZKjQ',  handle:'@Jullverse',          cls:'jull' },
+  bit:  { id:'UCUys6bJz3hCWwhCrT7adJjQ',  handle:'@BitdeSuspenso',       cls:'bit'  },
+  vino: { id:'UCfQ51X8l2ARlJRMk-AhfSRQ',  handle:'@VinotintoGalactico',  cls:'vino' }
+};
+// ══════════════════════════════════════════
+
+function timeAgo(d){
+  const s=(Date.now()-new Date(d))/1000;
+  if(s<3600) return `hace ${Math.floor(s/60)}min`;
+  if(s<86400) return `hace ${Math.floor(s/3600)}h`;
+  if(s<2592000) return `hace ${Math.floor(s/86400)}d`;
+  return `hace ${Math.floor(s/2592000)} mes`;
+}
+function fmtViews(n){
+  if(!n) return '';
+  n=parseInt(n);
+  if(n>=1e6) return `${(n/1e6).toFixed(1)}M vistas`;
+  if(n>=1000) return `${(n/1000).toFixed(1)}K vistas`;
+  return `${n} vistas`;
+}
+
+async function getUploadsId(channelId){
+  const r=await fetch(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${YT_API_KEY}`);
+  const d=await r.json();
+  return d.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+}
+
+async function getVideos(channelId, max=3){
+  const upId=await getUploadsId(channelId);
+  if(!upId) return [];
+  const r=await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${upId}&maxResults=${max}&key=${YT_API_KEY}`);
+  const d=await r.json();
+  if(!d.items?.length) return [];
+  const ids=d.items.map(i=>i.snippet.resourceId.videoId).join(',');
+  const r2=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${ids}&key=${YT_API_KEY}`);
+  const d2=await r2.json();
+  return d2.items||[];
+}
+
+async function getShorts(channelId){
+  const all=await getVideos(channelId,15);
+  return all.filter(v=>{
+    const dur=v.contentDetails?.duration||'';
+    const m=dur.match(/PT(?:(\d+)M)?(?:(\d+)S)?/);
+    const mins=parseInt(m?.[1]||0), secs=parseInt(m?.[2]||0);
+    return mins===0 && secs<=60;
+  }).slice(0,6);
+}
+
+async function checkLive(channelId, badgeId){
+  try{
+    const r=await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&eventType=live&key=${YT_API_KEY}`);
+    const d=await r.json();
+    if(d.items?.length) document.getElementById(badgeId)?.classList.add('show');
+  }catch(e){}
+}
+
+function renderVids(containerId, videos, cls){
+  const el=document.getElementById(containerId);
+  if(!videos.length){
+    el.innerHTML=`<div class="api-warn">No se encontraron videos recientes.<br><a href="https://youtube.com/${CHANNELS[cls].handle}" target="_blank">Ver canal en YouTube ↗</a></div>`;
+    return;
+  }
+  el.innerHTML=videos.map(v=>`
+    <a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-card ${cls}">
+      <div class="vid-thumb">
+        <img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy">
+        <div class="vid-overlay"><div class="play-ico">▶</div></div>
+      </div>
+      <div class="vid-info">
+        <div class="vid-title">${v.snippet.title}</div>
+        <div class="vid-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div>
+      </div>
+    </a>`).join('');
+}
+
+function renderShortsList(containerId, shorts, cls){
+  const el=document.getElementById(containerId);
+  if(!shorts.length){
+    el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:1rem 0">Sin Shorts recientes.</div>`;
+    return;
+  }
+  el.innerHTML=shorts.map(v=>`
+    <a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card ${cls}">
+      <div class="short-thumb">
+        <img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy">
+        <span class="short-badge ${cls}">SHORT</span>
+      </div>
+      <div class="short-info"><div class="short-title">${v.snippet.title}</div></div>
+    </a>`).join('');
+}
+
+function showNoApiMessage(){
+  ['vids-jull','vids-bit','vids-vino'].forEach((id,i)=>{
+    const keys=Object.keys(CHANNELS);
+    document.getElementById(id).innerHTML=`
+      <div class="api-warn">
+        ⚙️ Configura tu API Key de YouTube para ver los videos aquí.<br>
+        <a href="https://youtube.com/${CHANNELS[keys[i]].handle}" target="_blank">
+          Visitar canal directamente ↗
+        </a>
+      </div>`;
+  });
+  ['shorts-jull','shorts-bit','shorts-vino'].forEach(id=>{
+    document.getElementById(id).innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Configura la API Key para ver Shorts.</div>`;
+  });
+}
+
+async function init(){
+  if(YT_API_KEY==='TU_API_KEY_AQUI'){ showNoApiMessage(); return; }
+
+  checkLive(CHANNELS.jull.id,'live-jull');
+  checkLive(CHANNELS.bit.id, 'live-bit');
+  checkLive(CHANNELS.vino.id,'live-vino');
+
+  const [vJ,vB,vV]=await Promise.all([
+    getVideos(CHANNELS.jull.id,3),
+    getVideos(CHANNELS.bit.id,3),
+    getVideos(CHANNELS.vino.id,3)
+  ]);
+  renderVids('vids-jull',vJ,'jull');
+  renderVids('vids-bit', vB,'bit');
+  renderVids('vids-vino',vV,'vino');
+
+  const [sJ,sB,sV]=await Promise.all([
+    getShorts(CHANNELS.jull.id),
+    getShorts(CHANNELS.bit.id),
+    getShorts(CHANNELS.vino.id)
+  ]);
+  renderShortsList('shorts-jull',sJ,'jull');
+  renderShortsList('shorts-bit', sB,'bit');
+  renderShortsList('shorts-vino',sV,'vino');
+}
+
+init();
+</script>
+</body>
+</html>

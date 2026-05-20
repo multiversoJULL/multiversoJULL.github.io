@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunidad · El Multiverso de JULL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, increment, query, orderBy, limit, onSnapshot, serverTimestamp, getDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+// ══════════════════════════════════════════
+// CONFIGURA FIREBASE AQUÍ
+// Obtén estos datos en: https://console.firebase.google.com
+// Crea proyecto → Agrega app web → Copia firebaseConfig
+// ══════════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "TU_FIREBASE_API_KEY",
+  authDomain: "TU_PROYECTO.firebaseapp.com",
+  projectId: "TU_PROYECTO_ID",
+  storageBucket: "TU_PROYECTO.appspot.com",
+  messagingSenderId: "TU_SENDER_ID",
+  appId: "TU_APP_ID"
+};
+// ══════════════════════════════════════════
+
+let db = null;
+let configured = false;
+
+try {
+  if (firebaseConfig.apiKey !== 'TU_FIREBASE_API_KEY') {
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    configured = true;
+  }
+} catch(e) { console.warn('Firebase no configurado:', e); }
+
+window._fb = { db, configured, collection, addDoc, getDocs, doc, updateDoc, increment, query, orderBy, limit, onSnapshot, serverTimestamp, getDoc, arrayUnion };
+</script>
+<style>
+:root {
+  --jull: #7C3AED; --jull-p: #EC4899;
+  --bit: #00F5FF;
+  --vino: #6B1A2A; --gold: #D4A017;
+  --acc: #A78BFA;
+  --bg: #06080D; --bg2: #0C0F18; --bg3: #111520;
+  --text: #EEF0F8; --muted: #6B7280; --muted2: #9CA3AF;
+  --border: rgba(255,255,255,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 50% 40% at 50% 10%,rgba(167,139,250,0.08) 0%,transparent 65%);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;background:rgba(6,8,13,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:1rem;}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:0.9rem;text-decoration:none;letter-spacing:0.04em;background:linear-gradient(90deg,var(--jull),var(--jull-p),var(--bit),var(--gold));background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gs 5s linear infinite;}
+@keyframes gs{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
+.back-btn{display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.9rem;border-radius:6px;border:1px solid var(--border);color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:600;transition:all 0.2s;margin-left:auto;}
+.back-btn:hover{color:var(--text);border-color:var(--acc);}
+
+/* HERO */
+.hero{padding:5.5rem 1.5rem 2rem;position:relative;z-index:1;text-align:center;max-width:700px;margin:0 auto;}
+.hero-tag{display:inline-block;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:0.28rem 1rem;border-radius:20px;margin-bottom:1.2rem;}
+.hero-title{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;margin-bottom:0.8rem;background:linear-gradient(135deg,var(--jull-p),var(--acc),var(--bit));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{color:var(--muted);font-size:1rem;line-height:1.6;margin-bottom:1.8rem;}
+
+/* CREATE THREAD */
+.create-box{max-width:820px;margin:0 auto 2rem;padding:0 1.5rem;position:relative;z-index:1;}
+.create-form{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color 0.2s;}
+.create-form:focus-within{border-color:rgba(167,139,250,0.3);}
+.form-title{font-family:'Orbitron',monospace;font-size:0.82rem;color:var(--acc);margin-bottom:1.2rem;letter-spacing:0.05em;}
+.form-row{display:grid;grid-template-columns:1fr auto;gap:0.8rem;margin-bottom:0.8rem;align-items:start;}
+.form-input{
+  width:100%;padding:0.7rem 0.9rem;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.9rem;
+  transition:border-color 0.2s;outline:none;
+}
+.form-input:focus{border-color:rgba(167,139,250,0.5);}
+.form-input::placeholder{color:var(--muted);}
+.form-select{
+  padding:0.7rem 0.9rem;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.85rem;
+  transition:border-color 0.2s;outline:none;cursor:pointer;white-space:nowrap;
+}
+.form-select:focus{border-color:rgba(167,139,250,0.5);}
+.form-textarea{
+  width:100%;padding:0.7rem 0.9rem;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.88rem;
+  resize:vertical;min-height:90px;transition:border-color 0.2s;outline:none;
+}
+.form-textarea:focus{border-color:rgba(167,139,250,0.5);}
+.form-textarea::placeholder{color:var(--muted);}
+.form-footer{display:flex;align-items:center;gap:0.8rem;margin-top:0.8rem;flex-wrap:wrap;}
+.nick-input{flex:1;min-width:140px;padding:0.6rem 0.9rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.2s;}
+.nick-input:focus{border-color:rgba(167,139,250,0.5);}
+.nick-input::placeholder{color:var(--muted);}
+.submit-btn{
+  padding:0.65rem 1.4rem;border-radius:8px;border:none;
+  background:linear-gradient(135deg,var(--jull),var(--jull-p));
+  color:white;font-family:'Rajdhani',sans-serif;font-size:0.88rem;
+  font-weight:700;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em;white-space:nowrap;
+}
+.submit-btn:hover{opacity:0.85;transform:translateY(-1px);}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.form-msg{font-size:0.78rem;padding:0.5rem 0.8rem;border-radius:6px;display:none;}
+.form-msg.ok{display:block;background:rgba(39,174,96,0.1);color:#4ADE80;border:1px solid rgba(39,174,96,0.2);}
+.form-msg.err{display:block;background:rgba(192,57,43,0.1);color:#F87171;border:1px solid rgba(192,57,43,0.2);}
+
+/* FEED */
+.feed-area{max-width:820px;margin:0 auto;padding:0 1.5rem 4rem;position:relative;z-index:1;}
+.feed-header{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.feed-title{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:var(--acc);}
+.filter-btns{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.filter-btn{padding:0.3rem 0.8rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.filter-btn:hover,.filter-btn.active{border-color:var(--acc);color:var(--acc);background:rgba(167,139,250,0.1);}
+
+.threads{display:flex;flex-direction:column;gap:0.8rem;}
+
+/* THREAD CARD */
+.thread-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  transition:all 0.2s;cursor:pointer;
+}
+.thread-card:hover{border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);}
+.thread-card.open{border-color:rgba(167,139,250,0.25);}
+.thread-head{display:flex;align-items:flex-start;gap:0.8rem;padding:1rem 1.1rem;}
+.vote-col{display:flex;flex-direction:column;align-items:center;gap:0.2rem;flex-shrink:0;padding-top:2px;}
+.vote-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:0.9rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.vote-btn:hover{border-color:var(--acc);color:var(--acc);}
+.vote-btn.up:hover{border-color:#4ADE80;color:#4ADE80;}
+.vote-btn.dn:hover{border-color:#F87171;color:#F87171;}
+.vote-count{font-family:'Orbitron',monospace;font-size:0.75rem;font-weight:700;color:var(--text);}
+.thread-body{flex:1;min-width:0;}
+.thread-meta-top{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem;flex-wrap:wrap;}
+.tag{padding:0.18rem 0.55rem;border-radius:4px;font-size:0.65rem;font-weight:700;letter-spacing:0.05em;}
+.tag.jull {background:rgba(124,58,237,0.2);color:var(--jull-p);}
+.tag.bit  {background:rgba(0,245,255,0.1);color:var(--bit);}
+.tag.vino {background:rgba(107,26,42,0.3);color:var(--gold);}
+.tag.gen  {background:rgba(167,139,250,0.15);color:var(--acc);}
+.thread-author{font-size:0.75rem;color:var(--muted);}
+.thread-time{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.thread-title-text{font-size:0.95rem;font-weight:600;line-height:1.4;margin-bottom:0.4rem;}
+.thread-preview{font-size:0.82rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.thread-footer-bar{display:flex;align-items:center;gap:1rem;padding:0 1.1rem 0.8rem;}
+.thread-reply-count{font-size:0.75rem;color:var(--muted);}
+.reply-btn-sm{font-size:0.75rem;color:var(--acc);background:transparent;border:none;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;padding:0;transition:opacity 0.2s;}
+.reply-btn-sm:hover{opacity:0.75;}
+
+/* REPLIES */
+.replies-section{border-top:1px solid var(--border);padding:1rem 1.1rem 0.5rem;display:none;}
+.replies-section.open{display:block;}
+.reply-item{
+  display:flex;gap:0.7rem;padding:0.7rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.reply-item:last-child{border-bottom:none;}
+.reply-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:white;}
+.reply-content{flex:1;}
+.reply-author{font-size:0.75rem;font-weight:700;margin-bottom:0.2rem;}
+.reply-text{font-size:0.83rem;color:var(--muted2);line-height:1.5;}
+.reply-time{font-size:0.7rem;color:var(--muted);}
+.add-reply{margin-top:0.8rem;display:flex;gap:0.6rem;align-items:flex-start;}
+.reply-input{flex:1;padding:0.55rem 0.8rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.83rem;outline:none;resize:none;min-height:38px;transition:border-color 0.2s;}
+.reply-input:focus{border-color:rgba(167,139,250,0.4);}
+.reply-input::placeholder{color:var(--muted);}
+.reply-send{padding:0.55rem 1rem;border-radius:8px;border:none;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.3);color:var(--acc);font-family:'Rajdhani',sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.reply-send:hover{background:rgba(167,139,250,0.25);}
+
+/* EMPTY / LOADING */
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--muted);}
+.empty-state .ico{font-size:2.5rem;margin-bottom:0.8rem;}
+.empty-state p{font-size:0.88rem;line-height:1.6;}
+.loading-threads{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;}
+
+/* DEMO NOTICE */
+.demo-notice{
+  padding:0.8rem 1.2rem;border-radius:10px;background:rgba(212,160,23,0.07);
+  border:1px dashed rgba(212,160,23,0.25);color:var(--muted);font-size:0.8rem;
+  line-height:1.6;margin-bottom:1.5rem;
+}
+.demo-notice a{color:var(--gold);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;position:relative;z-index:1;}
+.footer-logo{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;background:linear-gradient(90deg,var(--jull),var(--jull-p),var(--bit),var(--gold));background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gs 6s linear infinite;margin-bottom:1rem;}
+.footer-nav{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.footer-nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--text);}
+.footer-copy{color:var(--muted);font-size:0.75rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">⬡ MULTIVERSO DE JULL</a>
+  <a href="index.html" class="back-btn">← Hub Principal</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">✦ Comunidad del Multiverso ✦</div>
+  <h1 class="hero-title">🌌 La Comunidad</h1>
+  <p class="hero-sub">Crea hilos, comparte ideas y debate sobre Gaming, Suspenso y Fútbol. No se necesita registro — solo un apodo.</p>
+</div>
+
+<!-- CREATE THREAD -->
+<div class="create-box">
+  <div id="demoNotice" class="demo-notice" style="display:none">
+    ⚙️ El foro funciona con Firebase. <a href="https://console.firebase.google.com" target="_blank">Configura Firebase</a> para activarlo. Mientras tanto, puedes ver hilos de muestra abajo.
+  </div>
+  <div class="create-form">
+    <div class="form-title">+ CREAR NUEVO HILO</div>
+    <div class="form-row">
+      <input type="text" class="form-input" id="threadTitle" placeholder="Título del hilo..." maxlength="120">
+      <select class="form-select" id="threadCat">
+        <option value="gen">🌌 General</option>
+        <option value="jull">🎮 Gaming</option>
+        <option value="bit">💾 Suspenso</option>
+        <option value="vino">⚽ Fútbol</option>
+      </select>
+    </div>
+    <textarea class="form-textarea" id="threadBody" placeholder="Escribe tu mensaje aquí..."></textarea>
+    <div class="form-footer">
+      <input type="text" class="nick-input" id="threadNick" placeholder="Tu apodo (o 'Anónimo')" maxlength="30">
+      <button class="submit-btn" onclick="submitThread()" id="submitBtn">Publicar hilo →</button>
+    </div>
+    <div class="form-msg" id="formMsg"></div>
+  </div>
+</div>
+
+<!-- FEED -->
+<div class="feed-area">
+  <div class="feed-header">
+    <span class="feed-title">HILOS</span>
+    <div class="filter-btns">
+      <button class="filter-btn active" onclick="setFilter('all',this)">Todos</button>
+      <button class="filter-btn" onclick="setFilter('jull',this)">🎮</button>
+      <button class="filter-btn" onclick="setFilter('bit',this)">💾</button>
+      <button class="filter-btn" onclick="setFilter('vino',this)">⚽</button>
+      <button class="filter-btn" onclick="setFilter('gen',this)">🌌</button>
+    </div>
+  </div>
+  <div class="threads" id="threadsFeed">
+    <div class="loading-threads">Cargando hilos...</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">⬡ EL MULTIVERSO DE JULL</div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="gaming.html" style="color:#EC4899">🎮 Jullverse</a>
+    <a href="suspenso.html" style="color:#00F5FF">💾 Bit de Suspenso</a>
+    <a href="futbol.html" style="color:#D4A017">⚽ Vinotinto Galáctico</a>
+  </div>
+  <p class="footer-copy">© 2025 El Multiverso de JULL · Comunidad libre y respetuosa</p>
+</footer>
+
+<script>
+const CAT_LABELS = { jull:'🎮 Gaming', bit:'💾 Suspenso', vino:'⚽ Fútbol', gen:'🌌 General' };
+const COLORS = ['#7C3AED','#EC4899','#00F5FF','#D4A017','#A78BFA','#4ADE80'];
+let currentFilter = 'all';
+let allThreads = [];
+let unsubscribe = null;
+
+function timeAgo(ts) {
+  if(!ts) return 'ahora';
+  const d = ts.seconds ? new Date(ts.seconds*1000) : new Date(ts);
+  const s = (Date.now()-d)/1000;
+  if(s<60) return 'ahora mismo';
+  if(s<3600) return `hace ${Math.floor(s/60)}min`;
+  if(s<86400) return `hace ${Math.floor(s/3600)}h`;
+  return `hace ${Math.floor(s/86400)}d`;
+}
+
+function avatarColor(name) {
+  let h = 0;
+  for(let c of (name||'?')) h = (h*31 + c.charCodeAt(0)) % COLORS.length;
+  return COLORS[h];
+}
+
+function renderThread(t) {
+  const replies = t.replies || [];
+  const isOpen = document.getElementById(`thread-${t.id}`)?.classList.contains('open');
+  return `
+    <div class="thread-card ${isOpen?'open':''}" id="thread-${t.id}">
+      <div class="thread-head" onclick="toggleThread('${t.id}')">
+        <div class="vote-col">
+          <button class="vote-btn up" onclick="vote(event,'${t.id}',1)" title="Upvote">▲</button>
+          <span class="vote-count">${t.votes||0}</span>
+          <button class="vote-btn dn" onclick="vote(event,'${t.id}',-1)" title="Downvote">▼</button>
+        </div>
+        <div class="thread-body">
+          <div class="thread-meta-top">
+            <span class="tag ${t.cat}">${CAT_LABELS[t.cat]||t.cat}</span>
+            <span class="thread-author">@${t.author||'Anónimo'}</span>
+            <span class="thread-time">${timeAgo(t.createdAt)}</span>
+          </div>
+          <div class="thread-title-text">${t.title}</div>
+          ${t.body?`<div class="thread-preview">${t.body}</div>`:''}
+        </div>
+      </div>
+      <div class="thread-footer-bar">
+        <span class="thread-reply-count">💬 ${replies.length} respuesta${replies.length!==1?'s':''}</span>
+        <button class="reply-btn-sm" onclick="toggleThread('${t.id}')">Responder</button>
+      </div>
+      <div class="replies-section ${isOpen?'open':''}" id="replies-${t.id}">
+        ${replies.length ? replies.map(r=>`
+          <div class="reply-item">
+            <div class="reply-avatar" style="background:${avatarColor(r.author)}">${(r.author||'?')[0].toUpperCase()}</div>
+            <div class="reply-content">
+              <div style="display:flex;align-items:center;gap:0.6rem">
+                <span class="reply-author" style="color:${avatarColor(r.author)}">@${r.author||'Anónimo'}</span>
+                <span class="reply-time">${timeAgo(r.createdAt)}</span>
+              </div>
+              <div class="reply-text">${r.text}</div>
+            </div>
+          </div>`).join('') : `<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem 0">Sé el primero en responder.</div>`}
+        <div class="add-reply">
+          <textarea class="reply-input" id="replyInput-${t.id}" placeholder="Escribe una respuesta..." rows="2"></textarea>
+          <div style="display:flex;flex-direction:column;gap:0.4rem">
+            <input type="text" class="reply-input" style="min-height:unset;padding:0.4rem 0.7rem" id="replyNick-${t.id}" placeholder="Tu apodo">
+            <button class="reply-send" onclick="submitReply('${t.id}')">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function toggleThread(id) {
+  const card = document.getElementById(`thread-${id}`);
+  const rep = document.getElementById(`replies-${id}`);
+  if(!card||!rep) return;
+  card.classList.toggle('open');
+  rep.classList.toggle('open');
+}
+
+async function vote(e, id, val) {
+  e.stopPropagation();
+  const fb = window._fb;
+  if(!fb.configured) return;
+  try {
+    await fb.updateDoc(fb.doc(fb.db,'threads',id),{votes: fb.increment(val)});
+  } catch(err) { console.warn(err); }
+}
+
+function displayThreads(threads) {
+  const feed = document.getElementById('threadsFeed');
+  const filtered = currentFilter==='all' ? threads : threads.filter(t=>t.cat===currentFilter);
+  if(!filtered.length) {
+    feed.innerHTML=`<div class="empty-state"><div class="ico">🌌</div><p>No hay hilos en esta categoría aún.<br>¡Sé el primero en publicar!</p></div>`;
+    return;
+  }
+  feed.innerHTML = filtered.map(t=>renderThread(t)).join('');
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  displayThreads(allThreads);
+}
+
+async function loadThreads() {
+  const fb = window._fb;
+  if(!fb.configured) {
+    document.getElementById('demoNotice').style.display='block';
+    // Demo threads
+    allThreads = [
+      {id:'d1',cat:'jull',title:'¿Cuál es el mejor setup low-end para gaming en Venezuela?',body:'Tengo una PC con i5 de 3ra gen y 8GB RAM. ¿Qué juegos puedo correr bien?',author:'GamerVzla',votes:15,createdAt:null,replies:[{author:'JullFan',text:'Warzone optimizado con los configs de Jull funciona bien en esas specs!',createdAt:null}]},
+      {id:'d2',cat:'bit',title:'El final del último episodio me dejó sin palabras',body:'Esa vuelta de tuerca al final... no la vi venir. ¿Qué interpretaron ustedes?',author:'BitFan99',votes:9,createdAt:null,replies:[]},
+      {id:'d3',cat:'vino',title:'¿Puede la Vinotinto clasificar al próximo Mundial?',body:'Con el nivel que está mostrando en las eliminatorias creo que hay posibilidades reales.',author:'VinoMadridista',votes:22,createdAt:null,replies:[{author:'CraqueSur',text:'¡VAMOS VINOTINTO! Este ciclo se siente diferente.',createdAt:null}]},
+      {id:'d4',cat:'gen',title:'👋 Bienvenidos al Multiverso — preséntate aquí',body:'Cuéntanos: ¿de dónde eres y qué canal te trajo aquí?',author:'JULL',votes:41,createdAt:null,replies:[{author:'NoraCCS',text:'¡Hola desde Caracas! Me enteré por Jullverse.',createdAt:null},{author:'MaikGamer',text:'Valencia checking in! Vinotinto Galáctico es 🔥',createdAt:null}]},
+    ];
+    displayThreads(allThreads);
+    return;
+  }
+  const q = fb.query(fb.collection(fb.db,'threads'), fb.orderBy('createdAt','desc'), fb.limit(50));
+  unsubscribe = fb.onSnapshot(q, snap => {
+    allThreads = snap.docs.map(d=>({id:d.id,...d.data()}));
+    displayThreads(allThreads);
+  });
+}
+
+async function submitThread() {
+  const title = document.getElementById('threadTitle').value.trim();
+  const body  = document.getElementById('threadBody').value.trim();
+  const cat   = document.getElementById('threadCat').value;
+  const nick  = document.getElementById('threadNick').value.trim() || 'Anónimo';
+  const msg   = document.getElementById('formMsg');
+  const btn   = document.getElementById('submitBtn');
+
+  if(!title) { msg.className='form-msg err'; msg.textContent='El título no puede estar vacío.'; return; }
+
+  const fb = window._fb;
+  if(!fb.configured) {
+    msg.className='form-msg ok';
+    msg.textContent='✓ Configura Firebase para guardar hilos reales.';
+    return;
+  }
+
+  btn.disabled=true; btn.textContent='Publicando...';
+  try {
+    await fb.addDoc(fb.collection(fb.db,'threads'),{
+      title, body, cat, author:nick,
+      votes:0, replies:[],
+      createdAt: fb.serverTimestamp()
+    });
+    document.getElementById('threadTitle').value='';
+    document.getElementById('threadBody').value='';
+    document.getElementById('threadNick').value='';
+    msg.className='form-msg ok'; msg.textContent='✓ Hilo publicado correctamente.';
+    setTimeout(()=>{msg.style.display='none';},3000);
+  } catch(e) {
+    msg.className='form-msg err'; msg.textContent='Error al publicar. Revisa la configuración de Firebase.';
+  }
+  btn.disabled=false; btn.textContent='Publicar hilo →';
+}
+
+async function submitReply(threadId) {
+  const text = document.getElementById(`replyInput-${threadId}`)?.value.trim();
+  const nick = document.getElementById(`replyNick-${threadId}`)?.value.trim() || 'Anónimo';
+  if(!text) return;
+
+  const fb = window._fb;
+  if(!fb.configured) {
+    alert('Configura Firebase para activar las respuestas.');
+    return;
+  }
+  try {
+    await fb.updateDoc(fb.doc(fb.db,'threads',threadId),{
+      replies: fb.arrayUnion({text, author:nick, createdAt: new Date().toISOString()})
+    });
+  } catch(e) { console.warn(e); }
+}
+
+loadThreads();
+</script>
+</body>
+</html>
