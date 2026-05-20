@@ -286,21 +286,21 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 </footer>
 
 <script>
-const YT_API_KEY=AIzaSyCIbE7bI3QWipXX0ueox13wNUZRGWNpMPA;
-const CHANNEL_ID='UC5-fVh-nnr5QygebAHsZKjQ';
-let nextPageToken=null;
-let uploadsPlaylistId=null;
+const YT_API_KEY = 'AIzaSyCIbE7bI3QWipXX0ueox13wNUZRGWNpMPA';
+const CHANNEL_ID = 'UC5-fVh-nnr5QygebAHsZKjQ';
+let uploadsPlaylistId = null;
+let allItems = [];
 
 function timeAgo(d){const s=(Date.now()-new Date(d))/1000;if(s<3600)return `hace ${Math.floor(s/60)}min`;if(s<86400)return `hace ${Math.floor(s/3600)}h`;if(s<2592000)return `hace ${Math.floor(s/86400)}d`;return `hace ${Math.floor(s/2592000)} mes`;}
 function fmtNum(n){if(!n)return '—';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M`;if(n>=1000)return `${(n/1000).toFixed(0)}K`;return `${n}`;}
 function fmtViews(n){if(!n)return '';n=parseInt(n);if(n>=1e6)return `${(n/1e6).toFixed(1)}M vistas`;if(n>=1000)return `${(n/1000).toFixed(1)}K vistas`;return `${n} vistas`;}
+function isShort(v){const dur=v.contentDetails?.duration||'';const m=dur.match(/PT(?:(\d+)M)?(?:(\d+)S)?/);return parseInt(m?.[1]||0)===0&&parseInt(m?.[2]||0)<=60;}
 
 async function getChannelInfo(){
-  if(YT_API_KEY==='TU_API_KEY_AQUI') return;
   try{
     const r=await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics,contentDetails&id=${CHANNEL_ID}&key=${YT_API_KEY}`);
     const d=await r.json();
-    if(!d.items?.length) return;
+    if(!d.items?.length)return;
     const s=d.items[0].statistics;
     uploadsPlaylistId=d.items[0].contentDetails.relatedPlaylists.uploads;
     document.getElementById('subCount').textContent=fmtNum(s.subscriberCount);
@@ -309,96 +309,68 @@ async function getChannelInfo(){
   }catch(e){console.warn(e);}
 }
 
-async function fetchPlaylistVideos(max=6,pageToken=''){
-  if(!uploadsPlaylistId) return {items:[],nextPageToken:null};
+async function fetchPlaylistVideos(max=15,pageToken=''){
+  if(!uploadsPlaylistId)return{items:[],nextPageToken:null};
   let url=`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${max}&key=${YT_API_KEY}`;
-  if(pageToken) url+=`&pageToken=${pageToken}`;
+  if(pageToken)url+=`&pageToken=${pageToken}`;
   const r=await fetch(url);
   const d=await r.json();
-  if(!d.items?.length) return {items:[],nextPageToken:null};
+  if(!d.items?.length)return{items:[],nextPageToken:null};
   const ids=d.items.map(i=>i.snippet.resourceId.videoId).join(',');
   const r2=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${ids}&key=${YT_API_KEY}`);
   const d2=await r2.json();
-  return {items:d2.items||[],nextPageToken:d.nextPageToken||null};
+  return{items:d2.items||[],nextPageToken:d.nextPageToken||null};
 }
 
-function isShort(v){
-  const dur=v.contentDetails?.duration||'';
-  const m=dur.match(/PT(?:(\d+)M)?(?:(\d+)S)?/);
-  return parseInt(m?.[1]||0)===0 && parseInt(m?.[2]||0)<=60;
-}
-
-function renderRecent(videos){
+function renderRecent(v){
   const el=document.getElementById('recentVids');
-  const vids=videos.filter(v=>!isShort(v)).slice(0,3);
-  if(!vids.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.85rem;grid-column:1/-1">Sin videos recientes. <a href="https://youtube.com/@Jullverse" target="_blank" style="color:var(--pink)">Ver canal ↗</a></div>`;return;}
-  el.innerHTML=vids.map(v=>`
-    <a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-card">
-      <div class="vid-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><div class="vid-overlay"><div class="play-ico">▶</div></div></div>
-      <div class="vid-info"><div class="vid-title">${v.snippet.title}</div><div class="vid-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div></div>
-    </a>`).join('');
+  const vids=v.filter(x=>!isShort(x)).slice(0,3);
+  if(!vids.length){el.innerHTML=`<div style="color:var(--muted);grid-column:1/-1;padding:1rem">Sin videos recientes. <a href="https://youtube.com/@Jullverse" target="_blank" style="color:var(--pink)">Ver canal ↗</a></div>`;return;}
+  el.innerHTML=vids.map(v=>`<a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-card"><div class="vid-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><div class="vid-overlay"><div class="play-ico">▶</div></div></div><div class="vid-info"><div class="vid-title">${v.snippet.title}</div><div class="vid-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div></div></a>`).join('');
 }
 
-function renderShortsList(videos){
+function renderShortsList(v){
   const el=document.getElementById('shortsList');
-  const shorts=videos.filter(isShort).slice(0,6);
-  if(!shorts.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Sin Shorts recientes.</div>`;return;}
-  el.innerHTML=shorts.map(v=>`
-    <a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card">
-      <div class="short-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><span class="short-badge">SHORT</span></div>
-      <div class="short-info"><div class="short-title">${v.snippet.title}</div></div>
-    </a>`).join('');
+  const s=v.filter(isShort).slice(0,6);
+  if(!s.length){el.innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Sin Shorts recientes.</div>`;return;}
+  el.innerHTML=s.map(v=>`<a href="https://youtube.com/shorts/${v.id}" target="_blank" class="short-card"><div class="short-thumb"><img src="${v.snippet.thumbnails?.medium?.url||v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"><span class="short-badge">SHORT</span></div><div class="short-info"><div class="short-title">${v.snippet.title}</div></div></a>`).join('');
 }
 
-function appendAllVids(videos){
+function appendAllVids(v){
   const el=document.getElementById('allVids');
-  const vids=videos.filter(v=>!isShort(v));
-  if(!vids.length){if(el.innerHTML.includes('skel'))el.innerHTML=`<div style="color:var(--muted);font-size:0.85rem;padding:1rem">No hay más videos.</div>`;return;}
-  const html=vids.map(v=>`
-    <a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-list-item">
-      <div class="vid-list-thumb"><img src="${v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"></div>
-      <div class="vid-list-info">
-        <div class="vid-list-title">${v.snippet.title}</div>
-        <div class="vid-list-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div>
-      </div>
-    </a>`).join('');
-  if(el.querySelector('.skel')) el.innerHTML=html;
-  else el.innerHTML+=html;
+  const vids=v.filter(x=>!isShort(x));
+  if(!vids.length)return;
+  const html=vids.map(v=>`<a href="https://youtube.com/watch?v=${v.id}" target="_blank" class="vid-list-item"><div class="vid-list-thumb"><img src="${v.snippet.thumbnails?.default?.url}" alt="${v.snippet.title}" loading="lazy"></div><div class="vid-list-info"><div class="vid-list-title">${v.snippet.title}</div><div class="vid-list-meta">${fmtViews(v.statistics?.viewCount)} · ${timeAgo(v.snippet.publishedAt)}</div></div></a>`).join('');
+  if(el.querySelector('.skel'))el.innerHTML=html;else el.innerHTML+=html;
 }
 
+let nextPageToken=null;
 async function loadMore(){
   document.getElementById('loadMoreBtn').textContent='Cargando...';
-  const {items,nextPageToken:npt}=await fetchPlaylistVideos(10,nextPageToken||'');
+  const{items,nextPageToken:npt}=await fetchPlaylistVideos(10,nextPageToken||'');
   nextPageToken=npt;
   appendAllVids(items);
   document.getElementById('loadMoreBtn').textContent=npt?'Cargar más videos →':'No hay más videos';
-  if(!npt) document.getElementById('loadMoreBtn').disabled=true;
+  if(!npt)document.getElementById('loadMoreBtn').disabled=true;
 }
 
 async function checkLive(){
-  if(YT_API_KEY==='TU_API_KEY_AQUI') return;
   try{
     const r=await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&eventType=live&key=${YT_API_KEY}`);
     const d=await r.json();
-    if(d.items?.length) document.getElementById('liveBanner').classList.add('show');
+    if(d.items?.length)document.getElementById('liveBanner').classList.add('show');
   }catch(e){}
 }
 
 async function init(){
   await getChannelInfo();
-  if(YT_API_KEY==='TU_API_KEY_AQUI'){
-    document.getElementById('recentVids').innerHTML=`<div style="color:var(--muted);font-size:0.85rem;grid-column:1/-1;padding:1rem">⚙️ Configura la API Key para ver videos. <a href="https://youtube.com/@Jullverse" target="_blank" style="color:var(--pink)">Ver canal ↗</a></div>`;
-    document.getElementById('shortsList').innerHTML=`<div style="color:var(--muted);font-size:0.82rem;padding:0.5rem">Configura la API Key para ver Shorts.</div>`;
-    document.getElementById('allVids').innerHTML=`<div style="color:var(--muted);font-size:0.85rem;padding:1rem">Configura la API Key para ver todos los videos.</div>`;
-    return;
-  }
   checkLive();
-  const {items,nextPageToken:npt}=await fetchPlaylistVideos(15);
+  const{items,nextPageToken:npt}=await fetchPlaylistVideos(15);
   nextPageToken=npt;
   renderRecent(items);
   renderShortsList(items);
   appendAllVids(items);
-  if(npt){document.getElementById('loadMoreBtn').style.display='block';}
+  if(npt)document.getElementById('loadMoreBtn').style.display='block';
 }
 init();
 </script>
