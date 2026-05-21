@@ -128,10 +128,11 @@ nav {
 .hero-content { position: relative; z-index:1; max-width: 720px; }
 .hero-eyebrow {
   display: inline-block;
-  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--muted); border: 1px solid var(--border);
-  padding: 0.28rem 1rem; border-radius: 20px; margin-bottom: 1.8rem;
+  font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text); border: 1px solid rgba(255,255,255,0.18);
+  padding: 0.5rem 1.6rem; border-radius: 20px; margin-bottom: 1.8rem;
   animation: fadeUp 0.7s ease both;
+  background: rgba(255,255,255,0.05); font-weight: 600;
 }
 .hero-title {
   font-family: 'Orbitron', monospace;
@@ -389,9 +390,9 @@ footer {
 <nav>
   <a href="index.html" class="nav-logo">⬡ MULTIVERSO DE JULL</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="gaming.html" class="jull">🎮 Jullverse</a></li>
-    <li><a href="suspenso.html" class="bit">💾 Bit de Suspenso</a></li>
-    <li><a href="futbol.html" class="vino">⚽ Vinotinto Galáctico</a></li>
+    <li><a href="gaming.html" class="jull"><img src="img/logo-jullverse.png" style="width:20px;height:20px;object-fit:contain;border-radius:4px;vertical-align:middle;margin-right:5px"> Jullverse</a></li>
+    <li><a href="suspenso.html" class="bit"><img src="img/logo-suspenso.png" style="width:20px;height:20px;object-fit:contain;border-radius:4px;vertical-align:middle;margin-right:5px"> Bit de Suspenso</a></li>
+    <li><a href="futbol.html" class="vino"><img src="img/logo-vinotinto.png" style="width:20px;height:20px;object-fit:contain;border-radius:4px;vertical-align:middle;margin-right:5px"> Vinotinto Galáctico</a></li>
     <li><a href="comunidad.html" class="com">🌌 Comunidad</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="document.getElementById('navLinks').classList.toggle('open')">
@@ -411,9 +412,9 @@ footer {
     </h1>
     <p class="hero-sub">Gaming · Suspenso Tecnológico · Fútbol<br>Contenido desde Venezuela para el universo entero.</p>
     <div class="hero-btns">
-      <a href="gaming.html" class="hero-btn jull">🎮 Jullverse</a>
-      <a href="suspenso.html" class="hero-btn bit">💾 Bit de Suspenso</a>
-      <a href="futbol.html" class="hero-btn vino">⚽ Vinotinto Galáctico</a>
+      <a href="gaming.html" class="hero-btn jull"><img src="img/logo-jullverse.png" style="width:22px;height:22px;object-fit:contain;border-radius:5px"> Jullverse</a>
+      <a href="suspenso.html" class="hero-btn bit"><img src="img/logo-suspenso.png" style="width:22px;height:22px;object-fit:contain;border-radius:5px"> Bit de Suspenso</a>
+      <a href="futbol.html" class="hero-btn vino"><img src="img/logo-vinotinto.png" style="width:22px;height:22px;object-fit:contain;border-radius:5px"> Vinotinto Galáctico</a>
     </div>
   </div>
   <div class="scroll-hint">Explorar</div>
@@ -466,7 +467,6 @@ footer {
     <div class="vid-grid" id="vids-jull">
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
-      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
     </div>
   </div>
 
@@ -480,7 +480,7 @@ footer {
     <div class="vid-grid" id="vids-bit">
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
-      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+    </div></div>
     </div>
   </div>
 
@@ -494,7 +494,7 @@ footer {
     <div class="vid-grid" id="vids-vino">
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
-      <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
+    </div></div>
     </div>
   </div>
 </section>
@@ -631,7 +631,7 @@ async function checkLive(channelId,badgeId){
 
 function renderVids(containerId,videos,cls){
   var el=document.getElementById(containerId);
-  var filtered=videos.filter(function(v){return !isShort(v);}).slice(0,3);
+  var filtered=videos.filter(function(v){return !isShort(v);}).slice(0,2);
   if(!filtered.length){
     el.innerHTML='<div class="api-warn">No se encontraron videos.<br><a href="https://youtube.com/'+CHANNELS[cls].handle+'" target="_blank">Ver canal</a></div>';
     return;
@@ -644,7 +644,7 @@ function renderVids(containerId,videos,cls){
 
 function renderShortsList(containerId,all,cls){
   var el=document.getElementById(containerId);
-  var shorts=all.filter(function(v){return isShort(v);}).slice(0,6);
+  var shorts=all.filter(function(v){return isShort(v);}).slice(0,3);
   if(!shorts.length){el.innerHTML='<div style="color:var(--muted);font-size:0.82rem;padding:1rem 0">Sin Shorts recientes.</div>';return;}
   el.innerHTML=shorts.map(function(v){
     var thumb=(v.snippet.thumbnails&&v.snippet.thumbnails.medium?v.snippet.thumbnails.medium.url:v.snippet.thumbnails.default.url);
