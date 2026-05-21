@@ -221,6 +221,8 @@ nav {
 
 /* CHANNEL BLOCK */
 .ch-block { margin-bottom: 3.5rem; }
+.ch-block .vid-grid { max-width: 640px; }
+.ch-block .shorts-row { justify-content: center; }
 .ch-header {
   display: flex; align-items: center; gap: 0.7rem;
   margin-bottom: 1.5rem; padding-bottom: 0.8rem;
@@ -248,7 +250,7 @@ nav {
 .ch-link:hover { color: var(--text); }
 
 /* VIDEO GRID */
-.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.1rem; }
+.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.1rem; max-width: 620px; }
 .vid-card {
   border-radius: 12px; overflow: hidden; background: var(--bg2);
   border: 1px solid var(--border); transition: all 0.25s;
@@ -390,9 +392,9 @@ footer {
 <nav>
   <a href="index.html" class="nav-logo">⬡ MULTIVERSO DE JULL</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="gaming.html" class="jull"><img src="img/logo-jullverse.png" style="width:20px;height:20px;object-fit:contain;border-radius:4px;vertical-align:middle;margin-right:5px"> Jullverse</a></li>
-    <li><a href="suspenso.html" class="bit"><img src="img/logo-suspenso.png" style="width:20px;height:20px;object-fit:contain;border-radius:4px;vertical-align:middle;margin-right:5px"> Bit de Suspenso</a></li>
-    <li><a href="futbol.html" class="vino"><img src="img/logo-vinotinto.png" style="width:20px;height:20px;object-fit:contain;border-radius:4px;vertical-align:middle;margin-right:5px"> Vinotinto Galáctico</a></li>
+    <li><a href="gaming.html" class="jull">🎮 Jullverse</a></li>
+    <li><a href="suspenso.html" class="bit">💾 Bit de Suspenso</a></li>
+    <li><a href="futbol.html" class="vino">⚽ Vinotinto Galáctico</a></li>
     <li><a href="comunidad.html" class="com">🌌 Comunidad</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="document.getElementById('navLinks').classList.toggle('open')">
@@ -464,7 +466,7 @@ footer {
       <span class="live-pill" id="live-jull">EN VIVO</span>
       <a href="gaming.html" class="ch-link">Ver todo →</a>
     </div>
-    <div class="vid-grid" id="vids-jull">
+    <div class="vid-grid two-cols" id="vids-jull">
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
     </div>
@@ -477,7 +479,7 @@ footer {
       <span class="live-pill" id="live-bit">EN VIVO</span>
       <a href="suspenso.html" class="ch-link">Ver todo →</a>
     </div>
-    <div class="vid-grid" id="vids-bit">
+    <div class="vid-grid two-cols" id="vids-bit">
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
     </div></div>
@@ -491,7 +493,7 @@ footer {
       <span class="live-pill" id="live-vino">EN VIVO</span>
       <a href="futbol.html" class="ch-link">Ver todo →</a>
     </div>
-    <div class="vid-grid" id="vids-vino">
+    <div class="vid-grid two-cols" id="vids-vino">
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
       <div class="skel"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line s"></div></div></div>
     </div></div>
