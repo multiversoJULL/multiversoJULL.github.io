@@ -92,6 +92,11 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 .footer-nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
 .footer-nav a:hover{color:var(--text);}
 .footer-copy{color:var(--muted);font-size:0.75rem;}
+
+.vid-grid{display:flex;flex-wrap:wrap;gap:1.1rem;justify-content:center;}
+.vid-grid .vid-card{flex:0 0 calc(50% - 0.6rem);max-width:420px;min-width:260px;}
+@media(max-width:600px){.vid-grid .vid-card{flex:0 0 100%;}}
+.shorts-row{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center;padding-bottom:0.5rem;}
 </style>
 </head>
 <body>
