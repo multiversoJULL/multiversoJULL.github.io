@@ -196,6 +196,28 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 .footer-nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
 .footer-nav a:hover{color:var(--text);}
 .footer-copy{color:var(--muted);font-size:0.75rem;}
+
+/* REDES SOCIALES */
+.redes-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  justify-content: center;
+}
+.red-link {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid;
+  text-decoration: none; color: var(--text);
+  font-size: 0.88rem; font-weight: 600;
+  background: var(--bg2); transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.red-link:hover { transform: translateY(-2px); filter: brightness(1.2); }
+.red-ico { font-size: 1rem; }
+
+/* VID GRID CENTERED */
+.vid-grid{display:flex;flex-wrap:wrap;gap:1.1rem;justify-content:center;}
+.vid-grid .vid-card{flex:0 0 calc(50% - 0.6rem);max-width:420px;min-width:260px;}
+@media(max-width:600px){.vid-grid .vid-card{flex:0 0 100%;}}
+.shorts-row{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center;padding-bottom:0.5rem;}
 </style>
 </head>
 <body>
@@ -273,6 +295,24 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
   </div>
   <button class="load-more" id="loadMoreBtn" onclick="loadMore()" style="display:none">Cargar más videos →</button>
 </section>
+
+
+<!-- REDES SOCIALES -->
+<section class="section" style="padding-top:1rem">
+  <p class="sec-label">// Encuéntrame en</p>
+  <h2 class="sec-title">Redes <span>Sociales</span></h2>
+  <div class="redes-grid">
+    <a href="https://www.youtube.com/@Jullverse" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">▶</span>YouTube</a>
+    <a href="https://www.tiktok.com/@jullverse" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">♪</span>TikTok</a>
+    <a href="https://www.twitch.tv/jullverse" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">◉</span>Twitch</a>
+    <a href="https://kick.com/jullverse" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">⚡</span>Kick</a>
+    <a href="https://www.instagram.com/jullversetv/" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">◈</span>Instagram</a>
+    <a href="https://discord.gg/Y3ZyxWYc" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">◎</span>Discord</a>
+    <a href="https://t.me/+SCg1ejloNLNhODA5" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">✈</span>Telegram</a>
+    <a href="https://linktr.ee/jullverse" target="_blank" class="red-link" style="border-color:var(--pink)"><span class="red-ico">♡</span>Links/PayPal</a>
+  </div>
+</section>
+<div class="divider"></div>
 
 <footer>
   <div class="footer-logo">🎮 JULLVERSE</div>

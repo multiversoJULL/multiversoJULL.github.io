@@ -221,7 +221,9 @@ nav {
 
 /* CHANNEL BLOCK */
 .ch-block { margin-bottom: 3.5rem; }
-.ch-block .vid-grid { max-width: 640px; }
+.ch-block .vid-grid { display: flex; flex-wrap: wrap; gap: 1.1rem; justify-content: center; }
+.vid-grid .vid-card { flex: 0 0 calc(50% - 0.6rem); max-width: 420px; min-width: 260px; }
+@media(max-width:600px){ .vid-grid .vid-card { flex: 0 0 100%; } }
 .ch-block .shorts-row { justify-content: center; }
 .ch-header {
   display: flex; align-items: center; gap: 0.7rem;
@@ -250,7 +252,8 @@ nav {
 .ch-link:hover { color: var(--text); }
 
 /* VIDEO GRID */
-.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.1rem; max-width: 620px; }
+.vid-grid { display: flex; flex-wrap: wrap; gap: 1.1rem; justify-content: center; max-width: 900px; margin: 0 auto; }
+.vid-card { flex: 0 0 calc(50% - 0.6rem); max-width: 420px; min-width: 260px; }
 .vid-card {
   border-radius: 12px; overflow: hidden; background: var(--bg2);
   border: 1px solid var(--border); transition: all 0.25s;
