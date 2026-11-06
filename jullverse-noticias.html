@@ -545,6 +545,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
     <a href="jullverse-videos.html" class="">Videos</a>
     <a href="jullverse-noticias.html" class="on">Noticias</a>
     <a href="jullverse-addons.html" class="">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
   </div>
   <a href="https://youtube.com/@Jullverse" target="_blank" class="yt-btn">▶ Suscribirse</a>
   <a href="index.html" class="back-btn">← Hub Principal</a>
@@ -561,102 +562,20 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <header class="pg-head">
   <div class="crumb"><a href="jullverse.html">Jullverse</a> / Noticias</div>
   <h1>Noticias</h1>
-  <p>Lo destacado de cada World of Warcraft, resumido y con enlace a la fuente.</p>
+  <p>Lo que pasa en World of Warcraft, con enlace a la fuente oficial.</p>
 </header>
 
 <div class="news">
-  <div class="news-filters" id="newsFilters">
-    <button class="on" data-f="todas">Todas</button>
-    <button data-f="forever"><img src="img/games/forever-logo.png" alt="">Forever</button>
-    <button data-f="retail"><img src="img/games/midnight.jpg" alt="">Retail</button>
-    <button data-f="classic"><img src="img/games/mists.jpg" alt="">Classic</button>
-  </div>
-  <div id="newsList"></div>
+  <a href="https://worldofwarcraft.blizzard.com/es-es/news" target="_blank" class="news-item">
+    <div class="news-art"><img src="img/games/forever-logo.png" alt=""></div>
+    <div class="news-body">
+      <span class="news-game">Forever</span>
+      <div class="news-title">World of Warcraft: Forever ya está disponible</div>
+      <div class="news-desc">Azeroth reinventado, nivel 60 y contenido nuevo sobre los continentes originales.</div>
+      <div class="news-meta"><b>Fuente:</b> Blizzard</div>
+    </div>
+  </a>
 </div>
-
-<div class="otros" id="otros">
-  <div class="otros-box">
-    <div class="ico">🎮</div>
-    <h3>Otros juegos</h3>
-    <p>Esta parte queda pendiente de construir.<br>Cuando haya contenido de otros juegos, se abre aquí su sección.</p>
-  </div>
-</div>
-
-<script>
-const NEWS = [
-  {
-    juego:'forever', tag:'Forever',
-    titulo:'World of Warcraft: Forever ya está disponible en todo el mundo',
-    resumen:'Azeroth reinventado, nivel 60 y contenido nuevo sobre los continentes originales. El cliente ya se puede jugar.',
-    fuente:'Blizzard', fecha:'Nov 2026',
-    url:'https://worldofwarcraft.blizzard.com/es-es/news'
-  },
-  {
-    juego:'forever', tag:'Forever',
-    titulo:'La forja de Forever: así nace Taldramir, el Bosque Susurrante',
-    resumen:'Blizzard muestra la creación del primer objeto legendario de Forever.',
-    fuente:'Blizzard', fecha:'Nov 2026',
-    url:'https://worldofwarcraft.blizzard.com/es-es/news'
-  },
-  {
-    juego:'forever', tag:'Forever',
-    titulo:'Correcciones en vivo del 5 de noviembre',
-    resumen:'Lista de arreglos aplicados a Forever, Mists of Pandaria Classic, Season of Discovery y WoW Classic.',
-    fuente:'Blizzard', fecha:'5 nov 2026',
-    url:'https://worldofwarcraft.blizzard.com/es-es/news'
-  },
-  {
-    juego:'retail', tag:'Retail',
-    titulo:'Parche 12.1.5: las reputaciones de Legión y Battle for Azeroth pasan a banda guerrera',
-    resumen:'Las reputaciones de esas expansiones se unifican en la banda guerrera del parche 12.1.5 de Midnight.',
-    fuente:'AlterTime', fecha:'Nov 2026',
-    url:'https://altertime.es/article/las-reputaciones-de-legion-y-battle-for-azeroth-estaran-ligadas-a-banda-guerrera-en-el-parche-12-1-5'
-  },
-  {
-    juego:'retail', tag:'Retail',
-    titulo:'Midnight: el nuevo sistema de transfiguración',
-    resumen:'Repaso a cómo cambia la transfiguración con la llegada de Midnight.',
-    fuente:'AlterTime', fecha:'Nov 2026',
-    url:'https://altertime.es/article/repasamos-el-nuevo-sistema-de-transfiguracion-que-llegara-en-midnight'
-  },
-  {
-    juego:'classic', tag:'Classic',
-    titulo:'Mists of Pandaria Classic: recompensas de las Expediciones Insulares',
-    resumen:'Todas las monturas y recompensas disponibles esta semana en las Expediciones Insulares.',
-    fuente:'Blizzard', fecha:'Nov 2026',
-    url:'https://worldofwarcraft.blizzard.com/es-es/news'
-  }
-];
-
-function renderNews(f){
-  var list = NEWS.filter(function(n){ return !f || f === 'todas' || n.juego === f; });
-  var el = document.getElementById('newsList');
-  if(!list.length){ el.innerHTML = '<div class="news-empty">Todavía no hay noticias de esta categoría.</div>'; return; }
-  el.innerHTML = list.map(function(n){
-    return '<a href="' + n.url + '" target="_blank" class="news-item">'
-      + '<div class="news-art"><img src="img/games/' + (n.juego === 'forever' ? 'forever-logo.png' : (n.juego === 'retail' ? 'midnight.jpg' : 'mists.jpg')) + '" alt=""></div>'
-      + '<div class="news-body">'
-      +   '<span class="news-game ' + n.juego + '">' + n.tag + '</span>'
-      +   '<div class="news-title">' + n.titulo + '</div>'
-      +   '<div class="news-desc">' + n.resumen + '</div>'
-      +   '<div class="news-meta"><b>Fuente:</b> ' + n.fuente + ' · ' + n.fecha + '</div>'
-      + '</div></a>';
-  }).join('');
-}
-document.querySelectorAll('#newsFilters button').forEach(function(b){
-  b.addEventListener('click', function(){
-    document.querySelectorAll('#newsFilters button').forEach(function(x){ x.classList.remove('on'); });
-    b.classList.add('on');
-    renderNews(b.dataset.f);
-  });
-});
-var q = new URLSearchParams(location.search).get('juego');
-renderNews(q || 'todas');
-if(q){
-  var btn = document.querySelector('#newsFilters button[data-f="' + q + '"]');
-  if(btn){ document.querySelectorAll('#newsFilters button').forEach(function(x){ x.classList.remove('on'); }); btn.classList.add('on'); }
-}
-</script>
 
 <footer>
   <div class="footer-logo">🎮 JULLVERSE</div>
