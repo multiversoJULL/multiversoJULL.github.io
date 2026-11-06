@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addons de WoW Forever · Jullverse</title>
+<meta name="description" content="Los 111 addons del cliente WoW Forever 1.60.1.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --p: #7C3AED; --p2: #9D5CF0;
+  --pink: #EC4899; --pink2: #F472B6;
+  --neon: #FF10F0;
+  --bg: #07040F; --bg2: #0E0A1A; --bg3: #140E22;
+  --text: #F0ECF8; --muted: #7A6A9A;
+  --border: rgba(124,58,237,0.15);
+  --grad: linear-gradient(135deg, #7C3AED, #EC4899);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+
+/* GRID BG */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,0.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 60% at 30% 20%,rgba(124,58,237,0.12) 0%,transparent 65%),
+             radial-gradient(ellipse 50% 50% at 80% 70%,rgba(236,72,153,0.08) 0%,transparent 65%);
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
+  background:rgba(7,4,15,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 1.5rem;gap:1rem;}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:0.88rem;
+  text-decoration:none;letter-spacing:0.04em;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.back-btn{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;border-radius:6px;border:1px solid var(--border);
+  color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:600;
+  transition:all 0.2s;margin-left:auto;
+}
+.back-btn:hover{color:var(--text);border-color:var(--p);}
+.yt-btn{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;border-radius:6px;
+  background:var(--grad);color:white;
+  text-decoration:none;font-size:0.8rem;font-weight:700;
+  transition:all 0.2s;
+}
+.yt-btn:hover{opacity:0.85;transform:translateY(-1px);}
+
+/* HERO */
+.hero{
+  min-height:70vh;display:flex;align-items:center;
+  padding:6rem 1.5rem 3rem;position:relative;overflow:hidden;
+}
+.hero-content{position:relative;z-index:1;max-width:680px;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pink);border:1px solid rgba(236,72,153,0.3);
+  padding:0.28rem 1rem;border-radius:20px;margin-bottom:1.5rem;
+  background:rgba(236,72,153,0.06);
+}
+.hero-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:1;
+  margin-bottom:1rem;
+}
+.hero-title span{
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:block;
+}
+.hero-title small{
+  font-size:0.35em;letter-spacing:0.2em;color:var(--muted);
+  -webkit-text-fill-color:var(--muted);display:block;margin-bottom:0.3em;
+  font-weight:400;
+}
+.hero-desc{color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:2rem;max-width:520px;}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;gap:0.2rem;}
+.stat-n{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-l{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.hero-neon{
+  position:absolute;right:-100px;top:50%;transform:translateY(-50%);
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,16,240,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* LIVE BANNER */
+.live-banner{
+  display:none;margin:0 1.5rem;padding:1rem 1.5rem;
+  border-radius:12px;background:rgba(220,38,38,0.12);
+  border:1px solid rgba(220,38,38,0.35);
+  align-items:center;gap:1rem;position:relative;z-index:1;
+}
+.live-banner.show{display:flex;}
+.live-dot{
+  width:10px;height:10px;border-radius:50%;background:#EF4444;
+  box-shadow:0 0 10px #EF4444;flex-shrink:0;
+  animation:livePulse 1.2s infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.live-text{flex:1;}
+.live-text strong{display:block;font-size:0.9rem;color:#FCA5A5;}
+.live-text span{font-size:0.78rem;color:var(--muted);}
+.live-link{
+  padding:0.4rem 1rem;border-radius:6px;background:#DC2626;
+  color:white;text-decoration:none;font-size:0.8rem;font-weight:700;
+  transition:all 0.2s;white-space:nowrap;
+}
+.live-link:hover{background:#EF4444;}
+
+/* SECTIONS */
+.section{padding:4rem 1.5rem;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.sec-label{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--p2);margin-bottom:0.4rem;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:700;margin-bottom:1.8rem;}
+.sec-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* VIDEO GRID */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;}
+.vid-card{
+  border-radius:12px;overflow:hidden;background:var(--bg2);
+  border:1px solid var(--border);transition:all 0.25s;
+  text-decoration:none;color:var(--text);display:block;
+}
+.vid-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 8px 28px rgba(124,58,237,0.2);}
+.vid-thumb{width:100%;aspect-ratio:16/9;background:var(--bg3);position:relative;overflow:hidden;}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.vid-card:hover .vid-thumb img{transform:scale(1.05);}
+.vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background 0.25s;}
+.vid-card:hover .vid-overlay{background:rgba(0,0,0,0.35);}
+.play-ico{width:42px;height:42px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.7);transition:all 0.25s;color:white;font-size:0.9rem;padding-left:3px;}
+.vid-card:hover .play-ico{opacity:1;transform:scale(1);}
+.vid-info{padding:0.85rem 1rem;}
+.vid-title{font-size:0.87rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.35rem;}
+.vid-meta{font-size:0.73rem;color:var(--muted);}
+
+/* ALL VIDEOS LIST */
+.vid-list{display:flex;flex-direction:column;gap:0.7rem;}
+.vid-list-item{
+  display:flex;gap:1rem;align-items:center;
+  padding:0.7rem;border-radius:10px;background:var(--bg2);border:1px solid var(--border);
+  text-decoration:none;color:var(--text);transition:all 0.2s;
+}
+.vid-list-item:hover{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.05);}
+.vid-list-thumb{width:120px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--bg3);}
+.vid-list-thumb img{width:100%;height:100%;object-fit:cover;}
+.vid-list-info{flex:1;min-width:0;}
+.vid-list-title{font-size:0.9rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.3rem;}
+.vid-list-meta{font-size:0.73rem;color:var(--muted);}
+
+/* SHORTS */
+.shorts-row{display:flex;gap:0.9rem;overflow-x:auto;padding-bottom:0.5rem;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.short-card{flex-shrink:0;width:150px;border-radius:12px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.25s;display:block;}
+.short-card:hover{transform:translateY(-3px);border-color:rgba(124,58,237,0.5);box-shadow:0 6px 20px rgba(255,16,240,0.2);}
+.short-thumb{width:100%;aspect-ratio:9/16;background:var(--bg3);overflow:hidden;position:relative;}
+.short-thumb img{width:100%;height:100%;object-fit:cover;}
+.short-badge{position:absolute;top:6px;left:6px;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;padding:0.15rem 0.45rem;border-radius:4px;color:white;background:var(--grad);}
+.short-info{padding:0.55rem 0.7rem;}
+.short-title{font-size:0.73rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* LOAD MORE */
+.load-more{
+  display:block;width:100%;margin-top:1.5rem;padding:0.9rem;border-radius:10px;
+  border:1px solid var(--border);background:transparent;color:var(--p2);
+  font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.05em;
+  cursor:pointer;transition:all 0.2s;text-align:center;
+}
+.load-more:hover{border-color:var(--p);background:rgba(124,58,237,0.1);}
+
+/* SKELETON */
+.skel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;animation:shimmer 1.5s ease-in-out infinite;}
+.skel-line{height:11px;background:var(--bg3);border-radius:6px;margin:0.45rem 1rem;}
+.skel-line.s{width:55%;}
+@keyframes shimmer{0%,100%{opacity:1}50%{opacity:0.55}}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 1.5rem;position:relative;z-index:1;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;position:relative;z-index:1;}
+.footer-logo{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;}
+.footer-nav{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.footer-nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--text);}
+.footer-copy{color:var(--muted);font-size:0.75rem;}
+
+/* REDES SOCIALES */
+.redes-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  justify-content: center;
+}
+.red-link {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid;
+  text-decoration: none; color: var(--text);
+  font-size: 0.88rem; font-weight: 600;
+  background: var(--bg2); transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.red-link:hover { transform: translateY(-2px); filter: brightness(1.2); }
+.red-ico { font-size: 1rem; }
+
+
+/* VID GRID — 3 en fila, sin bajar */
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+.shorts-row{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center;padding-bottom:0.5rem;}
+
+
+/* ══════════════════════════════════════════════════════════
+   JULLVERSE
+   ══════════════════════════════════════════════════════════ */
+:root{ --gold:#E8B54D; }
+
+/* NAV */
+.jv-nav .nav-links{display:flex;gap:0.15rem;margin-left:auto;align-items:center;overflow-x:auto;}
+.jv-nav .nav-links a{
+  padding:0.34rem 0.78rem;border-radius:6px;color:var(--muted);text-decoration:none;
+  font-size:0.79rem;font-weight:600;white-space:nowrap;transition:all 0.18s;
+}
+.jv-nav .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.06);}
+.jv-nav .nav-links a.on{color:var(--text);background:rgba(124,58,237,0.20);box-shadow:inset 0 0 0 1px rgba(124,58,237,0.35);}
+.jv-nav .back-btn{margin-left:0;}
+
+/* BANNER */
+.jv-banner{position:relative;width:100%;height:140px;overflow:hidden;border-bottom:1px solid var(--border);}
+.jv-banner img{width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:0.5;}
+.jv-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.2),var(--bg) 94%);}
+
+/* CABECERA */
+.jv-hero{padding:2.4rem 1.5rem 0.4rem;position:relative;z-index:1;max-width:1100px;margin:0 auto;
+  display:flex;align-items:flex-start;gap:1.4rem;flex-wrap:wrap;}
+.jv-hero .logo{width:86px;height:86px;border-radius:18px;object-fit:contain;flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.07),0 10px 30px rgba(0,0,0,0.5);}
+.jv-hero .txt{flex:1;min-width:240px;}
+.jv-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4.2vw,2.6rem);font-weight:900;line-height:1.05;margin:0 0 0.55rem;}
+.jv-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.jv-hero .intro{color:#A79CC2;font-size:0.95rem;line-height:1.7;max-width:600px;}
+.jv-hero .intro b{color:var(--text);font-weight:600;}
+.jv-hero .stats{display:flex;gap:1.8rem;margin-top:1rem;flex-wrap:wrap;}
+.jv-hero .stat-n{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:var(--text);}
+.jv-hero .stat-l{font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.jv-hero .firma{margin-top:0.9rem;font-size:0.72rem;color:#5F5378;}
+
+/* CABECERA DE PAGINA */
+.pg-head{max-width:1100px;margin:0 auto;padding:2.2rem 1.5rem 0.4rem;position:relative;z-index:1;}
+.pg-head .crumb{font-size:0.7rem;color:#5F5378;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem;}
+.pg-head .crumb a{color:var(--p2);text-decoration:none;}
+.pg-head .crumb a:hover{text-decoration:underline;}
+.pg-head h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.8vw,2.2rem);font-weight:900;line-height:1.1;}
+.pg-head h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.pg-head p{color:#8B82A6;font-size:0.9rem;line-height:1.65;margin-top:0.55rem;max-width:640px;}
+
+/* TARJETAS DE ACCESO */
+.hub{max-width:1100px;margin:0 auto;padding:1.7rem 1.5rem 0.6rem;position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.hub-card{position:relative;display:flex;flex-direction:column;min-height:175px;
+  border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);
+  border:1px solid var(--border);background:var(--bg2);transition:all 0.25s;}
+.hub-card .in{position:relative;padding:1.1rem 1.2rem;display:flex;flex-direction:column;height:100%;}
+.hub-card .ico{
+  width:44px;height:44px;border-radius:11px;flex-shrink:0;margin-bottom:auto;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  font-size:1.15rem;color:var(--p2);
+}
+.hub-card .ico img{width:100%;height:100%;object-fit:cover;}
+.hub-card .ico.logo img{object-fit:contain;padding:6px;background:#0A0714;}
+.hub-card .txt{margin-top:0.9rem;}
+.hub-card .k{font-size:0.57rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
+.hub-card h3{font-family:'Orbitron',monospace;font-size:0.94rem;font-weight:700;margin:0.26rem 0 0.3rem;}
+.hub-card p{font-size:0.78rem;color:#8B82A6;line-height:1.5;}
+.hub-card .go{margin-top:0.6rem;font-size:0.73rem;font-weight:700;color:var(--pink);}
+.hub-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 14px 36px rgba(0,0,0,0.5);}
+.hub-card:hover .bg{opacity:0.38;transform:scale(1.05);}
+
+/* ÚLTIMO VIDEO */
+.hub-video{
+  display:flex;gap:1.1rem;align-items:stretch;max-width:1100px;margin:0 auto;
+  border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);
+  text-decoration:none;color:var(--text);transition:all 0.22s;
+}
+.hub-video:hover{border-color:rgba(236,72,153,0.5);box-shadow:0 12px 34px rgba(236,72,153,0.16);transform:translateY(-2px);}
+.hub-video .thumb{width:320px;flex-shrink:0;aspect-ratio:16/9;object-fit:cover;background:var(--bg3);}
+.hub-video .thumb.ph{
+  display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff;
+  background:linear-gradient(135deg,rgba(124,58,237,0.45),rgba(236,72,153,0.35));
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.vid-fallback .ph{
+  width:170px;aspect-ratio:16/9;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;
+  background:linear-gradient(135deg,rgba(124,58,237,0.45),rgba(236,72,153,0.35));
+}
+.hub-video .body{padding:1.1rem 1.2rem;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.hub-video .tag{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.4rem;}
+.hub-video h3{font-size:1.05rem;font-weight:600;line-height:1.4;margin-bottom:0.4rem;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.hub-video .meta{font-size:0.76rem;color:var(--muted);}
+.hub-video .play{margin-top:0.7rem;font-size:0.78rem;font-weight:700;color:var(--p2);}
+
+/* FICHAS DE JUEGO */
+.fichas{max-width:1100px;margin:0 auto;padding:0.4rem 1.5rem 0;position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.ficha{display:flex;gap:0;border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);transition:all 0.22s;}
+.ficha:hover{border-color:rgba(232,181,77,0.4);}
+.ficha .art{width:104px;flex-shrink:0;object-fit:cover;object-position:center top;}
+.ficha .art.logo{object-fit:contain;background:#0A0714;padding:0.6rem;}
+.ficha .body{padding:0.9rem 1rem;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.ficha .k{font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.25rem;}
+.ficha h3{font-family:'Orbitron',monospace;font-size:0.86rem;font-weight:700;line-height:1.25;margin-bottom:0.45rem;}
+.ficha .row{display:flex;gap:0.4rem;font-size:0.76rem;color:#8B82A6;margin-bottom:0.18rem;}
+.ficha .row b{color:#D6CFE6;font-weight:600;}
+.ficha .go{margin-top:0.45rem;font-size:0.72rem;font-weight:700;color:var(--p2);}
+
+/* TIRA DE ICONOS */
+.icon-strip{display:flex;gap:0.45rem;justify-content:center;overflow:hidden;padding:1rem 1.5rem 0.2rem;
+  position:relative;z-index:1;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);}
+.icon-strip img{width:40px;height:40px;border-radius:9px;object-fit:cover;flex-shrink:0;
+  border:1px solid rgba(232,181,77,0.18);background:#12161F;opacity:0.8;transition:transform 0.2s,opacity 0.2s;}
+.icon-strip img:hover{transform:translateY(-3px);opacity:1;}
+
+/* BOTON TODOS LOS VIDEOS */
+.yt-all{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  max-width:640px;margin:0 auto;padding:1.05rem 1.35rem;border-radius:14px;
+  background:linear-gradient(135deg,rgba(236,72,153,0.10),rgba(124,58,237,0.10));
+  border:1px solid rgba(236,72,153,0.30);text-decoration:none;color:var(--text);transition:all 0.22s;}
+.yt-all:hover{transform:translateY(-3px);border-color:rgba(236,72,153,0.6);box-shadow:0 12px 30px rgba(236,72,153,0.18);}
+.yt-all b{display:block;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;}
+.yt-all span{font-size:0.77rem;color:#8B82A6;}
+.yt-all .arrow{font-size:1.4rem;color:var(--pink);}
+
+/* NOTICIAS */
+.news{max-width:900px;margin:0 auto;padding:0.6rem 1.5rem 1rem;position:relative;z-index:1;}
+.news-filters{display:flex;gap:0.4rem;flex-wrap:wrap;padding:0.4rem 0 1.4rem;}
+.news-filters button{
+  display:flex;align-items:center;gap:0.45rem;
+  padding:0.34rem 0.85rem;border-radius:20px;cursor:pointer;
+  background:var(--bg2);border:1px solid var(--border);color:var(--muted);
+  font-family:'Rajdhani',sans-serif;font-size:0.78rem;font-weight:700;transition:all 0.18s;
+}
+.news-filters button img{width:18px;height:18px;object-fit:contain;border-radius:4px;}
+.news-filters button span.dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:0.7;}
+.news-filters button:hover{color:var(--text);border-color:rgba(255,255,255,0.16);}
+.news-filters button.on{background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.5);color:#fff;}
+
+.news-item{display:flex;gap:0.95rem;padding:0.85rem;border-radius:13px;background:var(--bg2);
+  border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.2s;margin-bottom:0.7rem;}
+.news-item:hover{transform:translateX(4px);border-color:rgba(124,58,237,0.5);background:rgba(124,58,237,0.06);}
+.news-art{width:104px;flex-shrink:0;border-radius:9px;overflow:hidden;background:#0A0714;
+  display:flex;align-items:center;justify-content:center;}
+.news-art img{width:100%;height:100%;object-fit:cover;}
+.news-art.contain img{object-fit:contain;padding:0.35rem;}
+.news-body{flex:1;min-width:0;}
+.news-game{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.58rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;padding:0.12rem 0.45rem;border-radius:4px;margin-bottom:0.3rem;
+  background:rgba(232,181,77,0.12);color:var(--gold);border:1px solid rgba(232,181,77,0.25);}
+.news-game.retail{background:rgba(167,139,250,0.12);color:#B9A5F5;border-color:rgba(167,139,250,0.28);}
+.news-game.classic{background:rgba(95,200,216,0.12);color:#7FD3E0;border-color:rgba(95,200,216,0.28);}
+.news-title{font-size:0.95rem;font-weight:600;line-height:1.35;margin-bottom:0.3rem;}
+.news-desc{font-size:0.81rem;color:#8B82A6;line-height:1.55;}
+.news-meta{font-size:0.71rem;color:var(--muted);margin-top:0.4rem;}
+.news-meta b{color:var(--p2);font-weight:600;}
+
+/* OTROS JUEGOS */
+.otros{max-width:900px;margin:0 auto;padding:0.4rem 1.5rem 3rem;position:relative;z-index:1;}
+.otros-box{border:1px dashed rgba(255,255,255,0.14);border-radius:14px;padding:1.5rem;
+  text-align:center;background:rgba(20,14,34,0.5);}
+.otros-box .ico{font-size:1.7rem;margin-bottom:0.5rem;}
+.otros-box h3{font-family:'Orbitron',monospace;font-size:0.86rem;font-weight:700;margin-bottom:0.35rem;}
+.otros-box p{font-size:0.83rem;color:#8B82A6;line-height:1.6;}
+
+/* EN CONSTRUCCION */
+.coming{max-width:640px;margin:0 auto;padding:2.5rem 1.5rem 4rem;text-align:center;position:relative;z-index:1;}
+.coming .big{width:72px;height:72px;margin:0 auto 1.2rem;border-radius:20px;display:flex;
+  align-items:center;justify-content:center;font-size:2rem;background:rgba(20,14,34,0.9);border:1px solid var(--border);}
+.coming h2{font-family:'Orbitron',monospace;font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;}
+.coming p{color:#8B82A6;font-size:0.9rem;line-height:1.7;}
+
+/* ══════════════ ADDONS ══════════════ */
+.wf{max-width:1200px;margin:0 auto;padding:0.6rem 1.5rem 3rem;position:relative;z-index:1;}
+.wf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:620px;margin:1.3rem 0 0;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border);}
+.wf-stat{background:var(--bg2);padding:0.85rem 0.5rem;text-align:center;}
+.wf-stat b{display:block;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);line-height:1.1;}
+.wf-stat span{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.wf-toolbar{position:sticky;top:60px;z-index:60;margin:1.4rem 0 1.1rem;
+  background:rgba(7,4,15,0.95);backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:12px;
+  padding:0.8rem 1rem;display:flex;flex-direction:column;gap:0.65rem;}
+.wf-searchrow{display:flex;gap:0.7rem;align-items:center;flex-wrap:wrap;}
+.wf-search{position:relative;flex:1;min-width:220px;}
+.wf-search::before{content:'⌕';position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.1rem;pointer-events:none;}
+#wfSearch{width:100%;padding:0.6rem 0.9rem 0.6rem 2.3rem;border-radius:8px;background:var(--bg3);
+  border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.94rem;
+  font-weight:500;outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+#wfSearch::placeholder{color:#5B5270;}
+#wfSearch:focus{border-color:rgba(232,181,77,0.45);box-shadow:0 0 0 3px rgba(232,181,77,0.08);}
+.wf-count{font-size:0.77rem;color:var(--muted);white-space:nowrap;font-weight:600;}
+.wf-count b{color:var(--gold);}
+.wf-chips{display:flex;gap:0.38rem;overflow-x:auto;padding-bottom:0.12rem;scrollbar-width:thin;}
+.wf-chip{flex-shrink:0;padding:0.3rem 0.78rem;border-radius:20px;cursor:pointer;background:var(--bg3);
+  border:1px solid var(--border);color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:0.77rem;
+  font-weight:700;transition:all 0.18s;white-space:nowrap;}
+.wf-chip:hover{color:var(--text);border-color:rgba(255,255,255,0.15);}
+.wf-chip.active{background:rgba(232,181,77,0.13);border-color:rgba(232,181,77,0.45);color:var(--gold);}
+.wf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(325px,1fr));gap:0.9rem;}
+.wf-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.05rem 0.95rem;
+  position:relative;overflow:hidden;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+  display:flex;flex-direction:column;}
+.wf-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--acc,#E8B54D);opacity:0.5;transition:opacity 0.2s;}
+.wf-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.13);box-shadow:0 10px 26px rgba(0,0,0,0.45);}
+.wf-card:hover::before{opacity:1;}
+.wf-top{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.65rem;}
+.wf-ico{flex-shrink:0;width:52px;height:52px;border-radius:10px;overflow:hidden;background:#12161F;
+  border:1px solid rgba(232,181,77,0.26);box-shadow:0 3px 10px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;}
+.wf-card:hover .wf-ico{transform:scale(1.04);box-shadow:0 0 0 1px rgba(232,181,77,0.30),0 0 14px rgba(232,181,77,0.14);}
+.wf-ico img{width:100%;height:100%;object-fit:cover;display:block;}
+.wf-info{flex:1;min-width:0;}
+.wf-name{font-family:'Orbitron',monospace;font-size:0.84rem;font-weight:700;line-height:1.3;word-break:break-word;margin-bottom:0.3rem;}
+.wf-ver{font-size:0.61rem;font-weight:700;padding:0.14rem 0.42rem;border-radius:4px;white-space:nowrap;
+  background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid rgba(255,255,255,0.06);}
+.wf-badges{display:flex;gap:0.3rem;flex-wrap:wrap;}
+.wf-badge{font-size:0.56rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  padding:0.12rem 0.45rem;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--acc,#E8B54D);
+  border:1px solid rgba(255,255,255,0.07);}
+.wf-badge.forever{background:rgba(232,181,77,0.12);color:var(--gold);border-color:rgba(232,181,77,0.32);}
+.wf-desc{font-size:0.85rem;color:#AEA6C4;line-height:1.6;flex:1;}
+.wf-cmd{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.7rem;font-family:'Orbitron',monospace;
+  font-size:0.68rem;font-weight:700;color:var(--gold);background:rgba(232,181,77,0.06);
+  border:1px dashed rgba(232,181,77,0.22);border-radius:5px;padding:0.24rem 0.55rem;align-self:flex-start;}
+.wf-cmd span{font-family:'Rajdhani',sans-serif;font-weight:600;color:var(--muted);font-size:0.66rem;letter-spacing:0.05em;text-transform:uppercase;}
+.wf-mods{margin-top:0.8rem;border-top:1px solid var(--border);padding-top:0.55rem;}
+.wf-mods summary{cursor:pointer;list-style:none;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.wf-mods summary::-webkit-details-marker{display:none;}
+.wf-mods summary::before{content:'▸';color:var(--gold);font-size:0.8rem;transition:transform 0.2s;display:inline-block;}
+.wf-mods[open] summary::before{transform:rotate(90deg);}
+.wf-mods summary:hover{color:var(--text);}
+.wf-modlist{list-style:none;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.42rem;}
+.wf-modlist li{font-size:0.77rem;line-height:1.5;color:#948BAE;padding-left:0.65rem;border-left:1px solid rgba(255,255,255,0.06);}
+.wf-modlist b{color:#D3CBDF;font-weight:700;font-family:'Orbitron',monospace;font-size:0.68rem;}
+.wf-modlist em{display:block;font-style:normal;font-size:0.7rem;color:#6A5F82;margin-top:0.08rem;}
+.wf-empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted);}
+.wf-empty b{display:block;font-family:'Orbitron',monospace;color:var(--gold);margin-bottom:0.4rem;}
+.wf-group{grid-column:1/-1;margin:1.5rem 0 0.15rem;display:flex;align-items:center;gap:0.65rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:0.45rem;}
+.wf-group i{width:3px;height:16px;border-radius:3px;background:var(--acc);}
+.wf-group span{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.08em;color:var(--acc);text-transform:uppercase;}
+.wf-group em{font-size:0.68rem;color:#5B5270;font-weight:600;font-style:normal;}
+.wf-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0.9rem;margin-top:2.2rem;}
+.wf-note{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;}
+.wf-note h3{font-family:'Orbitron',monospace;font-size:0.73rem;font-weight:700;letter-spacing:0.06em;margin-bottom:0.5rem;color:var(--gold);}
+.wf-note p{font-size:0.83rem;color:#9A90B5;line-height:1.65;}
+.wf-warn{margin-top:0.9rem;border-left:2px solid #C5645C;background:rgba(197,100,92,0.05);border-radius:0 8px 8px 0;padding:0.85rem 1rem;}
+.wf-warn b{color:#D98A82;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.07em;display:block;margin-bottom:0.25rem;}
+.wf-warn p{font-size:0.82rem;color:#9A90B5;line-height:1.6;margin:0;}
+
+/* fallback */
+.vid-fallback{grid-column:1/-1;display:flex;gap:1rem;align-items:center;padding:0.85rem;border-radius:12px;
+  background:var(--bg2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.2s;}
+.vid-fallback:hover{border-color:rgba(236,72,153,0.5);}
+.vid-fallback img{width:170px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;flex-shrink:0;}
+.vid-fallback b{display:block;font-size:0.93rem;margin-bottom:0.2rem;}
+.vid-fallback span{font-size:0.79rem;color:var(--muted);}
+
+@media (max-width:900px){
+  .hub{grid-template-columns:1fr;}
+  .fichas{grid-template-columns:1fr;}
+}
+@media (max-width:860px){
+  .jv-nav .nav-links{order:3;width:100%;margin-left:0;}
+  .jv-nav{height:auto;flex-wrap:wrap;padding:0.5rem 1rem;gap:0.4rem;}
+  .wf-stats{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:768px){
+  .wf-grid{grid-template-columns:1fr;}
+  .wf-toolbar{top:0;}
+  .jv-hero{padding:1.8rem 1rem 0.4rem;}
+  .jv-hero .logo{width:62px;height:62px;}
+  .icon-strip img{width:34px;height:34px;}
+  .hub-video{flex-direction:column;}
+  .hub-video .thumb{width:100%;}
+  .news-art{width:76px;}
+}
+
+/* ══════════════ FICHA DE WOW / AFIJOS ══════════════ */
+.wowgrid{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;position:relative;z-index:1;align-items:start;}
+.wcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.05rem 1.15rem;}
+.wcard-h{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.85rem;}
+.wcard-h .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);}
+.wcard-h h3{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+
+.token-row{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0;}
+.token-row + .token-row{border-top:1px solid rgba(255,255,255,0.05);}
+.flag{width:34px;height:24px;border-radius:4px;object-fit:cover;flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.14);}
+.token-p{flex:1;min-width:0;}
+.token-p b{display:block;font-family:'Orbitron',monospace;font-size:0.98rem;font-weight:700;color:var(--gold);line-height:1.2;}
+.token-p span{font-size:0.71rem;color:var(--muted);}
+.token-nota{font-size:0.66rem;color:#5F5378;margin-top:0.55rem;line-height:1.5;}
+
+.afijos{display:grid;grid-template-columns:repeat(4,1fr);gap:0.55rem;}
+.afijo{text-align:center;}
+.afijo img{width:46px;height:46px;border-radius:10px;display:block;margin:0 auto;
+  border:1px solid rgba(255,255,255,0.1);background:#0A0714;}
+.afijo span{display:block;font-size:0.65rem;line-height:1.25;color:#A79CC2;margin-top:0.35rem;}
+.afijo-sub{text-align:center;font-size:0.72rem;color:var(--muted);margin:0.1rem 0 0.8rem;}
+.fuente{text-align:center;font-size:0.64rem;color:#5F5378;margin-top:0.75rem;}
+.fuente a{color:#6E6288;}
+
+@media (max-width:900px){
+  .wowgrid{grid-template-columns:1fr;}
+  .afijo img{width:40px;height:40px;}
+  .afijo span{font-size:0.6rem;}
+}
+
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+<nav class="jv-nav">
+  <a href="jullverse.html" class="nav-logo">🎮 JULLVERSE</a>
+  <div class="nav-links">
+    <a href="jullverse.html" class="">Inicio</a>
+    <a href="jullverse-videos.html" class="">Videos</a>
+    <a href="jullverse-noticias.html" class="">Noticias</a>
+    <a href="jullverse-addons.html" class="on">Addons</a>
+  </div>
+  <a href="https://youtube.com/@Jullverse" target="_blank" class="yt-btn">▶ Suscribirse</a>
+  <a href="index.html" class="back-btn">← Hub Principal</a>
+</nav>
+<div class="live-banner" id="liveBanner">
+  <div class="live-dot"></div>
+  <div class="live-text">
+    <strong>¡Jullverse está EN VIVO ahora!</strong>
+    <span>Haz clic para unirte al stream</span>
+  </div>
+  <a href="https://youtube.com/@Jullverse/live" target="_blank" class="live-link">▶ Ver en vivo</a>
+</div>
+
+<header class="pg-head">
+  <div class="crumb"><a href="jullverse.html">Jullverse</a> / Addons</div>
+  <h1>Addons de <span>WoW Forever</span></h1>
+  <p>Los 111 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
+  <div class="wf-stats">
+    <div class="wf-stat"><b>111</b><span>Addons</span></div>
+    <div class="wf-stat"><b>43</b><span>Fichas</span></div>
+    <div class="wf-stat"><b>13</b><span>Suites</span></div>
+    <div class="wf-stat"><b>0</b><span>Incompatibles</span></div>
+  </div>
+</header>
+
+<div class="icon-strip"><img src="img/addons/elvui.png" alt=""><img src="img/addons/questie.png" alt=""><img src="img/addons/details.png" alt=""><img src="img/addons/dbm-core.png" alt=""><img src="img/addons/rarescanner.png" alt=""><img src="img/addons/bagnon.png" alt=""><img src="img/addons/narcissus.png" alt=""><img src="img/addons/spoken.png" alt=""><img src="img/addons/leatrix_plus.png" alt=""><img src="img/addons/tellmewhen.png" alt=""><img src="img/addons/openmap.png" alt=""><img src="img/addons/attune.png" alt=""></div>
+
+<section class="wf">
+  <div class="wf-toolbar">
+    <div class="wf-searchrow">
+      <div class="wf-search">
+        <input id="wfSearch" type="text" placeholder="Buscar addon, función o comando… (ej: questie, subasta, /dbm)" autocomplete="off">
+      </div>
+      <div class="wf-count"><b id="wfShown">0</b> de 111 addons</div>
+    </div>
+    <div class="wf-chips" id="wfChips"></div>
+  </div>
+  <div class="wf-grid" id="wfGrid"></div>
+
+  <div class="wf-notes">
+    <div class="wf-note">
+      <h3>Suites y módulos</h3>
+      <p>ElvUI, EllesmereUI, Details, Bagnon, Narcissus, Spoken, DBM y GearQuest no son un addon: son un paquete. Despliega cada ficha para ver sus módulos.</p>
+    </div>
+    <div class="wf-note">
+      <h3>WoWUp + CurseForge</h3>
+      <p>Todo esto lo mantengo desde <b>WoWUp</b> con la fuente de <b>CurseForge</b>. En WoWUp hay que tener marcado el juego <b>WoW Forever</b>, no Retail.</p>
+    </div>
+  </div>
+  <div class="wf-warn">
+    <b>⚠ Ojo al actualizar</b>
+    <p>CurseForge ofrece la versión de Retail por defecto. Elige siempre la pestaña <b>WoW Forever</b>. Leatrix, RareScanner, OpenMap y Follow The Arrow son los que más caen en esa trampa.</p>
+  </div>
+</section>
+
+<script>
+const ICON_FILE = {
+  elvui:"elvui", ellesmere:"ellesmereui", blizzmove:"blizzmove", mbb:"minimapbuttonbutton",
+  lootroll:"lootrollmover", whatstraining:"whatstraining", leatrixplus:"leatrix_plus",
+  leatrixmaps:"leatrix_maps", openmap:"openmap", hiddenmaps:"hiddenmaps", booksmap:"books_on_map_forever",
+  tomtom:"tomtom", waypointui:"waypointui", minimaptarget:"foreverminimaptarget", questie:"questie",
+  fta:"followthearrow", foreverquests:"foreverquests", questtint:"foreverquesttint", gearquest:"gearquestforever",
+  details:"details", dbm:"dbm-core", tmw:"tellmewhen", procdoc:"procdoc", rarescanner:"rarescanner",
+  auctionator:"auctionator", loottriage:"loottriage", skillup:"skillupforever", easyxp:"easyexperiencebar",
+  sparkles:"foreverlootsparkles", angleur:"angleur", bagnon:"bagnon", narcissus:"narcissus",
+  dialogueui:"dialogueui", attune:"attune", talents:"talentsforeverbook", dj:"foreverdungeonjournal",
+  whisper:"whispermessenger", spy:"spy", camper:"camper", layerswap:"layerswap", spoken:"spoken",
+  bugs:"bugsack", zloader:"zz_xscarlifeloader"
+};
+
+const DATA = [
+/* ══════════════ INTERFAZ ══════════════ */
+{
+  id:"elvui", name:"ElvUI", cat:"interfaz", ver:"v16.01", tag:"Suite", forever:false,
+  desc:"El reemplazo de interfaz más completo que hay para Forever. Cambia barras de acción, marcos de unidad, minimapa, bolsas, chat, tooltips y avisos por un HUD limpio y configurable al milímetro.",
+  cmd:"/ec",
+  modules:[
+    ["ElvUI","v16.01","Motor principal. Todo el HUD vive aquí."],
+    ["ElvUI_Libraries","v16.01","Librerías internas que usa ElvUI. No se toca."],
+    ["ElvUI_Options","v16.01","Ventana de configuración. No guarda perfiles."]
+  ]
+},
+{
+  id:"ellesmere", name:"EllesmereUI", cat:"interfaz", ver:"9.7.8", tag:"Suite", forever:true,
+  desc:"Suite de interfaz alternativa y modular: marcos de unidad, raid, barras, nameplates, minimapa, medidor de daño y más. Cada módulo se activa por separado, así que puedes usar solo lo que te guste.",
+  cmd:"/eui",
+  modules:[
+    ["EllesmereUI","9.7.8","Framework compartido del paquete."],
+    ["EllesmereUIActionBars","9.7.8","Barras de acción modernas."],
+    ["EllesmereUIAuraBuffReminders","9.7.8","Recordatorios de buffs de raid, consumibles y talentos."],
+    ["EllesmereUIBags","9.7.8","Bolsas con organización visual."],
+    ["EllesmereUIBlizzardSkin","9.7.8","Reskin de ventanas de Blizzard."],
+    ["EllesmereUIChat","9.7.8","Chat con mejoras y utilidades."],
+    ["EllesmereUICooldownManager","9.7.8","Gestor de cooldowns con alertas."],
+    ["EllesmereUIDamageMeters","9.7.8","Medidor de daño ligero."],
+    ["EllesmereUIDataBars","9.7.8","Barra de info: reloj, oro, reputación."],
+    ["EllesmereUIForeverEssentials","9.7.8","Herramientas específicas para WoW Forever."],
+    ["EllesmereUIFriends","9.7.8","Lista de amigos con organización."],
+    ["EllesmereUIGroupFinder","9.7.8","Buscador de grupos con filtros."],
+    ["EllesmereUILocales","9.7.8","Traducciones de la comunidad."],
+    ["EllesmereUIMinimap","9.7.8","Minimapa cuadrado y limpio."],
+    ["EllesmereUIMythicTimer","9.7.8","Temporizador de Mythic+ (si aplica)."],
+    ["EllesmereUINameplates","9.7.8","Nameplates configurables."],
+    ["EllesmereUIOptions","9.7.8","Panel de ajustes del paquete."],
+    ["EllesmereUIQoL","9.7.8","Mejoras de calidad de vida."],
+    ["EllesmereUIQuestTracker","9.7.8","Reskin del tracker de misiones."],
+    ["EllesmereUIQuickdraw","9.7.8","Menú radial: mantén una tecla, apunta y suelta."],
+    ["EllesmereUIRaidFrames","9.7.8","Marcos de raid y grupo."],
+    ["EllesmereUIResourceBars","9.7.8","Barras de recurso con umbrales."],
+    ["EllesmereUIUnitFrames","9.7.8","Marcos de unidad del jugador, target y focus."]
+  ]
+},
+{
+  id:"blizzmove", name:"BlizzMove", cat:"interfaz", ver:"v3.8.7", tag:"Suite",
+  desc:"Permite mover y escalar casi cualquier ventana de Blizzard: personaje, talentos, subasta, correo, mapa, libro de hechizos. Arrastras la ventana y su posición se guarda.",
+  cmd:null,
+  modules:[
+    ["BlizzMove","v3.8.7","El addon. Arrastra cualquier ventana nativa."],
+    ["BlizzMove_Debug","v3.8.7","Complemento de depuración. Opcional."]
+  ]
+},
+{
+  id:"mbb", name:"MinimapButtonButton", cat:"interfaz", ver:"1.24.15",
+  desc:"Recoge todos los botones del minimapa (los iconos de addons que se amontonan alrededor) en un solo botón desplegable. Adiós a la corona de iconos tapando el minimapa.",
+  cmd:null
+},
+{
+  id:"lootroll", name:"LootRollMover", cat:"interfaz", ver:"8.3",
+  desc:"Mueve las ventanas de tirada de botín (Need / Greed / Pass) a donde tú quieras. Útil para que no te tapen el centro de la pantalla en raid.",
+  cmd:null
+},
+{
+  id:"whatstraining", name:"What's Training?", cat:"interfaz", ver:"11.2.0",
+  desc:"Muestra en el entrenador de clase qué hechizos y rangos vas a aprender en los próximos niveles, con coste y nivel exacto. Para no gastar oro a ciegas.",
+  cmd:"/wt"
+},
+{
+  id:"leatrixplus", name:"Leatrix Plus", cat:"interfaz", ver:"1.60.29", tag:"Navaja suiza",
+  desc:"Caja de herramientas con decenas de ajustes: autoaceptar resurrección, auto vender basura, reparar automático, silenciar errores, velocidad de vuelo, ocultar el error de UI y un largo etcétera.",
+  cmd:"/ltp"
+},
+
+/* ══════════════ MAPAS ══════════════ */
+{
+  id:"leatrixmaps", name:"Leatrix Maps", cat:"mapas", ver:"1.60.28",
+  desc:"Mejora el mapa del mundo: lo hace más grande, quita la niebla de guerra, muestra zonas sin explorar, coordenadas y puntos de vuelo. El clásico imprescindible de mapas.",
+  cmd:"/ltm"
+},
+{
+  id:"openmap", name:"OpenMap", cat:"mapas", ver:"v0.7.5-beta", forever:true,
+  desc:"Un mapa del mundo continuo: todas las zonas cosidas en una sola imagen y puedes alejarte de una para entrar en la siguiente. El mapa de Blizzard, el diario de misiones y Questie siguen funcionando igual.",
+  cmd:"/openmap"
+},
+{
+  id:"hiddenmaps", name:"HiddenMaps", cat:"mapas", ver:"1.2.1-dev5", forever:true,
+  desc:"Añade mapas de aproximación e interiores de mazmorras que Forever no trae por defecto. Entras a una cueva o instancia y ves el plano real.",
+  cmd:"/hiddenmaps"
+},
+{
+  id:"booksmap", name:"Books on map (Forever)", cat:"mapas", ver:"2.2.1", forever:true,
+  desc:"Marca en el mapa del mundo dónde están los libros de la biblioteca de WoW Forever, para completar la colección sin dar vueltas.",
+  cmd:"/booksonmap"
+},
+{
+  id:"tomtom", name:"TomTom", cat:"mapas", ver:"v4.4.0-release",
+  desc:"Navegación por coordenadas. Le pegas una coordenada o un waypoint y te dibuja la flecha y el punto en el mapa y minimapa.",
+  cmd:"/tomtom"
+},
+{
+  id:"waypointui", name:"WaypointUI", cat:"mapas", ver:"1.7.5",
+  desc:"Waypoints dibujados directamente en el mundo (no en el minimapa): una flecha y un panel flotante con distancia e información del objetivo.",
+  cmd:null
+},
+{
+  id:"minimaptarget", name:"Forever Minimap Target", cat:"mapas", ver:"v1.0.1", forever:true,
+  desc:"Devuelve las opciones Target y Focus al menú de seguimiento del minimapa, para volver a ver a tu objetivo y tu foco como puntos en el minimapa.",
+  cmd:null
+},
+
+/* ══════════════ MISIONES ══════════════ */
+{
+  id:"questie", name:"Questie", cat:"misiones", ver:"12.6.2", tag:"Suite", forever:true,
+  desc:"El ayudante de misiones de referencia. Marca en el mapa dónde se acepta y se entrega cada misión, qué mobs sueltan los objetos y sigue tu progreso. Base de datos completa de Forever.",
+  cmd:"/questie",
+  modules:[
+    ["Questie","12.6.2","Addon principal: mapa, tracker y base de misiones."],
+    ["QuestieDB","1.0.11","La base de datos que consume Questie."],
+    ["QuestieTrace","1.9.0","Recolector de datos para mejorar la base."]
+  ]
+},
+{
+  id:"fta", name:"Follow The Arrow", cat:"misiones", ver:"0.2.3", forever:true,
+  desc:"Guías de subida de nivel para WoW Forever con flecha en pantalla que te lleva paso a paso: qué matar, qué recoger y a quién entregar. Estilo RestedXP, pero gratis.",
+  cmd:"/fta"
+},
+{
+  id:"foreverquests", name:"Forever Quests", cat:"misiones", ver:"1.5.3", forever:true,
+  desc:"Resalta las misiones nuevas que se añadieron en WoW Forever y no existían en Classic. Así distingues el contenido nuevo del original de un vistazo.",
+  cmd:"/fq"
+},
+{
+  id:"questtint", name:"Forever Quest Tint", cat:"misiones", ver:"0.7.1", forever:true,
+  desc:"Tiñe de verde azulado la ventana de misión y marca los nombres de las misiones que no estaban en Classic. Complemento perfecto de Forever Quests.",
+  cmd:null
+},
+{
+  id:"gearquest", name:"GearQuest Forever", cat:"misiones", ver:"1.0.8", tag:"Suite", forever:true,
+  desc:"Te dice qué pieza de equipo mejorar y en qué misión conseguirlo. Haces clic en una ranura, eliges una cacería y la sigues en el registro de misiones.",
+  cmd:"/gearquest",
+  modules:[
+    ["GearQuestForever","1.0.8","Motor y listas generales de equipo."],
+    ["GearQuestForever_DRUID","1.0.8","Listas para druida."],
+    ["GearQuestForever_HUNTER","1.0.8","Listas para cazador."],
+    ["GearQuestForever_MAGE","1.0.8","Listas para mago."],
+    ["GearQuestForever_PALADIN","1.0.8","Listas para paladín."],
+    ["GearQuestForever_PRIEST","1.0.8","Listas para sacerdote."],
+    ["GearQuestForever_ROGUE","1.0.8","Listas para pícaro."],
+    ["GearQuestForever_SHAMAN","1.0.8","Listas para chamán."],
+    ["GearQuestForever_WARLOCK","1.0.8","Listas para brujo."],
+    ["GearQuestForever_WARRIOR","1.0.8","Listas para guerrero."]
+  ]
+},
+
+/* ══════════════ COMBATE ══════════════ */
+{
+  id:"details", name:"Details! Damage Meter", cat:"combate", ver:"2026.11.04", tag:"Suite",
+  desc:"El medidor de daño, curación y amenaza más completo. Ventanas separadas por rol, desglose por hechizo, comparativas y plugins. El estándar para saber quién hace qué en el grupo.",
+  cmd:"/details",
+  modules:[
+    ["Details","2026.11.04","Medidor principal."],
+    ["Details_Compare2","—","Pestaña de comparación entre jugadores."],
+    ["Details_DataStorage","—","Guarda el histórico de combates."],
+    ["Details_EncounterDetails","—","Desglose por fases de un boss."],
+    ["Details_RaidCheck","—","Revisa talentos, equipo, comida y frascos del grupo."],
+    ["Details_Streamer","—","Muestra en pantalla qué hechizos lanzas."],
+    ["Details_TinyThreat","—","Medidor de amenaza integrado."],
+    ["Details_Vanguard","—","Vida y debuffs de los tanques."]
+  ]
+},
+{
+  id:"dbm", name:"Deadly Boss Mods", cat:"combate", ver:"12.1.19", tag:"Suite",
+  desc:"Avisos de mecánicas de jefes: temporizadores de habilidades, avisos de movimiento, pulls y barra de casteo. Incluye voces en español. Imprescindible en mazmorras y raids.",
+  cmd:"/dbm",
+  modules:[
+    ["DBM-Core","12.1.19","Núcleo con los temporizadores y avisos."],
+    ["DBM-GUI","12.1.19","Ventana de opciones."],
+    ["DBM-StatusBarTimers","12.1.19","Barras de tiempo de las habilidades."],
+    ["DBM-VPVEM","a8e9f0e","Paquete de voces en español."]
+  ]
+},
+{
+  id:"tmw", name:"TellMeWhen", cat:"combate", ver:"12.1.5", tag:"Suite",
+  desc:"Crea iconos que te avisan cuándo un cooldown está listo, un buff activo o una condición se cumple. Es un WeakAuras simplificado: menos potente, mucho más fácil de configurar.",
+  cmd:"/tmw",
+  modules:[
+    ["TellMeWhen","12.1.5","Motor de iconos y condiciones."],
+    ["TellMeWhen_Options","—","Editor de iconos."]
+  ]
+},
+{
+  id:"procdoc", name:"ProcDoc", cat:"combate", ver:"v4.12.0", forever:true,
+  desc:"Alertas de procs con imágenes que laten en pantalla, para no perderte ningún disparo. Hecho específicamente para WoW Forever, con las habilidades de este cliente.",
+  cmd:"/procdoc"
+},
+
+/* ══════════════ LOOT Y ORO ══════════════ */
+{
+  id:"rarescanner", name:"RareScanner", cat:"loot", ver:"1.60.1.2", forever:true,
+  desc:"Escanea el minimapa y te avisa con botón, miniatura y sonido cuando aparece un NPC raro, un cofre o un evento. Lo marca también en el mapa del mundo con su botín.",
+  cmd:"/rs"
+},
+{
+  id:"auctionator", name:"Auctionator", cat:"loot", ver:"341",
+  desc:"Casa de subastas rápida: busca, compra en lote, publica varias pilas a la vez y guarda historial de precios para saber cuánto pedir por cada cosa.",
+  cmd:"/auctionator"
+},
+{
+  id:"loottriage", name:"LootTriage", cat:"loot", ver:"1.1.5", forever:true,
+  desc:"¿Bolsas llenas? Te dice qué botín vale la pena coger y qué objeto tirar para hacerle sitio, en lugar de dejarte el loot en el suelo.",
+  cmd:"/loottriage"
+},
+{
+  id:"skillup", name:"SkillUp Forever", cat:"loot", ver:"v1.0.21", forever:true,
+  desc:"En la ventana de profesiones muestra la habilidad requerida, los umbrales de color y el porcentaje real de subida de cada receta. Para subir profesión sin desperdiciar materiales.",
+  cmd:"/skillup"
+},
+{
+  id:"easyxp", name:"Easy Experience Bar", cat:"loot", ver:"2026.11.03.A", forever:true,
+  desc:"Barra de experiencia limpia y configurable, con porcentaje, tiempo estimado al siguiente nivel y seguimiento del descanso.",
+  cmd:null
+},
+{
+  id:"sparkles", name:"Forever Loot Sparkles", cat:"loot", ver:"v1.3.1", forever:true,
+  desc:"Muestra siempre el destello en los objetos de misión que puedes recoger, y hace brillar menas y hierbas al acercarte. Se activa solo al entrar.",
+  cmd:null
+},
+{
+  id:"angleur", name:"Angleur", cat:"loot", ver:"2.9.79-Forever", forever:true,
+  desc:"Automatiza la pesca: lanza, detecta el picado, recoge y vuelve a lanzar. Con versión adaptada a Forever y arreglo de interacción suave.",
+  cmd:"/angleur"
+},
+
+/* ══════════════ BOLSAS ══════════════ */
+{
+  id:"bagnon", name:"Bagnon", cat:"bolsas", ver:"12.1.8", tag:"Suite",
+  desc:"Una sola ventana con todas tus bolsas, buscador de objetos, ordenar, y la posibilidad de ver las bolsas de tu banca y de tus otros personajes sin cambiar de PJ.",
+  cmd:"/bagnon",
+  modules:[
+    ["Bagnon","12.1.8","Ventana única de bolsas."],
+    ["Bagnon_Bank","—","Muestra el banco al abrirlo."],
+    ["Bagnon_Config","—","Menús de configuración."],
+    ["Bagnon_GuildBank","—","Muestra el banco del gremio."],
+    ["BagBrother","—","Servicios compartidos entre Bagnon y Bagnonium."]
+  ]
+},
+
+/* ══════════════ PERSONAJE ══════════════ */
+{
+  id:"narcissus", name:"Narcissus", cat:"personaje", ver:"1.8.7 b", tag:"Suite",
+  desc:"Ventana de personaje inmersiva con modo foto, poses, fondos, iluminación y modelos. También trae barbería con historial de apariencias y buscador de NPCs.",
+  cmd:"/narci",
+  modules:[
+    ["Narcissus","1.8.7 b","Ventana de personaje y estudio de fotos."],
+    ["Narcissus_Achievements","12.1.5","Interfaz de logros."],
+    ["Narcissus_BagFilter","1.0.2","Buscador y filtro de objetos en bolsas."],
+    ["Narcissus_Barbershop","1.7","Guarda y comparte apariencias."],
+    ["Narcissus_Database_Item","9.2.0","Lista de objetos que puedes sostener en el modo foto."],
+    ["Narcissus_Database_NPC","11.0.2","Busca cualquier NPC por nombre."],
+    ["Narcissus_GamePad","1.0","Soporte de mando para la interfaz."]
+  ]
+},
+{
+  id:"dialogueui", name:"Dialogue UI", cat:"personaje", ver:"1.0.7 b",
+  desc:"Rehace la ventana de diálogo de misiones y gossip con un estilo cinematográfico: retrato del NPC, texto legible y botones claros.",
+  cmd:null
+},
+{
+  id:"attune", name:"Attune", cat:"personaje", ver:"16001-38",
+  desc:"Lleva la cuenta de las attunements de raid y del progreso de las cadenas de mazmorra, por personaje. Sabes qué te falta para entrar a cada raid sin buscar en foros.",
+  cmd:"/attune"
+},
+{
+  id:"talents", name:"Talents Forever", cat:"personaje", ver:"0.38.18", forever:true,
+  desc:"El calculador de talentsforever.com dentro del juego. Planea una build sin gastar puntos, síguela nivel a nivel, compártela por enlace y prueba builds populares.",
+  cmd:"/tf"
+},
+{
+  id:"dj", name:"DungeonJournal (Forever)", cat:"personaje", ver:"1.7.0", forever:true,
+  desc:"Diario de mazmorras de Classic con jefes, botín y misiones de cada instancia, dentro del juego y adaptado a Forever.",
+  cmd:"/dj"
+},
+
+/* ══════════════ SOCIAL / UTILIDADES ══════════════ */
+{
+  id:"whisper", name:"WhisperMessenger", cat:"sistema", ver:"v2.1.4",
+  desc:"Todos los susurros en una sola ventana con historial, estado en línea y contador de no leídos. Nunca más pierdes un whisper entre el spam del chat.",
+  cmd:"/wmsg"
+},
+{
+  id:"spy", name:"Spy", cat:"sistema", ver:"1.3.8-forever4", forever:true,
+  desc:"Detecta jugadores enemigos cerca y avisa con nombre, clase y nivel. También registra a quién has visto y dónde, útil en mundo abierto PvP.",
+  cmd:"/spy"
+},
+{
+  id:"camper", name:"Camper", cat:"sistema", ver:"0.1", forever:true,
+  desc:"Monta un campamento en un punto exacto y te avisa cuando aparece lo que estás esperando. Perfecto para rares con spawn largo.",
+  cmd:"/camper"
+},
+{
+  id:"layerswap", name:"LayerSwap", cat:"sistema", ver:"1.14.1", forever:true,
+  desc:"Muestra en qué capa estás, pide cambio de capa a un anfitrión y te deja hospedar cambios para otros. Funciona en Forever, Classic Era y TBC Anniversary.",
+  cmd:"/ls"
+},
+
+/* ══════════════ AUDIO ══════════════ */
+{
+  id:"spoken", name:"Spoken", cat:"audio", ver:"3.8.3", tag:"Suite", forever:true,
+  desc:"Lee el juego en voz alta: misiones, gossip, lugares, libros y la historia de cada boss. Una sola cola de voz, un narrador y un botón en el minimapa. Trae paquetes de audio en español latino.",
+  cmd:"/spoken",
+  modules:[
+    ["Spoken","3.8.3","Motor de voz y ajustes generales."],
+    ["Spoken_Quests","3.8.3","Misiones y gossip leídos en voz alta."],
+    ["Spoken_Places","3.8.3","Lore de zonas y subzonas en el mapa."],
+    ["Spoken_Readables","3.8.3","Libros, cartas, notas y placas."],
+    ["Spoken_Bosses","3.8.3","Historia de los jefes de mazmorra y raid."],
+    ["SpokenContributions","3.8.3","Guarda las líneas recolectadas para donarlas al proyecto."],
+    ["SpokenQuestsAudioGossip_esMX","0.0.10","Voces en español: misiones y gossip de la era Vanilla."],
+    ["SpokenQuestsAudioHorde_esMX","0.0.10","Voces en español: misiones de la Horda."],
+    ["SpokenPlacesAudio_esMX","1.0.3","Voces en español: lore de lugares (beta)."],
+    ["SpokenReadablesAudio_esMX","2.0.6","Voces en español: libros y notas."],
+    ["SpokenBossesAudio_esMX","1.0.2","Voces en español: historias de jefes."]
+  ]
+},
+
+/* ══════════════ SISTEMA ══════════════ */
+{
+  id:"bugs", name:"BugGrabber + BugSack", cat:"sistema", ver:"12.1.1 / 12.1.9", tag:"Suite",
+  desc:"Capturan los errores de Lua de todos los addons y los guardan en una ventana en vez de llenarte la pantalla de mensajes rojos. La herramienta para saber qué addon está fallando.",
+  cmd:"/bugsack",
+  modules:[
+    ["!BugGrabber","v12.1.1","Captura los errores del cliente."],
+    ["BugSack","v12.1.9","Ventana para leerlos y copiarlos."]
+  ]
+},
+{
+  id:"zloader", name:"ZZ_xScarlifeLoader", cat:"sistema", ver:"1.0",
+  desc:"Cargador temporal que importó el perfil xScarlife de ElvUI al entrar al juego. Ya cumplió su función y está desactivado: puedes borrar la carpeta sin miedo.",
+  cmd:null
+}
+];
+
+/* ─────────── render ─────────── */
+
+const WF_CATS = [
+  {id:'todas',   label:'Todas'},
+  {id:'interfaz',label:'Interfaz'},
+  {id:'mapas',   label:'Mapas'},
+  {id:'misiones',label:'Misiones'},
+  {id:'combate', label:'Combate'},
+  {id:'loot',    label:'Loot y oro'},
+  {id:'bolsas',  label:'Bolsas'},
+  {id:'personaje',label:'Personaje'},
+  {id:'audio',   label:'Audio'},
+  {id:'sistema', label:'Sistema'}
+];
+const WF_COLOR = {
+  interfaz:'#A78BFA', mapas:'#5FC8D8', misiones:'#6FCF97', combate:'#E08585',
+  loot:'#E8B54D', bolsas:'#E09A63', personaje:'#E07AA8', audio:'#6FB3E0', sistema:'#9AA0AE'
+};
+const wfGrid = document.getElementById('wfGrid');
+const wfChips = document.getElementById('wfChips');
+const wfSearch = document.getElementById('wfSearch');
+const wfShown = document.getElementById('wfShown');
+let wfCat = 'todas', wfQ = '';
+function wfEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function wfLabel(id){const c = WF_CATS.find(c=>c.id===id); return c ? c.label : id;}
+function wfUnits(it){return it.modules ? it.modules.length : 1;}
+function wfChipBuild(){
+  wfChips.innerHTML = WF_CATS.map(c=>`<button class="wf-chip${c.id===wfCat?' active':''}" data-cat="${c.id}">${c.label}</button>`).join('');
+  wfChips.querySelectorAll('.wf-chip').forEach(b=>{
+    b.addEventListener('click',()=>{
+      wfCat = b.dataset.cat;
+      wfChips.querySelectorAll('.wf-chip').forEach(x=>x.classList.toggle('active', x===b));
+      wfRender();
+    });
+  });
+}
+function wfMatch(it,q){
+  if(!q) return true;
+  const hay = [it.name, it.desc, it.cmd||'', wfLabel(it.cat), (it.modules||[]).map(m=>m[0]+' '+m[2]).join(' ')].join(' ').toLowerCase();
+  return hay.includes(q);
+}
+function wfCard(it){
+  const acc = WF_COLOR[it.cat] || '#E8B54D';
+  const badges = [`<span class="wf-badge">${wfLabel(it.cat)}</span>`];
+  if(it.tag) badges.push(`<span class="wf-badge">${it.tag}</span>`);
+  if(it.forever) badges.push(`<span class="wf-badge forever">Forever</span>`);
+  let mods = '';
+  if(it.modules){
+    mods = `<details class="wf-mods"><summary>${it.modules.length} módulos · ver detalle</summary><ul class="wf-modlist">`
+      + it.modules.map(m=>`<li><b>${wfEsc(m[0])}</b><em>${wfEsc(m[2])}</em></li>`).join('')
+      + `</ul></details>`;
+  }
+  const cmd = it.cmd ? `<div class="wf-cmd">${wfEsc(it.cmd)}<span>abrir</span></div>` : '';
+  const ico = ICON_FILE[it.id] || it.id;
+  return `<article class="wf-card" style="--acc:${acc}">
+    <div class="wf-top">
+      <div class="wf-ico"><img src="img/addons/${ico}.png" alt="Icono de ${wfEsc(it.name)}" width="52" height="52" loading="lazy"></div>
+      <div class="wf-info">
+        <div class="wf-name">${wfEsc(it.name)}</div>
+        <div class="wf-badges">${badges.join('')}</div>
+      </div>
+      <div class="wf-ver">${wfEsc(it.ver)}</div>
+    </div>
+    <p class="wf-desc">${wfEsc(it.desc)}</p>
+    ${cmd}${mods}
+  </article>`;
+}
+function wfRender(){
+  const q = wfQ.trim().toLowerCase();
+  const list = DATA.filter(it => (wfCat==='todas' || it.cat===wfCat) && wfMatch(it,q));
+  if(!list.length){
+    wfGrid.innerHTML = `<div class="wf-empty"><b>Sin resultados</b>Prueba con otra palabra: «quest», «mapa», «bolsa», «/dbm»…</div>`;
+  } else if(wfCat==='todas' && !q){
+    const order = ['interfaz','mapas','misiones','combate','loot','bolsas','personaje','audio','sistema'];
+    let html = '';
+    order.forEach(c=>{
+      const group = list.filter(i=>i.cat===c);
+      if(!group.length) return;
+      html += `<div class="wf-group" style="--acc:${WF_COLOR[c]}"><i></i><span>${wfLabel(c)}</span><em>${group.reduce((a,i)=>a+wfUnits(i),0)} addons</em></div>`;
+      html += group.map(wfCard).join('');
+    });
+    wfGrid.innerHTML = html;
+  } else {
+    wfGrid.innerHTML = list.map(wfCard).join('');
+  }
+  wfShown.textContent = list.reduce((a,i)=>a+wfUnits(i),0);
+}
+wfSearch.addEventListener('input', e=>{ wfQ = e.target.value; wfRender(); });
+wfChipBuild();
+wfRender();
+</script>
+
+<footer>
+  <div class="footer-logo">🎮 JULLVERSE</div>
+  <div class="footer-nav">
+    <a href="jullverse.html">Inicio</a>
+    <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-noticias.html">Noticias</a>
+    <a href="jullverse-addons.html">Addons</a>
+    <a href="index.html">← Hub Principal</a>
+  </div>
+  <p class="footer-copy">El Multiverso de JULL · Hecho a mano desde Venezuela</p>
+</footer>
+
+</body>
+</html>
