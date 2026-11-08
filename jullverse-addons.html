@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Addons de WoW Forever · Jullverse</title>
-<meta name="description" content="Los 111 addons del cliente WoW Forever 1.60.1.">
+<meta name="description" content="Los 120 addons del cliente WoW Forever 1.60.1.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -543,6 +543,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
   <div class="nav-links">
     <a href="jullverse.html" class="">Inicio</a>
     <a href="jullverse-videos.html" class="">Videos</a>
+    <a href="jullverse-guias.html">Guías</a>
     <a href="jullverse-noticias.html" class="">Noticias WoW</a>
     <a href="jullverse-addons.html" class="on">Addons</a>
     <a href="jullverse-otros.html">Otros juegos</a>
@@ -562,16 +563,16 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <header class="pg-head">
   <div class="crumb"><a href="jullverse.html">Jullverse</a> / Addons</div>
   <h1>Addons de <span>WoW Forever</span></h1>
-  <p>Los 111 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
+  <p>Los 120 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
   <div class="wf-stats">
-    <div class="wf-stat"><b>111</b><span>Addons</span></div>
-    <div class="wf-stat"><b>43</b><span>Fichas</span></div>
+    <div class="wf-stat"><b>120</b><span>Addons</span></div>
+    <div class="wf-stat"><b>47</b><span>Fichas</span></div>
     <div class="wf-stat"><b>13</b><span>Suites</span></div>
     <div class="wf-stat"><b>0</b><span>Incompatibles</span></div>
   </div>
 </header>
 
-<div class="icon-strip"><img src="img/addons/elvui.png" alt=""><img src="img/addons/questie.png" alt=""><img src="img/addons/details.png" alt=""><img src="img/addons/dbm-core.png" alt=""><img src="img/addons/rarescanner.png" alt=""><img src="img/addons/bagnon.png" alt=""><img src="img/addons/narcissus.png" alt=""><img src="img/addons/spoken.png" alt=""><img src="img/addons/leatrix_plus.png" alt=""><img src="img/addons/tellmewhen.png" alt=""><img src="img/addons/openmap.png" alt=""><img src="img/addons/attune.png" alt=""></div>
+<div class="icon-strip"><img src="img/addons/elvui.png" alt=""><img src="img/addons/questie.png" alt=""><img src="img/addons/details.png" alt=""><img src="img/addons/dbm-core.png" alt=""><img src="img/addons/rarescanner.png" alt=""><img src="img/addons/bagnon.png" alt=""><img src="img/addons/narcissus.png" alt=""><img src="img/addons/spoken.png" alt=""><img src="img/addons/leatrix_plus.png" alt=""><img src="img/addons/tellmewhen.png" alt=""><img src="img/addons/openmap.png" alt=""><img src="img/addons/attune.png" alt=""><img src="img/addons/windtools.png" alt=""><img src="img/addons/handynotes.png" alt=""><img src="img/addons/lueur.png" alt=""><img src="img/addons/spellbook.png" alt=""></div>
 
 <section class="wf">
   <div class="wf-toolbar">
@@ -579,7 +580,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
       <div class="wf-search">
         <input id="wfSearch" type="text" placeholder="Buscar addon, función o comando… (ej: questie, subasta, /dbm)" autocomplete="off">
       </div>
-      <div class="wf-count"><b id="wfShown">0</b> de 111 addons</div>
+      <div class="wf-count"><b id="wfShown">0</b> de 120 addons</div>
     </div>
     <div class="wf-chips" id="wfChips"></div>
   </div>
@@ -613,7 +614,8 @@ const ICON_FILE = {
   sparkles:"foreverlootsparkles", angleur:"angleur", bagnon:"bagnon", narcissus:"narcissus",
   dialogueui:"dialogueui", attune:"attune", talents:"talentsforeverbook", dj:"foreverdungeonjournal",
   whisper:"whispermessenger", spy:"spy", camper:"camper", layerswap:"layerswap", spoken:"spoken",
-  bugs:"bugsack", zloader:"zz_xscarlifeloader"
+  bugs:"bugsack", zloader:"zz_xscarlifeloader",
+  windtools:"windtools", handynotes:"handynotes", lueur:"lueur", spellbook:"spellbook"
 };
 
 const DATA = [
@@ -626,6 +628,14 @@ const DATA = [
     ["ElvUI","v16.01","Motor principal. Todo el HUD vive aquí."],
     ["ElvUI_Libraries","v16.01","Librerías internas que usa ElvUI. No se toca."],
     ["ElvUI_Options","v16.01","Ventana de configuración. No guarda perfiles."]
+  ]
+},
+{
+  id:"windtools", name:"ElvUI WindTools", cat:"interfaz", ver:"4.24", tag:"Plugin",
+  desc:"Caja de extras para ElvUI: herramientas de chat, anuncios de cooldowns, skins, automatizaciones, barra de misiones mejorada y decenas de ajustes que ElvUI no trae de serie. Todo se configura dentro del mismo panel de ElvUI.",
+  cmd:null,
+  modules:[
+    ["ElvUI_WindTools","4.24","Plugin completo. Se abre desde /ec y la pestaña WindTools."]
   ]
 },
 {
@@ -710,6 +720,20 @@ const DATA = [
   cmd:"/booksonmap"
 },
 {
+  id:"handynotes", name:"HandyNotes", cat:"mapas", ver:"v3 + v12", tag:"Plugin",
+  desc:"Notas y puntos en el mapa: tesoros ocultos, cofres y objetos especiales de WoW Forever, más un módulo con los tesoros de las zonas Classic y Cataclysm. Cada punto se marca en el mundo y en el minimapa.",
+  cmd:"/hn",
+  modules:[
+    ["HandyNotes_WoWForever","v3","Tesoros y puntos ocultos de las zonas de Forever."],
+    ["HandyNotes_ClassicCataclysm","v12","Tesoros de las zonas Classic y Cataclysm."]
+  ]
+},
+{
+  id:"lueur", name:"Lueur", cat:"mapas", ver:"1.4.0",
+  desc:"Hace brillar las venas de mineral, las hierbas, los cofres y los objetos de misión cuando te acercas, y los pinta en el minimapa con su propio icono. Recolectar deja de ser ir mirando el suelo.",
+  cmd:"/lueur"
+},
+{
   id:"tomtom", name:"TomTom", cat:"mapas", ver:"v4.4.0-release",
   desc:"Navegación por coordenadas. Le pegas una coordenada o un waypoint y te dibuja la flecha y el punto en el mapa y minimapa.",
   cmd:"/tomtom"
@@ -786,13 +810,17 @@ const DATA = [
   ]
 },
 {
-  id:"dbm", name:"Deadly Boss Mods", cat:"combate", ver:"12.1.19", tag:"Suite",
+  id:"dbm", name:"Deadly Boss Mods", cat:"combate", ver:"12.1.20", tag:"Suite",
   desc:"Avisos de mecánicas de jefes: temporizadores de habilidades, avisos de movimiento, pulls y barra de casteo. Incluye voces en español. Imprescindible en mazmorras y raids.",
   cmd:"/dbm",
   modules:[
-    ["DBM-Core","12.1.19","Núcleo con los temporizadores y avisos."],
-    ["DBM-GUI","12.1.19","Ventana de opciones."],
-    ["DBM-StatusBarTimers","12.1.19","Barras de tiempo de las habilidades."],
+    ["DBM-Core","12.1.20","Núcleo con los temporizadores y avisos."],
+    ["DBM-GUI","12.1.20","Ventana de opciones."],
+    ["DBM-StatusBarTimers","12.1.20","Barras de tiempo de las habilidades."],
+    ["DBM-Raids-Midnight","12.1.20","Jefes de banda de Midnight."],
+    ["DBM-Lairs-Midnight","12.1.20","Guaridas de Midnight."],
+    ["DBM-Midnight","12.1.20","Jefes de mundo de Midnight."],
+    ["DBM-Brawlers","12.1.20","Hermandad de camorristas."],
     ["DBM-VPVEM","a8e9f0e","Paquete de voces en español."]
   ]
 },
@@ -891,6 +919,14 @@ const DATA = [
   id:"talents", name:"Talents Forever", cat:"personaje", ver:"0.38.18", forever:true,
   desc:"El calculador de talentsforever.com dentro del juego. Planea una build sin gastar puntos, síguela nivel a nivel, compártela por enlace y prueba builds populares.",
   cmd:"/tf"
+},
+{
+  id:"spellbook", name:"Spellbook Abridged", cat:"personaje", ver:"3.1.0",
+  desc:"Ordena el libro de hechizos y sube automáticamente cada habilidad a su rango más alto en cuanto lo aprendes. Se acabó buscar a mano qué hechizo mejoraste al subir de nivel.",
+  cmd:"/sba",
+  modules:[
+    ["SpellbookAbridged","3.1.0","Auto-rango del libro de hechizos de Forever."]
+  ]
 },
 {
   id:"dj", name:"DungeonJournal (Forever)", cat:"personaje", ver:"1.7.0", forever:true,
@@ -1054,8 +1090,10 @@ wfRender();
   <div class="footer-nav">
     <a href="jullverse.html">Inicio</a>
     <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-guias.html">Guías</a>
     <a href="jullverse-noticias.html">Noticias WoW</a>
     <a href="jullverse-addons.html">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
     <a href="index.html">← Hub Principal</a>
   </div>
   <p class="footer-copy">El Multiverso de JULL · Hecho a mano desde Venezuela</p>

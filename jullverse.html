@@ -267,7 +267,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 
 /* TARJETAS DE ACCESO */
 .hub{max-width:1100px;margin:0 auto;padding:1.7rem 1.5rem 0.6rem;position:relative;z-index:1;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;}
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0.9rem;}
 .hub-card{position:relative;display:flex;flex-direction:column;min-height:175px;
   border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);
   border:1px solid var(--border);background:var(--bg2);transition:all 0.25s;}
@@ -487,6 +487,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 .hub-card.pending .go{color:#8B82A6;}
 @media (max-width:1080px){
   .hub{grid-template-columns:repeat(2,1fr);}
+  .hub-card:last-child{grid-column:1/-1;}
 }
 @media (max-width:900px){
   .hub{grid-template-columns:1fr;}
@@ -551,6 +552,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
   <div class="nav-links">
     <a href="jullverse.html" class="on">Inicio</a>
     <a href="jullverse-videos.html" class="">Videos</a>
+    <a href="jullverse-guias.html">Guías</a>
     <a href="jullverse-noticias.html" class="">Noticias WoW</a>
     <a href="jullverse-addons.html" class="">Addons</a>
     <a href="jullverse-otros.html">Otros juegos</a>
@@ -597,6 +599,17 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
       </div>
     </div>
   </a>
+  <a href="jullverse-guias.html" class="hub-card">
+    <div class="in">
+      <div class="ico">📖</div>
+      <div class="txt">
+        <div class="k">Leveo 1-60</div>
+        <h3>Guías</h3>
+        <p>Druida y Paladín: guía escrita completa y tomo de láminas.</p>
+        <div class="go">Entrar →</div>
+      </div>
+    </div>
+  </a>
   <a href="jullverse-noticias.html" class="hub-card">
     <div class="in">
       <div class="ico logo"><img src="img/games/forever-logo.png" alt="WoW Forever"></div>
@@ -614,7 +627,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
       <div class="txt">
         <div class="k">WoW Forever</div>
         <h3>Addons</h3>
-        <p>Los 111 addons que uso, con su icono, versión y comando.</p>
+        <p>Los 120 addons que uso, con su icono, versión y comando.</p>
         <div class="go">Entrar →</div>
       </div>
     </div>
@@ -782,8 +795,10 @@ initYT();
   <div class="footer-nav">
     <a href="jullverse.html">Inicio</a>
     <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-guias.html">Guías</a>
     <a href="jullverse-noticias.html">Noticias WoW</a>
     <a href="jullverse-addons.html">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
     <a href="index.html">← Hub Principal</a>
   </div>
   <p class="footer-copy">El Multiverso de JULL · Hecho a mano desde Venezuela</p>
