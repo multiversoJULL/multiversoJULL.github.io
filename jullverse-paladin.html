@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Guía del Paladín · Jullverse</title>
-<meta name="description" content="Leveo 1-60 en WoW Forever. La guía escrita completa, con El Renacer del Paladín en láminas al final.">
+<meta name="description" content="Sellos, Golpe Sagrado y un martillo lento. La clase que pega y aguanta a la vez.">
+
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -540,69 +544,294 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <style>
-.g-wrap{max-width:1100px;margin:0 auto;padding:1.6rem 1.5rem 0;position:relative;z-index:1;
-  display:grid;grid-template-columns:230px 1fr;gap:2rem;align-items:start;}
-.g-toc{position:sticky;top:78px;background:rgba(14,10,26,0.75);border:1px solid var(--border);
-  border-radius:12px;padding:0.9rem 0.9rem 1rem;backdrop-filter:blur(10px);}
-.g-toc b{display:block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--p2);margin-bottom:0.6rem;font-weight:700;}
-.g-toc a{display:block;font-size:0.78rem;color:#9B90B5;text-decoration:none;padding:0.3rem 0.35rem;
-  border-radius:6px;border-left:2px solid transparent;line-height:1.35;}
-.g-toc a:hover{color:var(--text);background:rgba(124,58,237,0.12);border-left-color:var(--p);}
-.g-body{min-width:0;}
-.g-body > p{margin:0 0 1rem;color:#C4BBD6;font-size:0.95rem;line-height:1.72;}
-.g-body > p:first-of-type{font-size:1rem;color:#D6CFE6;}
-.g-body h2{font-family:'Orbitron',monospace;font-size:1.02rem;font-weight:700;color:var(--text);
-  margin:2.2rem 0 0.9rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(124,58,237,0.22);
-  display:flex;align-items:baseline;gap:0.6rem;scroll-margin-top:80px;}
-.g-body h2 i{font-style:normal;font-size:0.66rem;color:var(--p2);letter-spacing:0.1em;}
-.g-body h3{font-family:'Orbitron',monospace;font-size:0.82rem;font-weight:700;color:#D8CFF0;
-  margin:1.5rem 0 0.6rem;letter-spacing:0.02em;}
-.g-body ul,.g-body ol{margin:0 0 1.1rem;padding-left:1.15rem;}
-.g-body li{color:#C4BBD6;font-size:0.92rem;line-height:1.65;margin-bottom:0.42rem;}
-.g-body li::marker{color:var(--pink);}
-.g-body strong{color:#F3EEFF;font-weight:700;}
-.g-body em{color:#C9B6F5;font-style:italic;}
-.g-table{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:10px;background:#0C0818;}
-.g-table table{width:100%;border-collapse:collapse;font-size:0.83rem;min-width:520px;}
-.g-table th{background:rgba(124,58,237,0.16);color:#EFE8FF;text-align:left;padding:0.6rem 0.7rem;
-  font-weight:700;font-size:0.76rem;letter-spacing:0.03em;border-bottom:1px solid rgba(124,58,237,0.3);}
-.g-table td{padding:0.55rem 0.7rem;color:#BDB3D0;border-bottom:1px solid rgba(255,255,255,0.04);
-  vertical-align:top;line-height:1.5;}
-.g-table tr:last-child td{border-bottom:none;}
-.g-table tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
-.g-flow{display:flex;flex-direction:column;gap:0.35rem;margin:0 0 1.2rem;
-  border-left:2px solid rgba(124,58,237,0.4);padding-left:0.9rem;}
-.g-step{font-size:0.86rem;color:#BDB3D0;line-height:1.5;}
-.g-code{background:#090611;border:1px solid rgba(124,58,237,0.28);border-left:3px solid var(--pink);
-  border-radius:8px;padding:0.8rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
-.g-code code{font-family:'Consolas','Courier New',monospace;font-size:0.82rem;color:#D9CFFF;
-  line-height:1.6;white-space:pre;}
-.g-laminas{max-width:1040px;margin:2.6rem auto 0;padding:0 1.5rem 3rem;position:relative;z-index:1;}
-.g-laminas h2{font-family:'Orbitron',monospace;font-size:1rem;color:var(--text);margin-bottom:0.35rem;}
-.g-laminas > p{font-size:0.82rem;color:#8B82A6;margin-bottom:1rem;}
-.g-laminas figure{margin:0 0 1.1rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);
-  background:#0A0714;box-shadow:0 12px 30px rgba(0,0,0,0.45);}
-.g-laminas a{display:block;}
-.g-laminas img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;background:#0A0714;
-  transition:filter 0.2s;}
-.g-laminas a:hover img{filter:brightness(1.06);}
-.g-laminas figcaption{font-size:0.7rem;color:#5F5378;padding:0.45rem 0.9rem;border-top:1px solid rgba(255,255,255,0.05);}
-.g-foot{margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;}
-.g-foot a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.55rem 1rem;border-radius:8px;}
-.g-foot .a1{background:var(--grad);color:#fff;}
-.g-foot .a2{border:1px solid var(--border);color:#9B90B5;}
-.g-foot .a2:hover{color:var(--text);border-color:var(--p);}
-.g-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.8rem;}
-.g-chip{font-size:0.64rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  color:#B9AED4;background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.28);
-  padding:0.24rem 0.6rem;border-radius:20px;}
-@media (max-width:960px){
-  .g-wrap{grid-template-columns:1fr;gap:1.2rem;padding:1.2rem 1rem 0;}
-  .g-toc{position:static;display:flex;flex-wrap:wrap;gap:0.3rem;padding:0.7rem;}
-  .g-toc b{width:100%;margin-bottom:0.2rem;}
-  .g-toc a{border-left:none;background:rgba(255,255,255,0.03);padding:0.28rem 0.55rem;border-radius:20px;font-size:0.72rem;}
-  .g-laminas{padding:0 1rem 2rem;}
+.gcards{max-width:1000px;margin:0 auto;padding:1.6rem 1.5rem 3rem;position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
+.gcard{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:var(--bg3);
+  border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
+.gcard:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 16px 40px rgba(0,0,0,0.5);}
+.gcard .cover{position:relative;aspect-ratio:16/7;overflow:hidden;background:#0A0714;
+  border-bottom:1px solid rgba(124,58,237,0.18);}
+.gcard .cover img{width:100%;height:100%;object-fit:cover;object-position:center 36%;display:block;transition:transform 0.5s;}
+.gcard:hover .cover img{transform:scale(1.04);}
+.gcard .cover::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(20,14,34,0.85) 0%,rgba(20,14,34,0.05) 40%,transparent 70%);}
+.gcard .body{padding:1rem 1.15rem 1.2rem;position:relative;z-index:2;background:var(--bg3);}
+.gcard .k{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
+.gcard h2{font-family:'Orbitron',monospace;font-size:1.06rem;font-weight:700;color:var(--text);
+  margin:0.25rem 0 0.45rem;line-height:1.25;}
+.gcard p{font-size:0.82rem;color:#8B82A6;line-height:1.55;}
+.gcard .meta{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.7rem;}
+.gcard .meta span{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:#B9AED4;background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.26);
+  padding:0.2rem 0.5rem;border-radius:20px;}
+.gcard .go{display:inline-block;margin-top:0.85rem;font-size:0.78rem;font-weight:700;color:var(--pink);}
+.gnote{max-width:1000px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
+.gnote div{border:1px solid rgba(124,58,237,0.22);background:rgba(124,58,237,0.07);border-radius:12px;
+  padding:0.85rem 1rem;font-size:0.84rem;color:#A99EC4;line-height:1.55;}
+.gnote b{color:#E4DCF4;}
+@media (max-width:820px){ .gcards{grid-template-columns:1fr;padding:1.2rem 1rem 2.4rem;} }
+</style>
+
+<style>
+:root{--acc:#A78BFA;}
+.gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
+  filter:blur(34px) brightness(0.32) saturate(1.1);transform:scale(1.1);}
+.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.35),rgba(7,4,15,0.92));}
+.gd-hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:2.2rem 1.5rem 1.8rem;
+  display:flex;gap:1.6rem;align-items:center;}
+.gd-cover{width:190px;flex:0 0 190px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 40px rgba(0,0,0,0.55);display:block;}
+.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.45rem;}
+.gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
+.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.15;}
+.gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gd-hero p{color:#B7ACCE;font-size:0.98rem;line-height:1.6;margin-top:0.6rem;max-width:60ch;}
+.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.9rem;}
+.gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
+  background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.32);padding:0.24rem 0.6rem;border-radius:20px;}
+
+.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.92);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);}
+.gd-prog{height:2px;background:rgba(255,255,255,0.06);}
+.gd-prog i{display:block;height:100%;width:0;background:var(--grad);transition:width 0.1s linear;}
+.gd-anchors{max-width:1080px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;
+  scrollbar-width:none;}
+.gd-anchors::-webkit-scrollbar{display:none;}
+.gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
+  padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
+.gd-anchors a:hover{color:#fff;background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.35);}
+.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.28);border-color:rgba(124,58,237,0.5);}
+
+.gd-sec{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 0.4rem;position:relative;z-index:1;}
+.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.7rem;}
+.gd-sec h2.gd-t{font-family:'Orbitron',monospace;font-size:1.18rem;font-weight:700;margin-bottom:1rem;}
+
+.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:0.8rem;}
+.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.16),rgba(20,14,34,0.9));
+  border:1px solid rgba(124,58,237,0.28);border-radius:14px;padding:1rem 1.05rem;}
+.gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:#E6B0D6;margin:0.55rem 0 0.3rem;}
+.gd-g p{font-size:0.86rem;color:#C9BFDC;line-height:1.5;}
+.gd-g .em{font-size:1.5rem;line-height:1;}
+
+.gd-flip{display:grid;grid-template-columns:1fr 168px;gap:0.7rem;align-items:start;}
+.gd-stage{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
+  background:#0A0714;box-shadow:0 16px 40px rgba(0,0,0,0.5);}
+.gd-stage img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
+.gd-stage button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);background:rgba(7,4,15,0.72);color:#fff;font-size:1.1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.gd-stage button:hover{background:rgba(124,58,237,0.85);border-color:transparent;}
+.gd-stage .prev{left:0.6rem;} .gd-stage .next{right:0.6rem;}
+.gd-count{position:absolute;right:0.6rem;bottom:0.55rem;font-size:0.72rem;font-weight:700;color:#fff;
+  background:rgba(7,4,15,0.75);padding:0.2rem 0.55rem;border-radius:20px;border:1px solid rgba(255,255,255,0.14);}
+.gd-thumbs{display:grid;grid-auto-rows:min-content;gap:0.35rem;max-height:430px;overflow-y:auto;padding-right:2px;}
+.gd-thumbs img{width:100%;border-radius:8px;cursor:pointer;opacity:0.55;border:1px solid transparent;
+  display:block;transition:opacity 0.15s;}
+.gd-thumbs img:hover{opacity:0.85;}
+.gd-thumbs img.on{opacity:1;border-color:var(--pink);}
+
+.gd-chapters{display:grid;gap:1.1rem;margin-top:0.4rem;}
+.gd-ch{background:rgba(14,10,26,0.72);border:1px solid var(--border);border-radius:16px;
+  padding:1.5rem 1.6rem;position:relative;overflow:hidden;scroll-margin-top:120px;}
+.gd-ch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0.85;}
+.gd-ch header{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.9rem;}
+.gd-ch .num{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:900;color:#fff;
+  background:var(--grad);border-radius:8px;padding:0.3rem 0.5rem;line-height:1;flex:0 0 auto;margin-top:0.2rem;}
+.gd-ch h2{font-family:'Orbitron',monospace;font-size:1.24rem;font-weight:700;line-height:1.25;color:#F2EDFC;}
+.gd-ch p{font-size:1.02rem;line-height:1.85;color:#CDC4DF;margin:0 0 1rem;max-width:74ch;}
+.gd-ch h3{font-family:'Orbitron',monospace;font-size:0.95rem;color:#E7DEF8;margin:1.5rem 0 0.6rem;
+  padding-left:0.7rem;border-left:2px solid rgba(236,72,153,0.55);line-height:1.3;}
+.gd-ch h3 i{font-style:normal;color:var(--p2);margin-right:0.45rem;font-size:0.72rem;}
+.gd-ch h4{font-size:0.98rem;font-weight:700;color:#D9CFF0;margin:1.1rem 0 0.45rem;}
+.gd-ul,.gd-ol{margin:0 0 1.1rem;padding-left:0;}
+.gd-ul{list-style:none;}
+.gd-ul li{position:relative;padding-left:1.3rem;font-size:1rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
+.gd-ul li::before{content:'';position:absolute;left:0.2rem;top:0.62em;width:6px;height:6px;border-radius:50%;
+  background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
+.gd-ol{padding-left:1.35rem;}
+.gd-ol li{font-size:1rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
+.gd-ol li::marker{color:var(--pink);font-weight:700;}
+.gd-ch strong{color:#F6F1FF;font-weight:700;}
+.gd-ch em{color:#CDB6F8;font-style:italic;}
+.gd-tabla{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
+.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.9rem;min-width:480px;}
+.gd-tabla th{background:rgba(124,58,237,0.2);color:#F0E8FF;text-align:left;padding:0.7rem 0.8rem;
+  font-size:0.76rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
+.gd-tabla td{padding:0.65rem 0.8rem;color:#C6BCDA;border-bottom:1px solid rgba(255,255,255,0.045);
+  vertical-align:top;line-height:1.55;}
+.gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.gd-tabla tr:last-child td{border-bottom:none;}
+.gd-flow{display:grid;gap:0.4rem;margin:0 0 1.2rem;}
+.gd-paso{border-left:2px solid rgba(124,58,237,0.5);padding:0.15rem 0 0.15rem 0.85rem;font-size:0.95rem;
+  color:#C4BAD8;line-height:1.5;}
+.gd-paso span{color:#F0E8FF;font-weight:700;}
+.gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
+  border-radius:10px;padding:0.85rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
+.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.86rem;color:#DCD2FF;line-height:1.65;white-space:pre;}
+.gd-fig{margin:0.2rem 0 0.9rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
+.gd-fig a{display:block;}
+.gd-fig img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
+.gd-fig figcaption{font-size:0.68rem;color:#6A5F82;padding:0.4rem 0.85rem;border-top:1px solid rgba(255,255,255,0.05);}
+.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.4rem 0 0;}
+.gd-end a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.6rem 1.05rem;border-radius:9px;}
+.gd-end .a1{background:var(--grad);color:#fff;}
+.gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
+.gd-end .a2:hover{color:#fff;border-color:var(--p);}
+@media (max-width:900px){
+  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.6rem 1rem 1.4rem;}
+  .gd-cover{width:130px;flex:none;}
+  .gd-flip{grid-template-columns:1fr;}
+  .gd-thumbs{display:flex;overflow-x:auto;max-height:none;gap:0.35rem;}
+  .gd-thumbs img{width:104px;flex:none;}
+  .gd-sec{padding:1.5rem 1rem 0.3rem;}
+  .gd-ch{padding:1.15rem 1.05rem;border-radius:14px;}
+  .gd-ch p{font-size:1rem;}
+  .gd-anchors{padding:0.5rem 1rem;}
+}
+</style>
+
+<style>
+.gcards{max-width:1080px;margin:0 auto;padding:1.6rem 1.5rem 3rem;position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.1rem;}
+.gcard{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:var(--bg3);
+  border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
+.gcard:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 16px 40px rgba(0,0,0,0.5);}
+.gcard .cover{position:relative;aspect-ratio:16/8;overflow:hidden;background:#0A0714;border-bottom:1px solid rgba(124,58,237,0.18);}
+.gcard .cover img{width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block;transition:transform 0.5s;}
+.gcard:hover .cover img{transform:scale(1.04);}
+.gcard .body{padding:1rem 1.15rem 1.2rem;}
+.gcard .k{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
+.gcard h2{font-family:'Orbitron',monospace;font-size:1.02rem;font-weight:700;color:var(--text);margin:0.25rem 0 0.45rem;line-height:1.25;}
+.gcard p{font-size:0.84rem;color:#9187AB;line-height:1.55;}
+.gcard .meta{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.7rem;}
+.gcard .meta span{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B9AED4;
+  background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.26);padding:0.2rem 0.5rem;border-radius:20px;}
+.gcard .go{display:inline-block;margin-top:0.85rem;font-size:0.78rem;font-weight:700;color:var(--pink);}
+.gnote{max-width:1080px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
+.gnote div{border:1px solid rgba(124,58,237,0.22);background:rgba(124,58,237,0.07);border-radius:12px;
+  padding:0.85rem 1rem;font-size:0.86rem;color:#A99EC4;line-height:1.6;}
+.gnote b{color:#E4DCF4;}
+@media (max-width:820px){ .gcards{padding:1.2rem 1rem 2.4rem;} }
+</style>
+<style>
+:root{--acc:#A78BFA;}
+.gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
+  filter:blur(34px) brightness(0.32) saturate(1.1);transform:scale(1.1);}
+.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.35),rgba(7,4,15,0.92));}
+.gd-hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:2.2rem 1.5rem 1.8rem;
+  display:flex;gap:1.6rem;align-items:center;}
+.gd-cover{width:190px;flex:0 0 190px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 40px rgba(0,0,0,0.55);display:block;}
+.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.45rem;}
+.gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
+.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.15;}
+.gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gd-hero p{color:#B7ACCE;font-size:0.98rem;line-height:1.6;margin-top:0.6rem;max-width:60ch;}
+.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.9rem;}
+.gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
+  background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.32);padding:0.24rem 0.6rem;border-radius:20px;}
+
+.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.92);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);}
+.gd-prog{height:2px;background:rgba(255,255,255,0.06);}
+.gd-prog i{display:block;height:100%;width:0;background:var(--grad);transition:width 0.1s linear;}
+.gd-anchors{max-width:1080px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;
+  scrollbar-width:none;}
+.gd-anchors::-webkit-scrollbar{display:none;}
+.gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
+  padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
+.gd-anchors a:hover{color:#fff;background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.35);}
+.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.28);border-color:rgba(124,58,237,0.5);}
+
+.gd-sec{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 0.4rem;position:relative;z-index:1;}
+.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.7rem;}
+.gd-sec h2.gd-t{font-family:'Orbitron',monospace;font-size:1.18rem;font-weight:700;margin-bottom:1rem;}
+
+.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:0.8rem;}
+.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.16),rgba(20,14,34,0.9));
+  border:1px solid rgba(124,58,237,0.28);border-radius:14px;padding:1rem 1.05rem;}
+.gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:#E6B0D6;margin:0.55rem 0 0.3rem;}
+.gd-g p{font-size:0.86rem;color:#C9BFDC;line-height:1.5;}
+.gd-g .em{font-size:1.5rem;line-height:1;}
+
+.gd-flip{display:grid;grid-template-columns:1fr 168px;gap:0.7rem;align-items:start;}
+.gd-stage{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
+  background:#0A0714;box-shadow:0 16px 40px rgba(0,0,0,0.5);}
+.gd-stage img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
+.gd-stage button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);background:rgba(7,4,15,0.72);color:#fff;font-size:1.1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.gd-stage button:hover{background:rgba(124,58,237,0.85);border-color:transparent;}
+.gd-stage .prev{left:0.6rem;} .gd-stage .next{right:0.6rem;}
+.gd-count{position:absolute;right:0.6rem;bottom:0.55rem;font-size:0.72rem;font-weight:700;color:#fff;
+  background:rgba(7,4,15,0.75);padding:0.2rem 0.55rem;border-radius:20px;border:1px solid rgba(255,255,255,0.14);}
+.gd-thumbs{display:grid;grid-auto-rows:min-content;gap:0.35rem;max-height:430px;overflow-y:auto;padding-right:2px;}
+.gd-thumbs img{width:100%;border-radius:8px;cursor:pointer;opacity:0.55;border:1px solid transparent;
+  display:block;transition:opacity 0.15s;}
+.gd-thumbs img:hover{opacity:0.85;}
+.gd-thumbs img.on{opacity:1;border-color:var(--pink);}
+
+.gd-chapters{display:grid;gap:1.1rem;margin-top:0.4rem;}
+.gd-ch{background:rgba(14,10,26,0.72);border:1px solid var(--border);border-radius:16px;
+  padding:1.5rem 1.6rem;position:relative;overflow:hidden;scroll-margin-top:120px;}
+.gd-ch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0.85;}
+.gd-ch header{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.9rem;}
+.gd-ch .num{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:900;color:#fff;
+  background:var(--grad);border-radius:8px;padding:0.3rem 0.5rem;line-height:1;flex:0 0 auto;margin-top:0.2rem;}
+.gd-ch h2{font-family:'Orbitron',monospace;font-size:1.34rem;font-weight:700;line-height:1.25;color:#F2EDFC;}
+.gd-ch p{font-size:1.12rem;line-height:1.85;color:#CDC4DF;margin:0 0 1rem;max-width:74ch;}
+.gd-ch h3{font-family:'Orbitron',monospace;font-size:1.04rem;color:#E7DEF8;margin:1.5rem 0 0.6rem;
+  padding-left:0.7rem;border-left:2px solid rgba(236,72,153,0.55);line-height:1.3;}
+.gd-ch h3 i{font-style:normal;color:var(--p2);margin-right:0.45rem;font-size:0.72rem;}
+.gd-ch h4{font-size:0.98rem;font-weight:700;color:#D9CFF0;margin:1.1rem 0 0.45rem;}
+.gd-ul,.gd-ol{margin:0 0 1.1rem;padding-left:0;}
+.gd-ul{list-style:none;}
+.gd-ul li{position:relative;padding-left:1.3rem;font-size:1.08rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
+.gd-ul li::before{content:'';position:absolute;left:0.2rem;top:0.62em;width:6px;height:6px;border-radius:50%;
+  background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
+.gd-ol{padding-left:1.35rem;}
+.gd-ol li{font-size:1.08rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
+.gd-ol li::marker{color:var(--pink);font-weight:700;}
+.gd-ch strong{color:#F6F1FF;font-weight:700;}
+.gd-ch em{color:#CDB6F8;font-style:italic;}
+.gd-tabla{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
+.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.95rem;min-width:480px;}
+.gd-tabla th{background:rgba(124,58,237,0.2);color:#F0E8FF;text-align:left;padding:0.7rem 0.8rem;
+  font-size:0.76rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
+.gd-tabla td{padding:0.65rem 0.8rem;color:#C6BCDA;border-bottom:1px solid rgba(255,255,255,0.045);
+  vertical-align:top;line-height:1.55;}
+.gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.gd-tabla tr:last-child td{border-bottom:none;}
+.gd-flow{display:grid;gap:0.4rem;margin:0 0 1.2rem;}
+.gd-paso{border-left:2px solid rgba(124,58,237,0.5);padding:0.15rem 0 0.15rem 0.85rem;font-size:1.02rem;
+  color:#C4BAD8;line-height:1.5;}
+.gd-paso span{color:#F0E8FF;font-weight:700;}
+.gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
+  border-radius:10px;padding:0.85rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
+.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.86rem;color:#DCD2FF;line-height:1.65;white-space:pre;}
+.gd-fig{margin:0.2rem 0 0.9rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
+.gd-fig a{display:block;}
+.gd-fig img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
+.gd-fig figcaption{font-size:0.68rem;color:#6A5F82;padding:0.4rem 0.85rem;border-top:1px solid rgba(255,255,255,0.05);}
+.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.4rem 0 0;}
+.gd-end a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.6rem 1.05rem;border-radius:9px;}
+.gd-end .a1{background:var(--grad);color:#fff;}
+.gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
+.gd-end .a2:hover{color:#fff;border-color:var(--p);}
+@media (max-width:900px){
+  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.6rem 1rem 1.4rem;}
+  .gd-cover{width:130px;flex:none;}
+  .gd-flip{grid-template-columns:1fr;}
+  .gd-thumbs{display:flex;overflow-x:auto;max-height:none;gap:0.35rem;}
+  .gd-thumbs img{width:104px;flex:none;}
+  .gd-sec{padding:1.5rem 1rem 0.3rem;}
+  .gd-ch{padding:1.15rem 1.05rem;border-radius:14px;}
+  .gd-ch p{font-size:1rem;}
+  .gd-anchors{padding:0.5rem 1rem;}
 }
 </style>
 </head>
@@ -620,102 +849,170 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
   <a href="https://youtube.com/@Jullverse" target="_blank" class="yt-btn">▶ Suscribirse</a>
   <a href="index.html" class="back-btn">← Hub Principal</a>
 </nav>
-<header class="pg-head">
-  <div class="crumb"><a href="jullverse.html">Jullverse</a> / <a href="jullverse-guias.html">Guías</a> / Paladín</div>
-  <h1>Guía del <span>Paladín</span></h1>
-  <p>Leveo 1-60 en WoW Forever. La guía escrita completa, con El Renacer del Paladín en láminas al final.</p>
-  <div class="g-chips"><span class="g-chip">Reprensión / Tanque</span><span class="g-chip">Niveles 1-60</span><span class="g-chip">15 láminas</span></div>
+<header class="gd-hero">
+  <div class="gd-hero-bg" style="background-image:url('img/paladin/01.webp')"></div>
+  <div class="gd-hero-in">
+    <img class="gd-cover" src="img/paladin/01.webp" alt="Portada de la guía">
+    <div>
+      <div class="crumb"><a href="jullverse.html">Jullverse</a> / <a href="jullverse-guias.html">Guías</a> / Paladín</div>
+      <h1>Guía del <span>Paladín</span></h1>
+      <p>Sellos, Golpe Sagrado y un martillo lento. La clase que pega y aguanta a la vez.</p>
+      <div class="gd-chips"><span>Reprensión</span><span>Niveles 1-60</span><span>Tanque y sanador</span></div>
+    </div>
+  </div>
 </header>
 
-<div class="g-wrap">
-  <aside class="g-toc"><b>Contenido</b><a href="#cap1">Cambios Mecánicos Clave del Paladín en WoW: Forever</a><a href="#cap2">Selección de Raza y Sinergias de Facción</a><a href="#cap3">La Regla del Arma y Prioridad de Estadísticas</a><a href="#cap4">Build de Talentos Reprensión Paso a Paso (Niveles 10-60)</a><a href="#cap5">Rotaciones de Combate y Flujo de Juego por Tramos</a><a href="#cap6">Desempeño Secundario en Mazmorras: Tanque y Sanador</a><a href="#cap7">Profesiones, Acampada y Favores del Comerciante</a><a href="#cap8">Macros Esenciales y Consejos Avanzados</a></aside>
-  <article class="g-body">
-<div class="g-table"><table><thead><tr><th>El Paladín en <em>World of Warcraft: Forever</em> ha experimentado la remodelación de clase más profunda de todo el juego. Atrás quedó el estilo de juego pasivo de la Era Classic tradicional</th><th>donde el avance dependía de aplicar un sello</th><th>lanzar sentencia y esperar el ataque automático. En <em>WoW: Forever</em></th><th>el Paladín dispone de una rotación activa con ataques de arma instantáneos</th><th>capacidades de tanqueo reales con provocación a distancia</th><th>sistemas de gestión de maná integrados y un árbol de talentos rediseñado que potencia su naturaleza híbrida de placas.</th></tr></thead><tbody><tr><td>Esta guía analiza en detalle la ruta óptima para subir de nivel del 1 al 60 en solitario y en grupo</td><td>la especialización de talentos paso a paso</td><td>el funcionamiento de las armas</td><td>la prioridad de estadísticas</td><td>el uso de profesiones con el sistema de acampada y las macros indispensables.</td></tr></tbody></table></div>
-<h2 id="cap1"><i>01</i>Cambios Mecánicos Clave del Paladín en WoW: Forever</h2>
-<p>Para comprender la jugabilidad del Paladín en <em>WoW: Forever</em>, es fundamental conocer las modificaciones introducidas en las habilidades básicas y en los sistemas globales de combate:</p>
-<ul><li><strong>Golpe Sagrado (</strong> <strong><em>Holy Strike</em></strong> <strong>)</strong>: Habilidad básica aprendida a nivel 6 para todas las especializaciones. Es un ataque físico e instantáneo con arma que añade daño Sagrado adicional (del 25% al 50% del daño del arma según el rango) con un tiempo de reutilización de 10 segundos.</li><li><strong>Sentencia (</strong> <strong><em>Judgement</em></strong> <strong>) renovada</strong>: La habilidad <em>Sentencia</em> <strong>ya no consume el sello activo</strong>. Los sellos permanecen activos durante sus 30 segundos de duración completa sin necesidad de reaplicarlos tras cada sentencia.</li><li><strong>Consagración (</strong> <strong><em>Consecration</em></strong> <strong>) básica</strong>: Aprendida por todos los paladines a nivel 20 sin requerir puntos en el árbol de Sagrado. Su diseño ha sido ajustado para infligir daño moderado a los primeros 4 enemigos que entran en su área y un daño reducido al resto, garantizando una generación de amenaza estable sin desequilibrar el combate masivo en área.</li><li><strong>Bendición de los Reyes (</strong> <strong><em>Blessing of Kings</em></strong> <strong>) de serie</strong>: Disponible para la clase a nivel básico sin necesidad de invertir 11 puntos en la rama de Protección.</li><li><strong>Duración de Bendiciones</strong>: Todas las bendiciones individuales y superiores tienen una duración extendida de <strong>1 hora</strong>.</li><li><strong>Imposición de manos (</strong> <strong><em>Lay on Hands</em></strong> <strong>)</strong>: Su tiempo de reutilización se ha reducido drásticamente de 1 hora a <strong>20 minutos</strong>.</li><li><strong>Unificación de estadísticas</strong>: El golpe (<em>Hit</em>) y el crítico (<em>Crit</em>) de ataques físicos y de hechizos se han fusionado en métricas únicas. Como clase híbrida que combina golpes de arma con hechizos Sagrados, el Paladín obtiene un rendimiento doble de cada punto de golpe o crítico.</li><li><strong>Auras de banda</strong>: Las auras de resistencia (Fuego, Escarcha y Sombras) afectan a todos los miembros de la banda en un radio de 30 metros.</li></ul>
-<h2 id="cap2"><i>02</i>Selección de Raza y Sinergias de Facción</h2>
-<p>En <em>WoW: Forever</em>, las habilidades raciales han sido modificadas para otorgar crítico e impacto en lugar de habilidad plana con armas. La gran novedad es la incorporación del Paladín a la Horda a través de la raza No-muerta.</p>
-<div class="g-table"><table><thead><tr><th>Facción</th><th>Raza</th><th>Raciales Destacadas</th><th>Rol Recomendado</th></tr></thead><tbody><tr><td>Horda</td><td>No-muerto (Renegado)</td><td>Tacto de la tumba (daño/sanación pasiva), Voluntad de los renegados (elimina miedos/embrujos), Canibalizar (restaura vida y maná).</td><td>Reprensión / Tanque / Healer</td></tr><tr><td>Alianza</td><td>Humano</td><td>Especialización en espadas (+2% crítico con espadas en ataques y hechizos), Voluntad de sobrevivir (salida de aturdimientos), Espíritu humano (+regeneración de maná).</td><td>Reprensión / Healer</td></tr><tr><td>Alianza</td><td>Enano</td><td>Especialización en mazas (+1% crítico con mazas en ataques y hechizos), Forma de piedra (reducción de daño físico y eliminación de sangrados/venenos).</td><td>Protección / Tanque</td></tr></tbody></table></div>
+<div class="gd-bar">
+  <div class="gd-prog"><i></i></div>
+  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#laminas">Láminas</a><a href="#cap1">1. Cambios Mecánicos Clave del Paladín en</a><a href="#cap2">2. Selección de Raza y Sinergias de Facci</a><a href="#cap3">3. La Regla del Arma y Prioridad de Estad</a><a href="#cap4">4. Build de Talentos Reprensión Paso a Pa</a><a href="#cap5">5. Rotaciones de Combate y Flujo de Juego</a><a href="#cap6">6. Desempeño Secundario en Mazmorras: Tan</a><a href="#cap7">7. Profesiones, Acampada y Favores del Co</a><a href="#cap8">8. Macros Esenciales y Consejos Avanzados</a></div>
+</div>
+
+<section class="gd-sec" id="vistazo">
+  <p class="gd-label">// De un vistazo</p>
+  <h2 class="gd-t">Lo que tienes que saber</h2>
+  <div class="gd-glance"><div class="gd-g"><span class="em">⚔️</span><b>Regla de oro</b><p>Arma a dos manos de 3.3s o más lenta</p></div>
+<div class="gd-g"><span class="em">✨</span><b>Nivel 6</b><p>Golpe Sagrado, tu golpe de cada día</p></div>
+<div class="gd-g"><span class="em">🛡️</span><b>Nivel 22</b><p>Sello de Orden, el sello del leveo</p></div>
+<div class="gd-g"><span class="em">🔥</span><b>Nivel 40</b><p>Cólera desellada: guardas 3 sellos</p></div></div>
+  <div class="gd-intro"><div class="gd-tabla"><table><thead><tr><th>El Paladín en <em>World of Warcraft: Forever</em> ha experimentado la remodelación de clase más profunda de todo el juego. Atrás quedó el estilo de juego pasivo de la Era Classic tradicional</th><th>donde el avance dependía de aplicar un sello</th><th>lanzar sentencia y esperar el ataque automático. En <em>WoW: Forever</em></th><th>el Paladín dispone de una rotación activa con ataques de arma instantáneos</th><th>capacidades de tanqueo reales con provocación a distancia</th><th>sistemas de gestión de maná integrados y un árbol de talentos rediseñado que potencia su naturaleza híbrida de placas.</th></tr></thead><tbody><tr><td>Esta guía analiza en detalle la ruta óptima para subir de nivel del 1 al 60 en solitario y en grupo</td><td>la especialización de talentos paso a paso</td><td>el funcionamiento de las armas</td><td>la prioridad de estadísticas</td><td>el uso de profesiones con el sistema de acampada y las macros indispensables.</td></tr></tbody></table></div></div>
+</section>
+
+<section class="gd-sec" id="laminas">
+  <p class="gd-label">// El tomo en láminas</p>
+  <h2 class="gd-t">Pásalas con las flechas</h2>
+  <div class="gd-flip">
+    <div class="gd-stage">
+      <img id="gdBig" src="img/paladin/01.webp" alt="Lámina 1" class="gd-big">
+      <button class="prev" id="gdPrev" aria-label="Anterior">‹</button>
+      <button class="next" id="gdNext" aria-label="Siguiente">›</button>
+      <span class="gd-count" id="gdCount">1 / 15</span>
+    </div>
+    <div class="gd-thumbs"><img src="img/paladin/01.webp" alt="Lámina 1" loading="lazy">
+<img src="img/paladin/02.webp" alt="Lámina 2" loading="lazy">
+<img src="img/paladin/03.webp" alt="Lámina 3" loading="lazy">
+<img src="img/paladin/04.webp" alt="Lámina 4" loading="lazy">
+<img src="img/paladin/05.webp" alt="Lámina 5" loading="lazy">
+<img src="img/paladin/06.webp" alt="Lámina 6" loading="lazy">
+<img src="img/paladin/07.webp" alt="Lámina 7" loading="lazy">
+<img src="img/paladin/08.webp" alt="Lámina 8" loading="lazy">
+<img src="img/paladin/09.webp" alt="Lámina 9" loading="lazy">
+<img src="img/paladin/10.webp" alt="Lámina 10" loading="lazy">
+<img src="img/paladin/11.webp" alt="Lámina 11" loading="lazy">
+<img src="img/paladin/12.webp" alt="Lámina 12" loading="lazy">
+<img src="img/paladin/13.webp" alt="Lámina 13" loading="lazy">
+<img src="img/paladin/14.webp" alt="Lámina 14" loading="lazy">
+<img src="img/paladin/15.webp" alt="Lámina 15" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="gd-sec">
+  <p class="gd-label">// Capítulo a capítulo</p>
+  <h2 class="gd-t">La guía escrita</h2>
+  <div class="gd-chapters"><article class="gd-ch" id="cap1">
+  <header><span class="num">01</span><h2>Cambios Mecánicos Clave del Paladín en WoW: Forever</h2></header>
+  <p>Para comprender la jugabilidad del Paladín en <em>WoW: Forever</em>, es fundamental conocer las modificaciones introducidas en las habilidades básicas y en los sistemas globales de combate:</p>
+<ul class="gd-ul"><li><strong>Golpe Sagrado (</strong> <strong><em>Holy Strike</em></strong> <strong>)</strong>: Habilidad básica aprendida a nivel 6 para todas las especializaciones. Es un ataque físico e instantáneo con arma que añade daño Sagrado adicional (del 25% al 50% del daño del arma según el rango) con un tiempo de reutilización de 10 segundos.</li><li><strong>Sentencia (</strong> <strong><em>Judgement</em></strong> <strong>) renovada</strong>: La habilidad <em>Sentencia</em> <strong>ya no consume el sello activo</strong>. Los sellos permanecen activos durante sus 30 segundos de duración completa sin necesidad de reaplicarlos tras cada sentencia.</li><li><strong>Consagración (</strong> <strong><em>Consecration</em></strong> <strong>) básica</strong>: Aprendida por todos los paladines a nivel 20 sin requerir puntos en el árbol de Sagrado. Su diseño ha sido ajustado para infligir daño moderado a los primeros 4 enemigos que entran en su área y un daño reducido al resto, garantizando una generación de amenaza estable sin desequilibrar el combate masivo en área.</li><li><strong>Bendición de los Reyes (</strong> <strong><em>Blessing of Kings</em></strong> <strong>) de serie</strong>: Disponible para la clase a nivel básico sin necesidad de invertir 11 puntos en la rama de Protección.</li><li><strong>Duración de Bendiciones</strong>: Todas las bendiciones individuales y superiores tienen una duración extendida de <strong>1 hora</strong>.</li><li><strong>Imposición de manos (</strong> <strong><em>Lay on Hands</em></strong> <strong>)</strong>: Su tiempo de reutilización se ha reducido drásticamente de 1 hora a <strong>20 minutos</strong>.</li><li><strong>Unificación de estadísticas</strong>: El golpe (<em>Hit</em>) y el crítico (<em>Crit</em>) de ataques físicos y de hechizos se han fusionado en métricas únicas. Como clase híbrida que combina golpes de arma con hechizos Sagrados, el Paladín obtiene un rendimiento doble de cada punto de golpe o crítico.</li><li><strong>Auras de banda</strong>: Las auras de resistencia (Fuego, Escarcha y Sombras) afectan a todos los miembros de la banda en un radio de 30 metros.</li></ul>
+</article>
+<figure class="gd-fig"><a href="img/paladin/02.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/02.webp" alt="Lámina 2: Cambios Mecánicos Clave del Paladín en WoW: Forever" loading="lazy"></a>
+  <figcaption>Lámina 2 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap2">
+  <header><span class="num">02</span><h2>Selección de Raza y Sinergias de Facción</h2></header>
+  <p>En <em>WoW: Forever</em>, las habilidades raciales han sido modificadas para otorgar crítico e impacto en lugar de habilidad plana con armas. La gran novedad es la incorporación del Paladín a la Horda a través de la raza No-muerta.</p>
+<div class="gd-tabla"><table><thead><tr><th>Facción</th><th>Raza</th><th>Raciales Destacadas</th><th>Rol Recomendado</th></tr></thead><tbody><tr><td>Horda</td><td>No-muerto (Renegado)</td><td>Tacto de la tumba (daño/sanación pasiva), Voluntad de los renegados (elimina miedos/embrujos), Canibalizar (restaura vida y maná).</td><td>Reprensión / Tanque / Healer</td></tr><tr><td>Alianza</td><td>Humano</td><td>Especialización en espadas (+2% crítico con espadas en ataques y hechizos), Voluntad de sobrevivir (salida de aturdimientos), Espíritu humano (+regeneración de maná).</td><td>Reprensión / Healer</td></tr><tr><td>Alianza</td><td>Enano</td><td>Especialización en mazas (+1% crítico con mazas en ataques y hechizos), Forma de piedra (reducción de daño físico y eliminación de sangrados/venenos).</td><td>Protección / Tanque</td></tr></tbody></table></div>
 <p><em>Nota sobre la Horda</em>: El Paladín No-muerto cuenta con su propia cadena de misiones e historia en el Castillo Bandarion (<em>Bandarion Keep</em>) en Tirisfal, así como una misión exclusiva a nivel 60 para obtener su montura épica en nombre de la Retribución.</p>
-<h2 id="cap3"><i>03</i>La Regla del Arma y Prioridad de Estadísticas</h2>
-<h3>La Regla de Oro: Armas a Dos Manos Lentas</h3>
+</article>
+<figure class="gd-fig"><a href="img/paladin/03.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/03.webp" alt="Lámina 3: Selección de Raza y Sinergias de Facción" loading="lazy"></a>
+  <figcaption>Lámina 3 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap3">
+  <header><span class="num">03</span><h2>La Regla del Arma y Prioridad de Estadísticas</h2></header>
+  <h3>La Regla de Oro: Armas a Dos Manos Lentas</h3>
 <p>Para la especialización de Reprensión, el factor determinante en la velocidad de leveo es la velocidad del arma a dos manos. Debes equipar siempre un <strong>arma a dos manos con una velocidad de ataque de 3.3 segundos o superior</strong>.</p>
-<ol><li><strong>Sello de orden (</strong> <strong><em>Seal of Command</em></strong> <strong>)</strong>: Genera aproximadamente 7 activaciones por minuto (<em>PPM</em>), infligiendo un 70% del daño de arma como daño Sagrado. Un arma lenta con un daño por golpe (<em>damage range</em>) elevado producirá impactos de <em>Sello de orden</em> sustancialmente más fuertes que un arma rápida con el mismo DPS teórico.</li><li><strong>Golpe Sagrado (</strong> <strong><em>Holy Strike</em></strong> <strong>)</strong>: Calcula su bonificación de daño Sagrado a partir del daño base del golpe de arma equipada.</li></ol>
+<ol class="gd-ol"><li><strong>Sello de orden (</strong> <strong><em>Seal of Command</em></strong> <strong>)</strong>: Genera aproximadamente 7 activaciones por minuto (<em>PPM</em>), infligiendo un 70% del daño de arma como daño Sagrado. Un arma lenta con un daño por golpe (<em>damage range</em>) elevado producirá impactos de <em>Sello de orden</em> sustancialmente más fuertes que un arma rápida con el mismo DPS teórico.</li><li><strong>Golpe Sagrado (</strong> <strong><em>Holy Strike</em></strong> <strong>)</strong>: Calcula su bonificación de daño Sagrado a partir del daño base del golpe de arma equipada.</li></ol>
 <h3>Prioridad de Estadísticas para Levear (1-60)</h3>
-<ol><li><strong>Daño de Arma (DPS y Rango Máximo)</strong>: Preferencia absoluta por armas a dos manos lentas (3.3s+).</li><li><strong>Aguante (</strong> <strong><em>Stamina</em></strong> <strong>) y Espíritu (</strong> <strong><em>Spirit</em></strong> <strong>)</strong>: Reducen el tiempo de inactividad entre combates al acelerar la recuperación de salud y maná.</li><li><strong>Intelecto (</strong> <strong><em>Intellect</em></strong> <strong>) A partir de nivel 35-40</strong>: Con el talento <em>Campeón de la Luz</em>, el Intelecto se convierte directamente en Poder con Hechizos (hasta un 60% de conversión), además de otorgar maná máximo y crítico con hechizos.</li><li><strong>Fuerza (</strong> <strong><em>Strength</em></strong> <strong>) y Poder de Ataque (</strong> <strong><em>Attack Power</em></strong> <strong>)</strong>: Aumentan el daño físico directo (1 punto de Fuerza otorga 2 puntos de Poder de Ataque).</li><li><strong>Poder con Hechizos (</strong> <strong><em>Spell Power</em></strong> <strong>)</strong>: Incrementa el daño de <em>Golpe Sagrado</em>, <em>Sentencia</em>, <em>Consagración</em> y los sellos.</li></ol>
-<h2 id="cap4"><i>04</i>Build de Talentos Reprensión Paso a Paso (Niveles 10-60)</h2>
-<p>La ruta óptima de talentos invierte primeramente en la rama de <strong>Reprensión</strong> hasta conseguir el talento cúlmine de 31 puntos (<em>Cólera desellada</em> a nivel 40), para posteriormente reforzar la supervivencia y la reserva de maná en las ramas de <strong>Protección</strong> y <strong>Sagrado</strong> (Build final 12/8/31). [Reprensión - 31 Puntos] → [Protección - 8 Puntos] → [Sagrado - 12 Puntos]</p>
+<ol class="gd-ol"><li><strong>Daño de Arma (DPS y Rango Máximo)</strong>: Preferencia absoluta por armas a dos manos lentas (3.3s+).</li><li><strong>Aguante (</strong> <strong><em>Stamina</em></strong> <strong>) y Espíritu (</strong> <strong><em>Spirit</em></strong> <strong>)</strong>: Reducen el tiempo de inactividad entre combates al acelerar la recuperación de salud y maná.</li><li><strong>Intelecto (</strong> <strong><em>Intellect</em></strong> <strong>) A partir de nivel 35-40</strong>: Con el talento <em>Campeón de la Luz</em>, el Intelecto se convierte directamente en Poder con Hechizos (hasta un 60% de conversión), además de otorgar maná máximo y crítico con hechizos.</li><li><strong>Fuerza (</strong> <strong><em>Strength</em></strong> <strong>) y Poder de Ataque (</strong> <strong><em>Attack Power</em></strong> <strong>)</strong>: Aumentan el daño físico directo (1 punto de Fuerza otorga 2 puntos de Poder de Ataque).</li><li><strong>Poder con Hechizos (</strong> <strong><em>Spell Power</em></strong> <strong>)</strong>: Incrementa el daño de <em>Golpe Sagrado</em>, <em>Sentencia</em>, <em>Consagración</em> y los sellos.</li></ol>
+</article>
+<figure class="gd-fig"><a href="img/paladin/05.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/05.webp" alt="Lámina 5: La Regla del Arma y Prioridad de Estadísticas" loading="lazy"></a>
+  <figcaption>Lámina 5 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap4">
+  <header><span class="num">04</span><h2>Build de Talentos Reprensión Paso a Paso (Niveles 10-60)</h2></header>
+  <p>La ruta óptima de talentos invierte primeramente en la rama de <strong>Reprensión</strong> hasta conseguir el talento cúlmine de 31 puntos (<em>Cólera desellada</em> a nivel 40), para posteriormente reforzar la supervivencia y la reserva de maná en las ramas de <strong>Protección</strong> y <strong>Sagrado</strong> (Build final 12/8/31). [Reprensión - 31 Puntos] → [Protección - 8 Puntos] → [Sagrado - 12 Puntos]</p>
 <h3>Tabla de Progresión de Talentos Nivel a Nivel</h3>
-<div class="g-table"><table><thead><tr><th>Niveles</th><th>Puntos Invertidos</th><th>Talento Seleccionado</th><th>Efecto e Impacto en el Leveo</th></tr></thead><tbody><tr><td>10 - 14</td><td>5 / 5</td><td>Desvío (Deflection)</td><td>Aumenta la probabilidad de parar ataques en un +5%.</td></tr><tr><td>15 - 17</td><td>3 / 3</td><td>Convicción (Conviction)</td><td>Otorga un +6% de probabilidad de golpe crítico a todos tus hechizos y ataques.</td></tr><tr><td>18 - 19</td><td>2 / 2</td><td>Sentencia mejorada (Improved Judgement)</td><td>Reduce el tiempo de reutilización de Sentencia en 2 segundos.</td></tr><tr><td>20 - 21</td><td>2 / 2</td><td>Búsqueda de justicia (Pursuit of Justice)</td><td>Incrementa la velocidad de movimiento a pie y montado en un +15%.</td></tr><tr><td>22</td><td>1 / 1</td><td>Sello de orden (Seal of Command)</td><td>Tu sello principal de daño a dos manos (daño Sagrado basado en arma).</td></tr><tr><td>23 - 24</td><td>2 / 2</td><td>Sentencia santificada (Sanctified Judgement)</td><td>100% de probabilidad de reembolsar el 60% del coste de maná del sello al sentenciar.</td></tr><tr><td>25 - 27</td><td>3 / 3</td><td>Especialización en armas de 2 manos</td><td>+6% de daño físico y Sagrado con armas a 2 manos y -20% de amenaza generada.</td></tr><tr><td>28</td><td>1 / 1</td><td>Enjuiciador Sagrado (Sacred Arbiter)</td><td>+20% de daño a Golpe Sagrado; sus impactos refrescan las Sentencias en el objetivo.</td></tr><tr><td>29</td><td>1 / 1</td><td>Sentencia santificada (Sanctified Judgement)</td><td>Completa la regeneración de maná por sentencia.</td></tr><tr><td>30 - 32</td><td>3 / 3</td><td>Venganza (Vengeance)</td><td>Tras un crítico, aumenta el daño físico y Sagrado un +3% por acumulación (máx. 5 acumulaciones = +15%).</td></tr><tr><td>33</td><td>1 / 1</td><td>Arrepentimiento (Repentance)</td><td>Control de masas instantáneo a distancia durante 6 segundos.</td></tr><tr><td>34</td><td>1 / 1</td><td>Oración (Benediction)</td><td>Reduces un 10% el coste de maná de todos los hechizos y habilidades instantáneas.</td></tr><tr><td>35 - 39</td><td>5 / 5</td><td>Campeón de la Luz (Champion of the Light)</td><td>Convierte el 60% de tu Intelecto en Poder con Hechizos y reduce 1s el cast de Martillo de cólera.</td></tr><tr><td>40</td><td>1 / 1</td><td>Cólera desellada (Unsealed Wrath)</td><td>Talento Cúlmine: Guardas copias del sello activo al golpear (hasta 3); cambiar de sello desata los efectos guardados.</td></tr><tr><td>41 - 45</td><td>5 / 5</td><td>Fuerza divina (Divine Strength - Protección)</td><td>Aumenta tu Fuerza total en un +10%.</td></tr><tr><td>46 - 47</td><td>2 / 2</td><td>Reverencia (Reverence - Sagrado)</td><td>Conservas un 30% de la regeneración de maná por Espíritu mientras lanzas hechizos.</td></tr><tr><td>48 - 52</td><td>5 / 5</td><td>Sellos mejorados (Improved Seals - Sagrado)</td><td>Aumenta el daño de todos tus Sellos y Sentencias en un +15%.</td></tr><tr><td>53 - 57</td><td>5 / 5</td><td>Intelecto divino (Divine Intellect - Protección)</td><td>Aumenta tu Intelecto total en un +10%.</td></tr><tr><td>58 - 60</td><td>3 / 3</td><td>Precisión (Precision - Protección)</td><td>Incrementa la probabilidad de golpear con todos los ataques e impactos de hechizos en un +3%.</td></tr></tbody></table></div>
-<h2 id="cap5"><i>05</i>Rotaciones de Combate y Flujo de Juego por Tramos</h2>
-<h3>Tramo 1: Niveles 1 al 19 (Aprendizaje Inicial)</h3>
+<div class="gd-tabla"><table><thead><tr><th>Niveles</th><th>Puntos Invertidos</th><th>Talento Seleccionado</th><th>Efecto e Impacto en el Leveo</th></tr></thead><tbody><tr><td>10 - 14</td><td>5 / 5</td><td>Desvío (Deflection)</td><td>Aumenta la probabilidad de parar ataques en un +5%.</td></tr><tr><td>15 - 17</td><td>3 / 3</td><td>Convicción (Conviction)</td><td>Otorga un +6% de probabilidad de golpe crítico a todos tus hechizos y ataques.</td></tr><tr><td>18 - 19</td><td>2 / 2</td><td>Sentencia mejorada (Improved Judgement)</td><td>Reduce el tiempo de reutilización de Sentencia en 2 segundos.</td></tr><tr><td>20 - 21</td><td>2 / 2</td><td>Búsqueda de justicia (Pursuit of Justice)</td><td>Incrementa la velocidad de movimiento a pie y montado en un +15%.</td></tr><tr><td>22</td><td>1 / 1</td><td>Sello de orden (Seal of Command)</td><td>Tu sello principal de daño a dos manos (daño Sagrado basado en arma).</td></tr><tr><td>23 - 24</td><td>2 / 2</td><td>Sentencia santificada (Sanctified Judgement)</td><td>100% de probabilidad de reembolsar el 60% del coste de maná del sello al sentenciar.</td></tr><tr><td>25 - 27</td><td>3 / 3</td><td>Especialización en armas de 2 manos</td><td>+6% de daño físico y Sagrado con armas a 2 manos y -20% de amenaza generada.</td></tr><tr><td>28</td><td>1 / 1</td><td>Enjuiciador Sagrado (Sacred Arbiter)</td><td>+20% de daño a Golpe Sagrado; sus impactos refrescan las Sentencias en el objetivo.</td></tr><tr><td>29</td><td>1 / 1</td><td>Sentencia santificada (Sanctified Judgement)</td><td>Completa la regeneración de maná por sentencia.</td></tr><tr><td>30 - 32</td><td>3 / 3</td><td>Venganza (Vengeance)</td><td>Tras un crítico, aumenta el daño físico y Sagrado un +3% por acumulación (máx. 5 acumulaciones = +15%).</td></tr><tr><td>33</td><td>1 / 1</td><td>Arrepentimiento (Repentance)</td><td>Control de masas instantáneo a distancia durante 6 segundos.</td></tr><tr><td>34</td><td>1 / 1</td><td>Oración (Benediction)</td><td>Reduces un 10% el coste de maná de todos los hechizos y habilidades instantáneas.</td></tr><tr><td>35 - 39</td><td>5 / 5</td><td>Campeón de la Luz (Champion of the Light)</td><td>Convierte el 60% de tu Intelecto en Poder con Hechizos y reduce 1s el cast de Martillo de cólera.</td></tr><tr><td>40</td><td>1 / 1</td><td>Cólera desellada (Unsealed Wrath)</td><td>Talento Cúlmine: Guardas copias del sello activo al golpear (hasta 3); cambiar de sello desata los efectos guardados.</td></tr><tr><td>41 - 45</td><td>5 / 5</td><td>Fuerza divina (Divine Strength - Protección)</td><td>Aumenta tu Fuerza total en un +10%.</td></tr><tr><td>46 - 47</td><td>2 / 2</td><td>Reverencia (Reverence - Sagrado)</td><td>Conservas un 30% de la regeneración de maná por Espíritu mientras lanzas hechizos.</td></tr><tr><td>48 - 52</td><td>5 / 5</td><td>Sellos mejorados (Improved Seals - Sagrado)</td><td>Aumenta el daño de todos tus Sellos y Sentencias en un +15%.</td></tr><tr><td>53 - 57</td><td>5 / 5</td><td>Intelecto divino (Divine Intellect - Protección)</td><td>Aumenta tu Intelecto total en un +10%.</td></tr><tr><td>58 - 60</td><td>3 / 3</td><td>Precisión (Precision - Protección)</td><td>Incrementa la probabilidad de golpear con todos los ataques e impactos de hechizos en un +3%.</td></tr></tbody></table></div>
+</article>
+<figure class="gd-fig"><a href="img/paladin/07.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/07.webp" alt="Lámina 7: Build de Talentos Reprensión Paso a Paso (Niveles 10-60)" loading="lazy"></a>
+  <figcaption>Lámina 7 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap5">
+  <header><span class="num">05</span><h2>Rotaciones de Combate y Flujo de Juego por Tramos</h2></header>
+  <h3>Tramo 1: Niveles 1 al 19 (Aprendizaje Inicial)</h3>
 <p>Antes de obtener <em>Sello de orden</em>, el combate se basa en gestionar el maná con <em>Sello de rectitud</em>:</p>
-<ol><li>Mantén activos <strong>Aura de retribución</strong> (<em>Retribution Aura</em>) y <strong>Bendición de poderío</strong> (<em>Blessing of Might</em>).</li><li>Activa <strong>Sello de rectitud</strong> (<em>Seal of Righteousness</em>).</li><li>Lanza <strong>Sentencia</strong> en cuanto entres en rango de combate.</li><li>Lanza <strong>Golpe Sagrado</strong> (<em>Holy Strike</em>) cada vez que esté disponible en reutilización.</li><li>Continúa con ataques automáticos. No reaplices el sello tras sentenciar, ya que el sello no se consume.</li></ol>
+<ol class="gd-ol"><li>Mantén activos <strong>Aura de retribución</strong> (<em>Retribution Aura</em>) y <strong>Bendición de poderío</strong> (<em>Blessing of Might</em>).</li><li>Activa <strong>Sello de rectitud</strong> (<em>Seal of Righteousness</em>).</li><li>Lanza <strong>Sentencia</strong> en cuanto entres en rango de combate.</li><li>Lanza <strong>Golpe Sagrado</strong> (<em>Holy Strike</em>) cada vez que esté disponible en reutilización.</li><li>Continúa con ataques automáticos. No reaplices el sello tras sentenciar, ya que el sello no se consume.</li></ol>
 <h3>Tramo 2: Niveles 20 al 39 (El Salto de Poder Físico)</h3>
 <p>A nivel 20 obtienes <em>Consagración</em> básica, a nivel 22 <em>Sello de orden</em> y a nivel 28 <em>Enjuiciador Sagrado</em>:</p>
-<ol><li>Mantén activos <strong>Aura de retribución</strong> y <strong>Bendición de poderío</strong> (o <em>Sabiduría</em> si el maná escasea).</li><li>Activa <strong>Sello de orden</strong> (<em>Seal of Command</em>).</li><li>Inicia con <strong>Sentencia</strong> para aplicar el efecto Sagrado en el objetivo.</li><li>Ejecuta <strong>Golpe Sagrado</strong> (<em>Holy Strike</em>) en cuanto esté disponible. El impacto de <em>Golpe Sagrado</em> refrescará automáticamente la duración de tu Sentencia activa sobre el objetivo gracias a <em>Enjuiciador Sagrado</em>.</li><li>Si te enfrentas a 2 o más enemigos, deposita <strong>Consagración</strong> en el suelo.</li></ol>
+<ol class="gd-ol"><li>Mantén activos <strong>Aura de retribución</strong> y <strong>Bendición de poderío</strong> (o <em>Sabiduría</em> si el maná escasea).</li><li>Activa <strong>Sello de orden</strong> (<em>Seal of Command</em>).</li><li>Inicia con <strong>Sentencia</strong> para aplicar el efecto Sagrado en el objetivo.</li><li>Ejecuta <strong>Golpe Sagrado</strong> (<em>Holy Strike</em>) en cuanto esté disponible. El impacto de <em>Golpe Sagrado</em> refrescará automáticamente la duración de tu Sentencia activa sobre el objetivo gracias a <em>Enjuiciador Sagrado</em>.</li><li>Si te enfrentas a 2 o más enemigos, deposita <strong>Consagración</strong> en el suelo.</li></ol>
 <h3>Tramo 3: Niveles 40 al 60 (Mecánica de Cólera Desellada)</h3>
 <p>A nivel 40 desbloqueas <em>Cólera desellada</em>, lo que añade dinamismo a la rotación mediante la gestión de cargas acumuladas:</p>
-<ol><li>Ataca en combate con <strong>Sello de orden</strong> activo para acumular hasta 3 cargas de sello guardado.</li><li>Una vez acumuladas las cargas o al requerir un efecto secundario, cambia a <strong>Sello de rectitud</strong> o <strong>Sello de luz</strong> y golpea cuerpo a cuerpo.</li><li>El golpe desatará las 3 cargas guardadas de <em>Sello de orden</em> de forma instantánea junto al golpe del nuevo sello, generando una ráfaga de daño Sagrado masivo.</li><li>Mantén <em>Golpe Sagrado</em> y <em>Sentencia</em> en reutilización estricta.</li></ol>
-<h2 id="cap6"><i>06</i>Desempeño Secundario en Mazmorras: Tanque y Sanador</h2>
-<p>Una de las mayores ventajas del Paladín durante la subida de nivel es su capacidad para asumir los roles de Tanque o Sanador en mazmorras manteniendo su equipo de placas y su rama de talentos de Reprensión.</p>
+<ol class="gd-ol"><li>Ataca en combate con <strong>Sello de orden</strong> activo para acumular hasta 3 cargas de sello guardado.</li><li>Una vez acumuladas las cargas o al requerir un efecto secundario, cambia a <strong>Sello de rectitud</strong> o <strong>Sello de luz</strong> y golpea cuerpo a cuerpo.</li><li>El golpe desatará las 3 cargas guardadas de <em>Sello de orden</em> de forma instantánea junto al golpe del nuevo sello, generando una ráfaga de daño Sagrado masivo.</li><li>Mantén <em>Golpe Sagrado</em> y <em>Sentencia</em> en reutilización estricta.</li></ol>
+</article>
+<figure class="gd-fig"><a href="img/paladin/09.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/09.webp" alt="Lámina 9: Rotaciones de Combate y Flujo de Juego por Tramos" loading="lazy"></a>
+  <figcaption>Lámina 9 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap6">
+  <header><span class="num">06</span><h2>Desempeño Secundario en Mazmorras: Tanque y Sanador</h2></header>
+  <p>Una de las mayores ventajas del Paladín durante la subida de nivel es su capacidad para asumir los roles de Tanque o Sanador en mazmorras manteniendo su equipo de placas y su rama de talentos de Reprensión.</p>
 <h3>Tanqueo en Mazmorras con Sello de Furia (Protección)</h3>
 <p>En <em>WoW: Forever</em>, el Paladín dispone de una provocación real a distancia:</p>
-<ul><li><strong>Sello de furia (</strong> <strong><em>Seal of Fury</em></strong> <strong>) Nivel 10</strong>: Al activar este sello y lanzar <em>Sentencia</em>, provocas al objetivo obligándolo a atacarte durante 4 segundos a una distancia de <strong>10 metros</strong> (el doble de alcance que el <em>Bramido</em> del Druida o <em>Provocar</em> del Guerrero).</li><li><strong>Escudo de Absorción</strong>: Cada golpe con <em>Sello de furia</em> otorga un escudo que absorbe el 50% del daño Sagrado infligido cuando llevas escudo equipado.</li><li><strong>Gestión de Amenaza en Área</strong>: Activa <strong>Furia justa</strong> (<em>Righteous Fury</em>, aprendida a nivel 10, otorga +33% de amenaza total y +90% adicional de amenaza por daño Sagrado) y deposita <strong>Consagración</strong> a nivel 20 para fijar hasta 4 objetivos simultáneos.</li></ul>
+<ul class="gd-ul"><li><strong>Sello de furia (</strong> <strong><em>Seal of Fury</em></strong> <strong>) Nivel 10</strong>: Al activar este sello y lanzar <em>Sentencia</em>, provocas al objetivo obligándolo a atacarte durante 4 segundos a una distancia de <strong>10 metros</strong> (el doble de alcance que el <em>Bramido</em> del Druida o <em>Provocar</em> del Guerrero).</li><li><strong>Escudo de Absorción</strong>: Cada golpe con <em>Sello de furia</em> otorga un escudo que absorbe el 50% del daño Sagrado infligido cuando llevas escudo equipado.</li><li><strong>Gestión de Amenaza en Área</strong>: Activa <strong>Furia justa</strong> (<em>Righteous Fury</em>, aprendida a nivel 10, otorga +33% de amenaza total y +90% adicional de amenaza por daño Sagrado) y deposita <strong>Consagración</strong> a nivel 20 para fijar hasta 4 objetivos simultáneos.</li></ul>
 <h3>Sanación en Mazmorras (Sagrado)</h3>
-<ul><li><strong>Poder de Sanación a Daño</strong>: Un tercio (33%) de tu estadística de Sanación aumentada se convierte automáticamente en Poder con Hechizos, permitiéndote curar mazmorras eficientemente y mantener capacidad de daño en mundo abierto.</li><li><strong>Uso de Vendas y Burbuja</strong>: Puedes tirar de <strong>Escudo divino</strong> (<em>Divine Shield</em>) e inmunicarte mientras usas una venda de <em>Primeros Auxilios</em> sobre ti o un aliado, restaurando la vida al 100% sin gastar maná.</li></ul>
-<h2 id="cap7"><i>07</i>Profesiones, Acampada y Favores del Comerciante</h2>
-<h3>Combinación Recomendada de Profesiones</h3>
-<ul><li><strong>Minería + Herrería</strong>: Es la combinación reina para el Paladín. Permite fabricar tus propias armaduras de malla y placas, afiladores y piedras de peso.</li><li><strong>Primeros Auxilios (</strong> <strong><em>First Aid</em></strong> <strong>)</strong>: Imprescindible para curarse mediante vendas dentro de la burbuja protectora.</li></ul>
+<ul class="gd-ul"><li><strong>Poder de Sanación a Daño</strong>: Un tercio (33%) de tu estadística de Sanación aumentada se convierte automáticamente en Poder con Hechizos, permitiéndote curar mazmorras eficientemente y mantener capacidad de daño en mundo abierto.</li><li><strong>Uso de Vendas y Burbuja</strong>: Puedes tirar de <strong>Escudo divino</strong> (<em>Divine Shield</em>) e inmunicarte mientras usas una venda de <em>Primeros Auxilios</em> sobre ti o un aliado, restaurando la vida al 100% sin gastar maná.</li></ul>
+</article>
+<figure class="gd-fig"><a href="img/paladin/10.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/10.webp" alt="Lámina 10: Desempeño Secundario en Mazmorras: Tanque y Sanador" loading="lazy"></a>
+  <figcaption>Lámina 10 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap7">
+  <header><span class="num">07</span><h2>Profesiones, Acampada y Favores del Comerciante</h2></header>
+  <h3>Combinación Recomendada de Profesiones</h3>
+<ul class="gd-ul"><li><strong>Minería + Herrería</strong>: Es la combinación reina para el Paladín. Permite fabricar tus propias armaduras de malla y placas, afiladores y piedras de peso.</li><li><strong>Primeros Auxilios (</strong> <strong><em>First Aid</em></strong> <strong>)</strong>: Imprescindible para curarse mediante vendas dentro de la burbuja protectora.</li></ul>
 <h3>Sistema de Acampada (<em>Camping</em>)</h3>
 <p>La herrería permite fabricar la <strong>Rueda de afilar</strong> (<em>Sharpening Wheel</em>) para las hogueras de campamento en ciudades y zonas abiertas. Sentarse en un campamento con este objeto otorga una mejora de <strong>Fuerza plana</strong> durante 1 hora. Al combinarlo con una <strong>Tienda de campaña</strong> (<em>Camp Tent</em> de peletería), obtendrás un <strong>5% de experiencia descansada (</strong> <strong><em>rested XP</em></strong> <strong>)</strong> adicional.</p>
 <h3>Favores del Comerciante (<em>Merchant's Favor</em>)</h3>
 <p>A partir del nivel 12-15, puedes entregar cajas de suministros (<em>Waylaid Crates</em>, como cajas de textiles o minerales) para obtener la divisa <strong>Favores del Comerciante</strong>. Esta moneda permite comprar recetas exclusivas de profesiones para fabricar piezas de equipo con estadísticas masivas:</p>
-<ul><li><strong>Conjunto de Veterano (</strong> <strong><em>Veteran Set</em></strong> <strong>)</strong>: Diseñado específicamente para Reprensión (Fuerza, Aguante y Poder de Ataque).</li><li><strong>Conjunto de Acólito (</strong> <strong><em>Acolyte Set</em></strong> <strong>)</strong>: Diseñado para Paladín Sagrado (Intelecto y Sanación).</li></ul>
-<h2 id="cap8"><i>08</i>Macros Esenciales y Consejos Avanzados</h2>
-<h3>1. Macro para Iniciar Ataque Automático con Golpe Sagrado</h3>
+<ul class="gd-ul"><li><strong>Conjunto de Veterano (</strong> <strong><em>Veteran Set</em></strong> <strong>)</strong>: Diseñado específicamente para Reprensión (Fuerza, Aguante y Poder de Ataque).</li><li><strong>Conjunto de Acólito (</strong> <strong><em>Acolyte Set</em></strong> <strong>)</strong>: Diseñado para Paladín Sagrado (Intelecto y Sanación).</li></ul>
+</article>
+<figure class="gd-fig"><a href="img/paladin/12.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/12.webp" alt="Lámina 12: Profesiones, Acampada y Favores del Comerciante" loading="lazy"></a>
+  <figcaption>Lámina 12 de 15 · toque para ampliar</figcaption></figure>
+<article class="gd-ch" id="cap8">
+  <header><span class="num">08</span><h2>Macros Esenciales y Consejos Avanzados</h2></header>
+  <h3><i>1</i>Macro para Iniciar Ataque Automático con Golpe Sagrado</h3>
 <p>Asegura que el personaje comience a golpear cuerpo a cuerpo inmediatamente al pulsar la habilidad:</p>
-<pre class='g-code'><code>#showtooltip Golpe Sagrado
+<pre class="gd-code"><code>#showtooltip Golpe Sagrado
 /startattack
 /cast Golpe Sagrado</code></pre>
-<h3>2. Macro de Cancelación Instantánea de Escudo Divino (Burbuja)</h3>
+<h3><i>2</i>Macro de Cancelación Instantánea de Escudo Divino (Burbuja)</h3>
 <p>Permite tirar la burbuja para quitarse efectos de control de masas o aturdimientos y cancelarla al instante re-pulsando el botón para no perder la amenaza de los monstruos al tanquear:</p>
-<pre class='g-code'><code>#showtooltip Escudo divino
+<pre class="gd-code"><code>#showtooltip Escudo divino
 /cancelaura Escudo divino
 /cast Escudo divino</code></pre>
-<h3>3. Macro de Bendición de Protección al Objetivo de tu Objetivo</h3>
+<h3><i>3</i>Macro de Bendición de Protección al Objetivo de tu Objetivo</h3>
 <p>Permite salvar a un aliado (como un Mago o Sanador) que ha generado demasiada amenaza aplicando <em>Bendición de protección</em> directamente sobre él sin cambiar tu objetivo principal:</p>
-<pre class='g-code'><code>#showtooltip Bendición de protección
+<pre class="gd-code"><code>#showtooltip Bendición de protección
 /cast [@targettarget,help][@mouseover,help][] Bendición de protección</code></pre>
-<h3>4. Anulación Total del Daño por Caída</h3>
+<h3><i>4</i>Anulación Total del Daño por Caída</h3>
 <p>Tanto <em>Escudo divino</em> (<em>Divine Shield</em>) como <em>Bendición de protección</em> (<em>Blessing of Protection</em>) reducen al 100% el daño por caída. Puedes utilizar estas habilidades para saltar desde acantilados, estructuras elevadas o zeppelines en movimiento, atajando rutas de mapa sin riesgo de morir.</p>
-    <div class="g-foot">
-      <a href="jullverse-guias.html" class="a2">← Todas las guías</a>
-      <a href="jullverse-addons.html" class="a1">Addons que uso</a>
-    </div>
-  </article>
-</div>
-
-<section class="g-laminas">
-  <h2>Láminas del tomo</h2>
-  <p>Toca cualquier lámina para verla a tamaño completo.</p>
-  <figure><a href="img/paladin/01.webp" target="_blank" rel="noopener"><img src="img/paladin/01.webp" alt="Lámina 1" loading="lazy"></a><figcaption>Lámina 1 de 15</figcaption></figure>
-  <figure><a href="img/paladin/02.webp" target="_blank" rel="noopener"><img src="img/paladin/02.webp" alt="Lámina 2" loading="lazy"></a><figcaption>Lámina 2 de 15</figcaption></figure>
-  <figure><a href="img/paladin/03.webp" target="_blank" rel="noopener"><img src="img/paladin/03.webp" alt="Lámina 3" loading="lazy"></a><figcaption>Lámina 3 de 15</figcaption></figure>
-  <figure><a href="img/paladin/04.webp" target="_blank" rel="noopener"><img src="img/paladin/04.webp" alt="Lámina 4" loading="lazy"></a><figcaption>Lámina 4 de 15</figcaption></figure>
-  <figure><a href="img/paladin/05.webp" target="_blank" rel="noopener"><img src="img/paladin/05.webp" alt="Lámina 5" loading="lazy"></a><figcaption>Lámina 5 de 15</figcaption></figure>
-  <figure><a href="img/paladin/06.webp" target="_blank" rel="noopener"><img src="img/paladin/06.webp" alt="Lámina 6" loading="lazy"></a><figcaption>Lámina 6 de 15</figcaption></figure>
-  <figure><a href="img/paladin/07.webp" target="_blank" rel="noopener"><img src="img/paladin/07.webp" alt="Lámina 7" loading="lazy"></a><figcaption>Lámina 7 de 15</figcaption></figure>
-  <figure><a href="img/paladin/08.webp" target="_blank" rel="noopener"><img src="img/paladin/08.webp" alt="Lámina 8" loading="lazy"></a><figcaption>Lámina 8 de 15</figcaption></figure>
-  <figure><a href="img/paladin/09.webp" target="_blank" rel="noopener"><img src="img/paladin/09.webp" alt="Lámina 9" loading="lazy"></a><figcaption>Lámina 9 de 15</figcaption></figure>
-  <figure><a href="img/paladin/10.webp" target="_blank" rel="noopener"><img src="img/paladin/10.webp" alt="Lámina 10" loading="lazy"></a><figcaption>Lámina 10 de 15</figcaption></figure>
-  <figure><a href="img/paladin/11.webp" target="_blank" rel="noopener"><img src="img/paladin/11.webp" alt="Lámina 11" loading="lazy"></a><figcaption>Lámina 11 de 15</figcaption></figure>
-  <figure><a href="img/paladin/12.webp" target="_blank" rel="noopener"><img src="img/paladin/12.webp" alt="Lámina 12" loading="lazy"></a><figcaption>Lámina 12 de 15</figcaption></figure>
-  <figure><a href="img/paladin/13.webp" target="_blank" rel="noopener"><img src="img/paladin/13.webp" alt="Lámina 13" loading="lazy"></a><figcaption>Lámina 13 de 15</figcaption></figure>
-  <figure><a href="img/paladin/14.webp" target="_blank" rel="noopener"><img src="img/paladin/14.webp" alt="Lámina 14" loading="lazy"></a><figcaption>Lámina 14 de 15</figcaption></figure>
-  <figure><a href="img/paladin/15.webp" target="_blank" rel="noopener"><img src="img/paladin/15.webp" alt="Lámina 15" loading="lazy"></a><figcaption>Lámina 15 de 15</figcaption></figure>
+</article>
+<figure class="gd-fig"><a href="img/paladin/14.webp" target="_blank" rel="noopener">
+  <img src="img/paladin/14.webp" alt="Lámina 14: Macros Esenciales y Consejos Avanzados" loading="lazy"></a>
+  <figcaption>Lámina 14 de 15 · toque para ampliar</figcaption></figure></div>
+  <div class="gd-end">
+    <a href="jullverse-guias.html" class="a2">← Todas las guías</a>
+    <a href="jullverse-addons.html" class="a1">Addons que uso</a>
+  </div>
 </section>
+
 
 <footer>
   <div class="footer-logo">🎮 JULLVERSE</div>
@@ -730,5 +1027,43 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
   </div>
   <p class="footer-copy">El Multiverso de JULL · Hecho a mano desde Venezuela</p>
 </footer>
+
+<script>
+(function(){
+  var big=document.getElementById('gdBig'), cnt=document.getElementById('gdCount');
+  var thumbs=[].slice.call(document.querySelectorAll('.gd-thumbs img'));
+  if(!thumbs.length || !big) return;
+  var i=0;
+  function show(n){
+    i=(n+thumbs.length)%thumbs.length;
+    big.src=thumbs[i].getAttribute('src');
+    big.alt='Lámina '+(i+1);
+    cnt.textContent=(i+1)+' / '+thumbs.length;
+    thumbs.forEach(function(t,k){t.classList.toggle('on',k===i);});
+  }
+  document.getElementById('gdPrev').onclick=function(){show(i-1);};
+  document.getElementById('gdNext').onclick=function(){show(i+1);};
+  thumbs.forEach(function(t,k){t.onclick=function(){show(k);};});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')show(i-1);
+    if(e.key==='ArrowRight')show(i+1);
+  });
+  show(0);
+
+  var bar=document.querySelector('.gd-prog i');
+  var anchors=[].slice.call(document.querySelectorAll('.gd-anchors a'));
+  var secs=anchors.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    var y=window.scrollY+160, act=0;
+    secs.forEach(function(s,k){ if(s && s.offsetTop<=y) act=k; });
+    anchors.forEach(function(a,k){a.classList.toggle('on',k===act);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+
 </body>
 </html>
