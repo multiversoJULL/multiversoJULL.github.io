@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <title>Mejores Combinaciones de Profesiones · Jullverse</title>
 <meta name="description" content="Qué dos profesiones te convienen según tu clase y tu raza, y cómo convertirlas en oro.">
-
-
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -544,293 +540,112 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <style>
-.gcards{max-width:1000px;margin:0 auto;padding:1.6rem 1.5rem 3rem;position:relative;z-index:1;
-  display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
-.gcard{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:var(--bg3);
-  border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
-.gcard:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gcard .cover{position:relative;aspect-ratio:16/7;overflow:hidden;background:#0A0714;
-  border-bottom:1px solid rgba(124,58,237,0.18);}
-.gcard .cover img{width:100%;height:100%;object-fit:cover;object-position:center 36%;display:block;transition:transform 0.5s;}
-.gcard:hover .cover img{transform:scale(1.04);}
-.gcard .cover::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(20,14,34,0.85) 0%,rgba(20,14,34,0.05) 40%,transparent 70%);}
-.gcard .body{padding:1rem 1.15rem 1.2rem;position:relative;z-index:2;background:var(--bg3);}
-.gcard .k{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
-.gcard h2{font-family:'Orbitron',monospace;font-size:1.06rem;font-weight:700;color:var(--text);
-  margin:0.25rem 0 0.45rem;line-height:1.25;}
-.gcard p{font-size:0.82rem;color:#8B82A6;line-height:1.55;}
-.gcard .meta{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.7rem;}
-.gcard .meta span{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  color:#B9AED4;background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.26);
-  padding:0.2rem 0.5rem;border-radius:20px;}
-.gcard .go{display:inline-block;margin-top:0.85rem;font-size:0.78rem;font-weight:700;color:var(--pink);}
-.gnote{max-width:1000px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
-.gnote div{border:1px solid rgba(124,58,237,0.22);background:rgba(124,58,237,0.07);border-radius:12px;
-  padding:0.85rem 1rem;font-size:0.84rem;color:#A99EC4;line-height:1.55;}
-.gnote b{color:#E4DCF4;}
-@media (max-width:820px){ .gcards{grid-template-columns:1fr;padding:1.2rem 1rem 2.4rem;} }
-</style>
-
-<style>
-:root{--acc:#A78BFA;}
 .gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
 .gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
-  filter:blur(34px) brightness(0.32) saturate(1.1);transform:scale(1.1);}
-.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.35),rgba(7,4,15,0.92));}
-.gd-hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:2.2rem 1.5rem 1.8rem;
-  display:flex;gap:1.6rem;align-items:center;}
-.gd-cover{width:190px;flex:0 0 190px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
-  box-shadow:0 18px 40px rgba(0,0,0,0.55);display:block;}
-.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.45rem;}
+  filter:blur(34px) brightness(0.3) saturate(1.1);transform:scale(1.1);}
+.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.4),rgba(7,4,15,0.94));}
+.gd-hero-in{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:4.6rem 1.5rem 2.2rem;
+  display:flex;gap:1.8rem;align-items:center;}
+.gd-cover{width:200px;flex:0 0 200px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 44px rgba(0,0,0,0.6);display:block;}
+.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.5rem;}
 .gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
-.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.15;}
+.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:900;line-height:1.12;}
 .gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.gd-hero p{color:#B7ACCE;font-size:0.98rem;line-height:1.6;margin-top:0.6rem;max-width:60ch;}
-.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.9rem;}
+.gd-hero p{color:#BEB3D4;font-size:1.02rem;line-height:1.6;margin-top:0.7rem;max-width:56ch;}
+.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:1rem;}
 .gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
-  background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.32);padding:0.24rem 0.6rem;border-radius:20px;}
+  background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.34);padding:0.26rem 0.62rem;border-radius:20px;}
 
-.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.92);backdrop-filter:blur(14px);
+.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.94);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);}
 .gd-prog{height:2px;background:rgba(255,255,255,0.06);}
-.gd-prog i{display:block;height:100%;width:0;background:var(--grad);transition:width 0.1s linear;}
-.gd-anchors{max-width:1080px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;
-  scrollbar-width:none;}
+.gd-prog i{display:block;height:100%;width:0;background:var(--grad);}
+.gd-anchors{max-width:1000px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;scrollbar-width:none;}
 .gd-anchors::-webkit-scrollbar{display:none;}
 .gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
   padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
-.gd-anchors a:hover{color:#fff;background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.35);}
-.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.28);border-color:rgba(124,58,237,0.5);}
+.gd-anchors a:hover,.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.26);border-color:rgba(124,58,237,0.45);}
 
-.gd-sec{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 0.4rem;position:relative;z-index:1;}
-.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.7rem;}
-.gd-sec h2.gd-t{font-family:'Orbitron',monospace;font-size:1.18rem;font-weight:700;margin-bottom:1rem;}
+.gd-sec{max-width:1000px;margin:0 auto;padding:2.4rem 1.5rem 0;position:relative;z-index:1;}
+.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.5rem;}
+.gd-t{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;margin-bottom:1.1rem;}
 
-.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:0.8rem;}
-.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.16),rgba(20,14,34,0.9));
-  border:1px solid rgba(124,58,237,0.28);border-radius:14px;padding:1rem 1.05rem;}
+.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.8rem;margin-bottom:0.4rem;}
+.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.18),rgba(20,14,34,0.92));
+  border:1px solid rgba(124,58,237,0.3);border-radius:14px;padding:1rem 1.05rem;}
 .gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
-  text-transform:uppercase;color:#E6B0D6;margin:0.55rem 0 0.3rem;}
-.gd-g p{font-size:0.86rem;color:#C9BFDC;line-height:1.5;}
+  text-transform:uppercase;color:#E6B0D6;margin:0.6rem 0 0.35rem;}
+.gd-g p{font-size:0.9rem;color:#CFC5E2;line-height:1.55;}
 .gd-g .em{font-size:1.5rem;line-height:1;}
 
-.gd-flip{display:grid;grid-template-columns:1fr 168px;gap:0.7rem;align-items:start;}
-.gd-stage{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
-  background:#0A0714;box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gd-stage img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-stage button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);background:rgba(7,4,15,0.72);color:#fff;font-size:1.1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.gd-stage button:hover{background:rgba(124,58,237,0.85);border-color:transparent;}
-.gd-stage .prev{left:0.6rem;} .gd-stage .next{right:0.6rem;}
-.gd-count{position:absolute;right:0.6rem;bottom:0.55rem;font-size:0.72rem;font-weight:700;color:#fff;
-  background:rgba(7,4,15,0.75);padding:0.2rem 0.55rem;border-radius:20px;border:1px solid rgba(255,255,255,0.14);}
-.gd-thumbs{display:grid;grid-auto-rows:min-content;gap:0.35rem;max-height:430px;overflow-y:auto;padding-right:2px;}
-.gd-thumbs img{width:100%;border-radius:8px;cursor:pointer;opacity:0.55;border:1px solid transparent;
-  display:block;transition:opacity 0.15s;}
-.gd-thumbs img:hover{opacity:0.85;}
-.gd-thumbs img.on{opacity:1;border-color:var(--pink);}
+.gd-intro{margin-top:1.6rem;}
+.gd-intro p{font-size:1.1rem;line-height:1.85;color:#CDC4DF;margin:0 0 1.1rem;max-width:74ch;}
 
-.gd-chapters{display:grid;gap:1.1rem;margin-top:0.4rem;}
-.gd-ch{background:rgba(14,10,26,0.72);border:1px solid var(--border);border-radius:16px;
-  padding:1.5rem 1.6rem;position:relative;overflow:hidden;scroll-margin-top:120px;}
-.gd-ch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0.85;}
-.gd-ch header{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.9rem;}
-.gd-ch .num{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:900;color:#fff;
-  background:var(--grad);border-radius:8px;padding:0.3rem 0.5rem;line-height:1;flex:0 0 auto;margin-top:0.2rem;}
-.gd-ch h2{font-family:'Orbitron',monospace;font-size:1.24rem;font-weight:700;line-height:1.25;color:#F2EDFC;}
-.gd-ch p{font-size:1.02rem;line-height:1.85;color:#CDC4DF;margin:0 0 1rem;max-width:74ch;}
-.gd-ch h3{font-family:'Orbitron',monospace;font-size:0.95rem;color:#E7DEF8;margin:1.5rem 0 0.6rem;
-  padding-left:0.7rem;border-left:2px solid rgba(236,72,153,0.55);line-height:1.3;}
-.gd-ch h3 i{font-style:normal;color:var(--p2);margin-right:0.45rem;font-size:0.72rem;}
-.gd-ch h4{font-size:0.98rem;font-weight:700;color:#D9CFF0;margin:1.1rem 0 0.45rem;}
-.gd-ul,.gd-ol{margin:0 0 1.1rem;padding-left:0;}
-.gd-ul{list-style:none;}
-.gd-ul li{position:relative;padding-left:1.3rem;font-size:1rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
-.gd-ul li::before{content:'';position:absolute;left:0.2rem;top:0.62em;width:6px;height:6px;border-radius:50%;
+.cap{margin:0 0 2.6rem;padding-top:0.4rem;}
+.cap-head{display:flex;gap:0.9rem;align-items:center;margin-bottom:1.1rem;padding-bottom:0.7rem;
+  border-bottom:1px solid rgba(124,58,237,0.22);}
+.cap-head .n{font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:900;color:#fff;
+  background:var(--grad);border-radius:9px;padding:0.34rem 0.55rem;line-height:1;flex:0 0 auto;}
+.cap-head h2{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;line-height:1.22;color:#F4EFFD;}
+.cap p{font-size:1.12rem;line-height:1.88;color:#CFC6E1;margin:0 0 1.15rem;max-width:74ch;}
+.cap h3{font-family:'Orbitron',monospace;font-size:1.06rem;color:#F0E7FF;margin:2rem 0 0.8rem;
+  display:flex;align-items:center;gap:0.6rem;line-height:1.3;}
+.cap h3::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--pink);flex:0 0 auto;
+  box-shadow:0 0 10px rgba(236,72,153,0.6);}
+.cap h3 i{font-style:normal;color:var(--p2);font-size:0.74rem;letter-spacing:0.08em;}
+.cap h4{font-size:1.04rem;font-weight:700;color:#DCD2F0;margin:1.3rem 0 0.5rem;}
+.cap strong{color:#F8F3FF;font-weight:700;}
+.cap em{color:#CFB8F9;font-style:italic;}
+
+.gd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0.7rem;margin:0 0 1.3rem;}
+.gd-card{background:rgba(255,255,255,0.026);border:1px solid rgba(124,58,237,0.2);border-radius:12px;
+  padding:0.9rem 1rem;}
+.gd-card b{display:block;color:#F4EFFF;font-size:1rem;font-weight:700;line-height:1.35;margin-bottom:0.35rem;}
+.gd-card span{display:block;color:#BEB3D2;font-size:0.97rem;line-height:1.65;}
+.gd-ul{margin:0 0 1.3rem;padding-left:0;list-style:none;}
+.gd-ul li{position:relative;padding-left:1.35rem;font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
+.gd-ul li::before{content:'';position:absolute;left:0.25rem;top:0.68em;width:6px;height:6px;border-radius:50%;
   background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
-.gd-ol{padding-left:1.35rem;}
-.gd-ol li{font-size:1rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
+.gd-ol{margin:0 0 1.3rem;padding-left:1.4rem;}
+.gd-ol li{font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
 .gd-ol li::marker{color:var(--pink);font-weight:700;}
-.gd-ch strong{color:#F6F1FF;font-weight:700;}
-.gd-ch em{color:#CDB6F8;font-style:italic;}
-.gd-tabla{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
-.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.9rem;min-width:480px;}
-.gd-tabla th{background:rgba(124,58,237,0.2);color:#F0E8FF;text-align:left;padding:0.7rem 0.8rem;
-  font-size:0.76rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
-.gd-tabla td{padding:0.65rem 0.8rem;color:#C6BCDA;border-bottom:1px solid rgba(255,255,255,0.045);
-  vertical-align:top;line-height:1.55;}
+
+.gd-tabla{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
+.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.97rem;min-width:480px;}
+.gd-tabla th{background:rgba(124,58,237,0.22);color:#F2EAFF;text-align:left;padding:0.75rem 0.85rem;
+  font-size:0.78rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
+.gd-tabla td{padding:0.7rem 0.85rem;color:#C9BFDC;border-bottom:1px solid rgba(255,255,255,0.045);
+  vertical-align:top;line-height:1.6;}
 .gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
 .gd-tabla tr:last-child td{border-bottom:none;}
-.gd-flow{display:grid;gap:0.4rem;margin:0 0 1.2rem;}
-.gd-paso{border-left:2px solid rgba(124,58,237,0.5);padding:0.15rem 0 0.15rem 0.85rem;font-size:0.95rem;
-  color:#C4BAD8;line-height:1.5;}
-.gd-paso span{color:#F0E8FF;font-weight:700;}
+
+.gd-flow{display:grid;gap:0.45rem;margin:0 0 1.3rem;}
+.gd-paso{border-left:2px solid rgba(124,58,237,0.55);padding:0.2rem 0 0.2rem 0.9rem;font-size:1.05rem;
+  color:#C8BEDB;line-height:1.55;}
+.gd-paso span{color:#F2EAFF;font-weight:700;}
 .gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
-  border-radius:10px;padding:0.85rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
-.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.86rem;color:#DCD2FF;line-height:1.65;white-space:pre;}
-.gd-fig{margin:0.2rem 0 0.9rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
-.gd-fig a{display:block;}
-.gd-fig img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-fig figcaption{font-size:0.68rem;color:#6A5F82;padding:0.4rem 0.85rem;border-top:1px solid rgba(255,255,255,0.05);}
-.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.4rem 0 0;}
-.gd-end a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.6rem 1.05rem;border-radius:9px;}
+  border-radius:10px;padding:0.9rem 1.05rem;margin:0 0 1.3rem;overflow-x:auto;}
+.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.9rem;color:#DED4FF;line-height:1.7;white-space:pre;}
+
+.gd-tomo{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0.8rem;margin-top:0.6rem;}
+.gd-tomo figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
+.gd-tomo a{display:block;}
+.gd-tomo img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;transition:filter 0.2s;}
+.gd-tomo a:hover img{filter:brightness(1.08);}
+.gd-tomo figcaption{font-size:0.66rem;color:#6A5F82;padding:0.4rem 0.7rem;border-top:1px solid rgba(255,255,255,0.05);}
+.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:2rem 0 0;}
+.gd-end a{font-size:0.82rem;font-weight:700;text-decoration:none;padding:0.65rem 1.1rem;border-radius:9px;}
 .gd-end .a1{background:var(--grad);color:#fff;}
 .gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
 .gd-end .a2:hover{color:#fff;border-color:var(--p);}
 @media (max-width:900px){
-  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.6rem 1rem 1.4rem;}
-  .gd-cover{width:130px;flex:none;}
-  .gd-flip{grid-template-columns:1fr;}
-  .gd-thumbs{display:flex;overflow-x:auto;max-height:none;gap:0.35rem;}
-  .gd-thumbs img{width:104px;flex:none;}
-  .gd-sec{padding:1.5rem 1rem 0.3rem;}
-  .gd-ch{padding:1.15rem 1.05rem;border-radius:14px;}
-  .gd-ch p{font-size:1rem;}
-  .gd-anchors{padding:0.5rem 1rem;}
-}
-</style>
-
-<style>
-.gcards{max-width:1080px;margin:0 auto;padding:1.6rem 1.5rem 3rem;position:relative;z-index:1;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.1rem;}
-.gcard{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:var(--bg3);
-  border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
-.gcard:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gcard .cover{position:relative;aspect-ratio:16/8;overflow:hidden;background:#0A0714;border-bottom:1px solid rgba(124,58,237,0.18);}
-.gcard .cover img{width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block;transition:transform 0.5s;}
-.gcard:hover .cover img{transform:scale(1.04);}
-.gcard .body{padding:1rem 1.15rem 1.2rem;}
-.gcard .k{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
-.gcard h2{font-family:'Orbitron',monospace;font-size:1.02rem;font-weight:700;color:var(--text);margin:0.25rem 0 0.45rem;line-height:1.25;}
-.gcard p{font-size:0.84rem;color:#9187AB;line-height:1.55;}
-.gcard .meta{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.7rem;}
-.gcard .meta span{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B9AED4;
-  background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.26);padding:0.2rem 0.5rem;border-radius:20px;}
-.gcard .go{display:inline-block;margin-top:0.85rem;font-size:0.78rem;font-weight:700;color:var(--pink);}
-.gnote{max-width:1080px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
-.gnote div{border:1px solid rgba(124,58,237,0.22);background:rgba(124,58,237,0.07);border-radius:12px;
-  padding:0.85rem 1rem;font-size:0.86rem;color:#A99EC4;line-height:1.6;}
-.gnote b{color:#E4DCF4;}
-@media (max-width:820px){ .gcards{padding:1.2rem 1rem 2.4rem;} }
-</style>
-<style>
-:root{--acc:#A78BFA;}
-.gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
-.gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
-  filter:blur(34px) brightness(0.32) saturate(1.1);transform:scale(1.1);}
-.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.35),rgba(7,4,15,0.92));}
-.gd-hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:2.2rem 1.5rem 1.8rem;
-  display:flex;gap:1.6rem;align-items:center;}
-.gd-cover{width:190px;flex:0 0 190px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
-  box-shadow:0 18px 40px rgba(0,0,0,0.55);display:block;}
-.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.45rem;}
-.gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
-.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.15;}
-.gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.gd-hero p{color:#B7ACCE;font-size:0.98rem;line-height:1.6;margin-top:0.6rem;max-width:60ch;}
-.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.9rem;}
-.gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
-  background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.32);padding:0.24rem 0.6rem;border-radius:20px;}
-
-.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);}
-.gd-prog{height:2px;background:rgba(255,255,255,0.06);}
-.gd-prog i{display:block;height:100%;width:0;background:var(--grad);transition:width 0.1s linear;}
-.gd-anchors{max-width:1080px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;
-  scrollbar-width:none;}
-.gd-anchors::-webkit-scrollbar{display:none;}
-.gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
-  padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
-.gd-anchors a:hover{color:#fff;background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.35);}
-.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.28);border-color:rgba(124,58,237,0.5);}
-
-.gd-sec{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 0.4rem;position:relative;z-index:1;}
-.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.7rem;}
-.gd-sec h2.gd-t{font-family:'Orbitron',monospace;font-size:1.18rem;font-weight:700;margin-bottom:1rem;}
-
-.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:0.8rem;}
-.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.16),rgba(20,14,34,0.9));
-  border:1px solid rgba(124,58,237,0.28);border-radius:14px;padding:1rem 1.05rem;}
-.gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
-  text-transform:uppercase;color:#E6B0D6;margin:0.55rem 0 0.3rem;}
-.gd-g p{font-size:0.86rem;color:#C9BFDC;line-height:1.5;}
-.gd-g .em{font-size:1.5rem;line-height:1;}
-
-.gd-flip{display:grid;grid-template-columns:1fr 168px;gap:0.7rem;align-items:start;}
-.gd-stage{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
-  background:#0A0714;box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gd-stage img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-stage button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);background:rgba(7,4,15,0.72);color:#fff;font-size:1.1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.gd-stage button:hover{background:rgba(124,58,237,0.85);border-color:transparent;}
-.gd-stage .prev{left:0.6rem;} .gd-stage .next{right:0.6rem;}
-.gd-count{position:absolute;right:0.6rem;bottom:0.55rem;font-size:0.72rem;font-weight:700;color:#fff;
-  background:rgba(7,4,15,0.75);padding:0.2rem 0.55rem;border-radius:20px;border:1px solid rgba(255,255,255,0.14);}
-.gd-thumbs{display:grid;grid-auto-rows:min-content;gap:0.35rem;max-height:430px;overflow-y:auto;padding-right:2px;}
-.gd-thumbs img{width:100%;border-radius:8px;cursor:pointer;opacity:0.55;border:1px solid transparent;
-  display:block;transition:opacity 0.15s;}
-.gd-thumbs img:hover{opacity:0.85;}
-.gd-thumbs img.on{opacity:1;border-color:var(--pink);}
-
-.gd-chapters{display:grid;gap:1.1rem;margin-top:0.4rem;}
-.gd-ch{background:rgba(14,10,26,0.72);border:1px solid var(--border);border-radius:16px;
-  padding:1.5rem 1.6rem;position:relative;overflow:hidden;scroll-margin-top:120px;}
-.gd-ch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0.85;}
-.gd-ch header{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.9rem;}
-.gd-ch .num{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:900;color:#fff;
-  background:var(--grad);border-radius:8px;padding:0.3rem 0.5rem;line-height:1;flex:0 0 auto;margin-top:0.2rem;}
-.gd-ch h2{font-family:'Orbitron',monospace;font-size:1.34rem;font-weight:700;line-height:1.25;color:#F2EDFC;}
-.gd-ch p{font-size:1.12rem;line-height:1.85;color:#CDC4DF;margin:0 0 1rem;max-width:74ch;}
-.gd-ch h3{font-family:'Orbitron',monospace;font-size:1.04rem;color:#E7DEF8;margin:1.5rem 0 0.6rem;
-  padding-left:0.7rem;border-left:2px solid rgba(236,72,153,0.55);line-height:1.3;}
-.gd-ch h3 i{font-style:normal;color:var(--p2);margin-right:0.45rem;font-size:0.72rem;}
-.gd-ch h4{font-size:0.98rem;font-weight:700;color:#D9CFF0;margin:1.1rem 0 0.45rem;}
-.gd-ul,.gd-ol{margin:0 0 1.1rem;padding-left:0;}
-.gd-ul{list-style:none;}
-.gd-ul li{position:relative;padding-left:1.3rem;font-size:1.08rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
-.gd-ul li::before{content:'';position:absolute;left:0.2rem;top:0.62em;width:6px;height:6px;border-radius:50%;
-  background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
-.gd-ol{padding-left:1.35rem;}
-.gd-ol li{font-size:1.08rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
-.gd-ol li::marker{color:var(--pink);font-weight:700;}
-.gd-ch strong{color:#F6F1FF;font-weight:700;}
-.gd-ch em{color:#CDB6F8;font-style:italic;}
-.gd-tabla{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
-.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.95rem;min-width:480px;}
-.gd-tabla th{background:rgba(124,58,237,0.2);color:#F0E8FF;text-align:left;padding:0.7rem 0.8rem;
-  font-size:0.76rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
-.gd-tabla td{padding:0.65rem 0.8rem;color:#C6BCDA;border-bottom:1px solid rgba(255,255,255,0.045);
-  vertical-align:top;line-height:1.55;}
-.gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
-.gd-tabla tr:last-child td{border-bottom:none;}
-.gd-flow{display:grid;gap:0.4rem;margin:0 0 1.2rem;}
-.gd-paso{border-left:2px solid rgba(124,58,237,0.5);padding:0.15rem 0 0.15rem 0.85rem;font-size:1.02rem;
-  color:#C4BAD8;line-height:1.5;}
-.gd-paso span{color:#F0E8FF;font-weight:700;}
-.gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
-  border-radius:10px;padding:0.85rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
-.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.86rem;color:#DCD2FF;line-height:1.65;white-space:pre;}
-.gd-fig{margin:0.2rem 0 0.9rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
-.gd-fig a{display:block;}
-.gd-fig img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-fig figcaption{font-size:0.68rem;color:#6A5F82;padding:0.4rem 0.85rem;border-top:1px solid rgba(255,255,255,0.05);}
-.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.4rem 0 0;}
-.gd-end a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.6rem 1.05rem;border-radius:9px;}
-.gd-end .a1{background:var(--grad);color:#fff;}
-.gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
-.gd-end .a2:hover{color:#fff;border-color:var(--p);}
-@media (max-width:900px){
-  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.6rem 1rem 1.4rem;}
-  .gd-cover{width:130px;flex:none;}
-  .gd-flip{grid-template-columns:1fr;}
-  .gd-thumbs{display:flex;overflow-x:auto;max-height:none;gap:0.35rem;}
-  .gd-thumbs img{width:104px;flex:none;}
-  .gd-sec{padding:1.5rem 1rem 0.3rem;}
-  .gd-ch{padding:1.15rem 1.05rem;border-radius:14px;}
-  .gd-ch p{font-size:1rem;}
+  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1.2rem;padding:3.9rem 1rem 1.6rem;}
+  .gd-cover{width:140px;flex:none;}
+  .gd-sec{padding:1.7rem 1rem 0;}
+  .cap p{font-size:1.06rem;}
+  .cap-head h2{font-size:1.16rem;}
+  .gd-tomo{grid-template-columns:1fr;}
   .gd-anchors{padding:0.5rem 1rem;}
 }
 </style>
@@ -852,7 +667,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <header class="gd-hero">
   <div class="gd-hero-bg" style="background-image:url('img/combinaciones/01.webp')"></div>
   <div class="gd-hero-in">
-    <img class="gd-cover" src="img/combinaciones/01.webp" alt="Portada de la guía">
+    <img class="gd-cover" src="img/combinaciones/01.webp" alt="Portada">
     <div>
       <div class="crumb"><a href="jullverse.html">Jullverse</a> / <a href="jullverse-guias.html">Guías</a> / Combinaciones</div>
       <h1>Mejores <span>combinaciones</span></h1>
@@ -864,7 +679,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 
 <div class="gd-bar">
   <div class="gd-prog"><i></i></div>
-  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#laminas">Láminas</a><a href="#cap1">1. Mejores Combinaciones de Profesiones s</a><a href="#cap2">2. Sinergias por Raza y Factores Étnicos </a><a href="#cap3">3. Estrategias para Maximizar la Ganancia</a><a href="#cap4">4. Matriz Comparativa de Beneficios del S</a><a href="#cap5">5. Conclusión</a></div>
+  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#cap1">1. Mejores Combinaciones de Profesiones</a><a href="#cap2">2. Sinergias por Raza y Factores Étnico</a><a href="#cap3">3. Estrategias para Maximizar la Gananc</a><a href="#cap4">4. Matriz Comparativa de Beneficios del</a><a href="#cap5">5. Conclusión</a><a href="#tomo">El tomo</a></div>
 </div>
 
 <section class="gd-sec" id="vistazo">
@@ -874,58 +689,31 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <div class="gd-g"><span class="em">🐺</span><b>Cuero y malla</b><p>Peletería + Desuello</p></div>
 <div class="gd-g"><span class="em">🛡️</span><b>Placas</b><p>Minería + Herrería (o Ingeniería)</p></div>
 <div class="gd-g"><span class="em">💰</span><b>Oro</b><p>Tres estrategias de mercado</p></div></div>
-  <div class="gd-intro"><div class="gd-tabla"><table><thead><tr><th>El sistema de profesiones en World of Warcraft: Forever introduce transformaciones estructurales profundas en comparación con el formato clásico tradicional. Con la adición de más de 600 recetas inéditas</th><th>la implementación del sistema colaborativo de campamentos en el mundo abierto y la integración del sistema de progresión de Legado a nivel de cuenta</th><th>la selección de profesiones se convierte en una decisión estratégica fundamental. Esta elección influye directamente en la velocidad de subida de nivel</th><th>la efectividad en combate PvE y PvP</th><th>y la capacidad de acumular riqueza mediante la Casa de Subastas.</th></tr></thead><tbody><tr><td>Para maximizar el rendimiento de un personaje</td><td>es necesario analizar las sinergias naturales de materiales entre oficios de recolección y artesanía</td><td>la compatibilidad con los atributos y roles de cada clase</td><td>las habilidades raciales exclusivas y los beneficios colectivos que cada profesión aporta al acampar.</td></tr></tbody></table></div></div>
-</section>
-
-<section class="gd-sec" id="laminas">
-  <p class="gd-label">// El tomo en láminas</p>
-  <h2 class="gd-t">Pásalas con las flechas</h2>
-  <div class="gd-flip">
-    <div class="gd-stage">
-      <img id="gdBig" src="img/combinaciones/01.webp" alt="Lámina 1" class="gd-big">
-      <button class="prev" id="gdPrev" aria-label="Anterior">‹</button>
-      <button class="next" id="gdNext" aria-label="Siguiente">›</button>
-      <span class="gd-count" id="gdCount">1 / 15</span>
-    </div>
-    <div class="gd-thumbs"><img src="img/combinaciones/01.webp" alt="Lámina 1" loading="lazy">
-<img src="img/combinaciones/02.webp" alt="Lámina 2" loading="lazy">
-<img src="img/combinaciones/03.webp" alt="Lámina 3" loading="lazy">
-<img src="img/combinaciones/04.webp" alt="Lámina 4" loading="lazy">
-<img src="img/combinaciones/05.webp" alt="Lámina 5" loading="lazy">
-<img src="img/combinaciones/06.webp" alt="Lámina 6" loading="lazy">
-<img src="img/combinaciones/07.webp" alt="Lámina 7" loading="lazy">
-<img src="img/combinaciones/08.webp" alt="Lámina 8" loading="lazy">
-<img src="img/combinaciones/09.webp" alt="Lámina 9" loading="lazy">
-<img src="img/combinaciones/10.webp" alt="Lámina 10" loading="lazy">
-<img src="img/combinaciones/11.webp" alt="Lámina 11" loading="lazy">
-<img src="img/combinaciones/12.webp" alt="Lámina 12" loading="lazy">
-<img src="img/combinaciones/13.webp" alt="Lámina 13" loading="lazy">
-<img src="img/combinaciones/14.webp" alt="Lámina 14" loading="lazy">
-<img src="img/combinaciones/15.webp" alt="Lámina 15" loading="lazy"></div>
-  </div>
+  <div class="gd-intro"><p>El sistema de profesiones en World of Warcraft: Forever introduce transformaciones estructurales profundas en comparación con el formato clásico tradicional. Con la adición de más de 600 recetas inéditas, la implementación del sistema colaborativo de campamentos en el mundo abierto y la integración del sistema de progresión de Legado a nivel de cuenta, la selección de profesiones se convierte en una decisión estratégica fundamental. Esta elección influye directamente en la velocidad de subida de nivel, la efectividad en combate PvE y PvP, y la capacidad de acumular riqueza mediante la Casa de Subastas.</p>
+<p>Para maximizar el rendimiento de un personaje, es necesario analizar las sinergias naturales de materiales entre oficios de recolección y artesanía, la compatibilidad con los atributos y roles de cada clase, las habilidades raciales exclusivas y los beneficios colectivos que cada profesión aporta al acampar.</p></div>
 </section>
 
 <section class="gd-sec">
-  <p class="gd-label">// Capítulo a capítulo</p>
-  <h2 class="gd-t">La guía escrita</h2>
-  <div class="gd-chapters"><article class="gd-ch" id="cap1">
-  <header><span class="num">01</span><h2>Mejores Combinaciones de Profesiones según la Clase y el Rol</h2></header>
+  <p class="gd-label">// La guía escrita</p>
+  <h2 class="gd-t">Capítulo a capítulo</h2>
+  <section class="cap" id="cap1">
+  <div class="cap-head"><span class="n">01</span><h2>Mejores Combinaciones de Profesiones según la Clase y el Rol</h2></div>
   <p>La elección óptima de profesiones según la clase depende del tipo de armadura utilizada, el consumo de recursos en combate y las necesidades operativas de cada rol (daño físico, daño mágico, tanque o sanador).</p>
 <h3>Clases Lanzadoras de Hechizos y Usuarios de Tela (Mago, Sacerdote, Brujo)</h3>
 <p>Las clases que utilizan tela y dependen del poder con hechizos requieren un flujo constante de equipo con atributos mágicos y consumibles que potencien su capacidad de daño y regeneración de maná.</p>
 <h4><em>Combinación Principal: Sastrería + Encantamiento</em></h4>
 <p>Las clases de tela obtienen una ventaja singular con esta pareja debido a que Sastrería no requiere una profesión de recolección dedicada, ya que la tela se obtiene directamente al despojar enemigos humanoides durante el leveo.</p>
-<ul class="gd-ul"><li><strong>Sinergia Material y Desencantamiento</strong>: La tela recolectada se utiliza para fabricar piezas de indumentaria de bajo coste. Aquellas de calidad mágica o superior que no representen una mejora de equipo se convierten de inmediato en polvo arcano, esencias y fragmentos mediante la facultad de Desencantar. Este ciclo continuo facilita la progresión de Encantamiento sin depender de materiales comprados en la subasta.</li><li><strong>Beneficios Exclusivos de Encantamiento</strong>: Encantamiento proporciona acceso a fórmulas exclusivas de WoW Forever, tales como encantamientos permanentes para collares (con bonificaciones a Poder con Hechizos, Sanación, Agilidad o Fuerza), encantamientos de armas avanzados (<em>Revelation</em>, <em>Recovery</em> e <em>Insight</em>) y aceites temporales para armas que otorgan hasta 36 de Poder con Hechizos y 1% de golpe crítico a nivel 300. Además, durante la fase inicial de leveo, los encantadores pueden fabricar varitas mágicas (<em>Lesser Magic Wand</em>, <em>Greater Magic Wand</em> y <em>Lesser Mystic Wand</em>) que superan en daño a las armas obtenidas por misiones. Al alcanzar nivel 300, permite adquirir la certificación de cuenta <em>the Enchanter</em> por 1.000 Merchant's Favor.</li><li><strong>Aporte al Campamento</strong>: Sastrería contribuye a la hoguera comunitaria con el <em>Estandarte de Facción</em> (aumento de Espíritu), mientras que Encantamiento aporta el <em>Laúd Encantado</em> (bonificación a Armadura, atributos y resistencias) y el <em>Recuperador Arcano</em> para optimizar el rendimiento del desencantamiento en el mundo.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Sinergia Material y Desencantamiento</b><span>La tela recolectada se utiliza para fabricar piezas de indumentaria de bajo coste. Aquellas de calidad mágica o superior que no representen una mejora de equipo se convierten de inmediato en polvo arcano, esencias y fragmentos mediante la facultad de Desencantar. Este ciclo continuo facilita la progresión de Encantamiento sin depender de materiales comprados en la subasta.</span></div><div class="gd-card"><b>Beneficios Exclusivos de Encantamiento</b><span>Encantamiento proporciona acceso a fórmulas exclusivas de WoW Forever, tales como encantamientos permanentes para collares (con bonificaciones a Poder con Hechizos, Sanación, Agilidad o Fuerza), encantamientos de armas avanzados (<em>Revelation</em>, <em>Recovery</em> e <em>Insight</em>) y aceites temporales para armas que otorgan hasta 36 de Poder con Hechizos y 1% de golpe crítico a nivel 300. Además, durante la fase inicial de leveo, los encantadores pueden fabricar varitas mágicas (<em>Lesser Magic Wand</em>, <em>Greater Magic Wand</em> y <em>Lesser Mystic Wand</em>) que superan en daño a las armas obtenidas por misiones. Al alcanzar nivel 300, permite adquirir la certificación de cuenta <em>the Enchanter</em> por 1.000 Merchant's Favor.</span></div><div class="gd-card"><b>Aporte al Campamento</b><span>Sastrería contribuye a la hoguera comunitaria con el <em>Estandarte de Facción</em> (aumento de Espíritu), mientras que Encantamiento aporta el <em>Laúd Encantado</em> (bonificación a Armadura, atributos y resistencias) y el <em>Recuperador Arcano</em> para optimizar el rendimiento del desencantamiento en el mundo.</span></div></div>
 <h3>Clases de Cuero y Malla (Pícaro, Druida, Cazador, Chamán)</h3>
 <p>Los personajes que utilizan cuero y malla se benefician de la recolección activa sobre criaturas bestiales y de la confección de piezas adaptadas tanto al combate cuerpo a cuerpo como a la sanación o el lanzamiento de hechizos.</p>
 <h4><em>Combinación Principal: Peletería + Desuello</em></h4>
 <p>Desuello es la profesión de recolección más fluida para clases de cuero y malla, ya que permite extraer pieles, cueros y escamas de las bestias exterminadas durante las rutas ordinarias de misiones sin desviarse hacia riscos o montañas.</p>
-<ul class="gd-ul"><li><strong>Kits de Armadura Diversificados</strong>: Peletería introduce dos líneas especializadas de refuerzos para equipo en WoW Forever: los <em>Forceful Armor Kits</em> (orientados a incrementar el Poder de Ataque y la armadura para luchadores físicos) y los <em>Mystic Armor Kits</em> (orientados a otorgar Poder con Hechizos y armadura para casters y sanadores). Esto permite a Druidas y Chamanes ajustar sus parches según su especialización activa.</li><li><strong>Especializaciones de Endgame</strong>: Al alcanzar niveles avanzados, Peletería permite elegir entre tres ramas mutuamente excluyentes: <em>Dragonscale Leatherworking</em> (enfocada en armaduras de malla pesada para Cazador y Chamán), <em>Tribal Leatherworking</em> (especializada en cuero físico de alto impacto y patrones clave como los guantes <em>Devilsaur</em>) y <em>Elemental Leatherworking</em>.</li><li><strong>El Beneficio de Campamento Más Potente para Leveo</strong>: A nivel 20 de habilidad, Peletería permite colocar la <em>Tienda de Campamento</em> (<em>Camp Tent</em>) junto a la hoguera, la cual otorga una acumulación de hasta 5% de experiencia descansada (<em>rested XP</em>). La comunidad de WoW Forever considera este bufo como el más valioso para reducir las horas necesarias para alcanzar el nivel 60.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Kits de Armadura Diversificados</b><span>Peletería introduce dos líneas especializadas de refuerzos para equipo en WoW Forever: los <em>Forceful Armor Kits</em> (orientados a incrementar el Poder de Ataque y la armadura para luchadores físicos) y los <em>Mystic Armor Kits</em> (orientados a otorgar Poder con Hechizos y armadura para casters y sanadores). Esto permite a Druidas y Chamanes ajustar sus parches según su especialización activa.</span></div><div class="gd-card"><b>Especializaciones de Endgame</b><span>Al alcanzar niveles avanzados, Peletería permite elegir entre tres ramas mutuamente excluyentes: <em>Dragonscale Leatherworking</em> (enfocada en armaduras de malla pesada para Cazador y Chamán), <em>Tribal Leatherworking</em> (especializada en cuero físico de alto impacto y patrones clave como los guantes <em>Devilsaur</em>) y <em>Elemental Leatherworking</em>.</span></div><div class="gd-card"><b>El Beneficio de Campamento Más Potente para Leveo</b><span>A nivel 20 de habilidad, Peletería permite colocar la <em>Tienda de Campamento</em> (<em>Camp Tent</em>) junto a la hoguera, la cual otorga una acumulación de hasta 5% de experiencia descansada (<em>rested XP</em>). La comunidad de WoW Forever considera este bufo como el más valioso para reducir las horas necesarias para alcanzar el nivel 60.</span></div></div>
 <h3>Clases de Armadura Pesada y Placas (Guerrero, Paladín)</h3>
 <p>Los combatientes cuerpo a cuerpo que portan mallas y placas requieren suministros constantes de minerales y metales para forjar su equipo defensivo y sus armas de combate.</p>
 <h4><em>Opción 1 (Enfoque PvE y Producción): Minería + Herrería</em></h4>
 <p>Minería abastece a Herrería de menas de cobre, estaño, hierro, mitril, torio y metales raros de WoW Forever como el <em>Azerothium</em> y el <em>Heavy Thorium</em>, además de suministrar piedras (Rough, Heavy, Dense Stone) necesarias para la elaboración de piedras de afilar y componentes de estructura.</p>
-<div class="gd-tabla"><table><thead><tr><th>* <strong>Potenciación de Armamento</strong>: Herrería permite fabricar piezas de placas pre-BiS y armas de alto rendimiento. En el campamento</th><th>Herrería coloca la <em>Muela de Afilar</em> (que otorga una bonificación de Fuerza que no se solapa con el tótem de chamán) y la <em>Forja de Maestro</em> a nivel 300</th><th>mientras que Minería aporta la <em>Magnetita</em> (+Poder de ataque cuerpo a cuerpo).</th></tr></thead><tbody><tr><td>* <strong>Herramienta Alternativa (</strong> <strong><em>Rockslicer</em></strong> <strong>)</strong>: Para personajes que no posean la profesión de Minería durante las fases iniciales</td><td>la herramienta <em>Rockslicer</em> (obtenida en las Minas de la Muerte) permite extraer depósitos de cobre</td><td>estaño</td><td>plata e hierro durante 30 usos.</td></tr></tbody></table></div>
+<div class="gd-cards"><div class="gd-card"><b>Potenciación de Armamento</b><span>Herrería permite fabricar piezas de placas pre-BiS y armas de alto rendimiento. En el campamento, Herrería coloca la <em>Muela de Afilar</em> (que otorga una bonificación de Fuerza que no se solapa con el tótem de chamán) y la <em>Forja de Maestro</em> a nivel 300, mientras que Minería aporta la <em>Magnetita</em> (+Poder de ataque cuerpo a cuerpo).</span></div><div class="gd-card"><b>Herramienta Alternativa (</b><span><strong><em>Rockslicer</em></strong> <strong>)</strong>: Para personajes que no posean la profesión de Minería durante las fases iniciales, la herramienta <em>Rockslicer</em> (obtenida en las Minas de la Muerte) permite extraer depósitos de cobre, estaño, plata e hierro durante 30 usos.</span></div></div>
 <h4><em>Opción 2 (Enfoque PvP y Control de Masas): Minería + Ingeniería</em></h4>
 <p>Ingeniería se posiciona como la profesión indispensable para el combate PvP y la utilidad en mazmorras.</p>
 <ul class="gd-ul"><li><strong>Arsenal de Gadgets y Control</strong>: Los ingenieros tienen acceso a bombas de hierro y torio, la <em>SECUR-dinamita</em>, granadas de interrupción (vitales para clases como el Sacerdote o el Cazador que carecen de cortes de hechizo a distancia), botas cohete, reflectores de fuego y sombras, el <em>Rayo Mortal Gnómico</em> y el <em>Rayo Descombobulador</em>. En el campamento, Ingeniería despliega el <em>Robot de Componentes</em> y el <em>Robot de Reparaciones</em> para dar mantenimiento al grupo.</li></ul>
@@ -933,12 +721,9 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <h4><em>Combinación Recomendada: Herboristería + Alquimia</em></h4>
 <p>Las clases con formas de desplazamiento mejorado, como el Druida (Forma de Viaje) y el Chamán (Forma de Lobo Fantasma), son los recolectores de botánica más eficientes del juego al desplazarse a alta velocidad entre nodos sin necesidad de invocar monturas.</p>
 <ul class="gd-ul"><li><strong>Producción de Consumibles Esenciales</strong>: Alquimia produce pociones de aceleración (<em>Swiftness Potion</em>), elixires de incremento de atributos y frascos de raid de alto nivel. En el campamento, Herboristería aporta la <em>Vela de Incienso</em> (+Intelecto) y la estación <em>Invernadero</em> (para cultivar semillas botánicas), mientras que Alquimia aporta el <em>Pozo de Maná</em> y el <em>Laboratorio de Alquimia</em>.</li></ul>
-</article>
-<figure class="gd-fig"><a href="img/combinaciones/02.webp" target="_blank" rel="noopener">
-  <img src="img/combinaciones/02.webp" alt="Lámina 2: Mejores Combinaciones de Profesiones según la Clase y el Rol" loading="lazy"></a>
-  <figcaption>Lámina 2 de 15 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap2">
-  <header><span class="num">02</span><h2>Sinergias por Raza y Factores Étnicos en WoW Forever</h2></header>
+</section>
+<section class="cap" id="cap2">
+  <div class="cap-head"><span class="n">02</span><h2>Sinergias por Raza y Factores Étnicos en WoW Forever</h2></div>
   <p>Las profesiones obtienen un rendimiento superior cuando se combinan con las habilidades raciales y las nuevas opciones de raza y clase de WoW Forever.</p>
 <h3>Raza Tauren: Dominio Botánico Exclusivo</h3>
 <p>Los personajes Tauren cuentan con la habilidad pasiva y activa <em>Tauren Cultivation</em>. Este rasgo permite crear una copia de una hierba cercana y recogerla sin necesidad de poseer el nivel de habilidad normal de Herboristería requerido para ese nodo.</p>
@@ -948,13 +733,10 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <ul class="gd-ul"><li><strong>Combinación Preferente</strong>: Los Skyborne que jueguen clases físicas de cuero o malla aprovechan al máximo <strong>Peletería + Desuello</strong> para sostener su subida de nivel con la <em>Tienda de Campamento</em>, mientras que las variantes mágicas y de apoyo destacan con <strong>Sastrería + Encantamiento</strong> o <strong>Herboristería + Alquimia</strong>.</li></ul>
 <h3>Nuevas Combinaciones de Raza y Clase en WoW Forever</h3>
 <p>WoW Forever desbloquea seis combinaciones raciales inéditas, cada una con sinergias profesionales específicas:</p>
-<ul class="gd-ul"><li><strong>Dwarf Chamán</strong>: La alta resistencia enana se beneficia de <strong>Herboristería + Alquimia</strong> para funciones de sanador, o de <strong>Minería + Herrería</strong> para la especialización Mejora.</li><li><strong>Gnome Sacerdote</strong>: La elevada reserva de mana y intelecto gnómica se potencia con <strong>Sastrería + Encantamiento</strong>, aprovechando el bufo de Espíritu del <em>Estandarte de Facción</em>.</li><li><strong>Orc Mago</strong>: La potencia de hechizos del orco encuentra su pareja idónea en <strong>Sastrería + Encantamiento</strong> para la confección de varitas mágicas y encantamientos de collar.</li><li><strong>Undead Paladín</strong>: La combinación de mitigación de placas e inmunidad no-muerta se afianza con <strong>Minería + Herrería</strong> (o <strong>Minería + Ingeniería</strong> para PvP).</li><li><strong>Troll Brujo</strong>: La velocidad de lanzamiento de hechizos troll sinergiza con <strong>Sastrería + Encantamiento</strong> y consumibles de Alquimia.</li><li><strong>Human Cazador</strong>: Se beneficia de la precisión humana junto a <strong>Peletería (Dragonscale) + Desuello</strong> para craftear armaduras de malla avanzadas.</li></ul>
-</article>
-<figure class="gd-fig"><a href="img/combinaciones/04.webp" target="_blank" rel="noopener">
-  <img src="img/combinaciones/04.webp" alt="Lámina 4: Sinergias por Raza y Factores Étnicos en WoW Forever" loading="lazy"></a>
-  <figcaption>Lámina 4 de 15 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap3">
-  <header><span class="num">03</span><h2>Estrategias para Maximizar la Ganancia de Oro</h2></header>
+<div class="gd-cards"><div class="gd-card"><b>Dwarf Chamán</b><span>La alta resistencia enana se beneficia de <strong>Herboristería + Alquimia</strong> para funciones de sanador, o de <strong>Minería + Herrería</strong> para la especialización Mejora.</span></div><div class="gd-card"><b>Gnome Sacerdote</b><span>La elevada reserva de mana y intelecto gnómica se potencia con <strong>Sastrería + Encantamiento</strong>, aprovechando el bufo de Espíritu del <em>Estandarte de Facción</em>.</span></div><div class="gd-card"><b>Orc Mago</b><span>La potencia de hechizos del orco encuentra su pareja idónea en <strong>Sastrería + Encantamiento</strong> para la confección de varitas mágicas y encantamientos de collar.</span></div><div class="gd-card"><b>Undead Paladín</b><span>La combinación de mitigación de placas e inmunidad no-muerta se afianza con <strong>Minería + Herrería</strong> (o <strong>Minería + Ingeniería</strong> para PvP).</span></div><div class="gd-card"><b>Troll Brujo</b><span>La velocidad de lanzamiento de hechizos troll sinergiza con <strong>Sastrería + Encantamiento</strong> y consumibles de Alquimia.</span></div><div class="gd-card"><b>Human Cazador</b><span>Se beneficia de la precisión humana junto a <strong>Peletería (Dragonscale) + Desuello</strong> para craftear armaduras de malla avanzadas.</span></div></div>
+</section>
+<section class="cap" id="cap3">
+  <div class="cap-head"><span class="n">03</span><h2>Estrategias para Maximizar la Ganancia de Oro</h2></div>
   <p>El sistema económico de WoW Forever recompensa la fabricación de consumibles de alta demanda, la venta de materiales de campamento y el uso de los beneficios del sistema de progresión de Legado a nivel de cuenta.</p>
 <h3>Estrategia 1: Mercado de Consumibles de Alta Rotación (Alquimia + Herboristería)</h3>
 <p>Las pociones de salud, maná y velocidad (<em>Swiftness Potion</em>), los elixires de estadísticas y las comidas elaboradas mediante Cocina (que otorgan un 5% de experiencia adicional por enemigo derrotado) mantienen una demanda ininterrumpida en la Casa de Subastas. Esta demanda proviene tanto de jugadores en proceso de leveo como de las hermandades que compiten en las incursiones de nivel 60 (<em>Barrow Deeps</em>, <em>Hyjal Summit</em> y <em>Onyxia's Lair</em>).</p>
@@ -964,29 +746,73 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <p>Esta configuración elimina los costes de inversión iniciales de las profesiones de producción. Todos los minerales (Cobre, Estaño, Hierro, Torio), piedras (Rough, Dense Stone), cueros y hierbas se venden en la Casa de Subastas a jugadores que buscan subir sus propios oficios.</p>
 <h3>Beneficios del Sistema de Legado (<em>Legacy System</em>) en las Profesiones</h3>
 <p>El árbol de profesiones del Legado de la cuenta permite potenciar la ganancia de oro a través de ventajas pasivas confirmadas:</p>
-<ul class="gd-ul"><li><strong>Cosecha Abundante (</strong> <strong><em>Bountiful Harvest</em></strong> <strong>)</strong>: Incrementa la probabilidad de obtener materiales escasos (<em>Scarce materials</em>) al recolectar con Minería, Herboristería o Peletería.</li><li><strong>Horas Extra (</strong> <strong><em>Working Overtime</em></strong> <strong>)</strong>: Aumenta la probabilidad de obtener puntos de habilidad al fabricar o recolectar.</li><li><strong>Regateo (</strong> <strong><em>Merchant's Favor Bonus</em></strong> <strong>)</strong>: Otorga bonificaciones de reputación y favor con las facciones de comerciantes de oficios.</li><li><strong>Estudio Dedicado (</strong> <strong><em>Dedicated Study</em></strong> <strong>)</strong>: Ayuda a elevar el nivel de la profesión más baja del personaje.</li></ul>
-</article>
-<figure class="gd-fig"><a href="img/combinaciones/07.webp" target="_blank" rel="noopener">
-  <img src="img/combinaciones/07.webp" alt="Lámina 7: Estrategias para Maximizar la Ganancia de Oro" loading="lazy"></a>
-  <figcaption>Lámina 7 de 15 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap4">
-  <header><span class="num">04</span><h2>Matriz Comparativa de Beneficios del Sistema de Campamento</h2></header>
+<div class="gd-cards"><div class="gd-card"><b>Cosecha Abundante (</b><span><strong><em>Bountiful Harvest</em></strong> <strong>)</strong>: Incrementa la probabilidad de obtener materiales escasos (<em>Scarce materials</em>) al recolectar con Minería, Herboristería o Peletería.</span></div><div class="gd-card"><b>Horas Extra (</b><span><strong><em>Working Overtime</em></strong> <strong>)</strong>: Aumenta la probabilidad de obtener puntos de habilidad al fabricar o recolectar.</span></div><div class="gd-card"><b>Regateo (</b><span><strong><em>Merchant's Favor Bonus</em></strong> <strong>)</strong>: Otorga bonificaciones de reputación y favor con las facciones de comerciantes de oficios.</span></div><div class="gd-card"><b>Estudio Dedicado (</b><span><strong><em>Dedicated Study</em></strong> <strong>)</strong>: Ayuda a elevar el nivel de la profesión más baja del personaje.</span></div></div>
+</section>
+<section class="cap" id="cap4">
+  <div class="cap-head"><span class="n">04</span><h2>Matriz Comparativa de Beneficios del Sistema de Campamento</h2></div>
   <div class="gd-tabla"><table><thead><tr><th>El campamento se establece alrededor de la <em>Hoguera Básica</em> de Cocina (que dispone de 3 huecos de mejora a nivel inicial</th><th>5 huecos con la <em>Hoguera de Oficial</em> a nivel 140</th><th>y 10 huecos con el <em>Horno de Hierro</em> a nivel 300). A continuación se detallan los aportes de cada una de las 12 profesiones:</th></tr></thead><tbody><tr><td>Profesión</td><td>Beneficio Principal de Campamento</td><td>Estación / Utilería de Campamento</td></tr><tr><td>Peletería</td><td>+5% Experiencia descansada (Rested XP)</td><td>Camp Tent (Nv. 20), Tanning Rack (Nv. 140), Sewing Machine (Nv. 300)</td></tr><tr><td>Cocina</td><td>+5% XP por enemigo derrotado y expansión de huecos</td><td>Hoguera Básica (3 huecos), Hoguera de Oficial (5 huecos), Horno de Hierro (10 huecos)</td></tr><tr><td>Encantamiento</td><td>+Armadura, Atributos y Resistencias</td><td>Enchanted Lute (Nv. 20), Arcane Salvager (Desencantado), Arcane Forge (Nv. 300)</td></tr><tr><td>Herrería</td><td>+Fuerza / Poder de Ataque</td><td>Sharpening Wheel (Nv. 20), Yunque, Forja de Maestro (Nv. 300)</td></tr><tr><td>Minería</td><td>+Poder de Ataque Cuerpo a Cuerpo</td><td>Lodestone (Nv. 20), Rock Garden (Nodo minero), Molten Foundry (Nv. 300)</td></tr><tr><td>Herboristería</td><td>+Intelecto</td><td>Incense Candle (Nv. 20), Greenhouse (Cultivo), Seed Hybridizer (Nv. 300)</td></tr><tr><td>Alquimia</td><td>+Regeneración de Maná</td><td>Mana Well (Nv. 20), Fermentador, Laboratorio de Alquimia (Nv. 300)</td></tr><tr><td>Sastrería</td><td>+Espíritu</td><td>Faction Banner (Nv. 20), Rueca, Telar (Nv. 300)</td></tr><tr><td>Desuello</td><td>+2% Golpe Crítico</td><td>Camp Chair (Nv. 20), Guía de Campo, Banco de Trampero (Nv. 300)</td></tr><tr><td>Ingeniería</td><td>Vendedor y Reparación Portátil</td><td>Robot de Componentes (Nv. 20), Robot de Reparaciones (Nv. 140), Banco Anarquista (Nv. 300)</td></tr><tr><td>Pesca</td><td>+8% a Todas las Estadísticas</td><td>Cuenco con Pescado (Nv. 20), Expositor de Pesca, Cabaña de Pesca (Nv. 300)</td></tr><tr><td>Primeros Auxilios</td><td>+Aguante (Salud)</td><td>Equipo de Primeros Auxilios (Nv. 20), Estudio de Toxinas, Doctor de Peste (Nv. 300)</td></tr></tbody></table></div>
-</article>
-<figure class="gd-fig"><a href="img/combinaciones/10.webp" target="_blank" rel="noopener">
-  <img src="img/combinaciones/10.webp" alt="Lámina 10: Matriz Comparativa de Beneficios del Sistema de Campamento" loading="lazy"></a>
-  <figcaption>Lámina 10 de 15 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap5">
-  <header><span class="num">05</span><h2>Conclusión</h2></header>
+</section>
+<section class="cap" id="cap5">
+  <div class="cap-head"><span class="n">05</span><h2>Conclusión</h2></div>
   <p>Para optimizar el recorrido en World of Warcraft: Forever, la elección de profesiones debe equilibrar las necesidades de equipo y consumibles de tu clase con el aprovechamiento de tus habilidades raciales y las ventajas comunitarias del campamento. Contar en tu grupo habitual con al menos un Peletero (por la experiencia descansada de la <em>Camp Tent</em>), un Cocinero (por el bono de XP al matar enemigos) y un Ingeniero (para reparaciones en mazmorra) garantizará una ventaja organizativa y económica constante en todo Azeroth.</p>
-</article>
-<figure class="gd-fig"><a href="img/combinaciones/13.webp" target="_blank" rel="noopener">
-  <img src="img/combinaciones/13.webp" alt="Lámina 13: Conclusión" loading="lazy"></a>
-  <figcaption>Lámina 13 de 15 · toque para ampliar</figcaption></figure></div>
+</section>
   <div class="gd-end">
     <a href="jullverse-guias.html" class="a2">← Todas las guías</a>
     <a href="jullverse-addons.html" class="a1">Addons que uso</a>
   </div>
+</section>
+
+<section class="gd-sec" id="tomo">
+  <p class="gd-label">// Aparte: las láminas</p>
+  <h2 class="gd-t">Manual de Combinaciones</h2>
+  <p style="font-size:0.95rem;color:#9E93B8;margin:-0.5rem 0 1rem;max-width:60ch">
+    El tomo visual completo, en su propio bloque. Son 15 láminas: tócalas para verlas grandes.
+  </p>
+  <div class="gd-tomo"><figure><a href="img/combinaciones/01.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/01.webp" alt="Lámina 1" loading="lazy"></a>
+  <figcaption>Lámina 1 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/02.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/02.webp" alt="Lámina 2" loading="lazy"></a>
+  <figcaption>Lámina 2 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/03.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/03.webp" alt="Lámina 3" loading="lazy"></a>
+  <figcaption>Lámina 3 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/04.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/04.webp" alt="Lámina 4" loading="lazy"></a>
+  <figcaption>Lámina 4 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/05.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/05.webp" alt="Lámina 5" loading="lazy"></a>
+  <figcaption>Lámina 5 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/06.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/06.webp" alt="Lámina 6" loading="lazy"></a>
+  <figcaption>Lámina 6 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/07.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/07.webp" alt="Lámina 7" loading="lazy"></a>
+  <figcaption>Lámina 7 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/08.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/08.webp" alt="Lámina 8" loading="lazy"></a>
+  <figcaption>Lámina 8 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/09.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/09.webp" alt="Lámina 9" loading="lazy"></a>
+  <figcaption>Lámina 9 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/10.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/10.webp" alt="Lámina 10" loading="lazy"></a>
+  <figcaption>Lámina 10 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/11.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/11.webp" alt="Lámina 11" loading="lazy"></a>
+  <figcaption>Lámina 11 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/12.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/12.webp" alt="Lámina 12" loading="lazy"></a>
+  <figcaption>Lámina 12 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/13.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/13.webp" alt="Lámina 13" loading="lazy"></a>
+  <figcaption>Lámina 13 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/14.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/14.webp" alt="Lámina 14" loading="lazy"></a>
+  <figcaption>Lámina 14 de 15</figcaption></figure>
+<figure><a href="img/combinaciones/15.webp" target="_blank" rel="noopener">
+  <img src="img/combinaciones/15.webp" alt="Lámina 15" loading="lazy"></a>
+  <figcaption>Lámina 15 de 15</figcaption></figure></div>
 </section>
 
 
@@ -1006,33 +832,13 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 
 <script>
 (function(){
-  var big=document.getElementById('gdBig'), cnt=document.getElementById('gdCount');
-  var thumbs=[].slice.call(document.querySelectorAll('.gd-thumbs img'));
-  if(!thumbs.length || !big) return;
-  var i=0;
-  function show(n){
-    i=(n+thumbs.length)%thumbs.length;
-    big.src=thumbs[i].getAttribute('src');
-    big.alt='Lámina '+(i+1);
-    cnt.textContent=(i+1)+' / '+thumbs.length;
-    thumbs.forEach(function(t,k){t.classList.toggle('on',k===i);});
-  }
-  document.getElementById('gdPrev').onclick=function(){show(i-1);};
-  document.getElementById('gdNext').onclick=function(){show(i+1);};
-  thumbs.forEach(function(t,k){t.onclick=function(){show(k);};});
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')show(i-1);
-    if(e.key==='ArrowRight')show(i+1);
-  });
-  show(0);
-
   var bar=document.querySelector('.gd-prog i');
   var anchors=[].slice.call(document.querySelectorAll('.gd-anchors a'));
   var secs=anchors.map(function(a){return document.querySelector(a.getAttribute('href'));});
   function onScroll(){
     var h=document.documentElement.scrollHeight-window.innerHeight;
     bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
-    var y=window.scrollY+160, act=0;
+    var y=window.scrollY+170, act=0;
     secs.forEach(function(s,k){ if(s && s.offsetTop<=y) act=k; });
     anchors.forEach(function(a,k){a.classList.toggle('on',k===act);});
   }

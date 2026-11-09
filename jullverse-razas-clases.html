@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <title>Guía de Razas y Clases · Jullverse</title>
 <meta name="description" content="Qué raza le saca más partido a cada clase, con tier list de PvE y PvP.">
-
-
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -544,293 +540,112 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <style>
-.gcards{max-width:1000px;margin:0 auto;padding:1.6rem 1.5rem 3rem;position:relative;z-index:1;
-  display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
-.gcard{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:var(--bg3);
-  border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
-.gcard:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gcard .cover{position:relative;aspect-ratio:16/7;overflow:hidden;background:#0A0714;
-  border-bottom:1px solid rgba(124,58,237,0.18);}
-.gcard .cover img{width:100%;height:100%;object-fit:cover;object-position:center 36%;display:block;transition:transform 0.5s;}
-.gcard:hover .cover img{transform:scale(1.04);}
-.gcard .cover::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(20,14,34,0.85) 0%,rgba(20,14,34,0.05) 40%,transparent 70%);}
-.gcard .body{padding:1rem 1.15rem 1.2rem;position:relative;z-index:2;background:var(--bg3);}
-.gcard .k{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
-.gcard h2{font-family:'Orbitron',monospace;font-size:1.06rem;font-weight:700;color:var(--text);
-  margin:0.25rem 0 0.45rem;line-height:1.25;}
-.gcard p{font-size:0.82rem;color:#8B82A6;line-height:1.55;}
-.gcard .meta{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.7rem;}
-.gcard .meta span{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  color:#B9AED4;background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.26);
-  padding:0.2rem 0.5rem;border-radius:20px;}
-.gcard .go{display:inline-block;margin-top:0.85rem;font-size:0.78rem;font-weight:700;color:var(--pink);}
-.gnote{max-width:1000px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
-.gnote div{border:1px solid rgba(124,58,237,0.22);background:rgba(124,58,237,0.07);border-radius:12px;
-  padding:0.85rem 1rem;font-size:0.84rem;color:#A99EC4;line-height:1.55;}
-.gnote b{color:#E4DCF4;}
-@media (max-width:820px){ .gcards{grid-template-columns:1fr;padding:1.2rem 1rem 2.4rem;} }
-</style>
-
-<style>
-:root{--acc:#A78BFA;}
 .gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
 .gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
-  filter:blur(34px) brightness(0.32) saturate(1.1);transform:scale(1.1);}
-.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.35),rgba(7,4,15,0.92));}
-.gd-hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:2.2rem 1.5rem 1.8rem;
-  display:flex;gap:1.6rem;align-items:center;}
-.gd-cover{width:190px;flex:0 0 190px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
-  box-shadow:0 18px 40px rgba(0,0,0,0.55);display:block;}
-.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.45rem;}
+  filter:blur(34px) brightness(0.3) saturate(1.1);transform:scale(1.1);}
+.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.4),rgba(7,4,15,0.94));}
+.gd-hero-in{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:4.6rem 1.5rem 2.2rem;
+  display:flex;gap:1.8rem;align-items:center;}
+.gd-cover{width:200px;flex:0 0 200px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 44px rgba(0,0,0,0.6);display:block;}
+.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.5rem;}
 .gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
-.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.15;}
+.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:900;line-height:1.12;}
 .gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.gd-hero p{color:#B7ACCE;font-size:0.98rem;line-height:1.6;margin-top:0.6rem;max-width:60ch;}
-.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.9rem;}
+.gd-hero p{color:#BEB3D4;font-size:1.02rem;line-height:1.6;margin-top:0.7rem;max-width:56ch;}
+.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:1rem;}
 .gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
-  background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.32);padding:0.24rem 0.6rem;border-radius:20px;}
+  background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.34);padding:0.26rem 0.62rem;border-radius:20px;}
 
-.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.92);backdrop-filter:blur(14px);
+.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.94);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);}
 .gd-prog{height:2px;background:rgba(255,255,255,0.06);}
-.gd-prog i{display:block;height:100%;width:0;background:var(--grad);transition:width 0.1s linear;}
-.gd-anchors{max-width:1080px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;
-  scrollbar-width:none;}
+.gd-prog i{display:block;height:100%;width:0;background:var(--grad);}
+.gd-anchors{max-width:1000px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;scrollbar-width:none;}
 .gd-anchors::-webkit-scrollbar{display:none;}
 .gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
   padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
-.gd-anchors a:hover{color:#fff;background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.35);}
-.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.28);border-color:rgba(124,58,237,0.5);}
+.gd-anchors a:hover,.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.26);border-color:rgba(124,58,237,0.45);}
 
-.gd-sec{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 0.4rem;position:relative;z-index:1;}
-.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.7rem;}
-.gd-sec h2.gd-t{font-family:'Orbitron',monospace;font-size:1.18rem;font-weight:700;margin-bottom:1rem;}
+.gd-sec{max-width:1000px;margin:0 auto;padding:2.4rem 1.5rem 0;position:relative;z-index:1;}
+.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.5rem;}
+.gd-t{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;margin-bottom:1.1rem;}
 
-.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:0.8rem;}
-.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.16),rgba(20,14,34,0.9));
-  border:1px solid rgba(124,58,237,0.28);border-radius:14px;padding:1rem 1.05rem;}
+.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.8rem;margin-bottom:0.4rem;}
+.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.18),rgba(20,14,34,0.92));
+  border:1px solid rgba(124,58,237,0.3);border-radius:14px;padding:1rem 1.05rem;}
 .gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
-  text-transform:uppercase;color:#E6B0D6;margin:0.55rem 0 0.3rem;}
-.gd-g p{font-size:0.86rem;color:#C9BFDC;line-height:1.5;}
+  text-transform:uppercase;color:#E6B0D6;margin:0.6rem 0 0.35rem;}
+.gd-g p{font-size:0.9rem;color:#CFC5E2;line-height:1.55;}
 .gd-g .em{font-size:1.5rem;line-height:1;}
 
-.gd-flip{display:grid;grid-template-columns:1fr 168px;gap:0.7rem;align-items:start;}
-.gd-stage{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
-  background:#0A0714;box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gd-stage img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-stage button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);background:rgba(7,4,15,0.72);color:#fff;font-size:1.1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.gd-stage button:hover{background:rgba(124,58,237,0.85);border-color:transparent;}
-.gd-stage .prev{left:0.6rem;} .gd-stage .next{right:0.6rem;}
-.gd-count{position:absolute;right:0.6rem;bottom:0.55rem;font-size:0.72rem;font-weight:700;color:#fff;
-  background:rgba(7,4,15,0.75);padding:0.2rem 0.55rem;border-radius:20px;border:1px solid rgba(255,255,255,0.14);}
-.gd-thumbs{display:grid;grid-auto-rows:min-content;gap:0.35rem;max-height:430px;overflow-y:auto;padding-right:2px;}
-.gd-thumbs img{width:100%;border-radius:8px;cursor:pointer;opacity:0.55;border:1px solid transparent;
-  display:block;transition:opacity 0.15s;}
-.gd-thumbs img:hover{opacity:0.85;}
-.gd-thumbs img.on{opacity:1;border-color:var(--pink);}
+.gd-intro{margin-top:1.6rem;}
+.gd-intro p{font-size:1.1rem;line-height:1.85;color:#CDC4DF;margin:0 0 1.1rem;max-width:74ch;}
 
-.gd-chapters{display:grid;gap:1.1rem;margin-top:0.4rem;}
-.gd-ch{background:rgba(14,10,26,0.72);border:1px solid var(--border);border-radius:16px;
-  padding:1.5rem 1.6rem;position:relative;overflow:hidden;scroll-margin-top:120px;}
-.gd-ch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0.85;}
-.gd-ch header{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.9rem;}
-.gd-ch .num{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:900;color:#fff;
-  background:var(--grad);border-radius:8px;padding:0.3rem 0.5rem;line-height:1;flex:0 0 auto;margin-top:0.2rem;}
-.gd-ch h2{font-family:'Orbitron',monospace;font-size:1.24rem;font-weight:700;line-height:1.25;color:#F2EDFC;}
-.gd-ch p{font-size:1.02rem;line-height:1.85;color:#CDC4DF;margin:0 0 1rem;max-width:74ch;}
-.gd-ch h3{font-family:'Orbitron',monospace;font-size:0.95rem;color:#E7DEF8;margin:1.5rem 0 0.6rem;
-  padding-left:0.7rem;border-left:2px solid rgba(236,72,153,0.55);line-height:1.3;}
-.gd-ch h3 i{font-style:normal;color:var(--p2);margin-right:0.45rem;font-size:0.72rem;}
-.gd-ch h4{font-size:0.98rem;font-weight:700;color:#D9CFF0;margin:1.1rem 0 0.45rem;}
-.gd-ul,.gd-ol{margin:0 0 1.1rem;padding-left:0;}
-.gd-ul{list-style:none;}
-.gd-ul li{position:relative;padding-left:1.3rem;font-size:1rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
-.gd-ul li::before{content:'';position:absolute;left:0.2rem;top:0.62em;width:6px;height:6px;border-radius:50%;
+.cap{margin:0 0 2.6rem;padding-top:0.4rem;}
+.cap-head{display:flex;gap:0.9rem;align-items:center;margin-bottom:1.1rem;padding-bottom:0.7rem;
+  border-bottom:1px solid rgba(124,58,237,0.22);}
+.cap-head .n{font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:900;color:#fff;
+  background:var(--grad);border-radius:9px;padding:0.34rem 0.55rem;line-height:1;flex:0 0 auto;}
+.cap-head h2{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;line-height:1.22;color:#F4EFFD;}
+.cap p{font-size:1.12rem;line-height:1.88;color:#CFC6E1;margin:0 0 1.15rem;max-width:74ch;}
+.cap h3{font-family:'Orbitron',monospace;font-size:1.06rem;color:#F0E7FF;margin:2rem 0 0.8rem;
+  display:flex;align-items:center;gap:0.6rem;line-height:1.3;}
+.cap h3::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--pink);flex:0 0 auto;
+  box-shadow:0 0 10px rgba(236,72,153,0.6);}
+.cap h3 i{font-style:normal;color:var(--p2);font-size:0.74rem;letter-spacing:0.08em;}
+.cap h4{font-size:1.04rem;font-weight:700;color:#DCD2F0;margin:1.3rem 0 0.5rem;}
+.cap strong{color:#F8F3FF;font-weight:700;}
+.cap em{color:#CFB8F9;font-style:italic;}
+
+.gd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0.7rem;margin:0 0 1.3rem;}
+.gd-card{background:rgba(255,255,255,0.026);border:1px solid rgba(124,58,237,0.2);border-radius:12px;
+  padding:0.9rem 1rem;}
+.gd-card b{display:block;color:#F4EFFF;font-size:1rem;font-weight:700;line-height:1.35;margin-bottom:0.35rem;}
+.gd-card span{display:block;color:#BEB3D2;font-size:0.97rem;line-height:1.65;}
+.gd-ul{margin:0 0 1.3rem;padding-left:0;list-style:none;}
+.gd-ul li{position:relative;padding-left:1.35rem;font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
+.gd-ul li::before{content:'';position:absolute;left:0.25rem;top:0.68em;width:6px;height:6px;border-radius:50%;
   background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
-.gd-ol{padding-left:1.35rem;}
-.gd-ol li{font-size:1rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
+.gd-ol{margin:0 0 1.3rem;padding-left:1.4rem;}
+.gd-ol li{font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
 .gd-ol li::marker{color:var(--pink);font-weight:700;}
-.gd-ch strong{color:#F6F1FF;font-weight:700;}
-.gd-ch em{color:#CDB6F8;font-style:italic;}
-.gd-tabla{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
-.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.9rem;min-width:480px;}
-.gd-tabla th{background:rgba(124,58,237,0.2);color:#F0E8FF;text-align:left;padding:0.7rem 0.8rem;
-  font-size:0.76rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
-.gd-tabla td{padding:0.65rem 0.8rem;color:#C6BCDA;border-bottom:1px solid rgba(255,255,255,0.045);
-  vertical-align:top;line-height:1.55;}
+
+.gd-tabla{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
+.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.97rem;min-width:480px;}
+.gd-tabla th{background:rgba(124,58,237,0.22);color:#F2EAFF;text-align:left;padding:0.75rem 0.85rem;
+  font-size:0.78rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
+.gd-tabla td{padding:0.7rem 0.85rem;color:#C9BFDC;border-bottom:1px solid rgba(255,255,255,0.045);
+  vertical-align:top;line-height:1.6;}
 .gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
 .gd-tabla tr:last-child td{border-bottom:none;}
-.gd-flow{display:grid;gap:0.4rem;margin:0 0 1.2rem;}
-.gd-paso{border-left:2px solid rgba(124,58,237,0.5);padding:0.15rem 0 0.15rem 0.85rem;font-size:0.95rem;
-  color:#C4BAD8;line-height:1.5;}
-.gd-paso span{color:#F0E8FF;font-weight:700;}
+
+.gd-flow{display:grid;gap:0.45rem;margin:0 0 1.3rem;}
+.gd-paso{border-left:2px solid rgba(124,58,237,0.55);padding:0.2rem 0 0.2rem 0.9rem;font-size:1.05rem;
+  color:#C8BEDB;line-height:1.55;}
+.gd-paso span{color:#F2EAFF;font-weight:700;}
 .gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
-  border-radius:10px;padding:0.85rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
-.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.86rem;color:#DCD2FF;line-height:1.65;white-space:pre;}
-.gd-fig{margin:0.2rem 0 0.9rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
-.gd-fig a{display:block;}
-.gd-fig img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-fig figcaption{font-size:0.68rem;color:#6A5F82;padding:0.4rem 0.85rem;border-top:1px solid rgba(255,255,255,0.05);}
-.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.4rem 0 0;}
-.gd-end a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.6rem 1.05rem;border-radius:9px;}
+  border-radius:10px;padding:0.9rem 1.05rem;margin:0 0 1.3rem;overflow-x:auto;}
+.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.9rem;color:#DED4FF;line-height:1.7;white-space:pre;}
+
+.gd-tomo{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0.8rem;margin-top:0.6rem;}
+.gd-tomo figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
+.gd-tomo a{display:block;}
+.gd-tomo img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;transition:filter 0.2s;}
+.gd-tomo a:hover img{filter:brightness(1.08);}
+.gd-tomo figcaption{font-size:0.66rem;color:#6A5F82;padding:0.4rem 0.7rem;border-top:1px solid rgba(255,255,255,0.05);}
+.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:2rem 0 0;}
+.gd-end a{font-size:0.82rem;font-weight:700;text-decoration:none;padding:0.65rem 1.1rem;border-radius:9px;}
 .gd-end .a1{background:var(--grad);color:#fff;}
 .gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
 .gd-end .a2:hover{color:#fff;border-color:var(--p);}
 @media (max-width:900px){
-  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.6rem 1rem 1.4rem;}
-  .gd-cover{width:130px;flex:none;}
-  .gd-flip{grid-template-columns:1fr;}
-  .gd-thumbs{display:flex;overflow-x:auto;max-height:none;gap:0.35rem;}
-  .gd-thumbs img{width:104px;flex:none;}
-  .gd-sec{padding:1.5rem 1rem 0.3rem;}
-  .gd-ch{padding:1.15rem 1.05rem;border-radius:14px;}
-  .gd-ch p{font-size:1rem;}
-  .gd-anchors{padding:0.5rem 1rem;}
-}
-</style>
-
-<style>
-.gcards{max-width:1080px;margin:0 auto;padding:1.6rem 1.5rem 3rem;position:relative;z-index:1;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.1rem;}
-.gcard{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:var(--bg3);
-  border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
-.gcard:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gcard .cover{position:relative;aspect-ratio:16/8;overflow:hidden;background:#0A0714;border-bottom:1px solid rgba(124,58,237,0.18);}
-.gcard .cover img{width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block;transition:transform 0.5s;}
-.gcard:hover .cover img{transform:scale(1.04);}
-.gcard .body{padding:1rem 1.15rem 1.2rem;}
-.gcard .k{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
-.gcard h2{font-family:'Orbitron',monospace;font-size:1.02rem;font-weight:700;color:var(--text);margin:0.25rem 0 0.45rem;line-height:1.25;}
-.gcard p{font-size:0.84rem;color:#9187AB;line-height:1.55;}
-.gcard .meta{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.7rem;}
-.gcard .meta span{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B9AED4;
-  background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.26);padding:0.2rem 0.5rem;border-radius:20px;}
-.gcard .go{display:inline-block;margin-top:0.85rem;font-size:0.78rem;font-weight:700;color:var(--pink);}
-.gnote{max-width:1080px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
-.gnote div{border:1px solid rgba(124,58,237,0.22);background:rgba(124,58,237,0.07);border-radius:12px;
-  padding:0.85rem 1rem;font-size:0.86rem;color:#A99EC4;line-height:1.6;}
-.gnote b{color:#E4DCF4;}
-@media (max-width:820px){ .gcards{padding:1.2rem 1rem 2.4rem;} }
-</style>
-<style>
-:root{--acc:#A78BFA;}
-.gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
-.gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
-  filter:blur(34px) brightness(0.32) saturate(1.1);transform:scale(1.1);}
-.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.35),rgba(7,4,15,0.92));}
-.gd-hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:2.2rem 1.5rem 1.8rem;
-  display:flex;gap:1.6rem;align-items:center;}
-.gd-cover{width:190px;flex:0 0 190px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
-  box-shadow:0 18px 40px rgba(0,0,0,0.55);display:block;}
-.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.45rem;}
-.gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
-.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.15;}
-.gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.gd-hero p{color:#B7ACCE;font-size:0.98rem;line-height:1.6;margin-top:0.6rem;max-width:60ch;}
-.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.9rem;}
-.gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
-  background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.32);padding:0.24rem 0.6rem;border-radius:20px;}
-
-.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);}
-.gd-prog{height:2px;background:rgba(255,255,255,0.06);}
-.gd-prog i{display:block;height:100%;width:0;background:var(--grad);transition:width 0.1s linear;}
-.gd-anchors{max-width:1080px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;
-  scrollbar-width:none;}
-.gd-anchors::-webkit-scrollbar{display:none;}
-.gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
-  padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
-.gd-anchors a:hover{color:#fff;background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.35);}
-.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.28);border-color:rgba(124,58,237,0.5);}
-
-.gd-sec{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 0.4rem;position:relative;z-index:1;}
-.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.7rem;}
-.gd-sec h2.gd-t{font-family:'Orbitron',monospace;font-size:1.18rem;font-weight:700;margin-bottom:1rem;}
-
-.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:0.8rem;}
-.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.16),rgba(20,14,34,0.9));
-  border:1px solid rgba(124,58,237,0.28);border-radius:14px;padding:1rem 1.05rem;}
-.gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
-  text-transform:uppercase;color:#E6B0D6;margin:0.55rem 0 0.3rem;}
-.gd-g p{font-size:0.86rem;color:#C9BFDC;line-height:1.5;}
-.gd-g .em{font-size:1.5rem;line-height:1;}
-
-.gd-flip{display:grid;grid-template-columns:1fr 168px;gap:0.7rem;align-items:start;}
-.gd-stage{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
-  background:#0A0714;box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-.gd-stage img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-stage button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);background:rgba(7,4,15,0.72);color:#fff;font-size:1.1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.gd-stage button:hover{background:rgba(124,58,237,0.85);border-color:transparent;}
-.gd-stage .prev{left:0.6rem;} .gd-stage .next{right:0.6rem;}
-.gd-count{position:absolute;right:0.6rem;bottom:0.55rem;font-size:0.72rem;font-weight:700;color:#fff;
-  background:rgba(7,4,15,0.75);padding:0.2rem 0.55rem;border-radius:20px;border:1px solid rgba(255,255,255,0.14);}
-.gd-thumbs{display:grid;grid-auto-rows:min-content;gap:0.35rem;max-height:430px;overflow-y:auto;padding-right:2px;}
-.gd-thumbs img{width:100%;border-radius:8px;cursor:pointer;opacity:0.55;border:1px solid transparent;
-  display:block;transition:opacity 0.15s;}
-.gd-thumbs img:hover{opacity:0.85;}
-.gd-thumbs img.on{opacity:1;border-color:var(--pink);}
-
-.gd-chapters{display:grid;gap:1.1rem;margin-top:0.4rem;}
-.gd-ch{background:rgba(14,10,26,0.72);border:1px solid var(--border);border-radius:16px;
-  padding:1.5rem 1.6rem;position:relative;overflow:hidden;scroll-margin-top:120px;}
-.gd-ch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0.85;}
-.gd-ch header{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.9rem;}
-.gd-ch .num{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:900;color:#fff;
-  background:var(--grad);border-radius:8px;padding:0.3rem 0.5rem;line-height:1;flex:0 0 auto;margin-top:0.2rem;}
-.gd-ch h2{font-family:'Orbitron',monospace;font-size:1.34rem;font-weight:700;line-height:1.25;color:#F2EDFC;}
-.gd-ch p{font-size:1.12rem;line-height:1.85;color:#CDC4DF;margin:0 0 1rem;max-width:74ch;}
-.gd-ch h3{font-family:'Orbitron',monospace;font-size:1.04rem;color:#E7DEF8;margin:1.5rem 0 0.6rem;
-  padding-left:0.7rem;border-left:2px solid rgba(236,72,153,0.55);line-height:1.3;}
-.gd-ch h3 i{font-style:normal;color:var(--p2);margin-right:0.45rem;font-size:0.72rem;}
-.gd-ch h4{font-size:0.98rem;font-weight:700;color:#D9CFF0;margin:1.1rem 0 0.45rem;}
-.gd-ul,.gd-ol{margin:0 0 1.1rem;padding-left:0;}
-.gd-ul{list-style:none;}
-.gd-ul li{position:relative;padding-left:1.3rem;font-size:1.08rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
-.gd-ul li::before{content:'';position:absolute;left:0.2rem;top:0.62em;width:6px;height:6px;border-radius:50%;
-  background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
-.gd-ol{padding-left:1.35rem;}
-.gd-ol li{font-size:1.08rem;line-height:1.75;color:#C9C0DC;margin-bottom:0.55rem;}
-.gd-ol li::marker{color:var(--pink);font-weight:700;}
-.gd-ch strong{color:#F6F1FF;font-weight:700;}
-.gd-ch em{color:#CDB6F8;font-style:italic;}
-.gd-tabla{overflow-x:auto;margin:0 0 1.2rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
-.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.95rem;min-width:480px;}
-.gd-tabla th{background:rgba(124,58,237,0.2);color:#F0E8FF;text-align:left;padding:0.7rem 0.8rem;
-  font-size:0.76rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
-.gd-tabla td{padding:0.65rem 0.8rem;color:#C6BCDA;border-bottom:1px solid rgba(255,255,255,0.045);
-  vertical-align:top;line-height:1.55;}
-.gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
-.gd-tabla tr:last-child td{border-bottom:none;}
-.gd-flow{display:grid;gap:0.4rem;margin:0 0 1.2rem;}
-.gd-paso{border-left:2px solid rgba(124,58,237,0.5);padding:0.15rem 0 0.15rem 0.85rem;font-size:1.02rem;
-  color:#C4BAD8;line-height:1.5;}
-.gd-paso span{color:#F0E8FF;font-weight:700;}
-.gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
-  border-radius:10px;padding:0.85rem 1rem;margin:0 0 1.2rem;overflow-x:auto;}
-.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.86rem;color:#DCD2FF;line-height:1.65;white-space:pre;}
-.gd-fig{margin:0.2rem 0 0.9rem;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
-.gd-fig a{display:block;}
-.gd-fig img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;}
-.gd-fig figcaption{font-size:0.68rem;color:#6A5F82;padding:0.4rem 0.85rem;border-top:1px solid rgba(255,255,255,0.05);}
-.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.4rem 0 0;}
-.gd-end a{font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.6rem 1.05rem;border-radius:9px;}
-.gd-end .a1{background:var(--grad);color:#fff;}
-.gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
-.gd-end .a2:hover{color:#fff;border-color:var(--p);}
-@media (max-width:900px){
-  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.6rem 1rem 1.4rem;}
-  .gd-cover{width:130px;flex:none;}
-  .gd-flip{grid-template-columns:1fr;}
-  .gd-thumbs{display:flex;overflow-x:auto;max-height:none;gap:0.35rem;}
-  .gd-thumbs img{width:104px;flex:none;}
-  .gd-sec{padding:1.5rem 1rem 0.3rem;}
-  .gd-ch{padding:1.15rem 1.05rem;border-radius:14px;}
-  .gd-ch p{font-size:1rem;}
+  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1.2rem;padding:3.9rem 1rem 1.6rem;}
+  .gd-cover{width:140px;flex:none;}
+  .gd-sec{padding:1.7rem 1rem 0;}
+  .cap p{font-size:1.06rem;}
+  .cap-head h2{font-size:1.16rem;}
+  .gd-tomo{grid-template-columns:1fr;}
   .gd-anchors{padding:0.5rem 1rem;}
 }
 </style>
@@ -852,7 +667,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <header class="gd-hero">
   <div class="gd-hero-bg" style="background-image:url('img/meta/01.webp')"></div>
   <div class="gd-hero-in">
-    <img class="gd-cover" src="img/meta/01.webp" alt="Portada de la guía">
+    <img class="gd-cover" src="img/meta/01.webp" alt="Portada">
     <div>
       <div class="crumb"><a href="jullverse.html">Jullverse</a> / <a href="jullverse-guias.html">Guías</a> / Razas y clases</div>
       <h1>Razas y <span>Clases</span></h1>
@@ -864,7 +679,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 
 <div class="gd-bar">
   <div class="gd-prog"><i></i></div>
-  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#laminas">Láminas</a><a href="#cap1">1. Contexto de WoW Forever y Rediseño de </a><a href="#cap2">2. Análisis Detallado por Raza: Raciales </a><a href="#cap3">3. Matriz de la Mejor Raza para Cada Clas</a><a href="#cap4">4. Tier Lists Raciales por Modo de Juego</a><a href="#cap5">5. Recomendaciones Estratégicas y Conside</a></div>
+  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#cap1">1. Contexto de WoW Forever y Rediseño d</a><a href="#cap2">2. Análisis Detallado por Raza: Raciale</a><a href="#cap3">3. Matriz de la Mejor Raza para Cada Cl</a><a href="#cap4">4. Tier Lists Raciales por Modo de Jueg</a><a href="#cap5">5. Recomendaciones Estratégicas y Consi</a><a href="#tomo">El tomo</a></div>
 </div>
 
 <section class="gd-sec" id="vistazo">
@@ -877,116 +692,122 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
   
 </section>
 
-<section class="gd-sec" id="laminas">
-  <p class="gd-label">// El tomo en láminas</p>
-  <h2 class="gd-t">Pásalas con las flechas</h2>
-  <div class="gd-flip">
-    <div class="gd-stage">
-      <img id="gdBig" src="img/meta/01.webp" alt="Lámina 1" class="gd-big">
-      <button class="prev" id="gdPrev" aria-label="Anterior">‹</button>
-      <button class="next" id="gdNext" aria-label="Siguiente">›</button>
-      <span class="gd-count" id="gdCount">1 / 12</span>
-    </div>
-    <div class="gd-thumbs"><img src="img/meta/01.webp" alt="Lámina 1" loading="lazy">
-<img src="img/meta/02.webp" alt="Lámina 2" loading="lazy">
-<img src="img/meta/03.webp" alt="Lámina 3" loading="lazy">
-<img src="img/meta/04.webp" alt="Lámina 4" loading="lazy">
-<img src="img/meta/05.webp" alt="Lámina 5" loading="lazy">
-<img src="img/meta/06.webp" alt="Lámina 6" loading="lazy">
-<img src="img/meta/07.webp" alt="Lámina 7" loading="lazy">
-<img src="img/meta/08.webp" alt="Lámina 8" loading="lazy">
-<img src="img/meta/09.webp" alt="Lámina 9" loading="lazy">
-<img src="img/meta/10.webp" alt="Lámina 10" loading="lazy">
-<img src="img/meta/11.webp" alt="Lámina 11" loading="lazy">
-<img src="img/meta/12.webp" alt="Lámina 12" loading="lazy"></div>
-  </div>
-</section>
-
 <section class="gd-sec">
-  <p class="gd-label">// Capítulo a capítulo</p>
-  <h2 class="gd-t">La guía escrita</h2>
-  <div class="gd-chapters"><article class="gd-ch" id="cap1">
-  <header><span class="num">01</span><h2>Contexto de WoW Forever y Rediseño de Habilidades Raciales</h2></header>
-  <div class="gd-tabla"><table><thead><tr><th>En World of Warcraft: Forever</th><th>la elección de raza ha experimentado una transformación profunda respecto al juego clásico tradicional. El equipo de desarrollo ha eliminado completamente las especializaciones de armas (como la pericia con espadas o hachas)</th><th>sustituyéndolas por modificadores universales de crítico y golpe que benefician a cualquier tipo de armamento o hechizo.</th></tr></thead><tbody><tr><td>Cada raza dispone de una estructura estandarizada compuesta por dos habilidades activas de uso directo y dos pasivas permanentes. Además</td><td>el juego introduce seis nuevas combinaciones raza-clase (Humano Cazador</td><td>Gnomo Sacerdote</td><td>Enano Chamán en la Alianza; Orco Mago</td><td>Troll Brujo y No-muerto Paladín en la Horda) y añade a los Cielonatos (Skyborne) como una nueva raza jugable dividida en dos vertientes faccionales: Alto Orden (Alianza) y Forjador de Vientos (Horda).</td></tr><tr><td>A diferencia del Classic tradicional donde las raciales marcaban jerarquías rígidas e insalvables</td><td>en WoW Forever las diferencias en rendimiento bruto de DPS o sanación rondan entre el 1% y el 3%. No obstante</td><td>la utilidad defensiva</td><td>el control de masas y las ventanas de daño en ráfaga convierten la sinergia entre raza y clase en un factor determinante para exprimir el máximo potencial en bandas de nivel 60</td><td>arenas de PvP y en el proceso de subida de nivel.</td></tr></tbody></table></div>
-</article>
-<figure class="gd-fig"><a href="img/meta/02.webp" target="_blank" rel="noopener">
-  <img src="img/meta/02.webp" alt="Lámina 2: Contexto de WoW Forever y Rediseño de Habilidades Raciales" loading="lazy"></a>
-  <figcaption>Lámina 2 de 12 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap2">
-  <header><span class="num">02</span><h2>Análisis Detallado por Raza: Raciales y Mejores Clases</h2></header>
+  <p class="gd-label">// La guía escrita</p>
+  <h2 class="gd-t">Capítulo a capítulo</h2>
+  <section class="cap" id="cap1">
+  <div class="cap-head"><span class="n">01</span><h2>Contexto de WoW Forever y Rediseño de Habilidades Raciales</h2></div>
+  <p>En World of Warcraft: Forever, la elección de raza ha experimentado una transformación profunda respecto al juego clásico tradicional. El equipo de desarrollo ha eliminado completamente las especializaciones de armas (como la pericia con espadas o hachas), sustituyéndolas por modificadores universales de crítico y golpe que benefician a cualquier tipo de armamento o hechizo.</p>
+<p>Cada raza dispone de una estructura estandarizada compuesta por dos habilidades activas de uso directo y dos pasivas permanentes. Además, el juego introduce seis nuevas combinaciones raza-clase (Humano Cazador, Gnomo Sacerdote, Enano Chamán en la Alianza; Orco Mago, Troll Brujo y No-muerto Paladín en la Horda) y añade a los Cielonatos (Skyborne) como una nueva raza jugable dividida en dos vertientes faccionales: Alto Orden (Alianza) y Forjador de Vientos (Horda).</p>
+<p>A diferencia del Classic tradicional donde las raciales marcaban jerarquías rígidas e insalvables, en WoW Forever las diferencias en rendimiento bruto de DPS o sanación rondan entre el 1% y el 3%. No obstante, la utilidad defensiva, el control de masas y las ventanas de daño en ráfaga convierten la sinergia entre raza y clase en un factor determinante para exprimir el máximo potencial en bandas de nivel 60, arenas de PvP y en el proceso de subida de nivel.</p>
+</section>
+<section class="cap" id="cap2">
+  <div class="cap-head"><span class="n">02</span><h2>Análisis Detallado por Raza: Raciales y Mejores Clases</h2></div>
   <h3>Razas de la Alianza</h3>
 <h4><em>Humano (Human)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Paladín, Cazador (nueva combinación), Pícaro, Sacerdote, Mago, Brujo.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Ruthless (Pasiva):</strong> Concede un 1% adicional de probabilidad de golpe crítico a todos los ataques físicos y hechizos sin importar el arma equipada.</li><li><strong>The Human Spirit (Pasiva):</strong> Incrementa el Espíritu total del personaje en un 10%, lo que beneficia directamente la regeneración y habilidades como <em>Life Tap</em> del Brujo.</li><li><strong>Perception (Activa):</strong> Aumenta drásticamente la detección de sigilo durante 20 segundos.</li><li><strong>Will to Survive (Activa):</strong> Rompe inmediatamente cualquier efecto de aturdimiento (Stun) con un tiempo de reutilización de 3 minutos.</li><li><strong>Habilidades Únicas de Sacerdote:</strong> <em>Divine Grace</em> (curación instantánea externa que limpia Alma debilitada) y <em>Feedback</em>.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Brujo (Warlock):</strong> Máxima sinergia en PvE por el crítico universal y la potenciación de <em>Life Tap</em> mediante el 10% de Espíritu.</li><li><strong>Paladín (Paladin):</strong> Excelente en la rama Sagrado por el bono de Espíritu y la probabilidad de crítico en hechizos curativos.</li><li><strong>Pícaro, Guerrero y Sacerdote (PvP):</strong> Opción de nivel S en PvP gracias al liberador de aturdimientos (<em>Will to Survive</em>) y la detección de sigilo contra otros Pícaros y Druidas.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Paladín, Cazador (nueva combinación), Pícaro, Sacerdote, Mago, Brujo.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Ruthless (Pasiva):</b><span>Concede un 1% adicional de probabilidad de golpe crítico a todos los ataques físicos y hechizos sin importar el arma equipada.</span></div><div class="gd-card"><b>The Human Spirit (Pasiva):</b><span>Incrementa el Espíritu total del personaje en un 10%, lo que beneficia directamente la regeneración y habilidades como <em>Life Tap</em> del Brujo.</span></div><div class="gd-card"><b>Perception (Activa):</b><span>Aumenta drásticamente la detección de sigilo durante 20 segundos.</span></div><div class="gd-card"><b>Will to Survive (Activa):</b><span>Rompe inmediatamente cualquier efecto de aturdimiento (Stun) con un tiempo de reutilización de 3 minutos.</span></div><div class="gd-card"><b>Habilidades Únicas de Sacerdote:</b><span><em>Divine Grace</em> (curación instantánea externa que limpia Alma debilitada) y <em>Feedback</em>.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Brujo (Warlock):</b><span>Máxima sinergia en PvE por el crítico universal y la potenciación de <em>Life Tap</em> mediante el 10% de Espíritu.</span></div><div class="gd-card"><b>Paladín (Paladin):</b><span>Excelente en la rama Sagrado por el bono de Espíritu y la probabilidad de crítico en hechizos curativos.</span></div><div class="gd-card"><b>Pícaro, Guerrero y Sacerdote (PvP):</b><span>Opción de nivel S en PvP gracias al liberador de aturdimientos (<em>Will to Survive</em>) y la detección de sigilo contra otros Pícaros y Druidas.</span></div></div>
 <h4><em>Enano (Dwarf)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Paladín, Cazador, Pícaro, Sacerdote, Chamán (única opción de la Alianza).</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Artisan's Precision (Pasiva):</strong> Aumenta un 1% la probabilidad de golpe (Hit) con ataques y hechizos.</li><li><strong>Big Game Hunter (Pasiva):</strong> Incrementa el daño infligido contra bestias en un 5%.</li><li><strong>Stoneform (Activa):</strong> Reduce el daño físico recibido un 10% durante 8 segundos y elimina efectos de sangrado, veneno y enfermedad.</li><li><strong>Find Treasure (Pasiva):</strong> Permite rastrear cofres e incrementa el botín obtenido de los mismos.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Chamán (Shaman):</strong> La única opción jugable para Chamán en la Alianza, ofreciendo una sólida cobertura defensiva y 1% de golpe universal.</li><li><strong>Guerrero / Paladín (Tanque):</strong> La mejor raza defensiva de la Alianza para tanquear en bandas y mazmorras gracias a <em>Stoneform</em>.</li><li><strong>Cazador y Pícaro (PvP y Leveo):</strong> Altamente efectivo en PvP contra clases físicas y durante el leveo en zonas dominadas por bestias.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Paladín, Cazador, Pícaro, Sacerdote, Chamán (única opción de la Alianza).</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Artisan's Precision (Pasiva):</b><span>Aumenta un 1% la probabilidad de golpe (Hit) con ataques y hechizos.</span></div><div class="gd-card"><b>Big Game Hunter (Pasiva):</b><span>Incrementa el daño infligido contra bestias en un 5%.</span></div><div class="gd-card"><b>Stoneform (Activa):</b><span>Reduce el daño físico recibido un 10% durante 8 segundos y elimina efectos de sangrado, veneno y enfermedad.</span></div><div class="gd-card"><b>Find Treasure (Pasiva):</b><span>Permite rastrear cofres e incrementa el botín obtenido de los mismos.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Chamán (Shaman):</b><span>La única opción jugable para Chamán en la Alianza, ofreciendo una sólida cobertura defensiva y 1% de golpe universal.</span></div><div class="gd-card"><b>Guerrero / Paladín (Tanque):</b><span>La mejor raza defensiva de la Alianza para tanquear en bandas y mazmorras gracias a <em>Stoneform</em>.</span></div><div class="gd-card"><b>Cazador y Pícaro (PvP y Leveo):</b><span>Altamente efectivo en PvP contra clases físicas y durante el leveo en zonas dominadas por bestias.</span></div></div>
 <h4><em>Elfo de la noche (Night Elf)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Cazador, Pícaro, Sacerdote, Druida.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Elune's Light (Activa):</strong> Concede un 10% de probabilidad de golpe crítico a todos los hechizos y ataques durante 15 segundos (tiempo de reutilización de 3 minutos).</li><li><strong>Quickness (Pasiva):</strong> Incrementa la velocidad de movimiento pasiva en un 2% (acumulable con otros efectos de velocidad) y aumenta la probabilidad de esquivar.</li><li><strong>Shadowmeld (Activa):</strong> Permite entrar en sigilo en posición estática y reiniciar o reducir la amenaza acumulada contra monstruos.</li><li><strong>Wisp Spirit (Pasiva):</strong> Aumenta la velocidad en forma de espíritu un 75% al morir, acelerando las carreras de cuerpo.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Cazador (Hunter):</strong> La opción superior de la Alianza en PvE y PvP. Las mascotas heredan la probabilidad de crítico del personaje, multiplicando el impacto de <em>Elune's Light</em>.</li><li><strong>Pícaro (Rogue) y Guerrero (Warrior):</strong> Lideran las simulaciones de DPS en banda al alinear los 15 segundos de 10% de crítico con sus enfriamientos ofensivos principales.</li><li><strong>Druida (Druid):</strong> Elección óptima para las especializaciones Feral DPS y Oso Tanque en la Alianza.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Cazador, Pícaro, Sacerdote, Druida.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Elune's Light (Activa):</b><span>Concede un 10% de probabilidad de golpe crítico a todos los hechizos y ataques durante 15 segundos (tiempo de reutilización de 3 minutos).</span></div><div class="gd-card"><b>Quickness (Pasiva):</b><span>Incrementa la velocidad de movimiento pasiva en un 2% (acumulable con otros efectos de velocidad) y aumenta la probabilidad de esquivar.</span></div><div class="gd-card"><b>Shadowmeld (Activa):</b><span>Permite entrar en sigilo en posición estática y reiniciar o reducir la amenaza acumulada contra monstruos.</span></div><div class="gd-card"><b>Wisp Spirit (Pasiva):</b><span>Aumenta la velocidad en forma de espíritu un 75% al morir, acelerando las carreras de cuerpo.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Cazador (Hunter):</b><span>La opción superior de la Alianza en PvE y PvP. Las mascotas heredan la probabilidad de crítico del personaje, multiplicando el impacto de <em>Elune's Light</em>.</span></div><div class="gd-card"><b>Pícaro (Rogue) y Guerrero (Warrior):</b><span>Lideran las simulaciones de DPS en banda al alinear los 15 segundos de 10% de crítico con sus enfriamientos ofensivos principales.</span></div><div class="gd-card"><b>Druida (Druid):</b><span>Elección óptima para las especializaciones Feral DPS y Oso Tanque en la Alianza.</span></div></div>
 <h4><em>Gnomo (Gnome)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Pícaro, Sacerdote (nueva combinación), Mago, Brujo.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Eureka! (Activa):</strong> Ventana de 8 segundos donde las habilidades lanzadas infligen un 10% más de daño/curación y reducen su coste de recursos en un 10% (tiempo de reutilización de 2 minutos).</li><li><strong>Expansive Mind (Pasiva):</strong> Incrementa en un 5% el recurso máximo del personaje (Maná, Energía o Ira).</li><li><strong>Escape Artist (Activa):</strong> Rompe efectos de inmovilización y frenado de movimiento con 3 segundos de inmunidad posterior.</li><li><strong>Engineering Specialization (Pasiva):</strong> Reduce en un 20% la probabilidad de fallo o retroceso de artilugios de ingeniería.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Mago (Mage):</strong> La mejor raza de la Alianza para Mago en PvE y PvP debido a que la mayoría de sus ataques directos aprovechan el 10% de daño de <em>Eureka!</em> y el 5% de maná extra.</li><li><strong>Sacerdote (Priest):</strong> Excelente en PvE para Disciplina y Sagrado gracias al aumento de reserva de maná y la potenciación de <em>Power Word: Shield</em>.</li><li><strong>Pícaro (Rogue - PvP):</strong> Sobresale al otorgar más Energía máxima y librarse de raíces defensivas con <em>Escape Artist</em>.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Pícaro, Sacerdote (nueva combinación), Mago, Brujo.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Eureka! (Activa):</b><span>Ventana de 8 segundos donde las habilidades lanzadas infligen un 10% más de daño/curación y reducen su coste de recursos en un 10% (tiempo de reutilización de 2 minutos).</span></div><div class="gd-card"><b>Expansive Mind (Pasiva):</b><span>Incrementa en un 5% el recurso máximo del personaje (Maná, Energía o Ira).</span></div><div class="gd-card"><b>Escape Artist (Activa):</b><span>Rompe efectos de inmovilización y frenado de movimiento con 3 segundos de inmunidad posterior.</span></div><div class="gd-card"><b>Engineering Specialization (Pasiva):</b><span>Reduce en un 20% la probabilidad de fallo o retroceso de artilugios de ingeniería.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Mago (Mage):</b><span>La mejor raza de la Alianza para Mago en PvE y PvP debido a que la mayoría de sus ataques directos aprovechan el 10% de daño de <em>Eureka!</em> y el 5% de maná extra.</span></div><div class="gd-card"><b>Sacerdote (Priest):</b><span>Excelente en PvE para Disciplina y Sagrado gracias al aumento de reserva de maná y la potenciación de <em>Power Word: Shield</em>.</span></div><div class="gd-card"><b>Pícaro (Rogue - PvP):</b><span>Sobresale al otorgar más Energía máxima y librarse de raíces defensivas con <em>Escape Artist</em>.</span></div></div>
 <h4><em>Cielonato - Alto Orden (Skyborne - High Order)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Cazador, Pícaro, Mago (exclusivo Alianza), Druida.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Wind Blessed (Pasiva):</strong> Otorga un 2% constante de Celeridad (Haste) pasiva a hechizos y ataques físicos.</li><li><strong>Elemental Insight (Pasiva):</strong> Aumenta un 5% el daño infligido contra enemigos de tipo Elemental.</li><li><strong>Read Leyline (Activa):</strong> Regenera entre un 50% y un 100% adicional de salud y maná durante 15 segundos al canalizar en líneas místicas.</li><li><strong>Walk on Air (Activa):</strong> Permite planear en el aire cada 90 segundos.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Druida (Druid):</strong> La mejor opción de la Alianza para las especializaciones Balanza (Balance) y Restauración (Restoration).</li><li><strong>Mago (Mage - Fuego):</strong> Muy competitivo en bandas de larga duración por el beneficio constante de celeridad pasiva.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Cazador, Pícaro, Mago (exclusivo Alianza), Druida.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Wind Blessed (Pasiva):</b><span>Otorga un 2% constante de Celeridad (Haste) pasiva a hechizos y ataques físicos.</span></div><div class="gd-card"><b>Elemental Insight (Pasiva):</b><span>Aumenta un 5% el daño infligido contra enemigos de tipo Elemental.</span></div><div class="gd-card"><b>Read Leyline (Activa):</b><span>Regenera entre un 50% y un 100% adicional de salud y maná durante 15 segundos al canalizar en líneas místicas.</span></div><div class="gd-card"><b>Walk on Air (Activa):</b><span>Permite planear en el aire cada 90 segundos.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Druida (Druid):</b><span>La mejor opción de la Alianza para las especializaciones Balanza (Balance) y Restauración (Restoration).</span></div><div class="gd-card"><b>Mago (Mage - Fuego):</b><span>Muy competitivo en bandas de larga duración por el beneficio constante de celeridad pasiva.</span></div></div>
 <h3>Razas de la Horda</h3>
 <h4><em>Orco (Orc)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Cazador, Pícaro, Mago (nueva combinación), Brujo, Chamán.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Blood Fury (Activa):</strong> Incrementa el Poder de Ataque y el Poder con Hechizos un 10% durante 15 segundos con un tiempo de reutilización de 2 minutos.</li><li><strong>Command (Pasiva):</strong> Aumenta el daño de las mascotas de Cazador y Brujo en un 5%.</li><li><strong>Hardiness (Pasiva):</strong> Reduce la duración de los efectos de aturdimiento en un 20%.</li><li><strong>Shatter Curse (Activa):</strong> Elimina maldiciones y reduce el daño mágico recibido un 5%.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Cazador (Hunter):</strong> La mejor raza absoluta de la Horda para Cazador tanto en PvE como en PvP por la combinación de <em>Command</em> y <em>Blood Fury</em>.</li><li><strong>Brujo (Warlock):</strong> La opción número uno en PvE para Brujo en la Horda debido al bono directo a las mascotas y al incremento simultáneo de poder con hechizos.</li><li><strong>Guerrero (Warrior) y Chamán (Shaman):</strong> La alternativa más sólida en la Horda para ambas clases en entornos de banda y combate de área.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Cazador, Pícaro, Mago (nueva combinación), Brujo, Chamán.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Blood Fury (Activa):</b><span>Incrementa el Poder de Ataque y el Poder con Hechizos un 10% durante 15 segundos con un tiempo de reutilización de 2 minutos.</span></div><div class="gd-card"><b>Command (Pasiva):</b><span>Aumenta el daño de las mascotas de Cazador y Brujo en un 5%.</span></div><div class="gd-card"><b>Hardiness (Pasiva):</b><span>Reduce la duración de los efectos de aturdimiento en un 20%.</span></div><div class="gd-card"><b>Shatter Curse (Activa):</b><span>Elimina maldiciones y reduce el daño mágico recibido un 5%.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Cazador (Hunter):</b><span>La mejor raza absoluta de la Horda para Cazador tanto en PvE como en PvP por la combinación de <em>Command</em> y <em>Blood Fury</em>.</span></div><div class="gd-card"><b>Brujo (Warlock):</b><span>La opción número uno en PvE para Brujo en la Horda debido al bono directo a las mascotas y al incremento simultáneo de poder con hechizos.</span></div><div class="gd-card"><b>Guerrero (Warrior) y Chamán (Shaman):</b><span>La alternativa más sólida en la Horda para ambas clases en entornos de banda y combate de área.</span></div></div>
 <h4><em>No-muerto / Renegado (Undead)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Paladín (nueva y única opción en la Horda), Pícaro, Sacerdote, Mago, Brujo.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Will of the Forsaken (Activa):</strong> Rompe inmediatamente y otorga inmunidad contra efectos de Miedo, Encanto y Sueño.</li><li><strong>Touch of the Grave (Pasiva):</strong> Otorga una probabilidad de drenar salud del objetivo e infligir daño de las sombras adicional (con un tiempo de reutilización interno de 15 segundos).</li><li><strong>Cannibalize (Activa):</strong> Restaura un 7% de salud y maná cada 2 segundos durante 10 segundos al consumir un cadáver humanoide o no-muerto.</li><li><strong>Shadow Resistance (Pasiva):</strong> Reduce el daño de las sombras recibido.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Paladín (Paladin):</strong> La <strong>única raza capaz de ser Paladín en la Horda</strong>, contando además con un kit defensivo y de regeneración envidiable.</li><li><strong>Sacerdote (Priest):</strong> Excelente en PvP y PvE por el control de maná en combate (<em>Dark Sacrifice</em>) y la ruptura de miedos.</li><li><strong>Pícaro, Mago y Brujo (PvP):</strong> Considerada raza de nivel S para PvP competitivo por su capacidad de anular el control de masas enemigo con <em>Will of the Forsaken</em>.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Paladín (nueva y única opción en la Horda), Pícaro, Sacerdote, Mago, Brujo.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Will of the Forsaken (Activa):</b><span>Rompe inmediatamente y otorga inmunidad contra efectos de Miedo, Encanto y Sueño.</span></div><div class="gd-card"><b>Touch of the Grave (Pasiva):</b><span>Otorga una probabilidad de drenar salud del objetivo e infligir daño de las sombras adicional (con un tiempo de reutilización interno de 15 segundos).</span></div><div class="gd-card"><b>Cannibalize (Activa):</b><span>Restaura un 7% de salud y maná cada 2 segundos durante 10 segundos al consumir un cadáver humanoide o no-muerto.</span></div><div class="gd-card"><b>Shadow Resistance (Pasiva):</b><span>Reduce el daño de las sombras recibido.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Paladín (Paladin):</b><span>La <strong>única raza capaz de ser Paladín en la Horda</strong>, contando además con un kit defensivo y de regeneración envidiable.</span></div><div class="gd-card"><b>Sacerdote (Priest):</b><span>Excelente en PvP y PvE por el control de maná en combate (<em>Dark Sacrifice</em>) y la ruptura de miedos.</span></div><div class="gd-card"><b>Pícaro, Mago y Brujo (PvP):</b><span>Considerada raza de nivel S para PvP competitivo por su capacidad de anular el control de masas enemigo con <em>Will of the Forsaken</em>.</span></div></div>
 <h4><em>Tauren (Tauren)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Cazador, Chamán, Druida.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Endurance (Pasiva):</strong> Aumenta en un 5% la salud máxima total del personaje.</li><li><strong>War Stomp (Activa):</strong> Aturde hasta a 5 enemigos a corta distancia durante 2 segundos con un tiempo de reutilización de 90 segundos.</li><li><strong>Plainsrunning (Pasiva/Activa):</strong> Incrementa la velocidad de movimiento a pie progresivamente hasta un 60% adicional sin requerir montura.</li><li><strong>Cultivation (Pasiva):</strong> Otorga un bono a la profesión de herboristería y permite cultivar hierbas periódicamente.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Druida (Druid - Tanque / PvP):</strong> La mejor opción en la Horda para Druida Oso por el incremento directo del 5% de salud total y el aturdimiento en área.</li><li><strong>Guerrero (Warrior - Tanque):</strong> La opción defensiva por excelencia para tanquear contenido exigente.</li><li><strong>Cazador (Hunter - Leveo):</strong> Muy eficiente durante la subida de nivel al desplazarse rápidamente a pie con <em>Plainsrunning</em>.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Cazador, Chamán, Druida.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Endurance (Pasiva):</b><span>Aumenta en un 5% la salud máxima total del personaje.</span></div><div class="gd-card"><b>War Stomp (Activa):</b><span>Aturde hasta a 5 enemigos a corta distancia durante 2 segundos con un tiempo de reutilización de 90 segundos.</span></div><div class="gd-card"><b>Plainsrunning (Pasiva/Activa):</b><span>Incrementa la velocidad de movimiento a pie progresivamente hasta un 60% adicional sin requerir montura.</span></div><div class="gd-card"><b>Cultivation (Pasiva):</b><span>Otorga un bono a la profesión de herboristería y permite cultivar hierbas periódicamente.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Druida (Druid - Tanque / PvP):</b><span>La mejor opción en la Horda para Druida Oso por el incremento directo del 5% de salud total y el aturdimiento en área.</span></div><div class="gd-card"><b>Guerrero (Warrior - Tanque):</b><span>La opción defensiva por excelencia para tanquear contenido exigente.</span></div><div class="gd-card"><b>Cazador (Hunter - Leveo):</b><span>Muy eficiente durante la subida de nivel al desplazarse rápidamente a pie con <em>Plainsrunning</em>.</span></div></div>
 <h4><em>Troll (Troll)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Cazador, Pícaro, Sacerdote, Chamán, Mago, Brujo (nueva combinación).</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Berserking (Activa):</strong> Incrementa la velocidad de ataque y de lanzamiento de hechizos un 10% durante 15 segundos (tiempo de reutilización de 3 minutos).</li><li><strong>Beast Slaying (Pasiva):</strong> Otorga un 5% de daño adicional contra monstruos de tipo Bestia.</li><li><strong>Regeneration (Pasiva):</strong> Incrementa la regeneración de salud un 20% y mantiene un 20% de la regeneración activa durante el combate.</li><li><strong>Rapid Regeneration (Activa):</strong> Canaliza una rápida curación fuera de combate que restaura un 50% de la salud máxima en 6 segundos.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Sacerdote (Priest):</strong> La mejor raza de la Horda para Sacerdote en PvE gracias a la aceleración de casteo de <em>Berserking</em>.</li><li><strong>Chamán, Mago y Brujo (Casteadores PvE):</strong> Opción de alto rendimiento en bandas para lanzadores de hechizos.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Cazador, Pícaro, Sacerdote, Chamán, Mago, Brujo (nueva combinación).</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Berserking (Activa):</b><span>Incrementa la velocidad de ataque y de lanzamiento de hechizos un 10% durante 15 segundos (tiempo de reutilización de 3 minutos).</span></div><div class="gd-card"><b>Beast Slaying (Pasiva):</b><span>Otorga un 5% de daño adicional contra monstruos de tipo Bestia.</span></div><div class="gd-card"><b>Regeneration (Pasiva):</b><span>Incrementa la regeneración de salud un 20% y mantiene un 20% de la regeneración activa durante el combate.</span></div><div class="gd-card"><b>Rapid Regeneration (Activa):</b><span>Canaliza una rápida curación fuera de combate que restaura un 50% de la salud máxima en 6 segundos.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Sacerdote (Priest):</b><span>La mejor raza de la Horda para Sacerdote en PvE gracias a la aceleración de casteo de <em>Berserking</em>.</span></div><div class="gd-card"><b>Chamán, Mago y Brujo (Casteadores PvE):</b><span>Opción de alto rendimiento en bandas para lanzadores de hechizos.</span></div></div>
 <h4><em>Cielonato - Forjador de Vientos (Skyborne - Windshaper)</em></h4>
-<ul class="gd-ul"><li><strong>Clases Disponibles:</strong> Guerrero, Cazador, Pícaro, Chamán (exclusivo Horda), Druida.</li><li><strong>Habilidades Raciales:</strong></li><li><strong>Wind Blessed (Pasiva):</strong> Concede un 2% de Celeridad constante a ataques y hechizos.</li><li><strong>Elemental Insight (Pasiva):</strong> Otorga un 5% de daño adicional contra criaturas Elementales.</li><li><strong>Skysight (Activa):</strong> Incrementa la velocidad de movimiento entre un 15% y un 30% durante 30 segundos.</li><li><strong>Walk on Air (Activa):</strong> Permite planear en el aire cada 90 segundos.</li><li><strong>Mejores Clases Recomendadas:</strong></li><li><strong>Druida (Druid):</strong> La mejor alternativa en la Horda para Druida Balanza y Restauración en PvE.</li><li><strong>Chamán (Shaman):</strong> Excelente elección en PvE de daño y sanación por el bono constante de celeridad de <em>Wind Blessed</em>.</li></ul>
-</article>
-<figure class="gd-fig"><a href="img/meta/04.webp" target="_blank" rel="noopener">
-  <img src="img/meta/04.webp" alt="Lámina 4: Análisis Detallado por Raza: Raciales y Mejores Clases" loading="lazy"></a>
-  <figcaption>Lámina 4 de 12 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap3">
-  <header><span class="num">03</span><h2>Matriz de la Mejor Raza para Cada Clase (PvE, PvP y Leveo)</h2></header>
+<div class="gd-cards"><div class="gd-card"><b>Clases Disponibles:</b><span>Guerrero, Cazador, Pícaro, Chamán (exclusivo Horda), Druida.</span></div><div class="gd-card"><b>Habilidades Raciales:</b></div><div class="gd-card"><b>Wind Blessed (Pasiva):</b><span>Concede un 2% de Celeridad constante a ataques y hechizos.</span></div><div class="gd-card"><b>Elemental Insight (Pasiva):</b><span>Otorga un 5% de daño adicional contra criaturas Elementales.</span></div><div class="gd-card"><b>Skysight (Activa):</b><span>Incrementa la velocidad de movimiento entre un 15% y un 30% durante 30 segundos.</span></div><div class="gd-card"><b>Walk on Air (Activa):</b><span>Permite planear en el aire cada 90 segundos.</span></div><div class="gd-card"><b>Mejores Clases Recomendadas:</b></div><div class="gd-card"><b>Druida (Druid):</b><span>La mejor alternativa en la Horda para Druida Balanza y Restauración en PvE.</span></div><div class="gd-card"><b>Chamán (Shaman):</b><span>Excelente elección en PvE de daño y sanación por el bono constante de celeridad de <em>Wind Blessed</em>.</span></div></div>
+</section>
+<section class="cap" id="cap3">
+  <div class="cap-head"><span class="n">03</span><h2>Matriz de la Mejor Raza para Cada Clase (PvE, PvP y Leveo)</h2></div>
   <p>A continuación se detalla la recomendación óptima para cada una de las nueve clases del juego, desglosada por facción y por el tipo de contenido prioritario.</p>
 <h3>Guerrero (Warrior)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE:</strong> Elfo de la noche (por el ráfaga de 10% de crítico de <em>Elune's Light</em>) o Cielonato Alto Orden (2% Celeridad).</li><li><strong>Alianza PvP:</strong> Humano (por la eliminación de aturdimientos con <em>Will to Survive</em>).</li><li><strong>Horda PvE:</strong> Orco (por el poder de ataque de <em>Blood Fury</em>) o Cielonato Forjador de Vientos.</li><li><strong>Horda PvP:</strong> Orco (por la reducción del 20% en duración de aturdimientos con <em>Hardiness</em>).</li><li><strong>Tanque Recomendado:</strong> Enano en la Alianza y Tauren en la Horda.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE:</b><span>Elfo de la noche (por el ráfaga de 10% de crítico de <em>Elune's Light</em>) o Cielonato Alto Orden (2% Celeridad).</span></div><div class="gd-card"><b>Alianza PvP:</b><span>Humano (por la eliminación de aturdimientos con <em>Will to Survive</em>).</span></div><div class="gd-card"><b>Horda PvE:</b><span>Orco (por el poder de ataque de <em>Blood Fury</em>) o Cielonato Forjador de Vientos.</span></div><div class="gd-card"><b>Horda PvP:</b><span>Orco (por la reducción del 20% en duración de aturdimientos con <em>Hardiness</em>).</span></div><div class="gd-card"><b>Tanque Recomendado:</b><span>Enano en la Alianza y Tauren en la Horda.</span></div></div>
 <h3>Paladín (Paladin)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE:</strong> Humano (para Sagrado y Reprensión por el 1% crítico y 10% Espíritu) o Enano (para Protección por el 1% golpe y <em>Stoneform</em>).</li><li><strong>Alianza PvP:</strong> Humano o Enano.</li><li><strong>Horda (Todas las modalidades):</strong> No-muerto (única raza disponible para la clase en la Horda).</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE:</b><span>Humano (para Sagrado y Reprensión por el 1% crítico y 10% Espíritu) o Enano (para Protección por el 1% golpe y <em>Stoneform</em>).</span></div><div class="gd-card"><b>Alianza PvP:</b><span>Humano o Enano.</span></div><div class="gd-card"><b>Horda (Todas las modalidades):</b><span>No-muerto (única raza disponible para la clase en la Horda).</span></div></div>
 <h3>Cazador (Hunter)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE / PvP:</strong> Elfo de la noche (la mascota hereda el 10% de crítico de <em>Elune's Light</em>) o Humano.</li><li><strong>Horda PvE / PvP:</strong> Orco (la pasiva <em>Command</em> otorga 5% de daño extra a la mascota y <em>Blood Fury</em> potencia los ataques a distancia).</li><li><strong>Leveo:</strong> Tauren en la Horda (por la movilidad a pie de <em>Plainsrunning</em>).</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE / PvP:</b><span>Elfo de la noche (la mascota hereda el 10% de crítico de <em>Elune's Light</em>) o Humano.</span></div><div class="gd-card"><b>Horda PvE / PvP:</b><span>Orco (la pasiva <em>Command</em> otorga 5% de daño extra a la mascota y <em>Blood Fury</em> potencia los ataques a distancia).</span></div><div class="gd-card"><b>Leveo:</b><span>Tauren en la Horda (por la movilidad a pie de <em>Plainsrunning</em>).</span></div></div>
 <h3>Pícaro (Rogue)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE:</strong> Elfo de la noche o Gnomo (por el bono de energía máxima y <em>Eureka!</em>).</li><li><strong>Alianza PvP:</strong> Humano (por la detección de sigilo con <em>Perception</em>) o Gnomo.</li><li><strong>Horda PvE:</strong> Orco o Cielonato.</li><li><strong>Horda PvP:</strong> No-muerto (por el liberador de control <em>Will of the Forsaken</em>).</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE:</b><span>Elfo de la noche o Gnomo (por el bono de energía máxima y <em>Eureka!</em>).</span></div><div class="gd-card"><b>Alianza PvP:</b><span>Humano (por la detección de sigilo con <em>Perception</em>) o Gnomo.</span></div><div class="gd-card"><b>Horda PvE:</b><span>Orco o Cielonato.</span></div><div class="gd-card"><b>Horda PvP:</b><span>No-muerto (por el liberador de control <em>Will of the Forsaken</em>).</span></div></div>
 <h3>Sacerdote (Priest)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE:</strong> Gnomo (para Disciplina y Sagrado por la reserva de maná) o Elfo de la noche (para Sombra).</li><li><strong>Alianza PvP:</strong> Humano o Gnomo.</li><li><strong>Horda PvE:</strong> Troll (por la celeridad de casteo con <em>Berserking</em>).</li><li><strong>Horda PvP:</strong> No-muerto (por el dominio en duelos de espejos mediante <em>Will of the Forsaken</em>).</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE:</b><span>Gnomo (para Disciplina y Sagrado por la reserva de maná) o Elfo de la noche (para Sombra).</span></div><div class="gd-card"><b>Alianza PvP:</b><span>Humano o Gnomo.</span></div><div class="gd-card"><b>Horda PvE:</b><span>Troll (por la celeridad de casteo con <em>Berserking</em>).</span></div><div class="gd-card"><b>Horda PvP:</b><span>No-muerto (por el dominio en duelos de espejos mediante <em>Will of the Forsaken</em>).</span></div></div>
 <h3>Chamán (Shaman)</h3>
-<ul class="gd-ul"><li><strong>Alianza (Todas las modalidades):</strong> Enano (única opción disponible en la Alianza).</li><li><strong>Horda PvE:</strong> Orco (para Mejora por el poder de ataque) o Cielonato Forjador de Vientos (para Elemental y Restauración por el 2% de Celeridad).</li><li><strong>Horda PvP:</strong> Orco o Tauren (por el aturdimiento en área de <em>War Stomp</em>).</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza (Todas las modalidades):</b><span>Enano (única opción disponible en la Alianza).</span></div><div class="gd-card"><b>Horda PvE:</b><span>Orco (para Mejora por el poder de ataque) o Cielonato Forjador de Vientos (para Elemental y Restauración por el 2% de Celeridad).</span></div><div class="gd-card"><b>Horda PvP:</b><span>Orco o Tauren (por el aturdimiento en área de <em>War Stomp</em>).</span></div></div>
 <h3>Mago (Mage)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE / PvP:</strong> Gnomo (aprovecha la reducción de coste y bono de daño de <em>Eureka!</em>) o Cielonato Alto Orden (para la rama Fuego).</li><li><strong>Horda PvE:</strong> Orco (por el incremento de Poder con Hechizos) o Troll.</li><li><strong>Horda PvP:</strong> No-muerto.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE / PvP:</b><span>Gnomo (aprovecha la reducción de coste y bono de daño de <em>Eureka!</em>) o Cielonato Alto Orden (para la rama Fuego).</span></div><div class="gd-card"><b>Horda PvE:</b><span>Orco (por el incremento de Poder con Hechizos) o Troll.</span></div><div class="gd-card"><b>Horda PvP:</b><span>No-muerto.</span></div></div>
 <h3>Brujo (Warlock)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE / PvP:</strong> Humano (el 10% de Espíritu potencia la conversión de <em>Life Tap</em>) o Gnomo.</li><li><strong>Horda PvE:</strong> Orco (por la pasiva <em>Command</em> de 5% daño a demonios y <em>Blood Fury</em>).</li><li><strong>Horda PvP:</strong> No-muerto.</li></ul>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE / PvP:</b><span>Humano (el 10% de Espíritu potencia la conversión de <em>Life Tap</em>) o Gnomo.</span></div><div class="gd-card"><b>Horda PvE:</b><span>Orco (por la pasiva <em>Command</em> de 5% daño a demonios y <em>Blood Fury</em>).</span></div><div class="gd-card"><b>Horda PvP:</b><span>No-muerto.</span></div></div>
 <h3>Druida (Druid)</h3>
-<ul class="gd-ul"><li><strong>Alianza PvE (Balanza / Restauración):</strong> Cielonato Alto Orden (por el 2% de Celeridad constante).</li><li><strong>Alianza PvE (Feral / Oso) y PvP:</strong> Elfo de la noche (por la evasión, sigilo y crítico).</li><li><strong>Horda PvE (Balanza / Restauración):</strong> Cielonato Forjador de Vientos.</li><li><strong>Horda PvE (Oso Tanque) y PvP:</strong> Tauren (por el 5% de vida máxima y <em>War Stomp</em>).</li></ul>
-</article>
-<figure class="gd-fig"><a href="img/meta/06.webp" target="_blank" rel="noopener">
-  <img src="img/meta/06.webp" alt="Lámina 6: Matriz de la Mejor Raza para Cada Clase (PvE, PvP y Leveo)" loading="lazy"></a>
-  <figcaption>Lámina 6 de 12 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap4">
-  <header><span class="num">04</span><h2>Tier Lists Raciales por Modo de Juego</h2></header>
+<div class="gd-cards"><div class="gd-card"><b>Alianza PvE (Balanza / Restauración):</b><span>Cielonato Alto Orden (por el 2% de Celeridad constante).</span></div><div class="gd-card"><b>Alianza PvE (Feral / Oso) y PvP:</b><span>Elfo de la noche (por la evasión, sigilo y crítico).</span></div><div class="gd-card"><b>Horda PvE (Balanza / Restauración):</b><span>Cielonato Forjador de Vientos.</span></div><div class="gd-card"><b>Horda PvE (Oso Tanque) y PvP:</b><span>Tauren (por el 5% de vida máxima y <em>War Stomp</em>).</span></div></div>
+</section>
+<section class="cap" id="cap4">
+  <div class="cap-head"><span class="n">04</span><h2>Tier Lists Raciales por Modo de Juego</h2></div>
   <h3>Tabla Tier List PvE (Bandas y Mazmorras nivel 60)</h3>
 <div class="gd-tabla"><table><thead><tr><th>Rango Tier</th><th>Razas de la Alianza</th><th>Razas de la Horda</th><th>Justificación Principal</th></tr></thead><tbody><tr><td>S Tier</td><td>Humano, Cielonato (Alto Orden), Elfo de la noche</td><td>Orco, Cielonato (Forjador de Vientos)</td><td>Bonificaciones universales de Crítico (1%), Celeridad (2%), daño a mascotas (5%) y ventanas de ráfaga de 10% AP/SP o 10% Crit.</td></tr><tr><td>A Tier</td><td>Enano, Gnomo</td><td>Troll</td><td>1% de Golpe universal, incremento de recursos máximos (5%) y aumento de velocidad de casteo/ataque (Berserking).</td></tr><tr><td>B Tier</td><td>N/A</td><td>No-muerto, Tauren</td><td>Enfocados prioritariamente en supervivencia, tanqeo defensivo (5% salud) o daño pasivo secundario (Touch of the Grave).</td></tr></tbody></table></div>
 <h3>Tabla Tier List PvP (Arenas, Campos de Batalla y Mundo Abierto)</h3>
 <div class="gd-tabla"><table><thead><tr><th>Rango Tier</th><th>Razas de la Alianza</th><th>Razas de la Horda</th><th>Habilidades Clave de PvP</th></tr></thead><tbody><tr><td>S Tier</td><td>Humano, Gnomo</td><td>No-muerto</td><td>Will to Survive (rompe aturdimientos), Escape Artist (rompe inmovilizaciones), Will of the Forsaken (rompe Miedo/Encanto).</td></tr><tr><td>A Tier</td><td>Elfo de la noche, Enano</td><td>Orco</td><td>Hardiness (20% menos duración de aturdimiento), Stoneform (limpieza de sangrados/venenos) y Shadowmeld.</td></tr><tr><td>B Tier</td><td>Cielonato (Alto Orden)</td><td>Tauren, Troll, Cielonato (Forjador de Vientos)</td><td>War Stomp (aturdimiento en área de 2s) y bonos de movimiento al aire libre.</td></tr></tbody></table></div>
-</article>
-<figure class="gd-fig"><a href="img/meta/08.webp" target="_blank" rel="noopener">
-  <img src="img/meta/08.webp" alt="Lámina 8: Tier Lists Raciales por Modo de Juego" loading="lazy"></a>
-  <figcaption>Lámina 8 de 12 · toque para ampliar</figcaption></figure>
-<article class="gd-ch" id="cap5">
-  <header><span class="num">05</span><h2>Recomendaciones Estratégicas y Consideraciones Finales</h2></header>
+</section>
+<section class="cap" id="cap5">
+  <div class="cap-head"><span class="n">05</span><h2>Recomendaciones Estratégicas y Consideraciones Finales</h2></div>
   <p>Al seleccionar tu combinación definitiva en WoW Forever, ten en cuenta los siguientes pilares de diseño:</p>
-<ul class="gd-ul"><li><strong>Permanencia de la Selección:</strong> En la fase actual del juego, la elección de raza es permanente y no existen servicios de cambio de raza pagados. Selecciona una combinación con la que te sientas a gusto visualmente y en términos de facción.</li><li><strong>Equilibrio de Rendimiento:</strong> Las diferencias entre la raza teóricamente óptima y la segunda opción en rendimiento numérico directo son inferiores al 2%. La utilidad situacional de habilidades como <em>Stoneform</em>, <em>Will of the Forsaken</em> o <em>Escape Artist</em> suele decantar las partidas en PvP con mayor impacto que un pequeño porcentaje numérico.</li><li><strong>Selección por Rol Principal:</strong></li><li>Si tu objetivo es <strong>Tanquear</strong>, prioriza <strong>Enano</strong> en la Alianza o <strong>Tauren</strong> en la Horda.</li><li>Si tu objetivo es <strong>Infligir Daño a Distancia (Casteador)</strong>, prioriza <strong>Gnomo / Humano</strong> en la Alianza o <strong>Orco / Troll</strong> en la Horda.</li><li>Si tu objetivo es el <strong>PvP Competitivo</strong>, prioriza <strong>Humano / Gnomo</strong> en la Alianza o <strong>No-muerto / Orco</strong> en la Horda.</li></ul>
-</article>
-<figure class="gd-fig"><a href="img/meta/10.webp" target="_blank" rel="noopener">
-  <img src="img/meta/10.webp" alt="Lámina 10: Recomendaciones Estratégicas y Consideraciones Finales" loading="lazy"></a>
-  <figcaption>Lámina 10 de 12 · toque para ampliar</figcaption></figure></div>
+<div class="gd-cards"><div class="gd-card"><b>Permanencia de la Selección:</b><span>En la fase actual del juego, la elección de raza es permanente y no existen servicios de cambio de raza pagados. Selecciona una combinación con la que te sientas a gusto visualmente y en términos de facción.</span></div><div class="gd-card"><b>Equilibrio de Rendimiento:</b><span>Las diferencias entre la raza teóricamente óptima y la segunda opción en rendimiento numérico directo son inferiores al 2%. La utilidad situacional de habilidades como <em>Stoneform</em>, <em>Will of the Forsaken</em> o <em>Escape Artist</em> suele decantar las partidas en PvP con mayor impacto que un pequeño porcentaje numérico.</span></div><div class="gd-card"><b>Selección por Rol Principal:</b></div><div class="gd-card"><span></span></div><div class="gd-card"><span></span></div><div class="gd-card"><span></span></div></div>
+</section>
   <div class="gd-end">
     <a href="jullverse-guias.html" class="a2">← Todas las guías</a>
     <a href="jullverse-addons.html" class="a1">Addons que uso</a>
   </div>
+</section>
+
+<section class="gd-sec" id="tomo">
+  <p class="gd-label">// Aparte: las láminas</p>
+  <h2 class="gd-t">Manual de Razas y Clases</h2>
+  <p style="font-size:0.95rem;color:#9E93B8;margin:-0.5rem 0 1rem;max-width:60ch">
+    El tomo visual completo, en su propio bloque. Son 12 láminas: tócalas para verlas grandes.
+  </p>
+  <div class="gd-tomo"><figure><a href="img/meta/01.webp" target="_blank" rel="noopener">
+  <img src="img/meta/01.webp" alt="Lámina 1" loading="lazy"></a>
+  <figcaption>Lámina 1 de 12</figcaption></figure>
+<figure><a href="img/meta/02.webp" target="_blank" rel="noopener">
+  <img src="img/meta/02.webp" alt="Lámina 2" loading="lazy"></a>
+  <figcaption>Lámina 2 de 12</figcaption></figure>
+<figure><a href="img/meta/03.webp" target="_blank" rel="noopener">
+  <img src="img/meta/03.webp" alt="Lámina 3" loading="lazy"></a>
+  <figcaption>Lámina 3 de 12</figcaption></figure>
+<figure><a href="img/meta/04.webp" target="_blank" rel="noopener">
+  <img src="img/meta/04.webp" alt="Lámina 4" loading="lazy"></a>
+  <figcaption>Lámina 4 de 12</figcaption></figure>
+<figure><a href="img/meta/05.webp" target="_blank" rel="noopener">
+  <img src="img/meta/05.webp" alt="Lámina 5" loading="lazy"></a>
+  <figcaption>Lámina 5 de 12</figcaption></figure>
+<figure><a href="img/meta/06.webp" target="_blank" rel="noopener">
+  <img src="img/meta/06.webp" alt="Lámina 6" loading="lazy"></a>
+  <figcaption>Lámina 6 de 12</figcaption></figure>
+<figure><a href="img/meta/07.webp" target="_blank" rel="noopener">
+  <img src="img/meta/07.webp" alt="Lámina 7" loading="lazy"></a>
+  <figcaption>Lámina 7 de 12</figcaption></figure>
+<figure><a href="img/meta/08.webp" target="_blank" rel="noopener">
+  <img src="img/meta/08.webp" alt="Lámina 8" loading="lazy"></a>
+  <figcaption>Lámina 8 de 12</figcaption></figure>
+<figure><a href="img/meta/09.webp" target="_blank" rel="noopener">
+  <img src="img/meta/09.webp" alt="Lámina 9" loading="lazy"></a>
+  <figcaption>Lámina 9 de 12</figcaption></figure>
+<figure><a href="img/meta/10.webp" target="_blank" rel="noopener">
+  <img src="img/meta/10.webp" alt="Lámina 10" loading="lazy"></a>
+  <figcaption>Lámina 10 de 12</figcaption></figure>
+<figure><a href="img/meta/11.webp" target="_blank" rel="noopener">
+  <img src="img/meta/11.webp" alt="Lámina 11" loading="lazy"></a>
+  <figcaption>Lámina 11 de 12</figcaption></figure>
+<figure><a href="img/meta/12.webp" target="_blank" rel="noopener">
+  <img src="img/meta/12.webp" alt="Lámina 12" loading="lazy"></a>
+  <figcaption>Lámina 12 de 12</figcaption></figure></div>
 </section>
 
 
@@ -1006,33 +827,13 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 
 <script>
 (function(){
-  var big=document.getElementById('gdBig'), cnt=document.getElementById('gdCount');
-  var thumbs=[].slice.call(document.querySelectorAll('.gd-thumbs img'));
-  if(!thumbs.length || !big) return;
-  var i=0;
-  function show(n){
-    i=(n+thumbs.length)%thumbs.length;
-    big.src=thumbs[i].getAttribute('src');
-    big.alt='Lámina '+(i+1);
-    cnt.textContent=(i+1)+' / '+thumbs.length;
-    thumbs.forEach(function(t,k){t.classList.toggle('on',k===i);});
-  }
-  document.getElementById('gdPrev').onclick=function(){show(i-1);};
-  document.getElementById('gdNext').onclick=function(){show(i+1);};
-  thumbs.forEach(function(t,k){t.onclick=function(){show(k);};});
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')show(i-1);
-    if(e.key==='ArrowRight')show(i+1);
-  });
-  show(0);
-
   var bar=document.querySelector('.gd-prog i');
   var anchors=[].slice.call(document.querySelectorAll('.gd-anchors a'));
   var secs=anchors.map(function(a){return document.querySelector(a.getAttribute('href'));});
   function onScroll(){
     var h=document.documentElement.scrollHeight-window.innerHeight;
     bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
-    var y=window.scrollY+160, act=0;
+    var y=window.scrollY+170, act=0;
     secs.forEach(function(s,k){ if(s && s.offsetTop<=y) act=k; });
     anchors.forEach(function(a,k){a.classList.toggle('on',k===act);});
   }
