@@ -511,8 +511,10 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 
 /* ══════════════ FICHA DE WOW / AFIJOS ══════════════ */
 .wowgrid{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:1fr 1fr;
-  gap:1rem;position:relative;z-index:1;align-items:start;}
-.wcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.05rem 1.15rem;}
+  gap:1rem;position:relative;z-index:1;align-items:stretch;}
+.wcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.05rem 1.15rem;
+  display:flex;flex-direction:column;}
+.wcard .fuente{margin-top:auto;}
 .wcard-h{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.85rem;}
 .wcard-h .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);}
 .wcard-h h3{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
@@ -865,6 +867,35 @@ async function cargaAfijos(){
 
 pintaToken();
 cargaAfijos();
+</script>
+
+<script>
+(function(){
+  var eu=document.getElementById('tokEu'), us=document.getElementById('tokUs');
+  var euAt=document.getElementById('tokEuAt'), usAt=document.getElementById('tokUsAt');
+  var card=document.querySelector('.wowgrid .wcard');
+  var grid=document.querySelector('.wowgrid');
+  function hide(){ if(card) card.style.display='none'; if(grid) grid.style.gridTemplateColumns='1fr'; }
+  function fmt(n){ return Number(n).toLocaleString('es-ES')+' oros'; }
+  function ago(iso){
+    var m=Math.round((Date.now()-Date.parse(iso))/60000);
+    if(isNaN(m)) return '';
+    if(m<2) return 'ahora mismo';
+    if(m<60) return 'hace '+m+' min';
+    var h=Math.round(m/60);
+    if(h<24) return 'hace '+h+' h';
+    return 'hace '+Math.round(h/24)+' días';
+  }
+  fetch('data/token.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){
+      var edad=(Date.now()-Date.parse(d.updated||d.eu.at))/3600000;
+      if(!d.eu||!d.us||edad>6){ hide(); return; }
+      eu.textContent=fmt(d.eu.price); us.textContent=fmt(d.us.price);
+      euAt.textContent=ago(d.eu.at); usAt.textContent=ago(d.us.at);
+    })
+    .catch(hide);
+})();
 </script>
 </body>
 </html>
