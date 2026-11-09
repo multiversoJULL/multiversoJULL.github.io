@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Guía del Druida · Jullverse</title>
+<meta name="description" content="Del 1 al 60 siendo gato, oso y todo lo que haga falta. Sin morir de aburrimiento.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --p: #7C3AED; --p2: #9D5CF0;
+  --pink: #EC4899; --pink2: #F472B6;
+  --neon: #FF10F0;
+  --bg: #07040F; --bg2: #0E0A1A; --bg3: #140E22;
+  --text: #F0ECF8; --muted: #7A6A9A;
+  --border: rgba(124,58,237,0.15);
+  --grad: linear-gradient(135deg, #7C3AED, #EC4899);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+
+/* GRID BG */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,0.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 60% at 30% 20%,rgba(124,58,237,0.12) 0%,transparent 65%),
+             radial-gradient(ellipse 50% 50% at 80% 70%,rgba(236,72,153,0.08) 0%,transparent 65%);
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
+  background:rgba(7,4,15,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 1.5rem;gap:1rem;}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:0.88rem;
+  text-decoration:none;letter-spacing:0.04em;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.back-btn{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;border-radius:6px;border:1px solid var(--border);
+  color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:600;
+  transition:all 0.2s;margin-left:auto;
+}
+.back-btn:hover{color:var(--text);border-color:var(--p);}
+.yt-btn{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;border-radius:6px;
+  background:var(--grad);color:white;
+  text-decoration:none;font-size:0.8rem;font-weight:700;
+  transition:all 0.2s;
+}
+.yt-btn:hover{opacity:0.85;transform:translateY(-1px);}
+
+/* HERO */
+.hero{
+  min-height:70vh;display:flex;align-items:center;
+  padding:6rem 1.5rem 3rem;position:relative;overflow:hidden;
+}
+.hero-content{position:relative;z-index:1;max-width:680px;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pink);border:1px solid rgba(236,72,153,0.3);
+  padding:0.28rem 1rem;border-radius:20px;margin-bottom:1.5rem;
+  background:rgba(236,72,153,0.06);
+}
+.hero-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:1;
+  margin-bottom:1rem;
+}
+.hero-title span{
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:block;
+}
+.hero-title small{
+  font-size:0.35em;letter-spacing:0.2em;color:var(--muted);
+  -webkit-text-fill-color:var(--muted);display:block;margin-bottom:0.3em;
+  font-weight:400;
+}
+.hero-desc{color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:2rem;max-width:520px;}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;gap:0.2rem;}
+.stat-n{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-l{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.hero-neon{
+  position:absolute;right:-100px;top:50%;transform:translateY(-50%);
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,16,240,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* LIVE BANNER */
+.live-banner{
+  display:none;margin:0 1.5rem;padding:1rem 1.5rem;
+  border-radius:12px;background:rgba(220,38,38,0.12);
+  border:1px solid rgba(220,38,38,0.35);
+  align-items:center;gap:1rem;position:relative;z-index:1;
+}
+.live-banner.show{display:flex;}
+.live-dot{
+  width:10px;height:10px;border-radius:50%;background:#EF4444;
+  box-shadow:0 0 10px #EF4444;flex-shrink:0;
+  animation:livePulse 1.2s infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.live-text{flex:1;}
+.live-text strong{display:block;font-size:0.9rem;color:#FCA5A5;}
+.live-text span{font-size:0.78rem;color:var(--muted);}
+.live-link{
+  padding:0.4rem 1rem;border-radius:6px;background:#DC2626;
+  color:white;text-decoration:none;font-size:0.8rem;font-weight:700;
+  transition:all 0.2s;white-space:nowrap;
+}
+.live-link:hover{background:#EF4444;}
+
+/* SECTIONS */
+.section{padding:4rem 1.5rem;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.sec-label{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--p2);margin-bottom:0.4rem;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:700;margin-bottom:1.8rem;}
+.sec-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* VIDEO GRID */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;}
+.vid-card{
+  border-radius:12px;overflow:hidden;background:var(--bg2);
+  border:1px solid var(--border);transition:all 0.25s;
+  text-decoration:none;color:var(--text);display:block;
+}
+.vid-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 8px 28px rgba(124,58,237,0.2);}
+.vid-thumb{width:100%;aspect-ratio:16/9;background:var(--bg3);position:relative;overflow:hidden;}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.vid-card:hover .vid-thumb img{transform:scale(1.05);}
+.vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background 0.25s;}
+.vid-card:hover .vid-overlay{background:rgba(0,0,0,0.35);}
+.play-ico{width:42px;height:42px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.7);transition:all 0.25s;color:white;font-size:0.9rem;padding-left:3px;}
+.vid-card:hover .play-ico{opacity:1;transform:scale(1);}
+.vid-info{padding:0.85rem 1rem;}
+.vid-title{font-size:0.87rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.35rem;}
+.vid-meta{font-size:0.73rem;color:var(--muted);}
+
+/* ALL VIDEOS LIST */
+.vid-list{display:flex;flex-direction:column;gap:0.7rem;}
+.vid-list-item{
+  display:flex;gap:1rem;align-items:center;
+  padding:0.7rem;border-radius:10px;background:var(--bg2);border:1px solid var(--border);
+  text-decoration:none;color:var(--text);transition:all 0.2s;
+}
+.vid-list-item:hover{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.05);}
+.vid-list-thumb{width:120px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--bg3);}
+.vid-list-thumb img{width:100%;height:100%;object-fit:cover;}
+.vid-list-info{flex:1;min-width:0;}
+.vid-list-title{font-size:0.9rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.3rem;}
+.vid-list-meta{font-size:0.73rem;color:var(--muted);}
+
+/* SHORTS */
+.shorts-row{display:flex;gap:0.9rem;overflow-x:auto;padding-bottom:0.5rem;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.short-card{flex-shrink:0;width:150px;border-radius:12px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.25s;display:block;}
+.short-card:hover{transform:translateY(-3px);border-color:rgba(124,58,237,0.5);box-shadow:0 6px 20px rgba(255,16,240,0.2);}
+.short-thumb{width:100%;aspect-ratio:9/16;background:var(--bg3);overflow:hidden;position:relative;}
+.short-thumb img{width:100%;height:100%;object-fit:cover;}
+.short-badge{position:absolute;top:6px;left:6px;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;padding:0.15rem 0.45rem;border-radius:4px;color:white;background:var(--grad);}
+.short-info{padding:0.55rem 0.7rem;}
+.short-title{font-size:0.73rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* LOAD MORE */
+.load-more{
+  display:block;width:100%;margin-top:1.5rem;padding:0.9rem;border-radius:10px;
+  border:1px solid var(--border);background:transparent;color:var(--p2);
+  font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.05em;
+  cursor:pointer;transition:all 0.2s;text-align:center;
+}
+.load-more:hover{border-color:var(--p);background:rgba(124,58,237,0.1);}
+
+/* SKELETON */
+.skel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;animation:shimmer 1.5s ease-in-out infinite;}
+.skel-line{height:11px;background:var(--bg3);border-radius:6px;margin:0.45rem 1rem;}
+.skel-line.s{width:55%;}
+@keyframes shimmer{0%,100%{opacity:1}50%{opacity:0.55}}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 1.5rem;position:relative;z-index:1;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;position:relative;z-index:1;}
+.footer-logo{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;}
+.footer-nav{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.footer-nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--text);}
+.footer-copy{color:var(--muted);font-size:0.75rem;}
+
+/* REDES SOCIALES */
+.redes-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  justify-content: center;
+}
+.red-link {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid;
+  text-decoration: none; color: var(--text);
+  font-size: 0.88rem; font-weight: 600;
+  background: var(--bg2); transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.red-link:hover { transform: translateY(-2px); filter: brightness(1.2); }
+.red-ico { font-size: 1rem; }
+
+
+/* VID GRID — 3 en fila, sin bajar */
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+.shorts-row{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center;padding-bottom:0.5rem;}
+
+
+/* ══════════════════════════════════════════════════════════
+   JULLVERSE
+   ══════════════════════════════════════════════════════════ */
+:root{ --gold:#E8B54D; }
+
+/* NAV */
+.jv-nav .nav-links{display:flex;gap:0.15rem;margin-left:auto;align-items:center;overflow-x:auto;}
+.jv-nav .nav-links a{
+  padding:0.34rem 0.78rem;border-radius:6px;color:var(--muted);text-decoration:none;
+  font-size:0.79rem;font-weight:600;white-space:nowrap;transition:all 0.18s;
+}
+.jv-nav .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.06);}
+.jv-nav .nav-links a.on{color:var(--text);background:rgba(124,58,237,0.20);box-shadow:inset 0 0 0 1px rgba(124,58,237,0.35);}
+.jv-nav .back-btn{margin-left:0;}
+
+/* BANNER */
+.jv-banner{position:relative;width:100%;height:140px;overflow:hidden;border-bottom:1px solid var(--border);}
+.jv-banner img{width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:0.5;}
+.jv-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.2),var(--bg) 94%);}
+
+/* CABECERA */
+.jv-hero{padding:2.4rem 1.5rem 0.4rem;position:relative;z-index:1;max-width:1100px;margin:0 auto;
+  display:flex;align-items:flex-start;gap:1.4rem;flex-wrap:wrap;}
+.jv-hero .logo{width:86px;height:86px;border-radius:18px;object-fit:contain;flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.07),0 10px 30px rgba(0,0,0,0.5);}
+.jv-hero .txt{flex:1;min-width:240px;}
+.jv-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4.2vw,2.6rem);font-weight:900;line-height:1.05;margin:0 0 0.55rem;}
+.jv-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.jv-hero .intro{color:#A79CC2;font-size:0.95rem;line-height:1.7;max-width:600px;}
+.jv-hero .intro b{color:var(--text);font-weight:600;}
+.jv-hero .stats{display:flex;gap:1.8rem;margin-top:1rem;flex-wrap:wrap;}
+.jv-hero .stat-n{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:var(--text);}
+.jv-hero .stat-l{font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.jv-hero .firma{margin-top:0.9rem;font-size:0.72rem;color:#5F5378;}
+
+/* CABECERA DE PAGINA */
+.pg-head{max-width:1100px;margin:0 auto;padding:2.2rem 1.5rem 0.4rem;position:relative;z-index:1;}
+.pg-head .crumb{font-size:0.7rem;color:#5F5378;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem;}
+.pg-head .crumb a{color:var(--p2);text-decoration:none;}
+.pg-head .crumb a:hover{text-decoration:underline;}
+.pg-head h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.8vw,2.2rem);font-weight:900;line-height:1.1;}
+.pg-head h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.pg-head p{color:#8B82A6;font-size:0.9rem;line-height:1.65;margin-top:0.55rem;max-width:640px;}
+
+/* TARJETAS DE ACCESO */
+.hub{max-width:1100px;margin:0 auto;padding:1.7rem 1.5rem 0.6rem;position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.hub-card{position:relative;display:flex;flex-direction:column;min-height:175px;
+  border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);
+  border:1px solid var(--border);background:var(--bg2);transition:all 0.25s;}
+.hub-card .in{position:relative;padding:1.1rem 1.2rem;display:flex;flex-direction:column;height:100%;}
+.hub-card .ico{
+  width:44px;height:44px;border-radius:11px;flex-shrink:0;margin-bottom:auto;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  font-size:1.15rem;color:var(--p2);
+}
+.hub-card .ico img{width:100%;height:100%;object-fit:cover;}
+.hub-card .ico.logo img{object-fit:contain;padding:6px;background:#0A0714;}
+.hub-card .txt{margin-top:0.9rem;}
+.hub-card .k{font-size:0.57rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
+.hub-card h3{font-family:'Orbitron',monospace;font-size:0.94rem;font-weight:700;margin:0.26rem 0 0.3rem;}
+.hub-card p{font-size:0.78rem;color:#8B82A6;line-height:1.5;}
+.hub-card .go{margin-top:0.6rem;font-size:0.73rem;font-weight:700;color:var(--pink);}
+.hub-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 14px 36px rgba(0,0,0,0.5);}
+.hub-card:hover .bg{opacity:0.38;transform:scale(1.05);}
+
+/* ÚLTIMO VIDEO */
+.hub-video{
+  display:flex;gap:1.1rem;align-items:stretch;max-width:1100px;margin:0 auto;
+  border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);
+  text-decoration:none;color:var(--text);transition:all 0.22s;
+}
+.hub-video:hover{border-color:rgba(236,72,153,0.5);box-shadow:0 12px 34px rgba(236,72,153,0.16);transform:translateY(-2px);}
+.hub-video .thumb{width:320px;flex-shrink:0;aspect-ratio:16/9;object-fit:cover;background:var(--bg3);}
+.hub-video .thumb.ph{
+  display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff;
+  background:linear-gradient(135deg,rgba(124,58,237,0.45),rgba(236,72,153,0.35));
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.vid-fallback .ph{
+  width:170px;aspect-ratio:16/9;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;
+  background:linear-gradient(135deg,rgba(124,58,237,0.45),rgba(236,72,153,0.35));
+}
+.hub-video .body{padding:1.1rem 1.2rem;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.hub-video .tag{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.4rem;}
+.hub-video h3{font-size:1.05rem;font-weight:600;line-height:1.4;margin-bottom:0.4rem;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.hub-video .meta{font-size:0.76rem;color:var(--muted);}
+.hub-video .play{margin-top:0.7rem;font-size:0.78rem;font-weight:700;color:var(--p2);}
+
+/* FICHAS DE JUEGO */
+.fichas{max-width:1100px;margin:0 auto;padding:0.4rem 1.5rem 0;position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.ficha{display:flex;gap:0;border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);transition:all 0.22s;}
+.ficha:hover{border-color:rgba(232,181,77,0.4);}
+.ficha .art{width:104px;flex-shrink:0;object-fit:cover;object-position:center top;}
+.ficha .art.logo{object-fit:contain;background:#0A0714;padding:0.6rem;}
+.ficha .body{padding:0.9rem 1rem;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.ficha .k{font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.25rem;}
+.ficha h3{font-family:'Orbitron',monospace;font-size:0.86rem;font-weight:700;line-height:1.25;margin-bottom:0.45rem;}
+.ficha .row{display:flex;gap:0.4rem;font-size:0.76rem;color:#8B82A6;margin-bottom:0.18rem;}
+.ficha .row b{color:#D6CFE6;font-weight:600;}
+.ficha .go{margin-top:0.45rem;font-size:0.72rem;font-weight:700;color:var(--p2);}
+
+/* TIRA DE ICONOS */
+.icon-strip{display:flex;gap:0.45rem;justify-content:center;overflow:hidden;padding:1rem 1.5rem 0.2rem;
+  position:relative;z-index:1;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);}
+.icon-strip img{width:40px;height:40px;border-radius:9px;object-fit:cover;flex-shrink:0;
+  border:1px solid rgba(232,181,77,0.18);background:#12161F;opacity:0.8;transition:transform 0.2s,opacity 0.2s;}
+.icon-strip img:hover{transform:translateY(-3px);opacity:1;}
+
+/* BOTON TODOS LOS VIDEOS */
+.yt-all{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  max-width:640px;margin:0 auto;padding:1.05rem 1.35rem;border-radius:14px;
+  background:linear-gradient(135deg,rgba(236,72,153,0.10),rgba(124,58,237,0.10));
+  border:1px solid rgba(236,72,153,0.30);text-decoration:none;color:var(--text);transition:all 0.22s;}
+.yt-all:hover{transform:translateY(-3px);border-color:rgba(236,72,153,0.6);box-shadow:0 12px 30px rgba(236,72,153,0.18);}
+.yt-all b{display:block;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;}
+.yt-all span{font-size:0.77rem;color:#8B82A6;}
+.yt-all .arrow{font-size:1.4rem;color:var(--pink);}
+
+/* NOTICIAS */
+.news{max-width:900px;margin:0 auto;padding:0.6rem 1.5rem 1rem;position:relative;z-index:1;}
+.news-filters{display:flex;gap:0.4rem;flex-wrap:wrap;padding:0.4rem 0 1.4rem;}
+.news-filters button{
+  display:flex;align-items:center;gap:0.45rem;
+  padding:0.34rem 0.85rem;border-radius:20px;cursor:pointer;
+  background:var(--bg2);border:1px solid var(--border);color:var(--muted);
+  font-family:'Rajdhani',sans-serif;font-size:0.78rem;font-weight:700;transition:all 0.18s;
+}
+.news-filters button img{width:18px;height:18px;object-fit:contain;border-radius:4px;}
+.news-filters button span.dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:0.7;}
+.news-filters button:hover{color:var(--text);border-color:rgba(255,255,255,0.16);}
+.news-filters button.on{background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.5);color:#fff;}
+
+.news-item{display:flex;gap:0.95rem;padding:0.85rem;border-radius:13px;background:var(--bg2);
+  border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.2s;margin-bottom:0.7rem;}
+.news-item:hover{transform:translateX(4px);border-color:rgba(124,58,237,0.5);background:rgba(124,58,237,0.06);}
+.news-art{width:104px;flex-shrink:0;border-radius:9px;overflow:hidden;background:#0A0714;
+  display:flex;align-items:center;justify-content:center;}
+.news-art img{width:100%;height:100%;object-fit:cover;}
+.news-art.contain img{object-fit:contain;padding:0.35rem;}
+.news-body{flex:1;min-width:0;}
+.news-game{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.58rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;padding:0.12rem 0.45rem;border-radius:4px;margin-bottom:0.3rem;
+  background:rgba(232,181,77,0.12);color:var(--gold);border:1px solid rgba(232,181,77,0.25);}
+.news-game.retail{background:rgba(167,139,250,0.12);color:#B9A5F5;border-color:rgba(167,139,250,0.28);}
+.news-game.classic{background:rgba(95,200,216,0.12);color:#7FD3E0;border-color:rgba(95,200,216,0.28);}
+.news-title{font-size:0.95rem;font-weight:600;line-height:1.35;margin-bottom:0.3rem;}
+.news-desc{font-size:0.81rem;color:#8B82A6;line-height:1.55;}
+.news-meta{font-size:0.71rem;color:var(--muted);margin-top:0.4rem;}
+.news-meta b{color:var(--p2);font-weight:600;}
+
+/* OTROS JUEGOS */
+.otros{max-width:900px;margin:0 auto;padding:0.4rem 1.5rem 3rem;position:relative;z-index:1;}
+.otros-box{border:1px dashed rgba(255,255,255,0.14);border-radius:14px;padding:1.5rem;
+  text-align:center;background:rgba(20,14,34,0.5);}
+.otros-box .ico{font-size:1.7rem;margin-bottom:0.5rem;}
+.otros-box h3{font-family:'Orbitron',monospace;font-size:0.86rem;font-weight:700;margin-bottom:0.35rem;}
+.otros-box p{font-size:0.83rem;color:#8B82A6;line-height:1.6;}
+
+/* EN CONSTRUCCION */
+.coming{max-width:640px;margin:0 auto;padding:2.5rem 1.5rem 4rem;text-align:center;position:relative;z-index:1;}
+.coming .big{width:72px;height:72px;margin:0 auto 1.2rem;border-radius:20px;display:flex;
+  align-items:center;justify-content:center;font-size:2rem;background:rgba(20,14,34,0.9);border:1px solid var(--border);}
+.coming h2{font-family:'Orbitron',monospace;font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;}
+.coming p{color:#8B82A6;font-size:0.9rem;line-height:1.7;}
+
+/* ══════════════ ADDONS ══════════════ */
+.wf{max-width:1200px;margin:0 auto;padding:0.6rem 1.5rem 3rem;position:relative;z-index:1;}
+.wf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:620px;margin:1.3rem 0 0;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border);}
+.wf-stat{background:var(--bg2);padding:0.85rem 0.5rem;text-align:center;}
+.wf-stat b{display:block;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);line-height:1.1;}
+.wf-stat span{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.wf-toolbar{position:sticky;top:60px;z-index:60;margin:1.4rem 0 1.1rem;
+  background:rgba(7,4,15,0.95);backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:12px;
+  padding:0.8rem 1rem;display:flex;flex-direction:column;gap:0.65rem;}
+.wf-searchrow{display:flex;gap:0.7rem;align-items:center;flex-wrap:wrap;}
+.wf-search{position:relative;flex:1;min-width:220px;}
+.wf-search::before{content:'⌕';position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.1rem;pointer-events:none;}
+#wfSearch{width:100%;padding:0.6rem 0.9rem 0.6rem 2.3rem;border-radius:8px;background:var(--bg3);
+  border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.94rem;
+  font-weight:500;outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+#wfSearch::placeholder{color:#5B5270;}
+#wfSearch:focus{border-color:rgba(232,181,77,0.45);box-shadow:0 0 0 3px rgba(232,181,77,0.08);}
+.wf-count{font-size:0.77rem;color:var(--muted);white-space:nowrap;font-weight:600;}
+.wf-count b{color:var(--gold);}
+.wf-chips{display:flex;gap:0.38rem;overflow-x:auto;padding-bottom:0.12rem;scrollbar-width:thin;}
+.wf-chip{flex-shrink:0;padding:0.3rem 0.78rem;border-radius:20px;cursor:pointer;background:var(--bg3);
+  border:1px solid var(--border);color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:0.77rem;
+  font-weight:700;transition:all 0.18s;white-space:nowrap;}
+.wf-chip:hover{color:var(--text);border-color:rgba(255,255,255,0.15);}
+.wf-chip.active{background:rgba(232,181,77,0.13);border-color:rgba(232,181,77,0.45);color:var(--gold);}
+.wf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(325px,1fr));gap:0.9rem;}
+.wf-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.05rem 0.95rem;
+  position:relative;overflow:hidden;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+  display:flex;flex-direction:column;}
+.wf-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--acc,#E8B54D);opacity:0.5;transition:opacity 0.2s;}
+.wf-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.13);box-shadow:0 10px 26px rgba(0,0,0,0.45);}
+.wf-card:hover::before{opacity:1;}
+.wf-top{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.65rem;}
+.wf-ico{flex-shrink:0;width:52px;height:52px;border-radius:10px;overflow:hidden;background:#12161F;
+  border:1px solid rgba(232,181,77,0.26);box-shadow:0 3px 10px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;}
+.wf-card:hover .wf-ico{transform:scale(1.04);box-shadow:0 0 0 1px rgba(232,181,77,0.30),0 0 14px rgba(232,181,77,0.14);}
+.wf-ico img{width:100%;height:100%;object-fit:cover;display:block;}
+.wf-info{flex:1;min-width:0;}
+.wf-name{font-family:'Orbitron',monospace;font-size:0.84rem;font-weight:700;line-height:1.3;word-break:break-word;margin-bottom:0.3rem;}
+.wf-ver{font-size:0.61rem;font-weight:700;padding:0.14rem 0.42rem;border-radius:4px;white-space:nowrap;
+  background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid rgba(255,255,255,0.06);}
+.wf-badges{display:flex;gap:0.3rem;flex-wrap:wrap;}
+.wf-badge{font-size:0.56rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  padding:0.12rem 0.45rem;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--acc,#E8B54D);
+  border:1px solid rgba(255,255,255,0.07);}
+.wf-badge.forever{background:rgba(232,181,77,0.12);color:var(--gold);border-color:rgba(232,181,77,0.32);}
+.wf-desc{font-size:0.85rem;color:#AEA6C4;line-height:1.6;flex:1;}
+.wf-cmd{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.7rem;font-family:'Orbitron',monospace;
+  font-size:0.68rem;font-weight:700;color:var(--gold);background:rgba(232,181,77,0.06);
+  border:1px dashed rgba(232,181,77,0.22);border-radius:5px;padding:0.24rem 0.55rem;align-self:flex-start;}
+.wf-cmd span{font-family:'Rajdhani',sans-serif;font-weight:600;color:var(--muted);font-size:0.66rem;letter-spacing:0.05em;text-transform:uppercase;}
+.wf-mods{margin-top:0.8rem;border-top:1px solid var(--border);padding-top:0.55rem;}
+.wf-mods summary{cursor:pointer;list-style:none;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.wf-mods summary::-webkit-details-marker{display:none;}
+.wf-mods summary::before{content:'▸';color:var(--gold);font-size:0.8rem;transition:transform 0.2s;display:inline-block;}
+.wf-mods[open] summary::before{transform:rotate(90deg);}
+.wf-mods summary:hover{color:var(--text);}
+.wf-modlist{list-style:none;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.42rem;}
+.wf-modlist li{font-size:0.77rem;line-height:1.5;color:#948BAE;padding-left:0.65rem;border-left:1px solid rgba(255,255,255,0.06);}
+.wf-modlist b{color:#D3CBDF;font-weight:700;font-family:'Orbitron',monospace;font-size:0.68rem;}
+.wf-modlist em{display:block;font-style:normal;font-size:0.7rem;color:#6A5F82;margin-top:0.08rem;}
+.wf-empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted);}
+.wf-empty b{display:block;font-family:'Orbitron',monospace;color:var(--gold);margin-bottom:0.4rem;}
+.wf-group{grid-column:1/-1;margin:1.5rem 0 0.15rem;display:flex;align-items:center;gap:0.65rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:0.45rem;}
+.wf-group i{width:3px;height:16px;border-radius:3px;background:var(--acc);}
+.wf-group span{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.08em;color:var(--acc);text-transform:uppercase;}
+.wf-group em{font-size:0.68rem;color:#5B5270;font-weight:600;font-style:normal;}
+.wf-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0.9rem;margin-top:2.2rem;}
+.wf-note{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;}
+.wf-note h3{font-family:'Orbitron',monospace;font-size:0.73rem;font-weight:700;letter-spacing:0.06em;margin-bottom:0.5rem;color:var(--gold);}
+.wf-note p{font-size:0.83rem;color:#9A90B5;line-height:1.65;}
+.wf-warn{margin-top:0.9rem;border-left:2px solid #C5645C;background:rgba(197,100,92,0.05);border-radius:0 8px 8px 0;padding:0.85rem 1rem;}
+.wf-warn b{color:#D98A82;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.07em;display:block;margin-bottom:0.25rem;}
+.wf-warn p{font-size:0.82rem;color:#9A90B5;line-height:1.6;margin:0;}
+
+/* fallback */
+.vid-fallback{grid-column:1/-1;display:flex;gap:1rem;align-items:center;padding:0.85rem;border-radius:12px;
+  background:var(--bg2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.2s;}
+.vid-fallback:hover{border-color:rgba(236,72,153,0.5);}
+.vid-fallback img{width:170px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;flex-shrink:0;}
+.vid-fallback b{display:block;font-size:0.93rem;margin-bottom:0.2rem;}
+.vid-fallback span{font-size:0.79rem;color:var(--muted);}
+
+@media (max-width:900px){
+  .hub{grid-template-columns:1fr;}
+  .fichas{grid-template-columns:1fr;}
+}
+@media (max-width:860px){
+  .jv-nav .nav-links{order:3;width:100%;margin-left:0;}
+  .jv-nav{height:auto;flex-wrap:wrap;padding:0.5rem 1rem;gap:0.4rem;}
+  .wf-stats{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:768px){
+  .wf-grid{grid-template-columns:1fr;}
+  .wf-toolbar{top:0;}
+  .jv-hero{padding:1.8rem 1rem 0.4rem;}
+  .jv-hero .logo{width:62px;height:62px;}
+  .icon-strip img{width:34px;height:34px;}
+  .hub-video{flex-direction:column;}
+  .hub-video .thumb{width:100%;}
+  .news-art{width:76px;}
+}
+
+/* ══════════════ FICHA DE WOW / AFIJOS ══════════════ */
+.wowgrid{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;position:relative;z-index:1;align-items:start;}
+.wcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.05rem 1.15rem;}
+.wcard-h{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.85rem;}
+.wcard-h .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);}
+.wcard-h h3{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+
+.token-row{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0;}
+.token-row + .token-row{border-top:1px solid rgba(255,255,255,0.05);}
+.flag{width:34px;height:24px;border-radius:4px;object-fit:cover;flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.14);}
+.token-p{flex:1;min-width:0;}
+.token-p b{display:block;font-family:'Orbitron',monospace;font-size:0.98rem;font-weight:700;color:var(--gold);line-height:1.2;}
+.token-p span{font-size:0.71rem;color:var(--muted);}
+.token-nota{font-size:0.66rem;color:#5F5378;margin-top:0.55rem;line-height:1.5;}
+
+.afijos{display:grid;grid-template-columns:repeat(4,1fr);gap:0.55rem;}
+.afijo{text-align:center;}
+.afijo img{width:46px;height:46px;border-radius:10px;display:block;margin:0 auto;
+  border:1px solid rgba(255,255,255,0.1);background:#0A0714;}
+.afijo span{display:block;font-size:0.65rem;line-height:1.25;color:#A79CC2;margin-top:0.35rem;}
+.afijo-sub{text-align:center;font-size:0.72rem;color:var(--muted);margin:0.1rem 0 0.8rem;}
+.fuente{text-align:center;font-size:0.64rem;color:#5F5378;margin-top:0.75rem;}
+.fuente a{color:#6E6288;}
+
+@media (max-width:900px){
+  .wowgrid{grid-template-columns:1fr;}
+  .afijo img{width:40px;height:40px;}
+  .afijo span{font-size:0.6rem;}
+}
+
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<style>
+.gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
+  filter:blur(34px) brightness(0.3) saturate(1.1);transform:scale(1.1);}
+.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.4),rgba(7,4,15,0.94));}
+.gd-hero-in{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:4.6rem 1.5rem 2.2rem;
+  display:flex;gap:1.8rem;align-items:center;}
+.gd-cover{width:200px;flex:0 0 200px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 44px rgba(0,0,0,0.6);display:block;}
+.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.5rem;}
+.gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
+.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:900;line-height:1.12;}
+.gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gd-hero p{color:#BEB3D4;font-size:1.02rem;line-height:1.6;margin-top:0.7rem;max-width:56ch;}
+.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:1rem;}
+.gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
+  background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.34);padding:0.26rem 0.62rem;border-radius:20px;}
+
+.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);}
+.gd-prog{height:2px;background:rgba(255,255,255,0.06);}
+.gd-prog i{display:block;height:100%;width:0;background:var(--grad);}
+.gd-anchors{max-width:1000px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;scrollbar-width:none;}
+.gd-anchors::-webkit-scrollbar{display:none;}
+.gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
+  padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
+.gd-anchors a:hover,.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.26);border-color:rgba(124,58,237,0.45);}
+
+.gd-sec{max-width:1000px;margin:0 auto;padding:2.4rem 1.5rem 0;position:relative;z-index:1;}
+.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.5rem;}
+.gd-t{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;margin-bottom:1.1rem;}
+
+.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.8rem;margin-bottom:0.4rem;}
+.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.18),rgba(20,14,34,0.92));
+  border:1px solid rgba(124,58,237,0.3);border-radius:14px;padding:1rem 1.05rem;}
+.gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:#E6B0D6;margin:0.6rem 0 0.35rem;}
+.gd-g p{font-size:0.9rem;color:#CFC5E2;line-height:1.55;}
+.gd-g .em{font-size:1.5rem;line-height:1;}
+
+.gd-intro{margin-top:1.6rem;}
+.gd-intro p{font-size:1.1rem;line-height:1.85;color:#CDC4DF;margin:0 0 1.1rem;max-width:74ch;}
+
+.cap{margin:0 0 2.6rem;padding-top:0.4rem;}
+.cap-head{display:flex;gap:0.9rem;align-items:center;margin-bottom:1.1rem;padding-bottom:0.7rem;
+  border-bottom:1px solid rgba(124,58,237,0.22);}
+.cap-head .n{font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:900;color:#fff;
+  background:var(--grad);border-radius:9px;padding:0.34rem 0.55rem;line-height:1;flex:0 0 auto;}
+.cap-head h2{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;line-height:1.22;color:#F4EFFD;}
+.cap p{font-size:1.12rem;line-height:1.88;color:#CFC6E1;margin:0 0 1.15rem;max-width:74ch;}
+.cap h3{font-family:'Orbitron',monospace;font-size:1.06rem;color:#F0E7FF;margin:2rem 0 0.8rem;
+  display:flex;align-items:center;gap:0.6rem;line-height:1.3;}
+.cap h3::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--pink);flex:0 0 auto;
+  box-shadow:0 0 10px rgba(236,72,153,0.6);}
+.cap h3 i{font-style:normal;color:var(--p2);font-size:0.74rem;letter-spacing:0.08em;}
+.cap h4{font-size:1.04rem;font-weight:700;color:#DCD2F0;margin:1.3rem 0 0.5rem;}
+.cap strong{color:#F8F3FF;font-weight:700;}
+.cap em{color:#CFB8F9;font-style:italic;}
+
+.gd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0.7rem;margin:0 0 1.3rem;}
+.gd-card{background:rgba(255,255,255,0.026);border:1px solid rgba(124,58,237,0.2);border-radius:12px;
+  padding:0.9rem 1rem;}
+.gd-card b{display:block;color:#F4EFFF;font-size:1rem;font-weight:700;line-height:1.35;margin-bottom:0.35rem;}
+.gd-card span{display:block;color:#BEB3D2;font-size:0.97rem;line-height:1.65;}
+.gd-ul{margin:0 0 1.3rem;padding-left:0;list-style:none;}
+.gd-ul li{position:relative;padding-left:1.35rem;font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
+.gd-ul li::before{content:'';position:absolute;left:0.25rem;top:0.68em;width:6px;height:6px;border-radius:50%;
+  background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
+.gd-ol{margin:0 0 1.3rem;padding-left:1.4rem;}
+.gd-ol li{font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
+.gd-ol li::marker{color:var(--pink);font-weight:700;}
+
+.gd-tabla{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
+.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.97rem;min-width:480px;}
+.gd-tabla th{background:rgba(124,58,237,0.22);color:#F2EAFF;text-align:left;padding:0.75rem 0.85rem;
+  font-size:0.78rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
+.gd-tabla td{padding:0.7rem 0.85rem;color:#C9BFDC;border-bottom:1px solid rgba(255,255,255,0.045);
+  vertical-align:top;line-height:1.6;}
+.gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.gd-tabla tr:last-child td{border-bottom:none;}
+
+.gd-flow{display:grid;gap:0.45rem;margin:0 0 1.3rem;}
+.gd-paso{border-left:2px solid rgba(124,58,237,0.55);padding:0.2rem 0 0.2rem 0.9rem;font-size:1.05rem;
+  color:#C8BEDB;line-height:1.55;}
+.gd-paso span{color:#F2EAFF;font-weight:700;}
+.gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
+  border-radius:10px;padding:0.9rem 1.05rem;margin:0 0 1.3rem;overflow-x:auto;}
+.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.9rem;color:#DED4FF;line-height:1.7;white-space:pre;}
+
+.gd-tomo{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0.8rem;margin-top:0.6rem;}
+.gd-tomo figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
+.gd-tomo a{display:block;}
+.gd-tomo img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;transition:filter 0.2s;}
+.gd-tomo a:hover img{filter:brightness(1.08);}
+.gd-tomo figcaption{font-size:0.66rem;color:#6A5F82;padding:0.4rem 0.7rem;border-top:1px solid rgba(255,255,255,0.05);}
+.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:2rem 0 0;}
+.gd-end a{font-size:0.82rem;font-weight:700;text-decoration:none;padding:0.65rem 1.1rem;border-radius:9px;}
+.gd-end .a1{background:var(--grad);color:#fff;}
+.gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
+.gd-end .a2:hover{color:#fff;border-color:var(--p);}
+@media (max-width:900px){
+  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1.2rem;padding:3.9rem 1rem 1.6rem;}
+  .gd-cover{width:140px;flex:none;}
+  .gd-sec{padding:1.7rem 1rem 0;}
+  .cap p{font-size:1.06rem;}
+  .cap-head h2{font-size:1.16rem;}
+  .gd-tomo{grid-template-columns:1fr;}
+  .gd-anchors{padding:0.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+<nav class="jv-nav">
+  <a href="jullverse.html" class="nav-logo">🎮 JULLVERSE</a>
+  <div class="nav-links">
+    <a href="jullverse.html">Inicio</a>
+    <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-guias-2.html" class="on">Guías</a>
+    <a href="jullverse-noticias.html">Noticias WoW</a>
+    <a href="jullverse-addons.html">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
+  </div>
+  <a href="https://youtube.com/@Jullverse" target="_blank" class="yt-btn">▶ Suscribirse</a>
+  <a href="index.html" class="back-btn">← Hub Principal</a>
+</nav>
+<header class="gd-hero">
+  <div class="gd-hero-bg" style="background-image:url('img/tomo/01.webp')"></div>
+  <div class="gd-hero-in">
+    <img class="gd-cover" src="img/tomo/01.webp" alt="Portada">
+    <div>
+      <div class="crumb"><a href="jullverse.html">Jullverse</a> / <a href="jullverse-guias-2.html">Guías</a> / Druida</div>
+      <h1>Guía del <span>Druida</span></h1>
+      <p>Del 1 al 60 siendo gato, oso y todo lo que haga falta. Sin morir de aburrimiento.</p>
+      <div class="gd-chips"><span>Feral / Oso</span><span>Niveles 1-60</span><span>Tanque y DPS</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="gd-bar">
+  <div class="gd-prog"><i></i></div>
+  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#cap1">1. Visión General y Cambios Mecánicos C</a><a href="#cap2">2. Especialización Recomendada y Build </a><a href="#cap3">3. Progresión de Niveles, Misiones de C</a><a href="#cap4">4. Rotaciones de Combate</a><a href="#cap5">5. Prioridad de Estadísticas, Armas e Í</a><a href="#cap6">6. Análisis de Razas y Sinergias Racial</a><a href="#cap7">7. Profesiones, Sistema de Acampada y C</a><a href="#cap8">8. Consejos Avanzados, Trucos y Macros </a></div>
+</div>
+
+<section class="gd-sec" id="vistazo">
+  <p class="gd-label">// De un vistazo</p>
+  <h2 class="gd-t">Lo que tienes que saber</h2>
+  <div class="gd-glance"><div class="gd-g"><span class="em">🐻</span><b>Nivel 10</b><p>Forma de Oso, y ya tanqueas mazmorras</p></div>
+<div class="gd-g"><span class="em">🐱</span><b>Nivel 20</b><p>Forma Felina: sigilo, energía y combo</p></div>
+<div class="gd-g"><span class="em">🐆</span><b>Nivel 30</b><p>Forma de Viaje, +40% y recolectas corriendo</p></div>
+<div class="gd-g"><span class="em">🐾</span><b>Nivel 40</b><p>Oso Nefasto y doble especialización</p></div></div>
+  
+</section>
+
+<section class="gd-sec">
+  <p class="gd-label">// La guía escrita</p>
+  <h2 class="gd-t">Capítulo a capítulo</h2>
+  <section class="cap" id="cap1">
+  <div class="cap-head"><span class="n">01</span><h2>Visión General y Cambios Mecánicos Clave en WoW: Forever</h2></div>
+  <p>El Druida se posiciona en <em>World of Warcraft: Forever</em> como la clase híbrida más versátil y eficiente para subir de nivel. Capaz de desempeñar los roles de tanque, sanador, DPS cuerpo a cuerpo y DPS a distancia, el rediseño de la clase elimina las fricciones tradicionales de <em>Classic Era</em>, convirtiendo el recorrido del nivel 1 al 60 en una experiencia fluida, rápida y autosuficiente.</p>
+<p>Para aprovechar al máximo el personaje, es fundamental comprender las nuevas mecánicas centrales introducidas en esta versión:</p>
+<h3>Escalado Directo por DPS de Arma y Encantamientos</h3>
+<p>En <em>WoW: Forever</em>, los ataques automáticos y las habilidades físicas en <strong>Forma Felina, Forma de Oso y Forma de Oso Nefasto escalan directamente con el Daño por Segundo (DPS) del arma equipada</strong>. Ya no es necesario evaluar un arma únicamente por sus atributos de Fuerza o Agilidad; el daño base del objeto incrementa directamente la potencia de tus zarpazos. Además, los encantamientos de arma (como <em>Cruzado</em>), procs de objetos y consumibles de filo (piedras de afilar y de peso) funcionan perfectamente estando transformado.</p>
+<h3>Uso de Consumibles sin Perder la Forma Animal</h3>
+<p>Una de las mayores mejoras de calidad de vida es la capacidad de consumir <strong>pociones de salud, maná y fuerza/ira, elixires, comida y vendas de Primeros Auxilios sin abandonar la forma animal</strong>. Asimismo, la mayoría de puertas, cofres u objetos de misión pueden despojarse directamente en forma felina u oso.</p>
+<h3>Habilidades Básicas Integradas (Sin Coste de Talentos)</h3>
+<p>Varias facultades clave que antes requerían puntos en los árboles de talentos ahora se aprenden directamente en el instructor de clase:</p>
+<div class="gd-cards"><div class="gd-card"><b>Gracia de la Naturaleza (</b><span><strong><em>Nature's Grasp</em></strong> <strong>)</strong>: Habilidad básica aprendida a <strong>nivel 10</strong>. Se puede lanzar en interiores y mientras estás transformado en forma animal.</span></div><div class="gd-card"><b>Augurio de Claridad (</b><span><strong><em>Omen of Clarity</em></strong> <strong>)</strong>: Habilidad pasiva básica aprendida a <strong>nivel 20</strong>. Permite que los ataques y hechizos activen <em>Lanzamiento libre</em> (<em>Clearcasting</em>). <em>Cólera</em> ya no consume la carga de <em>Lanzamiento libre</em>, permitiendo guardarla para hechizos o ataques más costosos.</span></div><div class="gd-card"><b>Revivir (</b><span><strong><em>Revive</em></strong> <strong>)</strong>: Nueva facultad de <strong>resurrección fuera de combate aprendida a nivel 12</strong>, resolviendo la carencia histórica del Druida en mazmorras.</span></div></div>
+<h3>Rediseño del Flujo de Recursos (Adiós al <em>Powershifting</em>)</h3>
+<p>La habilidad <em>Furia del Tigre</em> (<em>Tiger's Fury</em>) ha sido completamente eliminada del juego, junto con la mecánica de <em>powershifting</em> tradicional. El talento <strong>Furor</strong> (ubicado en el árbol Feral) conserva la Energía que tenías previamente en Forma Felina al cambiar de forma. La regeneración instantánea de energía en combate se canaliza ahora a través de la nueva habilidad de talento <strong>Poder Cambiante (</strong> <strong><em>Shifting Power</em></strong> <strong>)</strong>, que convierte instantáneamente parte de tu maná base en <strong>40 de Energía</strong> en Forma Felina.</p>
+</section>
+<section class="cap" id="cap2">
+  <div class="cap-head"><span class="n">02</span><h2>Especialización Recomendada y Build de Talentos Nivel a Nivel (10-60)</h2></div>
+  <p>La especialización indiscutible para subir de nivel en solitario y en grupo es <strong>Combate Feral</strong>. Esta especialización ofrece velocidad de movimiento incrementada, sigilo (<em>Prowl</em>) para evitar combates innecesarios, un coste nulo de maná durante el combate físico y la capacidad de tanquear cualquier mazmorra como Oso mientras leveas como Gato.</p>
+<p>La estructura óptima de talentos sigue una ruta profunda en Feral para desbloquear los talentos clave de Forma Felina, combinada posteriormente con talentos de Restauración y Equilibrio para maximizar el daño y la eficiencia de recursos.</p>
+<h3>Ruta de Talentos Paso a Paso (Niveles 10 al 60)</h3>
+<div class="gd-tabla"><table><thead><tr><th>Rango de Nivel</th><th>Talentos Seleccionados</th><th>Inversión y Propósito Estratégico</th></tr></thead><tbody><tr><td>Niveles 10–14</td><td>Ferocidad (Ferocity) (5/5)</td><td>Reduce en 5 p. el coste de Energía de Zarpa, Triturar y Mordedura Feroz, y el coste de Ira de Tacleada y Ataque Primigenio.</td></tr><tr><td>Niveles 15–19</td><td>Furor (4/5) y Presteza Feral (Feral Swiftness) (1/2)</td><td>Furor otorga Energía inmediata al entrar en Forma Felina; Presteza Feral aumenta un 15% la velocidad de movimiento en exteriores e interiores.</td></tr><tr><td>Niveles 20–24</td><td>Presteza Feral (2/2), Furia Salvaje (Savage Fury) (2/2), Garras Afiladas (Sharpened Claws) (2/2)</td><td>Maximiza la velocidad (+30%), aumenta el daño de Zarpa y Triturar, y otorga +4% de probabilidad de golpe crítico físico.</td></tr><tr><td>Niveles 25–29</td><td>Disciplina Depredadora (Predatory Discipline) (1/1), Frenesí Sangriento (Blood Frenzy) (2/2), Carga Feral (Feral Charge) (1/1), Golpes Depredadores (Predatory Strikes) (1/2)</td><td>Habilita Mordedura Feroz mejorada, otorga puntos de combo extra tras asestar críticos y proporciona movilidad e interrupción con Carga Feral.</td></tr><tr><td>Niveles 30–34</td><td>Instinto Natural (Natural Instinct) (2/2), Líder de la Manada (Leader of the Pack) (1/1), Golpes Depredadores (3/3)</td><td>Otorga un Aura de +3% de crítico físico/distancia para todo el grupo/banda y aumenta masivamente el Poder de Ataque basado en el nivel.</td></tr><tr><td>Niveles 35–39</td><td>Desgarrar y Rasgar (Rend and Tear) (5/5)</td><td>Incrementa en un +15% todo el daño físico infligido contra objetivos que están sangrando (Destripar, Arañazo, Lacerar).</td></tr><tr><td>Nivel 40</td><td>Poder Cambiante (Shifting Power) (1/1)</td><td>Talento Cúlmine Feral: Otorga 40 de Energía instantánea en Forma Felina a cambio de maná base (16s de reutilización).</td></tr><tr><td>Niveles 41–45</td><td>Génesis (Genesis) (5/5)</td><td>Aumenta el daño y la sanación periódica de tus sangrados (Destripar, Arañazo) y curaciones en el tiempo en un +10%.</td></tr><tr><td>Niveles 46–49</td><td>Majestuosidad de la Naturaleza (Nature's Majesty) (2/2), Alcance de la Naturaleza (Nature's Reach) (2/2)</td><td>Otorga +4% de probabilidad de crítico con hechizos y +4% de probabilidad de golpe.</td></tr><tr><td>Niveles 50–54</td><td>Corazón de lo Salvaje (Heart of the Wild) (5/5)</td><td>Aumenta un +20% tu Intelecto total, +20% tu Aguante en Oso y +20% tu Fuerza en Gato.</td></tr><tr><td>Niveles 55–59</td><td>Naturalista (Naturalist) (5/5)</td><td>Aumenta un +10% todo el daño físico infligido en cualquier forma.</td></tr><tr><td>Nivel 60</td><td>Metamorfosis Natural (Natural Shapeshifter) (1/3)</td><td>Reduce el coste de maná de todos los cambios de forma.</td></tr></tbody></table></div>
+</section>
+<section class="cap" id="cap3">
+  <div class="cap-head"><span class="n">03</span><h2>Progresión de Niveles, Misiones de Clase y Formas</h2></div>
+  <p>El aprendizaje de habilidades y la obtención de formas animales estructuran el ritmo de progresión del Druida. A diferencia de otras clases que dependen de monturas a nivel 40, el Druida alcanza una movilidad superior mucho antes.</p>
+<div class="gd-flow"><div class="gd-paso"><span>Nivel 1-9: Cólera + Fuego Lunar + Autoataque</span></div><div class="gd-paso"><span>Nivel 10: Misión de Clase → Forma de Oso + Teletransporte: Claro de la Luna</span></div><div class="gd-paso"><span>Nivel 16: Misión de Clase → Forma Acuática (Respiración acuática y +50% velocidad)</span></div><div class="gd-paso"><span>Nivel 20: Misión de Clase → Forma Felina (Sigilo, Energía y Puntos de Combo) + Armas de Asta</span></div><div class="gd-paso"><span>Nivel 30: Instructor → Forma de Viaje (+40% velocidad exterior, recolección en forma)</span></div><div class="gd-paso"><span>Nivel 40: Árbol Feral / Instructor → Forma de Oso Nefasto + Doble Especialización</span></div></div>
+<h3>Hitos Clave y Misiones de Clase</h3>
+<div class="gd-cards"><div class="gd-card"><b>Nivel 10 — Forma de Oso y Teletransporte: Claro de la Luna (</b><span><strong><em>Moonglade</em></strong> <strong>)</strong>:</span></div><div class="gd-card"><b>Alianza</b><span>Misión <em>Acatar la llamada</em> (<em>Heeding the Call</em>) en Darnassus.</span></div><div class="gd-card"><b>Horda</b><span>Misión <em>Acatar la llamada</em> en Cima del Trueno.</span></div><div class="gd-card"><b>Cielonatos (</b><span><strong><em>Skyborne</em></strong> <strong>)</strong>: Misión <em>El Gran Espíritu de Ursera</em> en la Isla de Zephras.</span></div><div class="gd-card"><span></span></div><div class="gd-card"><b>Nivel 14 — Misión de Curar Veneno</b></div><div class="gd-card"><span></span></div><div class="gd-card"><b>Nivel 16 — Forma Acuática</b></div><div class="gd-card"><span></span></div><div class="gd-card"><b>Nivel 20 — Forma Felina y Armas de Asta</b></div><div class="gd-card"><span></span></div><div class="gd-card"><span></span></div><div class="gd-card"><b>Nivel 30 — Forma de Viaje (</b><span><strong><em>Travel Form</em></strong> <strong>)</strong>:</span></div><div class="gd-card"><span></span></div></div>
+</section>
+<section class="cap" id="cap4">
+  <div class="cap-head"><span class="n">04</span><h2>Rotaciones de Combate</h2></div>
+  <h3>Rotación en Forma Felina (Leveo Solo / DPS)</h3>
+<ul class="gd-ul"><li><strong>Buffs Previos</strong>: Mantén siempre activos sobre ti <strong>Marca de la Loza (</strong> <strong><em>Mark of the Wild</em></strong> <strong>)</strong> y <strong>Espinas (</strong> <strong><em>Thorns</em></strong> <strong>)</strong> (el daño de Espinas se actualiza dinámicamente con tu poder con hechizos).</li><li><strong>Apertura</strong>: Entra en <strong>Acechar (</strong> <strong><em>Prowl</em></strong> <strong>)</strong> para seleccionar el combate.</li><li>Por la espalda: <strong>Emboscada (</strong> <strong><em>Ravage</em></strong> <strong>)</strong> (o <strong>Abalanzarse (</strong> <strong><em>Pounce</em></strong> <strong>)</strong> a nivel 36+ si necesitas aturdir).</li><li>De frente: <strong>Fuego Feérico (Feral)</strong> para reducir la armadura del objetivo a distancia sin coste de energía ni reinicio de autoataque.</li><li><strong>Generación de Puntos de Combo</strong>:</li><li>Ataca por la espalda con <strong>Triturar (</strong> <strong><em>Shred</em></strong> <strong>)</strong> (inflige 200% de daño de arma).</li><li>Ataca de frente con <strong>Zarpa (</strong> <strong><em>Claw</em></strong> <strong>)</strong> o aplica <strong>Arañazo (</strong> <strong><em>Rake</em></strong> <strong>)</strong> si el enemigo vivirá más de 9 segundos.</li><li><strong>Recuperación de Energía</strong>: Cuando la Energía caiga por debajo de 50 p., activa <strong>Poder Cambiante (</strong> <strong><em>Shifting Power</em></strong> <strong>)</strong> para recibir 40 p. de Energía instantánea a cambio de maná.</li><li><strong>Gasto de Lanzamiento Libre (</strong> <strong><em>Omen of Clarity</em></strong> <strong>)</strong>: Utiliza los procs de <em>Lanzamiento libre</em> en tus habilidades más caras (<em>Triturar</em>).</li><li><strong>Rematadores (Puntos de Combo)</strong>:</li><li>Enemigos con mucha salud / Élites: Aplica <strong>Destripar (</strong> <strong><em>Rip</em></strong> <strong>)</strong> con 4 o 5 puntos de combo.</li><li>Enemigos normales / Ejecución: Utiliza <strong>Mordedura Feroz (</strong> <strong><em>Ferocious Bite</em></strong> <strong>)</strong> a nivel 32+.</li></ul>
+<h3>Rotación en Forma de Oso (Tanque en Mazmorras / Mobs Múltiples)</h3>
+<div class="gd-cards"><div class="gd-card"><b>Atracción (</b><span><strong><em>Pull</em></strong> <strong>)</strong>: Inicia con <strong>Fuego Feérico (Feral)</strong> a distancia (genera amenaza en Oso).</span></div><div class="gd-card"><b>Control Inicial</b><span>Carga con <strong>Carga Feral</strong> si necesitas interrumpir a un taumaturgo o acortar distancia.</span></div><div class="gd-card"><b>Mitigación y Amenaza en Área</b><span>Lanza <strong>Clamor Desmoralizador (</strong> <strong><em>Demoralizing Roar</em></strong> <strong>)</strong> para reducir el daño físico entrante y generar amenaza inicial, seguido de <strong>Flagelo (</strong> <strong><em>Swipe</em></strong> <strong>)</strong> para golpear a varios objetivos.</span></div><div class="gd-card"><b>Amenaza Monobloque</b></div><div class="gd-card"><span></span></div><div class="gd-card"><span></span></div><div class="gd-card"><span></span></div></div>
+</section>
+<section class="cap" id="cap5">
+  <div class="cap-head"><span class="n">05</span><h2>Prioridad de Estadísticas, Armas e Ídolos</h2></div>
+  <h3>Prioridad de Estadísticas para Leveo Feral (Gato / Oso)</h3>
+<p>1. <strong>DPS del Arma</strong>: La estadística número uno e indiscutible. Al escalar directamente los ataques automáticos en forma animal con el DPS del arma, cualquier incremento en el valor de DPS del arma aumentará drásticamente tu velocidad de baja. <em>(Nota: La velocidad del arma no altera la velocidad fija de ataque de las formas, por lo que prima el valor de DPS absoluto).</em></p>
+<ol class="gd-ol"><li><strong>Fuerza (</strong> <strong><em>Strength</em></strong> <strong>)</strong>: <strong>1 p. de Fuerza = 2 p. de Poder de Ataque (AP)</strong> en Forma Felina y de Oso.</li><li><strong>Agilidad (</strong> <strong><em>Agility</em></strong> <strong>)</strong>: <strong>1 p. de Agilidad = 1 p. de AP en Gato</strong>, además de otorgar probabilidad de golpe crítico físico, armadura y probabilidad de esquivar.</li><li><strong>Aguante (</strong> <strong><em>Stamina</em></strong> <strong>) y Espíritu (</strong> <strong><em>Spirit</em></strong> <strong>)</strong>: El Aguante aumenta el margen de salud y el Espíritu acelera la regeneración de vida fuera de combate y de maná durante la regla de los 5 segundos.</li><li><strong>Golpe (</strong> <strong><em>Hit</em></strong> <strong>) y Crítico (</strong> <strong><em>Crit</em></strong> <strong>)</strong>: Estadísticas secundarias excepcionales para reducir fallos y activar talentos como <em>Frenesí Sangriento</em>.</li></ol>
+<h3>Ídolos Destacados</h3>
+<ul class="gd-ul"><li><strong>Ídolo de Mareas Cambiantes (</strong> <strong><em>Idol of Shifting Tides</em></strong> <strong>)</strong>: Recompensa de la misión de la Forma Acuática (nivel 16). Reduce el coste de maná de las metamorfosis en 40 p. Es el ídolo ideal para levear hasta conseguir piezas de nivel máximo.</li></ul>
+</section>
+<section class="cap" id="cap6">
+  <div class="cap-head"><span class="n">06</span><h2>Análisis de Razas y Sinergias Raciales</h2></div>
+  <h3>Facción de la Horda</h3>
+<div class="gd-cards"><div class="gd-card"><b>Tauren (La Elección Reina para Feral / Oso)</b></div><div class="gd-card"><b>Pisotón de Guerra (</b><span><strong><em>War Stomp</em></strong> <strong>)</strong>: Atontamiento en área que permite detener el daño entrante o castear una curación de emergencia. Funciona en forma animal.</span></div><div class="gd-card"><b>Aguante (</b><span><strong><em>Endurance</em></strong> <strong>)</strong>: Aumenta un <strong>+5% la salud total</strong> y otorga un <strong>+2% de daño y sanación crítica</strong>.</span></div><div class="gd-card"><b>Carrera de las Llanuras (</b><span><strong><em>Plainsrunning</em></strong> <strong>)</strong>: Otorga velocidad de movimiento progresiva en mundo abierto.</span></div><div class="gd-card"><b>Cultivo (</b><span><strong><em>Cultivation</em></strong> <strong>)</strong>: +15 p. a la profesión de Herboristería.</span></div><div class="gd-card"><b>Cielonato de los Vientos (</b><span><strong><em>Windshaper Skyborne</em></strong> <strong>)</strong>:</span></div><div class="gd-card"><b>Caminar sobre el Aire (</b><span><strong><em>Walk on Air</em></strong> <strong>)</strong>: Inmunidad al daño por caída y capacidad de planear. Usable en forma animal.</span></div><div class="gd-card"><b>Ojo Celestial (</b><span><strong><em>Skysight</em></strong> <strong>)</strong>: Incremento de velocidad de movimiento y +3% de Celeridad.</span></div></div>
+<h3>Facción de la Alianza</h3>
+<div class="gd-cards"><div class="gd-card"><b>Elfo de la Noche (La Elección Clásica para Feral / JcJ)</b></div><div class="gd-card"><b>Fusión de las Sombras (</b><span><strong><em>Shadowmeld</em></strong> <strong>)</strong>: Permite entrar en sigilo estático. En <em>WoW: Forever</em> <strong>se puede utilizar directamente estando en forma animal</strong>.</span></div><div class="gd-card"><b>Luz de Elune (</b><span><strong><em>Elune's Light</em></strong> <strong>)</strong>: Otorga +10% de probabilidad de golpe crítico durante 15 segundos.</span></div><div class="gd-card"><b>Presteza (</b><span><strong><em>Quickness</em></strong> <strong>)</strong>: Otorga +2% de probabilidad de esquivar y +2% de velocidad de movimiento a pie.</span></div><div class="gd-card"><b>Cielonato de la Orden Superior (</b><span><strong><em>High Order Skyborne</em></strong> <strong>)</strong>:</span></div><div class="gd-card"><b>Leer Línea Ley (</b><span><strong><em>Read Leyline</em></strong> <strong>)</strong>: Canalización que regenera vida y maná masivamente en solitario. Excelente para ramas de cast/sanación.</span></div></div>
+</section>
+<section class="cap" id="cap7">
+  <div class="cap-head"><span class="n">07</span><h2>Profesiones, Sistema de Acampada y Consumibles</h2></div>
+  <h3>Combo Indispensable: Desuello + Peletería (<em>Skinning + Leatherworking</em>)</h3>
+<p>Es la combinación perfecta para un Druida Feral. Desuello se sube de forma natural mientras completas misiones matando bestias. Peletería te permite fabricar tu propio equipo de cuero con estadísticas de Fuerza/Agilidad e integrarlo con el sistema de acampada:</p>
+<ul class="gd-ul"><li><strong>Tienda de Acampada (</strong> <strong><em>Camp Tent</em></strong> <strong>)</strong>: Objeto fabricado por Peletería para las hogueras. Al sentarte en el campamento durante 1 minuto, otorga la ventaja de <strong>experiencia descansada (</strong> <strong><em>rested XP</em></strong> <strong>) equivalente a un 5% de nivel</strong>.</li></ul>
+<h3>Opción Secundaria: Herboristería + Alquimia</h3>
+<p>Ideal si juegas en grupo o tienes interés en ramas mágicas. Los Druidas pueden <strong>recolectar plantas directamente en Forma de Viaje (</strong> <strong><em>Travel Form</em></strong> <strong>)</strong> sin necesidad de desmontar.</p>
+<h3>Profesión Secundaria Obligatoria: Cocina (<em>Cooking</em>)</h3>
+<p>En <em>WoW: Forever</em>, consumir comida con beneficio otorga un <strong>buff pasivo de +5% de experiencia ganada</strong>, lo que acelera de forma constante toda la subida de nivel.</p>
+</section>
+<section class="cap" id="cap8">
+  <div class="cap-head"><span class="n">08</span><h2>Consejos Avanzados, Trucos y Macros Cruciales</h2></div>
+  <p>1. <strong>Gestión de la Regla de los 5 Segundos</strong>: Tras lanzar un hechizo de sanación (<em>Toque de Sanación</em> o <em>Recrecimiento</em>), tu regeneración de maná se detiene durante 5 segundos. Transfórmate inmediatamente en Forma Felina u Oso; mientras peleas usando Energía o Ira, tu maná se regenerará al 100% de fondo para la siguiente curación.</p>
+<ol class="gd-ol"><li><strong>Vendas de Primeros Auxilios con Pielcorteza</strong>: Puedes activar <strong>Pielcorteza (</strong> <strong><em>Barkskin</em></strong> <strong>)</strong> (aprendida a nivel 44) antes de usar una venda de Primeros Auxilios; el efecto de Pielcorteza evitará que el daño entrante cancele la canalización de tu venda.</li><li><strong>Macro de Ataque con Cólera Inicial y Autoataque</strong>: Asegura iniciar el ataque físico automáticamente cuando te quedas sin maná en los niveles 1 al 9:</li></ol>
+<pre class="gd-code"><code>#showtooltip Cólera
+/cast Cólera
+/startattack</code></pre>
+<ol class="gd-ol"><li><strong>Macro de Cancelación e Invocación de Formas</strong>: Evita quedarte bloqueado entre cambios de forma al pulsar un solo botón para entrar directamente en Forma Felina o Forma de Viaje:</li></ol>
+<pre class="gd-code"><code>#showtooltip Forma felina
+/cancelform [noform:3]
+/cast [noform:3] Forma felina</code></pre>
+</section>
+  <div class="gd-end">
+    <a href="jullverse-guias-2.html" class="a2">← Todas las guías</a>
+    <a href="jullverse-druida-laminas-2.html" class="a1">Ver las láminas →</a>
+  </div>
+</section>
+
+
+
+
+<footer>
+  <div class="footer-logo">🎮 JULLVERSE</div>
+  <div class="footer-nav">
+    <a href="jullverse.html">Inicio</a>
+    <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-guias-2.html">Guías</a>
+    <a href="jullverse-noticias.html">Noticias WoW</a>
+    <a href="jullverse-addons.html">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
+    <a href="index.html">← Hub Principal</a>
+  </div>
+  <p class="footer-copy">El Multiverso de JULL · Hecho a mano desde Venezuela</p>
+</footer>
+
+<script>
+(function(){
+  var bar=document.querySelector('.gd-prog i');
+  var anchors=[].slice.call(document.querySelectorAll('.gd-anchors a'));
+  var secs=anchors.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    var y=window.scrollY+170, act=0;
+    secs.forEach(function(s,k){ if(s && s.offsetTop<=y) act=k; });
+    anchors.forEach(function(a,k){a.classList.toggle('on',k===act);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

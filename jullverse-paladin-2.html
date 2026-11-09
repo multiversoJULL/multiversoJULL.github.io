@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Guía del Paladín · Jullverse</title>
+<meta name="description" content="Sellos, Golpe Sagrado y un martillo lento. La clase que pega y aguanta a la vez.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --p: #7C3AED; --p2: #9D5CF0;
+  --pink: #EC4899; --pink2: #F472B6;
+  --neon: #FF10F0;
+  --bg: #07040F; --bg2: #0E0A1A; --bg3: #140E22;
+  --text: #F0ECF8; --muted: #7A6A9A;
+  --border: rgba(124,58,237,0.15);
+  --grad: linear-gradient(135deg, #7C3AED, #EC4899);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+
+/* GRID BG */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,0.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 60% at 30% 20%,rgba(124,58,237,0.12) 0%,transparent 65%),
+             radial-gradient(ellipse 50% 50% at 80% 70%,rgba(236,72,153,0.08) 0%,transparent 65%);
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
+  background:rgba(7,4,15,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 1.5rem;gap:1rem;}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:0.88rem;
+  text-decoration:none;letter-spacing:0.04em;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.back-btn{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;border-radius:6px;border:1px solid var(--border);
+  color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:600;
+  transition:all 0.2s;margin-left:auto;
+}
+.back-btn:hover{color:var(--text);border-color:var(--p);}
+.yt-btn{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;border-radius:6px;
+  background:var(--grad);color:white;
+  text-decoration:none;font-size:0.8rem;font-weight:700;
+  transition:all 0.2s;
+}
+.yt-btn:hover{opacity:0.85;transform:translateY(-1px);}
+
+/* HERO */
+.hero{
+  min-height:70vh;display:flex;align-items:center;
+  padding:6rem 1.5rem 3rem;position:relative;overflow:hidden;
+}
+.hero-content{position:relative;z-index:1;max-width:680px;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pink);border:1px solid rgba(236,72,153,0.3);
+  padding:0.28rem 1rem;border-radius:20px;margin-bottom:1.5rem;
+  background:rgba(236,72,153,0.06);
+}
+.hero-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:1;
+  margin-bottom:1rem;
+}
+.hero-title span{
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:block;
+}
+.hero-title small{
+  font-size:0.35em;letter-spacing:0.2em;color:var(--muted);
+  -webkit-text-fill-color:var(--muted);display:block;margin-bottom:0.3em;
+  font-weight:400;
+}
+.hero-desc{color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:2rem;max-width:520px;}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;gap:0.2rem;}
+.stat-n{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-l{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.hero-neon{
+  position:absolute;right:-100px;top:50%;transform:translateY(-50%);
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,16,240,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* LIVE BANNER */
+.live-banner{
+  display:none;margin:0 1.5rem;padding:1rem 1.5rem;
+  border-radius:12px;background:rgba(220,38,38,0.12);
+  border:1px solid rgba(220,38,38,0.35);
+  align-items:center;gap:1rem;position:relative;z-index:1;
+}
+.live-banner.show{display:flex;}
+.live-dot{
+  width:10px;height:10px;border-radius:50%;background:#EF4444;
+  box-shadow:0 0 10px #EF4444;flex-shrink:0;
+  animation:livePulse 1.2s infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.live-text{flex:1;}
+.live-text strong{display:block;font-size:0.9rem;color:#FCA5A5;}
+.live-text span{font-size:0.78rem;color:var(--muted);}
+.live-link{
+  padding:0.4rem 1rem;border-radius:6px;background:#DC2626;
+  color:white;text-decoration:none;font-size:0.8rem;font-weight:700;
+  transition:all 0.2s;white-space:nowrap;
+}
+.live-link:hover{background:#EF4444;}
+
+/* SECTIONS */
+.section{padding:4rem 1.5rem;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.sec-label{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--p2);margin-bottom:0.4rem;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:700;margin-bottom:1.8rem;}
+.sec-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* VIDEO GRID */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;}
+.vid-card{
+  border-radius:12px;overflow:hidden;background:var(--bg2);
+  border:1px solid var(--border);transition:all 0.25s;
+  text-decoration:none;color:var(--text);display:block;
+}
+.vid-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 8px 28px rgba(124,58,237,0.2);}
+.vid-thumb{width:100%;aspect-ratio:16/9;background:var(--bg3);position:relative;overflow:hidden;}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.vid-card:hover .vid-thumb img{transform:scale(1.05);}
+.vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background 0.25s;}
+.vid-card:hover .vid-overlay{background:rgba(0,0,0,0.35);}
+.play-ico{width:42px;height:42px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.7);transition:all 0.25s;color:white;font-size:0.9rem;padding-left:3px;}
+.vid-card:hover .play-ico{opacity:1;transform:scale(1);}
+.vid-info{padding:0.85rem 1rem;}
+.vid-title{font-size:0.87rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.35rem;}
+.vid-meta{font-size:0.73rem;color:var(--muted);}
+
+/* ALL VIDEOS LIST */
+.vid-list{display:flex;flex-direction:column;gap:0.7rem;}
+.vid-list-item{
+  display:flex;gap:1rem;align-items:center;
+  padding:0.7rem;border-radius:10px;background:var(--bg2);border:1px solid var(--border);
+  text-decoration:none;color:var(--text);transition:all 0.2s;
+}
+.vid-list-item:hover{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.05);}
+.vid-list-thumb{width:120px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--bg3);}
+.vid-list-thumb img{width:100%;height:100%;object-fit:cover;}
+.vid-list-info{flex:1;min-width:0;}
+.vid-list-title{font-size:0.9rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.3rem;}
+.vid-list-meta{font-size:0.73rem;color:var(--muted);}
+
+/* SHORTS */
+.shorts-row{display:flex;gap:0.9rem;overflow-x:auto;padding-bottom:0.5rem;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.short-card{flex-shrink:0;width:150px;border-radius:12px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.25s;display:block;}
+.short-card:hover{transform:translateY(-3px);border-color:rgba(124,58,237,0.5);box-shadow:0 6px 20px rgba(255,16,240,0.2);}
+.short-thumb{width:100%;aspect-ratio:9/16;background:var(--bg3);overflow:hidden;position:relative;}
+.short-thumb img{width:100%;height:100%;object-fit:cover;}
+.short-badge{position:absolute;top:6px;left:6px;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;padding:0.15rem 0.45rem;border-radius:4px;color:white;background:var(--grad);}
+.short-info{padding:0.55rem 0.7rem;}
+.short-title{font-size:0.73rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* LOAD MORE */
+.load-more{
+  display:block;width:100%;margin-top:1.5rem;padding:0.9rem;border-radius:10px;
+  border:1px solid var(--border);background:transparent;color:var(--p2);
+  font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.05em;
+  cursor:pointer;transition:all 0.2s;text-align:center;
+}
+.load-more:hover{border-color:var(--p);background:rgba(124,58,237,0.1);}
+
+/* SKELETON */
+.skel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;animation:shimmer 1.5s ease-in-out infinite;}
+.skel-line{height:11px;background:var(--bg3);border-radius:6px;margin:0.45rem 1rem;}
+.skel-line.s{width:55%;}
+@keyframes shimmer{0%,100%{opacity:1}50%{opacity:0.55}}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 1.5rem;position:relative;z-index:1;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;position:relative;z-index:1;}
+.footer-logo{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;}
+.footer-nav{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.footer-nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--text);}
+.footer-copy{color:var(--muted);font-size:0.75rem;}
+
+/* REDES SOCIALES */
+.redes-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  justify-content: center;
+}
+.red-link {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid;
+  text-decoration: none; color: var(--text);
+  font-size: 0.88rem; font-weight: 600;
+  background: var(--bg2); transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.red-link:hover { transform: translateY(-2px); filter: brightness(1.2); }
+.red-ico { font-size: 1rem; }
+
+
+/* VID GRID — 3 en fila, sin bajar */
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+.shorts-row{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center;padding-bottom:0.5rem;}
+
+
+/* ══════════════════════════════════════════════════════════
+   JULLVERSE
+   ══════════════════════════════════════════════════════════ */
+:root{ --gold:#E8B54D; }
+
+/* NAV */
+.jv-nav .nav-links{display:flex;gap:0.15rem;margin-left:auto;align-items:center;overflow-x:auto;}
+.jv-nav .nav-links a{
+  padding:0.34rem 0.78rem;border-radius:6px;color:var(--muted);text-decoration:none;
+  font-size:0.79rem;font-weight:600;white-space:nowrap;transition:all 0.18s;
+}
+.jv-nav .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.06);}
+.jv-nav .nav-links a.on{color:var(--text);background:rgba(124,58,237,0.20);box-shadow:inset 0 0 0 1px rgba(124,58,237,0.35);}
+.jv-nav .back-btn{margin-left:0;}
+
+/* BANNER */
+.jv-banner{position:relative;width:100%;height:140px;overflow:hidden;border-bottom:1px solid var(--border);}
+.jv-banner img{width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:0.5;}
+.jv-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.2),var(--bg) 94%);}
+
+/* CABECERA */
+.jv-hero{padding:2.4rem 1.5rem 0.4rem;position:relative;z-index:1;max-width:1100px;margin:0 auto;
+  display:flex;align-items:flex-start;gap:1.4rem;flex-wrap:wrap;}
+.jv-hero .logo{width:86px;height:86px;border-radius:18px;object-fit:contain;flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.07),0 10px 30px rgba(0,0,0,0.5);}
+.jv-hero .txt{flex:1;min-width:240px;}
+.jv-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4.2vw,2.6rem);font-weight:900;line-height:1.05;margin:0 0 0.55rem;}
+.jv-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.jv-hero .intro{color:#A79CC2;font-size:0.95rem;line-height:1.7;max-width:600px;}
+.jv-hero .intro b{color:var(--text);font-weight:600;}
+.jv-hero .stats{display:flex;gap:1.8rem;margin-top:1rem;flex-wrap:wrap;}
+.jv-hero .stat-n{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:var(--text);}
+.jv-hero .stat-l{font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.jv-hero .firma{margin-top:0.9rem;font-size:0.72rem;color:#5F5378;}
+
+/* CABECERA DE PAGINA */
+.pg-head{max-width:1100px;margin:0 auto;padding:2.2rem 1.5rem 0.4rem;position:relative;z-index:1;}
+.pg-head .crumb{font-size:0.7rem;color:#5F5378;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem;}
+.pg-head .crumb a{color:var(--p2);text-decoration:none;}
+.pg-head .crumb a:hover{text-decoration:underline;}
+.pg-head h1{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3.8vw,2.2rem);font-weight:900;line-height:1.1;}
+.pg-head h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.pg-head p{color:#8B82A6;font-size:0.9rem;line-height:1.65;margin-top:0.55rem;max-width:640px;}
+
+/* TARJETAS DE ACCESO */
+.hub{max-width:1100px;margin:0 auto;padding:1.7rem 1.5rem 0.6rem;position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.hub-card{position:relative;display:flex;flex-direction:column;min-height:175px;
+  border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);
+  border:1px solid var(--border);background:var(--bg2);transition:all 0.25s;}
+.hub-card .in{position:relative;padding:1.1rem 1.2rem;display:flex;flex-direction:column;height:100%;}
+.hub-card .ico{
+  width:44px;height:44px;border-radius:11px;flex-shrink:0;margin-bottom:auto;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  font-size:1.15rem;color:var(--p2);
+}
+.hub-card .ico img{width:100%;height:100%;object-fit:cover;}
+.hub-card .ico.logo img{object-fit:contain;padding:6px;background:#0A0714;}
+.hub-card .txt{margin-top:0.9rem;}
+.hub-card .k{font-size:0.57rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);font-weight:700;}
+.hub-card h3{font-family:'Orbitron',monospace;font-size:0.94rem;font-weight:700;margin:0.26rem 0 0.3rem;}
+.hub-card p{font-size:0.78rem;color:#8B82A6;line-height:1.5;}
+.hub-card .go{margin-top:0.6rem;font-size:0.73rem;font-weight:700;color:var(--pink);}
+.hub-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.5);box-shadow:0 14px 36px rgba(0,0,0,0.5);}
+.hub-card:hover .bg{opacity:0.38;transform:scale(1.05);}
+
+/* ÚLTIMO VIDEO */
+.hub-video{
+  display:flex;gap:1.1rem;align-items:stretch;max-width:1100px;margin:0 auto;
+  border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);
+  text-decoration:none;color:var(--text);transition:all 0.22s;
+}
+.hub-video:hover{border-color:rgba(236,72,153,0.5);box-shadow:0 12px 34px rgba(236,72,153,0.16);transform:translateY(-2px);}
+.hub-video .thumb{width:320px;flex-shrink:0;aspect-ratio:16/9;object-fit:cover;background:var(--bg3);}
+.hub-video .thumb.ph{
+  display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff;
+  background:linear-gradient(135deg,rgba(124,58,237,0.45),rgba(236,72,153,0.35));
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.vid-fallback .ph{
+  width:170px;aspect-ratio:16/9;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;
+  background:linear-gradient(135deg,rgba(124,58,237,0.45),rgba(236,72,153,0.35));
+}
+.hub-video .body{padding:1.1rem 1.2rem;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.hub-video .tag{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.4rem;}
+.hub-video h3{font-size:1.05rem;font-weight:600;line-height:1.4;margin-bottom:0.4rem;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.hub-video .meta{font-size:0.76rem;color:var(--muted);}
+.hub-video .play{margin-top:0.7rem;font-size:0.78rem;font-weight:700;color:var(--p2);}
+
+/* FICHAS DE JUEGO */
+.fichas{max-width:1100px;margin:0 auto;padding:0.4rem 1.5rem 0;position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.ficha{display:flex;gap:0;border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--border);transition:all 0.22s;}
+.ficha:hover{border-color:rgba(232,181,77,0.4);}
+.ficha .art{width:104px;flex-shrink:0;object-fit:cover;object-position:center top;}
+.ficha .art.logo{object-fit:contain;background:#0A0714;padding:0.6rem;}
+.ficha .body{padding:0.9rem 1rem;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.ficha .k{font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.25rem;}
+.ficha h3{font-family:'Orbitron',monospace;font-size:0.86rem;font-weight:700;line-height:1.25;margin-bottom:0.45rem;}
+.ficha .row{display:flex;gap:0.4rem;font-size:0.76rem;color:#8B82A6;margin-bottom:0.18rem;}
+.ficha .row b{color:#D6CFE6;font-weight:600;}
+.ficha .go{margin-top:0.45rem;font-size:0.72rem;font-weight:700;color:var(--p2);}
+
+/* TIRA DE ICONOS */
+.icon-strip{display:flex;gap:0.45rem;justify-content:center;overflow:hidden;padding:1rem 1.5rem 0.2rem;
+  position:relative;z-index:1;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);}
+.icon-strip img{width:40px;height:40px;border-radius:9px;object-fit:cover;flex-shrink:0;
+  border:1px solid rgba(232,181,77,0.18);background:#12161F;opacity:0.8;transition:transform 0.2s,opacity 0.2s;}
+.icon-strip img:hover{transform:translateY(-3px);opacity:1;}
+
+/* BOTON TODOS LOS VIDEOS */
+.yt-all{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  max-width:640px;margin:0 auto;padding:1.05rem 1.35rem;border-radius:14px;
+  background:linear-gradient(135deg,rgba(236,72,153,0.10),rgba(124,58,237,0.10));
+  border:1px solid rgba(236,72,153,0.30);text-decoration:none;color:var(--text);transition:all 0.22s;}
+.yt-all:hover{transform:translateY(-3px);border-color:rgba(236,72,153,0.6);box-shadow:0 12px 30px rgba(236,72,153,0.18);}
+.yt-all b{display:block;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;}
+.yt-all span{font-size:0.77rem;color:#8B82A6;}
+.yt-all .arrow{font-size:1.4rem;color:var(--pink);}
+
+/* NOTICIAS */
+.news{max-width:900px;margin:0 auto;padding:0.6rem 1.5rem 1rem;position:relative;z-index:1;}
+.news-filters{display:flex;gap:0.4rem;flex-wrap:wrap;padding:0.4rem 0 1.4rem;}
+.news-filters button{
+  display:flex;align-items:center;gap:0.45rem;
+  padding:0.34rem 0.85rem;border-radius:20px;cursor:pointer;
+  background:var(--bg2);border:1px solid var(--border);color:var(--muted);
+  font-family:'Rajdhani',sans-serif;font-size:0.78rem;font-weight:700;transition:all 0.18s;
+}
+.news-filters button img{width:18px;height:18px;object-fit:contain;border-radius:4px;}
+.news-filters button span.dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:0.7;}
+.news-filters button:hover{color:var(--text);border-color:rgba(255,255,255,0.16);}
+.news-filters button.on{background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.5);color:#fff;}
+
+.news-item{display:flex;gap:0.95rem;padding:0.85rem;border-radius:13px;background:var(--bg2);
+  border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.2s;margin-bottom:0.7rem;}
+.news-item:hover{transform:translateX(4px);border-color:rgba(124,58,237,0.5);background:rgba(124,58,237,0.06);}
+.news-art{width:104px;flex-shrink:0;border-radius:9px;overflow:hidden;background:#0A0714;
+  display:flex;align-items:center;justify-content:center;}
+.news-art img{width:100%;height:100%;object-fit:cover;}
+.news-art.contain img{object-fit:contain;padding:0.35rem;}
+.news-body{flex:1;min-width:0;}
+.news-game{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.58rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;padding:0.12rem 0.45rem;border-radius:4px;margin-bottom:0.3rem;
+  background:rgba(232,181,77,0.12);color:var(--gold);border:1px solid rgba(232,181,77,0.25);}
+.news-game.retail{background:rgba(167,139,250,0.12);color:#B9A5F5;border-color:rgba(167,139,250,0.28);}
+.news-game.classic{background:rgba(95,200,216,0.12);color:#7FD3E0;border-color:rgba(95,200,216,0.28);}
+.news-title{font-size:0.95rem;font-weight:600;line-height:1.35;margin-bottom:0.3rem;}
+.news-desc{font-size:0.81rem;color:#8B82A6;line-height:1.55;}
+.news-meta{font-size:0.71rem;color:var(--muted);margin-top:0.4rem;}
+.news-meta b{color:var(--p2);font-weight:600;}
+
+/* OTROS JUEGOS */
+.otros{max-width:900px;margin:0 auto;padding:0.4rem 1.5rem 3rem;position:relative;z-index:1;}
+.otros-box{border:1px dashed rgba(255,255,255,0.14);border-radius:14px;padding:1.5rem;
+  text-align:center;background:rgba(20,14,34,0.5);}
+.otros-box .ico{font-size:1.7rem;margin-bottom:0.5rem;}
+.otros-box h3{font-family:'Orbitron',monospace;font-size:0.86rem;font-weight:700;margin-bottom:0.35rem;}
+.otros-box p{font-size:0.83rem;color:#8B82A6;line-height:1.6;}
+
+/* EN CONSTRUCCION */
+.coming{max-width:640px;margin:0 auto;padding:2.5rem 1.5rem 4rem;text-align:center;position:relative;z-index:1;}
+.coming .big{width:72px;height:72px;margin:0 auto 1.2rem;border-radius:20px;display:flex;
+  align-items:center;justify-content:center;font-size:2rem;background:rgba(20,14,34,0.9);border:1px solid var(--border);}
+.coming h2{font-family:'Orbitron',monospace;font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;}
+.coming p{color:#8B82A6;font-size:0.9rem;line-height:1.7;}
+
+/* ══════════════ ADDONS ══════════════ */
+.wf{max-width:1200px;margin:0 auto;padding:0.6rem 1.5rem 3rem;position:relative;z-index:1;}
+.wf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:620px;margin:1.3rem 0 0;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border);}
+.wf-stat{background:var(--bg2);padding:0.85rem 0.5rem;text-align:center;}
+.wf-stat b{display:block;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);line-height:1.1;}
+.wf-stat span{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.wf-toolbar{position:sticky;top:60px;z-index:60;margin:1.4rem 0 1.1rem;
+  background:rgba(7,4,15,0.95);backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:12px;
+  padding:0.8rem 1rem;display:flex;flex-direction:column;gap:0.65rem;}
+.wf-searchrow{display:flex;gap:0.7rem;align-items:center;flex-wrap:wrap;}
+.wf-search{position:relative;flex:1;min-width:220px;}
+.wf-search::before{content:'⌕';position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.1rem;pointer-events:none;}
+#wfSearch{width:100%;padding:0.6rem 0.9rem 0.6rem 2.3rem;border-radius:8px;background:var(--bg3);
+  border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.94rem;
+  font-weight:500;outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+#wfSearch::placeholder{color:#5B5270;}
+#wfSearch:focus{border-color:rgba(232,181,77,0.45);box-shadow:0 0 0 3px rgba(232,181,77,0.08);}
+.wf-count{font-size:0.77rem;color:var(--muted);white-space:nowrap;font-weight:600;}
+.wf-count b{color:var(--gold);}
+.wf-chips{display:flex;gap:0.38rem;overflow-x:auto;padding-bottom:0.12rem;scrollbar-width:thin;}
+.wf-chip{flex-shrink:0;padding:0.3rem 0.78rem;border-radius:20px;cursor:pointer;background:var(--bg3);
+  border:1px solid var(--border);color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:0.77rem;
+  font-weight:700;transition:all 0.18s;white-space:nowrap;}
+.wf-chip:hover{color:var(--text);border-color:rgba(255,255,255,0.15);}
+.wf-chip.active{background:rgba(232,181,77,0.13);border-color:rgba(232,181,77,0.45);color:var(--gold);}
+.wf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(325px,1fr));gap:0.9rem;}
+.wf-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.05rem 0.95rem;
+  position:relative;overflow:hidden;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+  display:flex;flex-direction:column;}
+.wf-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--acc,#E8B54D);opacity:0.5;transition:opacity 0.2s;}
+.wf-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.13);box-shadow:0 10px 26px rgba(0,0,0,0.45);}
+.wf-card:hover::before{opacity:1;}
+.wf-top{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.65rem;}
+.wf-ico{flex-shrink:0;width:52px;height:52px;border-radius:10px;overflow:hidden;background:#12161F;
+  border:1px solid rgba(232,181,77,0.26);box-shadow:0 3px 10px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;}
+.wf-card:hover .wf-ico{transform:scale(1.04);box-shadow:0 0 0 1px rgba(232,181,77,0.30),0 0 14px rgba(232,181,77,0.14);}
+.wf-ico img{width:100%;height:100%;object-fit:cover;display:block;}
+.wf-info{flex:1;min-width:0;}
+.wf-name{font-family:'Orbitron',monospace;font-size:0.84rem;font-weight:700;line-height:1.3;word-break:break-word;margin-bottom:0.3rem;}
+.wf-ver{font-size:0.61rem;font-weight:700;padding:0.14rem 0.42rem;border-radius:4px;white-space:nowrap;
+  background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid rgba(255,255,255,0.06);}
+.wf-badges{display:flex;gap:0.3rem;flex-wrap:wrap;}
+.wf-badge{font-size:0.56rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  padding:0.12rem 0.45rem;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--acc,#E8B54D);
+  border:1px solid rgba(255,255,255,0.07);}
+.wf-badge.forever{background:rgba(232,181,77,0.12);color:var(--gold);border-color:rgba(232,181,77,0.32);}
+.wf-desc{font-size:0.85rem;color:#AEA6C4;line-height:1.6;flex:1;}
+.wf-cmd{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.7rem;font-family:'Orbitron',monospace;
+  font-size:0.68rem;font-weight:700;color:var(--gold);background:rgba(232,181,77,0.06);
+  border:1px dashed rgba(232,181,77,0.22);border-radius:5px;padding:0.24rem 0.55rem;align-self:flex-start;}
+.wf-cmd span{font-family:'Rajdhani',sans-serif;font-weight:600;color:var(--muted);font-size:0.66rem;letter-spacing:0.05em;text-transform:uppercase;}
+.wf-mods{margin-top:0.8rem;border-top:1px solid var(--border);padding-top:0.55rem;}
+.wf-mods summary{cursor:pointer;list-style:none;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.wf-mods summary::-webkit-details-marker{display:none;}
+.wf-mods summary::before{content:'▸';color:var(--gold);font-size:0.8rem;transition:transform 0.2s;display:inline-block;}
+.wf-mods[open] summary::before{transform:rotate(90deg);}
+.wf-mods summary:hover{color:var(--text);}
+.wf-modlist{list-style:none;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.42rem;}
+.wf-modlist li{font-size:0.77rem;line-height:1.5;color:#948BAE;padding-left:0.65rem;border-left:1px solid rgba(255,255,255,0.06);}
+.wf-modlist b{color:#D3CBDF;font-weight:700;font-family:'Orbitron',monospace;font-size:0.68rem;}
+.wf-modlist em{display:block;font-style:normal;font-size:0.7rem;color:#6A5F82;margin-top:0.08rem;}
+.wf-empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted);}
+.wf-empty b{display:block;font-family:'Orbitron',monospace;color:var(--gold);margin-bottom:0.4rem;}
+.wf-group{grid-column:1/-1;margin:1.5rem 0 0.15rem;display:flex;align-items:center;gap:0.65rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:0.45rem;}
+.wf-group i{width:3px;height:16px;border-radius:3px;background:var(--acc);}
+.wf-group span{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.08em;color:var(--acc);text-transform:uppercase;}
+.wf-group em{font-size:0.68rem;color:#5B5270;font-weight:600;font-style:normal;}
+.wf-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0.9rem;margin-top:2.2rem;}
+.wf-note{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;}
+.wf-note h3{font-family:'Orbitron',monospace;font-size:0.73rem;font-weight:700;letter-spacing:0.06em;margin-bottom:0.5rem;color:var(--gold);}
+.wf-note p{font-size:0.83rem;color:#9A90B5;line-height:1.65;}
+.wf-warn{margin-top:0.9rem;border-left:2px solid #C5645C;background:rgba(197,100,92,0.05);border-radius:0 8px 8px 0;padding:0.85rem 1rem;}
+.wf-warn b{color:#D98A82;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.07em;display:block;margin-bottom:0.25rem;}
+.wf-warn p{font-size:0.82rem;color:#9A90B5;line-height:1.6;margin:0;}
+
+/* fallback */
+.vid-fallback{grid-column:1/-1;display:flex;gap:1rem;align-items:center;padding:0.85rem;border-radius:12px;
+  background:var(--bg2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.2s;}
+.vid-fallback:hover{border-color:rgba(236,72,153,0.5);}
+.vid-fallback img{width:170px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;flex-shrink:0;}
+.vid-fallback b{display:block;font-size:0.93rem;margin-bottom:0.2rem;}
+.vid-fallback span{font-size:0.79rem;color:var(--muted);}
+
+@media (max-width:900px){
+  .hub{grid-template-columns:1fr;}
+  .fichas{grid-template-columns:1fr;}
+}
+@media (max-width:860px){
+  .jv-nav .nav-links{order:3;width:100%;margin-left:0;}
+  .jv-nav{height:auto;flex-wrap:wrap;padding:0.5rem 1rem;gap:0.4rem;}
+  .wf-stats{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:768px){
+  .wf-grid{grid-template-columns:1fr;}
+  .wf-toolbar{top:0;}
+  .jv-hero{padding:1.8rem 1rem 0.4rem;}
+  .jv-hero .logo{width:62px;height:62px;}
+  .icon-strip img{width:34px;height:34px;}
+  .hub-video{flex-direction:column;}
+  .hub-video .thumb{width:100%;}
+  .news-art{width:76px;}
+}
+
+/* ══════════════ FICHA DE WOW / AFIJOS ══════════════ */
+.wowgrid{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;position:relative;z-index:1;align-items:start;}
+.wcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.05rem 1.15rem;}
+.wcard-h{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.85rem;}
+.wcard-h .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);}
+.wcard-h h3{font-family:'Orbitron',monospace;font-size:0.76rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+
+.token-row{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0;}
+.token-row + .token-row{border-top:1px solid rgba(255,255,255,0.05);}
+.flag{width:34px;height:24px;border-radius:4px;object-fit:cover;flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.14);}
+.token-p{flex:1;min-width:0;}
+.token-p b{display:block;font-family:'Orbitron',monospace;font-size:0.98rem;font-weight:700;color:var(--gold);line-height:1.2;}
+.token-p span{font-size:0.71rem;color:var(--muted);}
+.token-nota{font-size:0.66rem;color:#5F5378;margin-top:0.55rem;line-height:1.5;}
+
+.afijos{display:grid;grid-template-columns:repeat(4,1fr);gap:0.55rem;}
+.afijo{text-align:center;}
+.afijo img{width:46px;height:46px;border-radius:10px;display:block;margin:0 auto;
+  border:1px solid rgba(255,255,255,0.1);background:#0A0714;}
+.afijo span{display:block;font-size:0.65rem;line-height:1.25;color:#A79CC2;margin-top:0.35rem;}
+.afijo-sub{text-align:center;font-size:0.72rem;color:var(--muted);margin:0.1rem 0 0.8rem;}
+.fuente{text-align:center;font-size:0.64rem;color:#5F5378;margin-top:0.75rem;}
+.fuente a{color:#6E6288;}
+
+@media (max-width:900px){
+  .wowgrid{grid-template-columns:1fr;}
+  .afijo img{width:40px;height:40px;}
+  .afijo span{font-size:0.6rem;}
+}
+
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<style>
+.gd-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.gd-hero-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;
+  filter:blur(34px) brightness(0.3) saturate(1.1);transform:scale(1.1);}
+.gd-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,15,0.4),rgba(7,4,15,0.94));}
+.gd-hero-in{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:4.6rem 1.5rem 2.2rem;
+  display:flex;gap:1.8rem;align-items:center;}
+.gd-cover{width:200px;flex:0 0 200px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 44px rgba(0,0,0,0.6);display:block;}
+.gd-hero .crumb{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#9C8FBC;margin-bottom:0.5rem;}
+.gd-hero .crumb a{color:#B9A9E0;text-decoration:none;}
+.gd-hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:900;line-height:1.12;}
+.gd-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gd-hero p{color:#BEB3D4;font-size:1.02rem;line-height:1.6;margin-top:0.7rem;max-width:56ch;}
+.gd-chips{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:1rem;}
+.gd-chips span{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C7BCE4;
+  background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.34);padding:0.26rem 0.62rem;border-radius:20px;}
+
+.gd-bar{position:sticky;top:60px;z-index:40;background:rgba(7,4,15,0.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);}
+.gd-prog{height:2px;background:rgba(255,255,255,0.06);}
+.gd-prog i{display:block;height:100%;width:0;background:var(--grad);}
+.gd-anchors{max-width:1000px;margin:0 auto;padding:0.55rem 1.5rem;display:flex;gap:0.35rem;overflow-x:auto;scrollbar-width:none;}
+.gd-anchors::-webkit-scrollbar{display:none;}
+.gd-anchors a{white-space:nowrap;text-decoration:none;font-size:0.72rem;font-weight:700;color:#9C8FBC;
+  padding:0.3rem 0.7rem;border-radius:20px;border:1px solid transparent;}
+.gd-anchors a:hover,.gd-anchors a.on{color:#fff;background:rgba(124,58,237,0.26);border-color:rgba(124,58,237,0.45);}
+
+.gd-sec{max-width:1000px;margin:0 auto;padding:2.4rem 1.5rem 0;position:relative;z-index:1;}
+.gd-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:0.5rem;}
+.gd-t{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;margin-bottom:1.1rem;}
+
+.gd-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.8rem;margin-bottom:0.4rem;}
+.gd-g{background:linear-gradient(160deg,rgba(124,58,237,0.18),rgba(20,14,34,0.92));
+  border:1px solid rgba(124,58,237,0.3);border-radius:14px;padding:1rem 1.05rem;}
+.gd-g b{display:block;font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:#E6B0D6;margin:0.6rem 0 0.35rem;}
+.gd-g p{font-size:0.9rem;color:#CFC5E2;line-height:1.55;}
+.gd-g .em{font-size:1.5rem;line-height:1;}
+
+.gd-intro{margin-top:1.6rem;}
+.gd-intro p{font-size:1.1rem;line-height:1.85;color:#CDC4DF;margin:0 0 1.1rem;max-width:74ch;}
+
+.cap{margin:0 0 2.6rem;padding-top:0.4rem;}
+.cap-head{display:flex;gap:0.9rem;align-items:center;margin-bottom:1.1rem;padding-bottom:0.7rem;
+  border-bottom:1px solid rgba(124,58,237,0.22);}
+.cap-head .n{font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:900;color:#fff;
+  background:var(--grad);border-radius:9px;padding:0.34rem 0.55rem;line-height:1;flex:0 0 auto;}
+.cap-head h2{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;line-height:1.22;color:#F4EFFD;}
+.cap p{font-size:1.12rem;line-height:1.88;color:#CFC6E1;margin:0 0 1.15rem;max-width:74ch;}
+.cap h3{font-family:'Orbitron',monospace;font-size:1.06rem;color:#F0E7FF;margin:2rem 0 0.8rem;
+  display:flex;align-items:center;gap:0.6rem;line-height:1.3;}
+.cap h3::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--pink);flex:0 0 auto;
+  box-shadow:0 0 10px rgba(236,72,153,0.6);}
+.cap h3 i{font-style:normal;color:var(--p2);font-size:0.74rem;letter-spacing:0.08em;}
+.cap h4{font-size:1.04rem;font-weight:700;color:#DCD2F0;margin:1.3rem 0 0.5rem;}
+.cap strong{color:#F8F3FF;font-weight:700;}
+.cap em{color:#CFB8F9;font-style:italic;}
+
+.gd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0.7rem;margin:0 0 1.3rem;}
+.gd-card{background:rgba(255,255,255,0.026);border:1px solid rgba(124,58,237,0.2);border-radius:12px;
+  padding:0.9rem 1rem;}
+.gd-card b{display:block;color:#F4EFFF;font-size:1rem;font-weight:700;line-height:1.35;margin-bottom:0.35rem;}
+.gd-card span{display:block;color:#BEB3D2;font-size:0.97rem;line-height:1.65;}
+.gd-ul{margin:0 0 1.3rem;padding-left:0;list-style:none;}
+.gd-ul li{position:relative;padding-left:1.35rem;font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
+.gd-ul li::before{content:'';position:absolute;left:0.25rem;top:0.68em;width:6px;height:6px;border-radius:50%;
+  background:var(--pink);box-shadow:0 0 8px rgba(236,72,153,0.7);}
+.gd-ol{margin:0 0 1.3rem;padding-left:1.4rem;}
+.gd-ol li{font-size:1.08rem;line-height:1.8;color:#CBC1DE;margin-bottom:0.6rem;}
+.gd-ol li::marker{color:var(--pink);font-weight:700;}
+
+.gd-tabla{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--border);border-radius:12px;background:#0A0714;}
+.gd-tabla table{width:100%;border-collapse:collapse;font-size:0.97rem;min-width:480px;}
+.gd-tabla th{background:rgba(124,58,237,0.22);color:#F2EAFF;text-align:left;padding:0.75rem 0.85rem;
+  font-size:0.78rem;letter-spacing:0.03em;font-weight:700;border-bottom:1px solid rgba(124,58,237,0.34);}
+.gd-tabla td{padding:0.7rem 0.85rem;color:#C9BFDC;border-bottom:1px solid rgba(255,255,255,0.045);
+  vertical-align:top;line-height:1.6;}
+.gd-tabla tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.gd-tabla tr:last-child td{border-bottom:none;}
+
+.gd-flow{display:grid;gap:0.45rem;margin:0 0 1.3rem;}
+.gd-paso{border-left:2px solid rgba(124,58,237,0.55);padding:0.2rem 0 0.2rem 0.9rem;font-size:1.05rem;
+  color:#C8BEDB;line-height:1.55;}
+.gd-paso span{color:#F2EAFF;font-weight:700;}
+.gd-code{background:#080510;border:1px solid rgba(124,58,237,0.3);border-left:3px solid var(--pink);
+  border-radius:10px;padding:0.9rem 1.05rem;margin:0 0 1.3rem;overflow-x:auto;}
+.gd-code code{font-family:'Consolas','Courier New',monospace;font-size:0.9rem;color:#DED4FF;line-height:1.7;white-space:pre;}
+
+.gd-tomo{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0.8rem;margin-top:0.6rem;}
+.gd-tomo figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#0A0714;}
+.gd-tomo a{display:block;}
+.gd-tomo img{width:100%;display:block;aspect-ratio:1376/768;object-fit:cover;transition:filter 0.2s;}
+.gd-tomo a:hover img{filter:brightness(1.08);}
+.gd-tomo figcaption{font-size:0.66rem;color:#6A5F82;padding:0.4rem 0.7rem;border-top:1px solid rgba(255,255,255,0.05);}
+.gd-end{display:flex;gap:0.6rem;flex-wrap:wrap;margin:2rem 0 0;}
+.gd-end a{font-size:0.82rem;font-weight:700;text-decoration:none;padding:0.65rem 1.1rem;border-radius:9px;}
+.gd-end .a1{background:var(--grad);color:#fff;}
+.gd-end .a2{border:1px solid var(--border);color:#A79BC0;}
+.gd-end .a2:hover{color:#fff;border-color:var(--p);}
+@media (max-width:900px){
+  .gd-hero-in{flex-direction:column;align-items:flex-start;gap:1.2rem;padding:3.9rem 1rem 1.6rem;}
+  .gd-cover{width:140px;flex:none;}
+  .gd-sec{padding:1.7rem 1rem 0;}
+  .cap p{font-size:1.06rem;}
+  .cap-head h2{font-size:1.16rem;}
+  .gd-tomo{grid-template-columns:1fr;}
+  .gd-anchors{padding:0.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+<nav class="jv-nav">
+  <a href="jullverse.html" class="nav-logo">🎮 JULLVERSE</a>
+  <div class="nav-links">
+    <a href="jullverse.html">Inicio</a>
+    <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-guias-2.html" class="on">Guías</a>
+    <a href="jullverse-noticias.html">Noticias WoW</a>
+    <a href="jullverse-addons.html">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
+  </div>
+  <a href="https://youtube.com/@Jullverse" target="_blank" class="yt-btn">▶ Suscribirse</a>
+  <a href="index.html" class="back-btn">← Hub Principal</a>
+</nav>
+<header class="gd-hero">
+  <div class="gd-hero-bg" style="background-image:url('img/paladin/01.webp')"></div>
+  <div class="gd-hero-in">
+    <img class="gd-cover" src="img/paladin/01.webp" alt="Portada">
+    <div>
+      <div class="crumb"><a href="jullverse.html">Jullverse</a> / <a href="jullverse-guias-2.html">Guías</a> / Paladín</div>
+      <h1>Guía del <span>Paladín</span></h1>
+      <p>Sellos, Golpe Sagrado y un martillo lento. La clase que pega y aguanta a la vez.</p>
+      <div class="gd-chips"><span>Reprensión</span><span>Niveles 1-60</span><span>Tanque y sanador</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="gd-bar">
+  <div class="gd-prog"><i></i></div>
+  <div class="gd-anchors"><a href="#vistazo">De un vistazo</a><a href="#cap1">1. Cambios Mecánicos Clave del Paladín </a><a href="#cap2">2. Selección de Raza y Sinergias de Fac</a><a href="#cap3">3. La Regla del Arma y Prioridad de Est</a><a href="#cap4">4. Build de Talentos Reprensión Paso a </a><a href="#cap5">5. Rotaciones de Combate y Flujo de Jue</a><a href="#cap6">6. Desempeño Secundario en Mazmorras: T</a><a href="#cap7">7. Profesiones, Acampada y Favores del </a><a href="#cap8">8. Macros Esenciales y Consejos Avanzad</a></div>
+</div>
+
+<section class="gd-sec" id="vistazo">
+  <p class="gd-label">// De un vistazo</p>
+  <h2 class="gd-t">Lo que tienes que saber</h2>
+  <div class="gd-glance"><div class="gd-g"><span class="em">⚔️</span><b>Regla de oro</b><p>Arma a dos manos de 3.3s o más lenta</p></div>
+<div class="gd-g"><span class="em">✨</span><b>Nivel 6</b><p>Golpe Sagrado, tu golpe de cada día</p></div>
+<div class="gd-g"><span class="em">🛡️</span><b>Nivel 22</b><p>Sello de Orden, el sello del leveo</p></div>
+<div class="gd-g"><span class="em">🔥</span><b>Nivel 40</b><p>Cólera desellada: guardas 3 sellos</p></div></div>
+  <div class="gd-intro"><p>El Paladín en <em>World of Warcraft: Forever</em> ha experimentado la remodelación de clase más profunda de todo el juego. Atrás quedó el estilo de juego pasivo de la Era Classic tradicional, donde el avance dependía de aplicar un sello, lanzar sentencia y esperar el ataque automático. En <em>WoW: Forever</em>, el Paladín dispone de una rotación activa con ataques de arma instantáneos, capacidades de tanqueo reales con provocación a distancia, sistemas de gestión de maná integrados y un árbol de talentos rediseñado que potencia su naturaleza híbrida de placas.</p>
+<p>Esta guía analiza en detalle la ruta óptima para subir de nivel del 1 al 60 en solitario y en grupo, la especialización de talentos paso a paso, el funcionamiento de las armas, la prioridad de estadísticas, el uso de profesiones con el sistema de acampada y las macros indispensables.</p></div>
+</section>
+
+<section class="gd-sec">
+  <p class="gd-label">// La guía escrita</p>
+  <h2 class="gd-t">Capítulo a capítulo</h2>
+  <section class="cap" id="cap1">
+  <div class="cap-head"><span class="n">01</span><h2>Cambios Mecánicos Clave del Paladín en WoW: Forever</h2></div>
+  <p>Para comprender la jugabilidad del Paladín en <em>WoW: Forever</em>, es fundamental conocer las modificaciones introducidas en las habilidades básicas y en los sistemas globales de combate:</p>
+<div class="gd-cards"><div class="gd-card"><b>Golpe Sagrado (</b><span><strong><em>Holy Strike</em></strong> <strong>)</strong>: Habilidad básica aprendida a nivel 6 para todas las especializaciones. Es un ataque físico e instantáneo con arma que añade daño Sagrado adicional (del 25% al 50% del daño del arma según el rango) con un tiempo de reutilización de 10 segundos.</span></div><div class="gd-card"><b>Sentencia (</b><span><strong><em>Judgement</em></strong> <strong>) renovada</strong>: La habilidad <em>Sentencia</em> <strong>ya no consume el sello activo</strong>. Los sellos permanecen activos durante sus 30 segundos de duración completa sin necesidad de reaplicarlos tras cada sentencia.</span></div><div class="gd-card"><b>Consagración (</b><span><strong><em>Consecration</em></strong> <strong>) básica</strong>: Aprendida por todos los paladines a nivel 20 sin requerir puntos en el árbol de Sagrado. Su diseño ha sido ajustado para infligir daño moderado a los primeros 4 enemigos que entran en su área y un daño reducido al resto, garantizando una generación de amenaza estable sin desequilibrar el combate masivo en área.</span></div><div class="gd-card"><b>Bendición de los Reyes (</b><span><strong><em>Blessing of Kings</em></strong> <strong>) de serie</strong>: Disponible para la clase a nivel básico sin necesidad de invertir 11 puntos en la rama de Protección.</span></div><div class="gd-card"><b>Duración de Bendiciones</b><span>Todas las bendiciones individuales y superiores tienen una duración extendida de <strong>1 hora</strong>.</span></div><div class="gd-card"><b>Imposición de manos (</b><span><strong><em>Lay on Hands</em></strong> <strong>)</strong>: Su tiempo de reutilización se ha reducido drásticamente de 1 hora a <strong>20 minutos</strong>.</span></div><div class="gd-card"><b>Unificación de estadísticas</b><span>El golpe (<em>Hit</em>) y el crítico (<em>Crit</em>) de ataques físicos y de hechizos se han fusionado en métricas únicas. Como clase híbrida que combina golpes de arma con hechizos Sagrados, el Paladín obtiene un rendimiento doble de cada punto de golpe o crítico.</span></div><div class="gd-card"><b>Auras de banda</b><span>Las auras de resistencia (Fuego, Escarcha y Sombras) afectan a todos los miembros de la banda en un radio de 30 metros.</span></div></div>
+</section>
+<section class="cap" id="cap2">
+  <div class="cap-head"><span class="n">02</span><h2>Selección de Raza y Sinergias de Facción</h2></div>
+  <p>En <em>WoW: Forever</em>, las habilidades raciales han sido modificadas para otorgar crítico e impacto en lugar de habilidad plana con armas. La gran novedad es la incorporación del Paladín a la Horda a través de la raza No-muerta.</p>
+<div class="gd-tabla"><table><thead><tr><th>Facción</th><th>Raza</th><th>Raciales Destacadas</th><th>Rol Recomendado</th></tr></thead><tbody><tr><td>Horda</td><td>No-muerto (Renegado)</td><td>Tacto de la tumba (daño/sanación pasiva), Voluntad de los renegados (elimina miedos/embrujos), Canibalizar (restaura vida y maná).</td><td>Reprensión / Tanque / Healer</td></tr><tr><td>Alianza</td><td>Humano</td><td>Especialización en espadas (+2% crítico con espadas en ataques y hechizos), Voluntad de sobrevivir (salida de aturdimientos), Espíritu humano (+regeneración de maná).</td><td>Reprensión / Healer</td></tr><tr><td>Alianza</td><td>Enano</td><td>Especialización en mazas (+1% crítico con mazas en ataques y hechizos), Forma de piedra (reducción de daño físico y eliminación de sangrados/venenos).</td><td>Protección / Tanque</td></tr></tbody></table></div>
+<p><em>Nota sobre la Horda</em>: El Paladín No-muerto cuenta con su propia cadena de misiones e historia en el Castillo Bandarion (<em>Bandarion Keep</em>) en Tirisfal, así como una misión exclusiva a nivel 60 para obtener su montura épica en nombre de la Retribución.</p>
+</section>
+<section class="cap" id="cap3">
+  <div class="cap-head"><span class="n">03</span><h2>La Regla del Arma y Prioridad de Estadísticas</h2></div>
+  <h3>La Regla de Oro: Armas a Dos Manos Lentas</h3>
+<p>Para la especialización de Reprensión, el factor determinante en la velocidad de leveo es la velocidad del arma a dos manos. Debes equipar siempre un <strong>arma a dos manos con una velocidad de ataque de 3.3 segundos o superior</strong>.</p>
+<ol class="gd-ol"><li><strong>Sello de orden (</strong> <strong><em>Seal of Command</em></strong> <strong>)</strong>: Genera aproximadamente 7 activaciones por minuto (<em>PPM</em>), infligiendo un 70% del daño de arma como daño Sagrado. Un arma lenta con un daño por golpe (<em>damage range</em>) elevado producirá impactos de <em>Sello de orden</em> sustancialmente más fuertes que un arma rápida con el mismo DPS teórico.</li><li><strong>Golpe Sagrado (</strong> <strong><em>Holy Strike</em></strong> <strong>)</strong>: Calcula su bonificación de daño Sagrado a partir del daño base del golpe de arma equipada.</li></ol>
+<h3>Prioridad de Estadísticas para Levear (1-60)</h3>
+<ol class="gd-ol"><li><strong>Daño de Arma (DPS y Rango Máximo)</strong>: Preferencia absoluta por armas a dos manos lentas (3.3s+).</li><li><strong>Aguante (</strong> <strong><em>Stamina</em></strong> <strong>) y Espíritu (</strong> <strong><em>Spirit</em></strong> <strong>)</strong>: Reducen el tiempo de inactividad entre combates al acelerar la recuperación de salud y maná.</li><li><strong>Intelecto (</strong> <strong><em>Intellect</em></strong> <strong>) A partir de nivel 35-40</strong>: Con el talento <em>Campeón de la Luz</em>, el Intelecto se convierte directamente en Poder con Hechizos (hasta un 60% de conversión), además de otorgar maná máximo y crítico con hechizos.</li><li><strong>Fuerza (</strong> <strong><em>Strength</em></strong> <strong>) y Poder de Ataque (</strong> <strong><em>Attack Power</em></strong> <strong>)</strong>: Aumentan el daño físico directo (1 punto de Fuerza otorga 2 puntos de Poder de Ataque).</li><li><strong>Poder con Hechizos (</strong> <strong><em>Spell Power</em></strong> <strong>)</strong>: Incrementa el daño de <em>Golpe Sagrado</em>, <em>Sentencia</em>, <em>Consagración</em> y los sellos.</li></ol>
+</section>
+<section class="cap" id="cap4">
+  <div class="cap-head"><span class="n">04</span><h2>Build de Talentos Reprensión Paso a Paso (Niveles 10-60)</h2></div>
+  <p>La ruta óptima de talentos invierte primeramente en la rama de <strong>Reprensión</strong> hasta conseguir el talento cúlmine de 31 puntos (<em>Cólera desellada</em> a nivel 40), para posteriormente reforzar la supervivencia y la reserva de maná en las ramas de <strong>Protección</strong> y <strong>Sagrado</strong> (Build final 12/8/31). [Reprensión - 31 Puntos] → [Protección - 8 Puntos] → [Sagrado - 12 Puntos]</p>
+<h3>Tabla de Progresión de Talentos Nivel a Nivel</h3>
+<div class="gd-tabla"><table><thead><tr><th>Niveles</th><th>Puntos Invertidos</th><th>Talento Seleccionado</th><th>Efecto e Impacto en el Leveo</th></tr></thead><tbody><tr><td>10 - 14</td><td>5 / 5</td><td>Desvío (Deflection)</td><td>Aumenta la probabilidad de parar ataques en un +5%.</td></tr><tr><td>15 - 17</td><td>3 / 3</td><td>Convicción (Conviction)</td><td>Otorga un +6% de probabilidad de golpe crítico a todos tus hechizos y ataques.</td></tr><tr><td>18 - 19</td><td>2 / 2</td><td>Sentencia mejorada (Improved Judgement)</td><td>Reduce el tiempo de reutilización de Sentencia en 2 segundos.</td></tr><tr><td>20 - 21</td><td>2 / 2</td><td>Búsqueda de justicia (Pursuit of Justice)</td><td>Incrementa la velocidad de movimiento a pie y montado en un +15%.</td></tr><tr><td>22</td><td>1 / 1</td><td>Sello de orden (Seal of Command)</td><td>Tu sello principal de daño a dos manos (daño Sagrado basado en arma).</td></tr><tr><td>23 - 24</td><td>2 / 2</td><td>Sentencia santificada (Sanctified Judgement)</td><td>100% de probabilidad de reembolsar el 60% del coste de maná del sello al sentenciar.</td></tr><tr><td>25 - 27</td><td>3 / 3</td><td>Especialización en armas de 2 manos</td><td>+6% de daño físico y Sagrado con armas a 2 manos y -20% de amenaza generada.</td></tr><tr><td>28</td><td>1 / 1</td><td>Enjuiciador Sagrado (Sacred Arbiter)</td><td>+20% de daño a Golpe Sagrado; sus impactos refrescan las Sentencias en el objetivo.</td></tr><tr><td>29</td><td>1 / 1</td><td>Sentencia santificada (Sanctified Judgement)</td><td>Completa la regeneración de maná por sentencia.</td></tr><tr><td>30 - 32</td><td>3 / 3</td><td>Venganza (Vengeance)</td><td>Tras un crítico, aumenta el daño físico y Sagrado un +3% por acumulación (máx. 5 acumulaciones = +15%).</td></tr><tr><td>33</td><td>1 / 1</td><td>Arrepentimiento (Repentance)</td><td>Control de masas instantáneo a distancia durante 6 segundos.</td></tr><tr><td>34</td><td>1 / 1</td><td>Oración (Benediction)</td><td>Reduces un 10% el coste de maná de todos los hechizos y habilidades instantáneas.</td></tr><tr><td>35 - 39</td><td>5 / 5</td><td>Campeón de la Luz (Champion of the Light)</td><td>Convierte el 60% de tu Intelecto en Poder con Hechizos y reduce 1s el cast de Martillo de cólera.</td></tr><tr><td>40</td><td>1 / 1</td><td>Cólera desellada (Unsealed Wrath)</td><td>Talento Cúlmine: Guardas copias del sello activo al golpear (hasta 3); cambiar de sello desata los efectos guardados.</td></tr><tr><td>41 - 45</td><td>5 / 5</td><td>Fuerza divina (Divine Strength - Protección)</td><td>Aumenta tu Fuerza total en un +10%.</td></tr><tr><td>46 - 47</td><td>2 / 2</td><td>Reverencia (Reverence - Sagrado)</td><td>Conservas un 30% de la regeneración de maná por Espíritu mientras lanzas hechizos.</td></tr><tr><td>48 - 52</td><td>5 / 5</td><td>Sellos mejorados (Improved Seals - Sagrado)</td><td>Aumenta el daño de todos tus Sellos y Sentencias en un +15%.</td></tr><tr><td>53 - 57</td><td>5 / 5</td><td>Intelecto divino (Divine Intellect - Protección)</td><td>Aumenta tu Intelecto total en un +10%.</td></tr><tr><td>58 - 60</td><td>3 / 3</td><td>Precisión (Precision - Protección)</td><td>Incrementa la probabilidad de golpear con todos los ataques e impactos de hechizos en un +3%.</td></tr></tbody></table></div>
+</section>
+<section class="cap" id="cap5">
+  <div class="cap-head"><span class="n">05</span><h2>Rotaciones de Combate y Flujo de Juego por Tramos</h2></div>
+  <h3>Tramo 1: Niveles 1 al 19 (Aprendizaje Inicial)</h3>
+<p>Antes de obtener <em>Sello de orden</em>, el combate se basa en gestionar el maná con <em>Sello de rectitud</em>:</p>
+<ol class="gd-ol"><li>Mantén activos <strong>Aura de retribución</strong> (<em>Retribution Aura</em>) y <strong>Bendición de poderío</strong> (<em>Blessing of Might</em>).</li><li>Activa <strong>Sello de rectitud</strong> (<em>Seal of Righteousness</em>).</li><li>Lanza <strong>Sentencia</strong> en cuanto entres en rango de combate.</li><li>Lanza <strong>Golpe Sagrado</strong> (<em>Holy Strike</em>) cada vez que esté disponible en reutilización.</li><li>Continúa con ataques automáticos. No reaplices el sello tras sentenciar, ya que el sello no se consume.</li></ol>
+<h3>Tramo 2: Niveles 20 al 39 (El Salto de Poder Físico)</h3>
+<p>A nivel 20 obtienes <em>Consagración</em> básica, a nivel 22 <em>Sello de orden</em> y a nivel 28 <em>Enjuiciador Sagrado</em>:</p>
+<ol class="gd-ol"><li>Mantén activos <strong>Aura de retribución</strong> y <strong>Bendición de poderío</strong> (o <em>Sabiduría</em> si el maná escasea).</li><li>Activa <strong>Sello de orden</strong> (<em>Seal of Command</em>).</li><li>Inicia con <strong>Sentencia</strong> para aplicar el efecto Sagrado en el objetivo.</li><li>Ejecuta <strong>Golpe Sagrado</strong> (<em>Holy Strike</em>) en cuanto esté disponible. El impacto de <em>Golpe Sagrado</em> refrescará automáticamente la duración de tu Sentencia activa sobre el objetivo gracias a <em>Enjuiciador Sagrado</em>.</li><li>Si te enfrentas a 2 o más enemigos, deposita <strong>Consagración</strong> en el suelo.</li></ol>
+<h3>Tramo 3: Niveles 40 al 60 (Mecánica de Cólera Desellada)</h3>
+<p>A nivel 40 desbloqueas <em>Cólera desellada</em>, lo que añade dinamismo a la rotación mediante la gestión de cargas acumuladas:</p>
+<ol class="gd-ol"><li>Ataca en combate con <strong>Sello de orden</strong> activo para acumular hasta 3 cargas de sello guardado.</li><li>Una vez acumuladas las cargas o al requerir un efecto secundario, cambia a <strong>Sello de rectitud</strong> o <strong>Sello de luz</strong> y golpea cuerpo a cuerpo.</li><li>El golpe desatará las 3 cargas guardadas de <em>Sello de orden</em> de forma instantánea junto al golpe del nuevo sello, generando una ráfaga de daño Sagrado masivo.</li><li>Mantén <em>Golpe Sagrado</em> y <em>Sentencia</em> en reutilización estricta.</li></ol>
+</section>
+<section class="cap" id="cap6">
+  <div class="cap-head"><span class="n">06</span><h2>Desempeño Secundario en Mazmorras: Tanque y Sanador</h2></div>
+  <p>Una de las mayores ventajas del Paladín durante la subida de nivel es su capacidad para asumir los roles de Tanque o Sanador en mazmorras manteniendo su equipo de placas y su rama de talentos de Reprensión.</p>
+<h3>Tanqueo en Mazmorras con Sello de Furia (Protección)</h3>
+<p>En <em>WoW: Forever</em>, el Paladín dispone de una provocación real a distancia:</p>
+<div class="gd-cards"><div class="gd-card"><b>Sello de furia (</b><span><strong><em>Seal of Fury</em></strong> <strong>) Nivel 10</strong>: Al activar este sello y lanzar <em>Sentencia</em>, provocas al objetivo obligándolo a atacarte durante 4 segundos a una distancia de <strong>10 metros</strong> (el doble de alcance que el <em>Bramido</em> del Druida o <em>Provocar</em> del Guerrero).</span></div><div class="gd-card"><b>Escudo de Absorción</b><span>Cada golpe con <em>Sello de furia</em> otorga un escudo que absorbe el 50% del daño Sagrado infligido cuando llevas escudo equipado.</span></div><div class="gd-card"><b>Gestión de Amenaza en Área</b><span>Activa <strong>Furia justa</strong> (<em>Righteous Fury</em>, aprendida a nivel 10, otorga +33% de amenaza total y +90% adicional de amenaza por daño Sagrado) y deposita <strong>Consagración</strong> a nivel 20 para fijar hasta 4 objetivos simultáneos.</span></div></div>
+<h3>Sanación en Mazmorras (Sagrado)</h3>
+<div class="gd-cards"><div class="gd-card"><b>Poder de Sanación a Daño</b><span>Un tercio (33%) de tu estadística de Sanación aumentada se convierte automáticamente en Poder con Hechizos, permitiéndote curar mazmorras eficientemente y mantener capacidad de daño en mundo abierto.</span></div><div class="gd-card"><b>Uso de Vendas y Burbuja</b><span>Puedes tirar de <strong>Escudo divino</strong> (<em>Divine Shield</em>) e inmunicarte mientras usas una venda de <em>Primeros Auxilios</em> sobre ti o un aliado, restaurando la vida al 100% sin gastar maná.</span></div></div>
+</section>
+<section class="cap" id="cap7">
+  <div class="cap-head"><span class="n">07</span><h2>Profesiones, Acampada y Favores del Comerciante</h2></div>
+  <h3>Combinación Recomendada de Profesiones</h3>
+<div class="gd-cards"><div class="gd-card"><b>Minería + Herrería</b><span>Es la combinación reina para el Paladín. Permite fabricar tus propias armaduras de malla y placas, afiladores y piedras de peso.</span></div><div class="gd-card"><b>Primeros Auxilios (</b><span><strong><em>First Aid</em></strong> <strong>)</strong>: Imprescindible para curarse mediante vendas dentro de la burbuja protectora.</span></div></div>
+<h3>Sistema de Acampada (<em>Camping</em>)</h3>
+<p>La herrería permite fabricar la <strong>Rueda de afilar</strong> (<em>Sharpening Wheel</em>) para las hogueras de campamento en ciudades y zonas abiertas. Sentarse en un campamento con este objeto otorga una mejora de <strong>Fuerza plana</strong> durante 1 hora. Al combinarlo con una <strong>Tienda de campaña</strong> (<em>Camp Tent</em> de peletería), obtendrás un <strong>5% de experiencia descansada (</strong> <strong><em>rested XP</em></strong> <strong>)</strong> adicional.</p>
+<h3>Favores del Comerciante (<em>Merchant's Favor</em>)</h3>
+<p>A partir del nivel 12-15, puedes entregar cajas de suministros (<em>Waylaid Crates</em>, como cajas de textiles o minerales) para obtener la divisa <strong>Favores del Comerciante</strong>. Esta moneda permite comprar recetas exclusivas de profesiones para fabricar piezas de equipo con estadísticas masivas:</p>
+<div class="gd-cards"><div class="gd-card"><b>Conjunto de Veterano (</b><span><strong><em>Veteran Set</em></strong> <strong>)</strong>: Diseñado específicamente para Reprensión (Fuerza, Aguante y Poder de Ataque).</span></div><div class="gd-card"><b>Conjunto de Acólito (</b><span><strong><em>Acolyte Set</em></strong> <strong>)</strong>: Diseñado para Paladín Sagrado (Intelecto y Sanación).</span></div></div>
+</section>
+<section class="cap" id="cap8">
+  <div class="cap-head"><span class="n">08</span><h2>Macros Esenciales y Consejos Avanzados</h2></div>
+  <h3><i>1</i>Macro para Iniciar Ataque Automático con Golpe Sagrado</h3>
+<p>Asegura que el personaje comience a golpear cuerpo a cuerpo inmediatamente al pulsar la habilidad:</p>
+<pre class="gd-code"><code>#showtooltip Golpe Sagrado
+/startattack
+/cast Golpe Sagrado</code></pre>
+<h3><i>2</i>Macro de Cancelación Instantánea de Escudo Divino (Burbuja)</h3>
+<p>Permite tirar la burbuja para quitarse efectos de control de masas o aturdimientos y cancelarla al instante re-pulsando el botón para no perder la amenaza de los monstruos al tanquear:</p>
+<pre class="gd-code"><code>#showtooltip Escudo divino
+/cancelaura Escudo divino
+/cast Escudo divino</code></pre>
+<h3><i>3</i>Macro de Bendición de Protección al Objetivo de tu Objetivo</h3>
+<p>Permite salvar a un aliado (como un Mago o Sanador) que ha generado demasiada amenaza aplicando <em>Bendición de protección</em> directamente sobre él sin cambiar tu objetivo principal:</p>
+<pre class="gd-code"><code>#showtooltip Bendición de protección
+/cast [@targettarget,help][@mouseover,help][] Bendición de protección</code></pre>
+<h3><i>4</i>Anulación Total del Daño por Caída</h3>
+<p>Tanto <em>Escudo divino</em> (<em>Divine Shield</em>) como <em>Bendición de protección</em> (<em>Blessing of Protection</em>) reducen al 100% el daño por caída. Puedes utilizar estas habilidades para saltar desde acantilados, estructuras elevadas o zeppelines en movimiento, atajando rutas de mapa sin riesgo de morir.</p>
+</section>
+  <div class="gd-end">
+    <a href="jullverse-guias-2.html" class="a2">← Todas las guías</a>
+    <a href="jullverse-paladin-laminas-2.html" class="a1">Ver las láminas →</a>
+  </div>
+</section>
+
+
+
+
+<footer>
+  <div class="footer-logo">🎮 JULLVERSE</div>
+  <div class="footer-nav">
+    <a href="jullverse.html">Inicio</a>
+    <a href="jullverse-videos.html">Videos</a>
+    <a href="jullverse-guias-2.html">Guías</a>
+    <a href="jullverse-noticias.html">Noticias WoW</a>
+    <a href="jullverse-addons.html">Addons</a>
+    <a href="jullverse-otros.html">Otros juegos</a>
+    <a href="index.html">← Hub Principal</a>
+  </div>
+  <p class="footer-copy">El Multiverso de JULL · Hecho a mano desde Venezuela</p>
+</footer>
+
+<script>
+(function(){
+  var bar=document.querySelector('.gd-prog i');
+  var anchors=[].slice.call(document.querySelectorAll('.gd-anchors a'));
+  var secs=anchors.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    var y=window.scrollY+170, act=0;
+    secs.forEach(function(s,k){ if(s && s.offsetTop<=y) act=k; });
+    anchors.forEach(function(a,k){a.classList.toggle('on',k===act);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
