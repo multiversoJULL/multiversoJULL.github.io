@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Addons de WoW Forever · Jullverse</title>
-<meta name="description" content="Los 120 addons del cliente WoW Forever 1.60.1.">
+<meta name="description" content="Los 166 addons del cliente WoW Forever 1.60.1.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -562,16 +562,16 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <header class="pg-head">
   <div class="crumb"><a href="jullverse.html">Jullverse</a> / Addons</div>
   <h1>Addons de <span>WoW Forever</span></h1>
-  <p>Los 120 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
+  <p>Los 166 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
   <div class="wf-stats">
-    <div class="wf-stat"><b>120</b><span>Addons</span></div>
-    <div class="wf-stat"><b>47</b><span>Fichas</span></div>
-    <div class="wf-stat"><b>13</b><span>Suites</span></div>
+    <div class="wf-stat"><b>166</b><span>Addons</span></div>
+    <div class="wf-stat"><b>62</b><span>Fichas</span></div>
+    <div class="wf-stat"><b>14</b><span>Suites</span></div>
     <div class="wf-stat"><b>0</b><span>Incompatibles</span></div>
   </div>
 </header>
 
-<div class="icon-strip"><img src="img/addons/elvui.png" alt=""><img src="img/addons/questie.png" alt=""><img src="img/addons/details.png" alt=""><img src="img/addons/dbm-core.png" alt=""><img src="img/addons/rarescanner.png" alt=""><img src="img/addons/bagnon.png" alt=""><img src="img/addons/narcissus.png" alt=""><img src="img/addons/spoken.png" alt=""><img src="img/addons/leatrix_plus.png" alt=""><img src="img/addons/tellmewhen.png" alt=""><img src="img/addons/openmap.png" alt=""><img src="img/addons/attune.png" alt=""><img src="img/addons/windtools.png" alt=""><img src="img/addons/handynotes.png" alt=""><img src="img/addons/lueur.png" alt=""><img src="img/addons/spellbook.png" alt=""></div>
+<div class="icon-strip"><img src="img/addons/elvui.png" alt=""><img src="img/addons/questie.png" alt=""><img src="img/addons/details.png" alt=""><img src="img/addons/dbm-core.png" alt=""><img src="img/addons/rarescanner.png" alt=""><img src="img/addons/bagnon.png" alt=""><img src="img/addons/narcissus.png" alt=""><img src="img/addons/spoken.png" alt=""><img src="img/addons/leatrix_plus.png" alt=""><img src="img/addons/tellmewhen.png" alt=""><img src="img/addons/openmap.png" alt=""><img src="img/addons/attune.png" alt=""><img src="img/addons/windtools.png" alt=""><img src="img/addons/handynotes.png" alt=""><img src="img/addons/lueur.png" alt=""><img src="img/addons/spellbook.png" alt=""><img src="img/addons/polestar.png" alt=""><img src="img/addons/bigwigs.png" alt=""><img src="img/addons/platynator.png" alt=""><img src="img/addons/maputils.png" alt=""><img src="img/addons/pawn.png" alt=""></div>
 
 <section class="wf">
   <div class="wf-toolbar">
@@ -579,7 +579,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
       <div class="wf-search">
         <input id="wfSearch" type="text" placeholder="Buscar addon, función o comando… (ej: questie, subasta, /dbm)" autocomplete="off">
       </div>
-      <div class="wf-count"><b id="wfShown">0</b> de 120 addons</div>
+      <div class="wf-count"><b id="wfShown">0</b> de 166 addons</div>
     </div>
     <div class="wf-chips" id="wfChips"></div>
   </div>
@@ -614,7 +614,10 @@ const ICON_FILE = {
   dialogueui:"dialogueui", attune:"attune", talents:"talentsforeverbook", dj:"foreverdungeonjournal",
   whisper:"whispermessenger", spy:"spy", camper:"camper", layerswap:"layerswap", spoken:"spoken",
   bugs:"bugsack", zloader:"zz_xscarlifeloader",
-  windtools:"windtools", handynotes:"handynotes", lueur:"lueur", spellbook:"spellbook"
+  windtools:"windtools", handynotes:"handynotes", lueur:"lueur", spellbook:"spellbook",
+  polestar:"polestar", bigwigs:"bigwigs", platynator:"platynator", maputils:"maputils",
+  pawn:"pawn", offhand:"offhand", lfgforever:"lfgforever", forevercore:"forevercore",
+  deletecheapest:"deletecheapestitem", fame:"foreverambientmusicextended"
 };
 
 const DATA = [
@@ -666,6 +669,26 @@ const DATA = [
     ["EllesmereUIResourceBars","9.7.8","Barras de recurso con umbrales."],
     ["EllesmereUIUnitFrames","9.7.8","Marcos de unidad del jugador, target y focus."]
   ]
+},
+{
+  id:"platynator", name:"Platynator", cat:"interfaz", ver:"546",
+  desc:"Barras de nombre reescritas por completo: tamaño, colores por clase, iconos, casteos enemigos y avisos de mecánicas encima de cada enemigo. Mucho más limpio y configurable que las nameplates del cliente.",
+  cmd:"/platynator"
+},
+{
+  id:"dynamiccam", name:"DynamicCam", cat:"interfaz", ver:"2.22.0",
+  desc:"Mueve la cámara sola según lo que estés haciendo: cerca en interiores, lejos en campo abierto, distinta al montar, al volar o al hablar con un NPC. Ajustes por situación, no un zoom fijo.",
+  cmd:"/dcam"
+},
+{
+  id:"offhand", name:"Offhand", cat:"interfaz", ver:"2.1.5",
+  desc:"Para dos monitores: deja el juego en una pantalla y manda mapas, bolsas, chat y otros paneles a la otra. Cada ventana se abre fuera de la ventana del juego.",
+  cmd:"/offhand"
+},
+{
+  id:"foreverimmersion", name:"Forever Immersion", cat:"interfaz", ver:"1.10.2", forever:true,
+  desc:"Oculta la interfaz que no necesitas según lo que estés haciendo: al hablar con un NPC, al entrar en una mazmorra o al explorar. La pantalla queda limpia y vuelve sola al pelear.",
+  cmd:"/fi"
 },
 {
   id:"blizzmove", name:"BlizzMove", cat:"interfaz", ver:"v3.8.7", tag:"Suite",
@@ -733,6 +756,11 @@ const DATA = [
   cmd:"/lueur"
 },
 {
+  id:"maputils", name:"MapUtils", cat:"mapas", ver:"1.7.6",
+  desc:"Mapa del mundo mejorado: barcos, zepelines, puntos de vuelo y entradas de mazmorras como waypoints clicables. Añade mapas de mazmorra y raid, zonas sin explorar y el nivel de cada zona.",
+  cmd:null
+},
+{
   id:"tomtom", name:"TomTom", cat:"mapas", ver:"v4.4.0-release",
   desc:"Navegación por coordenadas. Le pegas una coordenada o un waypoint y te dibuja la flecha y el punto en el mapa y minimapa.",
   cmd:"/tomtom"
@@ -757,6 +785,34 @@ const DATA = [
     ["Questie","12.6.2","Addon principal: mapa, tracker y base de misiones."],
     ["QuestieDB","1.0.11","La base de datos que consume Questie."],
     ["QuestieTrace","1.9.0","Recolector de datos para mejorar la base."]
+  ]
+},
+{
+  id:"polestar", name:"Polestar", cat:"misiones", ver:"0.3.7.2", tag:"Suite", forever:true,
+  desc:"Guías de leveo para WoW Forever con pasos, flechas y waypoints en el mapa, más base de datos de misiones, objetos y NPC. Su propio navegador de rutas por facción y raza, y paquetes de idioma con español incluido.",
+  cmd:"/polestar",
+  modules:[
+    ["Polestar","0.3.7.2","Addon principal: guía activa, pasos y ventana."],
+    ["Polestar_Guides","0.3.7.2","Las rutas de leveo: facción y raza."],
+    ["Polestar_Guides_Alliance","0.3.7.2","Rutas de la Alianza."],
+    ["Polestar_Guides_Horde","0.3.7.2","Rutas de la Horda."],
+    ["Polestar_Guides_Human","0.3.7.2","Ruta de humano."],
+    ["Polestar_Guides_Dwarf","0.3.7.2","Ruta de enano."],
+    ["Polestar_Guides_Gnome","0.3.7.2","Ruta de gnomo."],
+    ["Polestar_Guides_NightElf","0.3.7.2","Ruta de elfo de la noche."],
+    ["Polestar_Guides_Orc","0.3.7.2","Ruta de orco."],
+    ["Polestar_Guides_Tauren","0.3.7.2","Ruta de tauren."],
+    ["Polestar_Guides_Troll","0.3.7.2","Ruta de trol."],
+    ["Polestar_Guides_Scourge","0.3.7.2","Ruta de no-muerto."],
+    ["Polestar_Guides_Skyborne","0.3.7.2","Ruta de skyborne."],
+    ["Polestar_Nav","0.3.7.2","Navegación: cálculo de rutas."],
+    ["Polestar_Nav_EK","0.3.7.2","Datos de navegación de Rápidos del Este."],
+    ["Polestar_Nav_Kalimdor","0.3.7.2","Datos de navegación de Kalimdor."],
+    ["Polestar_QuestDB","0.3.7.2","Base de datos de misiones."],
+    ["Polestar_ItemDB","0.3.7.2","Base de datos de objetos."],
+    ["Polestar_Codex","0.3.7.2","Textos y fichas de la guía."],
+    ["Polestar_esES","0.3.7.2","Español de España."],
+    ["Polestar_esMX","0.3.7.2","Español de Latinoamérica."]
   ]
 },
 {
@@ -824,6 +880,25 @@ const DATA = [
   ]
 },
 {
+  id:"bigwigs", name:"BigWigs", cat:"combate", ver:"v427.9", tag:"Suite",
+  desc:"Avisos de jefes alternativo a DBM: barras de tiempo, alertas de mecánicas y sonidos por encuentro. Trae los paquetes de Midnight, Quel'Danas y las demás bandas del cliente.",
+  cmd:"/bw",
+  modules:[
+    ["BigWigs","v427.9","Motor principal."],
+    ["BigWigs_Core","v427.9","Lógica de temporizadores y encuentros."],
+    ["BigWigs_Options","v427.9","Panel de configuración (/bw)."],
+    ["BigWigs_Plugins","v427.9","Barras, mensajes, mapas y extras."],
+    ["BigWigs_MarchOnQuelDanas","v427.9","Jefes de la Marcha sobre Quel'Danas."],
+    ["BigWigs_MidnightLairs","v427.9","Jefes secundarios de Midnight."],
+    ["BigWigs_MidnightWorld","v427.9","Jefes de mundo de Midnight."],
+    ["BigWigs_Sporefall","v427.9","Encuentros de Sporefall."],
+    ["BigWigs_TheDreamrift","v427.9","Encuentros del Dreamrift."],
+    ["BigWigs_TheUnbindingOfKithix","v427.9","Encuentros de Kithix."],
+    ["BigWigs_TheVenomousAbyss","v427.9","Encuentros del Abismo Venenoso."],
+    ["BigWigs_TheVoidspire","v427.9","Encuentros de la Aguja del Vacío."]
+  ]
+},
+{
   id:"tmw", name:"TellMeWhen", cat:"combate", ver:"12.1.5", tag:"Suite",
   desc:"Crea iconos que te avisan cuándo un cooldown está listo, un buff activo o una condición se cumple. Es un WeakAuras simplificado: menos potente, mucho más fácil de configurar.",
   cmd:"/tmw",
@@ -843,6 +918,11 @@ const DATA = [
   id:"rarescanner", name:"RareScanner", cat:"loot", ver:"1.60.1.2", forever:true,
   desc:"Escanea el minimapa y te avisa con botón, miniatura y sonido cuando aparece un NPC raro, un cofre o un evento. Lo marca también en el mapa del mundo con su botín.",
   cmd:"/rs"
+},
+{
+  id:"deletecheapest", name:"DeleteCheapestItem", cat:"loot", ver:"v1.9.0",
+  desc:"Cuando la bolsa se llena, busca el objeto de menos valor de tus stacks y lo tira o lo vende. Deja de decidir a mano qué sacrificar en mitad de una mazmorra.",
+  cmd:"/dci"
 },
 {
   id:"auctionator", name:"Auctionator", cat:"loot", ver:"341",
@@ -890,6 +970,26 @@ const DATA = [
 },
 
 /* ══════════════ PERSONAJE ══════════════ */
+{
+  id:"autogear", name:"AutoGear", cat:"personaje", ver:"1.0",
+  desc:"Elige el loot y equipa solo. Con los pesos de Pawn instalados decide qué pieza es mejora y se la pone, sin abrir la ventana de comparación en cada cofre.",
+  cmd:"/autogear"
+},
+{
+  id:"betterfishing", name:"Better Fishing", cat:"personaje", ver:"66",
+  desc:"Pesca con una sola tecla: lanza, espera y recoge sin clics extra, con sonido reforzado cuando pica. Para subir la profesión sin mirar fijamente el anzuelo.",
+  cmd:"/bf"
+},
+{
+  id:"pawn", name:"Pawn", cat:"personaje", ver:"2.14.3",
+  desc:"Compara objetos con pesos de estadísticas y marca con flecha verde lo que es mejora para tu personaje. La referencia para no equipar basura solo porque tiene más de armadura.",
+  cmd:"/pawn"
+},
+{
+  id:"toasty", name:"Toasty!", cat:"personaje", ver:"1.0.0", forever:true,
+  desc:"Banners al subir de nivel: qué ganas, qué te espera en el entrenador y una frase para tu raza y clase. Celebra el nivel en vez de dejarlo en un susurro del chat.",
+  cmd:"/toasty"
+},
 {
   id:"narcissus", name:"Narcissus", cat:"personaje", ver:"1.8.7 b", tag:"Suite",
   desc:"Ventana de personaje inmersiva con modo foto, poses, fondos, iluminación y modelos. También trae barbería con historial de apariencias y buscador de NPCs.",
@@ -957,6 +1057,11 @@ const DATA = [
 
 /* ══════════════ AUDIO ══════════════ */
 {
+  id:"fame", name:"Forever Ambient Music Extended", cat:"audio", ver:"2.0.0", forever:true,
+  desc:"Más música ambiental por zona, sacada de todas las eras de WoW y elegida para encajar con el lugar donde estás. No toca los sonidos de combate ni los avisos.",
+  cmd:null
+},
+{
   id:"spoken", name:"Spoken", cat:"audio", ver:"3.8.3", tag:"Suite", forever:true,
   desc:"Lee el juego en voz alta: misiones, gossip, lugares, libros y la historia de cada boss. Una sola cola de voz, un narrador y un botón en el minimapa. Trae paquetes de audio en español latino.",
   cmd:"/spoken",
@@ -976,6 +1081,16 @@ const DATA = [
 },
 
 /* ══════════════ SISTEMA ══════════════ */
+{
+  id:"forevercore", name:"ForeverCore", cat:"sistema", ver:"v1.12.0", tag:"Librería", forever:true,
+  desc:"Código compartido que necesitan los addons de Forever para su columna del tracker y sus ajustes. No se configura: se instala y se deja donde está.",
+  cmd:null
+},
+{
+  id:"lfgforever", name:"LFG Forever", cat:"sistema", ver:"1.5.0", forever:true,
+  desc:"Buscador de grupos avanzado: filtra por rol y clase, susurra a los líderes e invita rápido. Reemplaza la ventana de LFG del cliente por una lista más clara.",
+  cmd:"/lfg"
+},
 {
   id:"bugs", name:"BugGrabber + BugSack", cat:"sistema", ver:"12.1.1 / 12.1.9", tag:"Suite",
   desc:"Capturan los errores de Lua de todos los addons y los guardan en una ventana en vez de llenarte la pantalla de mensajes rojos. La herramienta para saber qué addon está fallando.",
