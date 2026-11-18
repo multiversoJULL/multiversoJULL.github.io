@@ -18,6 +18,16 @@ Contiene **dos webs en una**:
 1. **El Multiverso** — el hub personal: canales, gaming, fútbol, comunidad.
 2. **Jullverse** — la sección de World of Warcraft Forever (cliente 1.60.1): guías, addons, noticias y videos del servidor.
 
+### De dónde viene y cómo se publica
+
+Esto no es un sitio con servidor propio ni hosting pagado. Es **un repositorio de GitHub** llamado `multiversoJULL.github.io`, y ese nombre exacto (`usuario.github.io`) hace que GitHub lo publique solo como página web, gratis, en `https://multiversojull.github.io/`. Eso es GitHub Pages: no hay que comprar dominio, no hay que contratar hosting, no hay que compilar nada.
+
+- La carpeta del proyecto es una copia local de ese repositorio.
+- El sitio **no** se sube por un panel ni por FTP: se sube con `git push`, y GitHub publica lo que haya en la rama `main` (ver sección 8).
+- Cada cambio tarda entre uno y dos minutos en verse, y el navegador puede guardar copia hasta 10 minutos.
+- Lo que está en el repositorio es exactamente lo que se ve en la web. No hay versión aparte.
+- **Origen:** el repositorio nació con El Multiverso (las 5 páginas originales). Después se le agregó Jullverse dentro de la misma carpeta y el mismo repositorio, como sección nueva. Por eso conviven: no son dos repos, es uno solo con dos partes, y Jullverse no está enlazado desde el hub principal (ese enlace está en standby).
+
 ---
 
 ## 2. El Multiverso (la parte original)
@@ -179,7 +189,7 @@ git push origin main
 
 ## 9. GitHub: permisos y acceso
 
-El proyecto está conectado a GitHub y se publica desde ese repositorio. **Eso ya está resuelto y no se reconfigura.**
+El proyecto está conectado a GitHub y se publica desde ese repositorio (explicado en la sección 1). **Eso ya está resuelto y no se reconfigura:** no hay que crear repositorios nuevos, ni cambiar la configuración de publicación, ni volver a enlazar el dominio.
 
 Lo único que puede pasar es que GitHub pida autorización (sesión vencida, PC nueva, o el primer push del día). Cuando eso ocurra, **el agente se lo dice a Jull con una frase clara y espera**:
 
