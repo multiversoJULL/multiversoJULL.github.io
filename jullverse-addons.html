@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Addons de WoW Forever · Jullverse</title>
-<meta name="description" content="Los 166 addons del cliente WoW Forever 1.60.1.">
+<meta name="description" content="Los 179 addons del cliente WoW Forever 1.60.1.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -562,11 +562,11 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
 <header class="pg-head">
   <div class="crumb"><a href="jullverse.html">Jullverse</a> / Addons</div>
   <h1>Addons de <span>WoW Forever</span></h1>
-  <p>Los 166 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
+  <p>Los 179 addons que uso en el cliente 1.60.1. Qué hace cada uno, versión exacta y comando para abrirlo.</p>
   <div class="wf-stats">
-    <div class="wf-stat"><b>166</b><span>Addons</span></div>
-    <div class="wf-stat"><b>62</b><span>Fichas</span></div>
-    <div class="wf-stat"><b>14</b><span>Suites</span></div>
+    <div class="wf-stat"><b>179</b><span>Addons</span></div>
+    <div class="wf-stat"><b>66</b><span>Fichas</span></div>
+    <div class="wf-stat"><b>15</b><span>Suites</span></div>
     <div class="wf-stat"><b>0</b><span>Incompatibles</span></div>
   </div>
 </header>
@@ -579,7 +579,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:cente
       <div class="wf-search">
         <input id="wfSearch" type="text" placeholder="Buscar addon, función o comando… (ej: questie, subasta, /dbm)" autocomplete="off">
       </div>
-      <div class="wf-count"><b id="wfShown">0</b> de 166 addons</div>
+      <div class="wf-count"><b id="wfShown">0</b> de 179 addons</div>
     </div>
     <div class="wf-chips" id="wfChips"></div>
   </div>
@@ -617,7 +617,8 @@ const ICON_FILE = {
   windtools:"windtools", handynotes:"handynotes", lueur:"lueur", spellbook:"spellbook",
   polestar:"polestar", bigwigs:"bigwigs", platynator:"platynator", maputils:"maputils",
   pawn:"pawn", offhand:"offhand", lfgforever:"lfgforever", forevercore:"forevercore",
-  deletecheapest:"deletecheapestitem", fame:"foreverambientmusicextended"
+  deletecheapest:"deletecheapestitem", fame:"foreverambientmusicextended",
+  professionatlas:"professionatlas", itemtree:"itemtree", mastercraft:"mastercraft", miniauras:"miniauras"
 };
 
 const DATA = [
@@ -788,31 +789,35 @@ const DATA = [
   ]
 },
 {
-  id:"polestar", name:"Polestar", cat:"misiones", ver:"0.3.7.2", tag:"Suite", forever:true,
+  id:"polestar", name:"Polestar", cat:"misiones", ver:"0.4.0.1", tag:"Suite", forever:true,
   desc:"Guías de leveo para WoW Forever con pasos, flechas y waypoints en el mapa, más base de datos de misiones, objetos y NPC. Su propio navegador de rutas por facción y raza, y paquetes de idioma con español incluido.",
   cmd:"/polestar",
   modules:[
-    ["Polestar","0.3.7.2","Addon principal: guía activa, pasos y ventana."],
-    ["Polestar_Guides","0.3.7.2","Las rutas de leveo: facción y raza."],
-    ["Polestar_Guides_Alliance","0.3.7.2","Rutas de la Alianza."],
-    ["Polestar_Guides_Horde","0.3.7.2","Rutas de la Horda."],
-    ["Polestar_Guides_Human","0.3.7.2","Ruta de humano."],
-    ["Polestar_Guides_Dwarf","0.3.7.2","Ruta de enano."],
-    ["Polestar_Guides_Gnome","0.3.7.2","Ruta de gnomo."],
-    ["Polestar_Guides_NightElf","0.3.7.2","Ruta de elfo de la noche."],
-    ["Polestar_Guides_Orc","0.3.7.2","Ruta de orco."],
-    ["Polestar_Guides_Tauren","0.3.7.2","Ruta de tauren."],
-    ["Polestar_Guides_Troll","0.3.7.2","Ruta de trol."],
-    ["Polestar_Guides_Scourge","0.3.7.2","Ruta de no-muerto."],
-    ["Polestar_Guides_Skyborne","0.3.7.2","Ruta de skyborne."],
-    ["Polestar_Nav","0.3.7.2","Navegación: cálculo de rutas."],
-    ["Polestar_Nav_EK","0.3.7.2","Datos de navegación de Rápidos del Este."],
-    ["Polestar_Nav_Kalimdor","0.3.7.2","Datos de navegación de Kalimdor."],
-    ["Polestar_QuestDB","0.3.7.2","Base de datos de misiones."],
-    ["Polestar_ItemDB","0.3.7.2","Base de datos de objetos."],
-    ["Polestar_Codex","0.3.7.2","Textos y fichas de la guía."],
-    ["Polestar_esES","0.3.7.2","Español de España."],
-    ["Polestar_esMX","0.3.7.2","Español de Latinoamérica."]
+    ["Polestar","0.4.0.1","Addon principal: guía activa, pasos y ventana."],
+    ["Polestar_Guides","0.4.0.1","Las rutas de leveo: facción y raza."],
+    ["Polestar_Guides_Alliance","0.4.0.1","Rutas de la Alianza."],
+    ["Polestar_Guides_Horde","0.4.0.1","Rutas de la Horda."],
+    ["Polestar_Guides_Human","0.4.0.1","Ruta de humano."],
+    ["Polestar_Guides_Dwarf","0.4.0.1","Ruta de enano."],
+    ["Polestar_Guides_Gnome","0.4.0.1","Ruta de gnomo."],
+    ["Polestar_Guides_NightElf","0.4.0.1","Ruta de elfo de la noche."],
+    ["Polestar_Guides_Orc","0.4.0.1","Ruta de orco."],
+    ["Polestar_Guides_Tauren","0.4.0.1","Ruta de tauren."],
+    ["Polestar_Guides_Troll","0.4.0.1","Ruta de trol."],
+    ["Polestar_Guides_Scourge","0.4.0.1","Ruta de no-muerto."],
+    ["Polestar_Guides_Skyborne","0.4.0.1","Ruta de skyborne."],
+    ["Polestar_Nav","0.4.0.1","Navegación: cálculo de rutas."],
+    ["Polestar_Nav_EK","0.4.0.1","Datos de navegación de Rápidos del Este."],
+    ["Polestar_Nav_Kalimdor","0.4.0.1","Datos de navegación de Kalimdor."],
+    ["Polestar_QuestDB","0.4.0.1","Base de datos de misiones."],
+    ["Polestar_ItemDB","0.4.0.1","Base de datos de objetos."],
+    ["Polestar_Codex","0.4.0.1","Textos y fichas de la guía."],
+    ["Polestar_esES","0.4.0.1","Español de España."],
+    ["Polestar_esMX","0.4.0.1","Español de Latinoamérica."],
+    ["Polestar_Experimental","0.4.0.1","Guías experimentales de las zonas nuevas (alfa)."],
+    ["Polestar_Options","0.4.0.1","Ventana de configuración y sus vistas previas."],
+    ["Polestar_Looks","0.4.0.1","Temas del visor: Forever, Blizzard, Classic y Hearth."],
+    ["Polestar_SkinAPI","0.4.0.1","Base para los temas de visor."]
   ]
 },
 {
@@ -844,7 +849,8 @@ const DATA = [
     ["GearQuestForever_ROGUE","1.0.8","Listas para pícaro."],
     ["GearQuestForever_SHAMAN","1.0.8","Listas para chamán."],
     ["GearQuestForever_WARLOCK","1.0.8","Listas para brujo."],
-    ["GearQuestForever_WARRIOR","1.0.8","Listas para guerrero."]
+    ["GearQuestForever_WARRIOR","1.0.8","Listas para guerrero."],
+    ["GearQuestForever_ItemStats","1.2.1","Estadísticas de objetos para las especificaciones propias."]
   ]
 },
 
@@ -877,6 +883,15 @@ const DATA = [
     ["DBM-Midnight","12.1.20","Jefes de mundo de Midnight."],
     ["DBM-Brawlers","12.1.20","Hermandad de camorristas."],
     ["DBM-VPVEM","a8e9f0e","Paquete de voces en español."]
+  ]
+},
+{
+  id:"miniauras", name:"MiniAuras", cat:"combate", ver:"5.44.0",
+  desc:"Muestra los controles y los hechizos importantes en marcos, nameplates y avisos durante PvP: quién está controlado, por cuánto tiempo y qué se le puede tirar encima. MiniCC es solo el puente para importar los ajustes viejos.",
+  cmd:null,
+  modules:[
+    ["MiniAuras","5.44.0","Avisos de CC y hechizos clave."],
+    ["MiniCC","5.44.0","Puente que lee los ajustes del MiniCC anterior."]
   ]
 },
 {
@@ -914,6 +929,16 @@ const DATA = [
 },
 
 /* ══════════════ LOOT Y ORO ══════════════ */
+{
+  id:"itemtree", name:"ItemTree", cat:"loot", ver:"v1.2.6", tag:"Suite",
+  desc:"Para qué sirve cada objeto: cadenas de fabricación, misiones que lo piden, desencantar, quién lo suelta y quién lo vende. Marca lo nuevo y lo cambiado respecto a Classic Era.",
+  cmd:null,
+  modules:[
+    ["ItemTree","v1.2.6","Ventana y árbol de usos del objeto."],
+    ["ItemTree_Data","v1.2.6","Base de datos de objetos, la carga la primera vez."],
+    ["ItemTree_Professions","v1.2.6","Pestaña de profesiones, opcional."]
+  ]
+},
 {
   id:"rarescanner", name:"RareScanner", cat:"loot", ver:"1.60.1.2", forever:true,
   desc:"Escanea el minimapa y te avisa con botón, miniatura y sonido cuando aparece un NPC raro, un cofre o un evento. Lo marca también en el mapa del mundo con su botín.",
@@ -976,6 +1001,15 @@ const DATA = [
   cmd:"/autogear"
 },
 {
+  id:"mastercraft", name:"Mastercraft", cat:"personaje", ver:"2.0.4",
+  desc:"Guías de profesión con recetas en vivo, ganancia por receta, seguimiento de objetos, nodos de recolección, consejero de loot y precios de subasta en una sola ventana.",
+  cmd:"/mc",
+  modules:[
+    ["Mastercraft","2.0.4","Ventana de profesiones, recetas y ganancias."],
+    ["Mastercraft_Inbox","2.0.4","Pedidos de creación que llegan desde getmastercraft.com."]
+  ]
+},
+{
   id:"betterfishing", name:"Better Fishing", cat:"personaje", ver:"66",
   desc:"Pesca con una sola tecla: lanza, espera y recoge sin clics extra, con sonido reforzado cuando pica. Para subir la profesión sin mirar fijamente el anzuelo.",
   cmd:"/bf"
@@ -989,6 +1023,11 @@ const DATA = [
   id:"toasty", name:"Toasty!", cat:"personaje", ver:"1.0.0", forever:true,
   desc:"Banners al subir de nivel: qué ganas, qué te espera en el entrenador y una frase para tu raza y clase. Celebra el nivel en vez de dejarlo en un susurro del chat.",
   cmd:"/toasty"
+},
+{
+  id:"professionatlas", name:"Profession Atlas", cat:"personaje", ver:"0.18.38", forever:true,
+  desc:"Buscador de profesiones de toda la cuenta: qué personaje sabe cada receta, qué materiales faltan y metas de creación compartidas. Responde a «quién puede hacerme esto» sin entrar personaje por personaje.",
+  cmd:"/pa"
 },
 {
   id:"narcissus", name:"Narcissus", cat:"personaje", ver:"1.8.7 b", tag:"Suite",
