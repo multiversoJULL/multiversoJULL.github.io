@@ -27,6 +27,8 @@ Esto no es un sitio con servidor propio ni hosting pagado. Es **un repositorio d
 - Cada cambio tarda entre uno y dos minutos en verse, y el navegador puede guardar copia hasta 10 minutos.
 - Lo que está en el repositorio es exactamente lo que se ve en la web. No hay versión aparte.
 - **Origen:** el repositorio nació con El Multiverso (las 5 páginas originales). Después se le agregó Jullverse dentro de la misma carpeta y el mismo repositorio, como sección nueva. Por eso conviven: no son dos repos, es uno solo con dos partes, y Jullverse no está enlazado desde el hub principal (ese enlace está en standby).
+- **Por qué un solo repositorio:** GitHub Pages publica la raíz del dominio (`multiversojull.github.io`) solo desde el repo llamado `multiversoJULL.github.io`. Un segundo repositorio se publicaría en una dirección con barra (`multiversojull.github.io/otro-nombre/`). Se eligió la dirección limpia y las dos partes en el mismo repo.
+- **Riesgo real:** Multiverso y Jullverse no comparten código ni archivos: son páginas distintas en la misma carpeta. Un cambio en una no toca la otra, y el historial de git permite volver a cualquier versión anterior. Si en algún momento se decide separarlos, se puede: implicaría que Jullverse pase a vivir en una dirección con barra.
 
 ---
 
@@ -194,6 +196,8 @@ El proyecto está conectado a GitHub y se publica desde ese repositorio (explica
 Lo único que puede pasar es que GitHub pida autorización (sesión vencida, PC nueva, o el primer push del día). Cuando eso ocurra, **el agente se lo dice a Jull con una frase clara y espera**:
 
 > «Necesito que autorices el acceso a GitHub. Se va a abrir una ventana: inicia sesión con tu cuenta y dale permiso. Avísame cuando esté.»
+
+Esto aplica también después de formatear el PC o de instalar el agente desde cero: una instalación nueva **no** trae la autorización. Se resuelve con ese inicio de sesión y no hay que crear repositorios ni reconfigurar nada.
 
 Reglas para el agente:
 
